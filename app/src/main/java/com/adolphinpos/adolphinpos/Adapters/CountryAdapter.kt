@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Utilites.BackgroundColorTransform
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import com.squareup.picasso.Picasso
 
@@ -124,7 +126,7 @@ class CountryAdapter (
                 TYPE_EPMPY -> {
 
                     val emptyHolder = holder as EmptyHolder
-//                    emptyHolder.txtMessage.text = context.resources.getString(R.string.noresult)
+                    emptyHolder.txtMessage.text = context.resources.getString(R.string.noresult)
                 }
                 TYPE_ITEM -> {
                     val itemCat = itemsData.get(position)
@@ -139,8 +141,8 @@ class CountryAdapter (
 //                    itemHolder!!.category_txt.text = itemCat.category
                     Picasso.get()
                         .load(itemCat.thumb_country)
-//                        .error(R.drawable.no_picture)
-//                        .transform(Utilites.instance.BackgroundColorTransform(ContextCompat.getColor(context,R.color.layer)))
+                        .error(R.drawable.ca)
+                        .transform(BackgroundColorTransform(ContextCompat.getColor(context,R.color.layer)))
                         .into(itemHolder.cover_img)
 
 

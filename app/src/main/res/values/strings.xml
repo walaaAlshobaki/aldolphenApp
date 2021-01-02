@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AdolphinPOSApp</string>
+    <string name="noresult">No result found</string>
 </resources>

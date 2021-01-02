@@ -11,5 +11,6 @@
     <color name="appMainColor">#202854</color>
     <color name="appMainColor2">#171D3C</color>
     <color name="colorBlackGradient">#16000000</color>
+    <color name="layer">#E6E5E6</color>
 
 </resources>
