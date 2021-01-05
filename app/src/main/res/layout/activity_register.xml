@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".registeration.RegisterActivity">
+    tools:context=".registeration.register.RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="125dp"
@@ -118,6 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:hint="Country"
+            android:editable="false"
+            android:focusable="false"
+            android:clickable="true"
             app:layout_constraintWidth_percent="0.45"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
@@ -127,6 +130,8 @@
             app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/country"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/appMainColor"/>

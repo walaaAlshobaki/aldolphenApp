@@ -1,31 +1,32 @@
 package com.adolphinpos.adolphinpos.registeration.country
 
-import java.io.Serializable
 
-class CountryModel : Serializable {
-    var country_id:Int
-    var thumb_country:String
-    var title:String
-    var code:String
-    var type:String
+import com.google.gson.annotations.SerializedName
 
-    constructor(
-        country_id:Int = -2,
+data class CountryModel(
+    @SerializedName("data")
+    var `data`: List<Data>,
+    @SerializedName("errorCode")
+    var errorCode: Any?,
+    @SerializedName("success")
+    var success: Boolean?
+) {
+    data class Data(
+        @SerializedName("alpha2code")
+        var alpha2code: String,
+        @SerializedName("alpha3code")
+        var alpha3code: String,
+        @SerializedName("callingCodes")
+        var callingCodes: String,
+        @SerializedName("flag")
+        var flag: String,
+        @SerializedName("id")
+        var id: Int,
+        @SerializedName("name")
+        var name: String,
+        @SerializedName("region")
+        var region: String ,
 
-        thumb_country:String="",
-        title:String="",
-        code:String="",
-        type:String="item"
-
-
-    ) {
-
-        this.country_id=country_id
-        this.code=code
-        this.thumb_country=thumb_country
-        this.title=title
-        this.type=type
-
-
-    }
+        var type: String= "item"
+    )
 }

@@ -2,6 +2,7 @@ package com.adolphinpos.adolphinpos.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import com.squareup.picasso.Picasso
 
 class CountryAdapter (
-    var itemsData: ArrayList<CountryModel>,
+    var itemsData: ArrayList<CountryModel.Data>,
     var context: Context
 ) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     var isGrid = false
@@ -45,13 +46,14 @@ class CountryAdapter (
 
     //make interface like this
     interface OnItemClickedDelegate {
-        fun onSelectBook(position: Int)
+        fun setOnClickCountry(position: Int)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        Log.d("WWWWWWWWWWW", itemsData[1].name)
 
         when (viewType) {
 
@@ -112,6 +114,8 @@ class CountryAdapter (
 
 
     override fun getItemCount(): Int {
+        Log.d("RRRRRRRRRRRRRRRRRRRRRRR", itemsData.size.toString())
+
         return itemsData.size
     }
 
@@ -129,18 +133,19 @@ class CountryAdapter (
                     emptyHolder.txtMessage.text = context.resources.getString(R.string.noresult)
                 }
                 TYPE_ITEM -> {
+                    Log.d("RRRRRRRRRRRRRRRRRRRRRRR",itemsData.get(position).name)
                     val itemCat = itemsData.get(position)
                     val itemHolder = holder as ItemHolder
                     itemHolder.container.setOnClickListener {
-                        onClick!!.onSelectBook(
+                        onClick!!.setOnClickCountry(
                             position
                         )
                     }
 
-                    itemHolder.title_txt.text = itemCat.title
+                    itemHolder.title_txt.text = itemCat.name
 //                    itemHolder!!.category_txt.text = itemCat.category
                     Picasso.get()
-                        .load(itemCat.thumb_country)
+                        .load(itemCat.flag)
                         .error(R.drawable.ca)
                         .transform(BackgroundColorTransform(ContextCompat.getColor(context,R.color.layer)))
                         .into(itemHolder.cover_img)
@@ -192,7 +197,7 @@ class CountryAdapter (
     }
 
 
-    fun setOnClickBook(onClick: OnItemClickedDelegate) {
+    fun setOnClickCountry(onClick: OnItemClickedDelegate) {
         this.onClick = onClick
     }
 

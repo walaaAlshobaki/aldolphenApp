@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AdolphinPOSApp</string>
     <string name="noresult">No result found</string>
+    <string name="country">country</string>
+    <string name="choose_your_country">Choose your country:</string>
+    <string name="no_internet_msg">You are offline please connect to the internet!</string>
 </resources>
