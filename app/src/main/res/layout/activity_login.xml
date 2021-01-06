@@ -99,6 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
 
         <TextView
+            android:id="@+id/forgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot password?"
@@ -155,10 +156,15 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
         android:src="@drawable/right_logo"
-        app:layout_constraintWidth_percent="0.35"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.35"
+        android:translationX="120dp"
+        android:translationY="50dp"/>
 
 
 

@@ -75,7 +75,7 @@ enum class HttpMethod {
 class ServerManager {
     val urlAPIs = UrlAPIs.instance
 
-    var apiRoot = "http://13.59.88.58/Dolfin/"
+    var apiRoot = "http://13.59.88.58:8080/"
 
     var apiFolders: String = "api/"
     var apiDomainRoot = ""

@@ -3,51 +3,72 @@ package com.adolphinpos.adolphinpos.registeration.country
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.adolphinpos.adolphinpos.Adapters.CountryAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.adolphinpos.adolphinpos.Adapters.RecyclerAdapter
 import com.adolphinpos.adolphinpos.R
 import kotlinx.android.synthetic.main.activity_country.*
+import java.lang.Exception
 
-class CountryActivity : AppCompatActivity(),CountryDelegate, CountryAdapter.OnItemClickedDelegate {
+class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.OnItemselectedDelegate {
 
-    private lateinit var countryAdapter: CountryAdapter
+    private lateinit var countryAdapter: RecyclerAdapter
+    private lateinit var recyclerVieww: RecyclerView
     var mPresenter: CountryPresenter?=null
     var countryModel: ArrayList<CountryModel.Data> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country)
-        countryAdapter = CountryAdapter(countryModel,this )
-        countryAdapter!!.setOnClickCountry(this)
+//        val county=CountryModel.Data("ffff","ddddd","sdsddsds","sdsddsds",1,"ddddffd","ddddd")
+//        countryModel.add(county)
+//        countryModel.add(county)
+//        countryModel.add(county)
+//        countryModel.add(county)
+//        countryModel.add(county)
+//        countryModel.add(county)
+//        countryModel.add(county)
 
+
+
+
+        countryAdapter = RecyclerAdapter(baseContext,countryModel )
         mPresenter=CountryPresenter(this)
         mPresenter!!.delegate = this
-        val llm = GridLayoutManager(this, 2)
 
-        recyclerView.layoutManager = llm
-        recyclerView.adapter =countryAdapter
+        countryModel.clear()
+        mPresenter!!.getCountry()
 
-        getCountry()
+
+        recyclerVieww = recyclerView
+
+        recyclerVieww.adapter = countryAdapter
+
+        val llm = GridLayoutManager(this, 4)
+        recyclerVieww.layoutManager = llm
+
+
+
 
     }
 
 
 
 
+
     override fun didGetCountrySuccess(response: CountryModel) {
+        try {
 
-        hideLoaderCell()
-        countryModel.clear()
-        countryAdapter.notifyDataSetChanged()
-        runOnUiThread {
-            countryModel.addAll(response.data)
-            Log.d("WWWWWWWWWWW", countryModel[1].name)
+            countryModel.clear()
+            countryModel.addAll(response.data!!)
+            countryAdapter!!.notifyDataSetChanged()
 
-            countryAdapter.notifyDataSetChanged()
-            countryAdapter = CountryAdapter(countryModel, this)
-            recyclerView.adapter = countryAdapter
+        } catch (ex: Exception) {
+
+            Log.d("apiExepction inside", ex.toString())
+
+
         }
+
 
     }
     private fun emptyCell() {
@@ -75,20 +96,7 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, CountryAdapter.OnIt
 
 
     }
-    fun getCountry() {
 
-        countryModel.clear()
-
-
-        countryAdapter!!.notifyDataSetChanged()
-
-//        countryModel.add(CountryModel.Data(type = "loader"))
-
-
-//        if (countryModel[0].type == "loader" || countryModel.size == 0)
-        mPresenter!!.getCountry()
-
-    }
     override fun didGetCountryFail(msg: String) {
         hideLoaderCell()
         runOnUiThread {
@@ -103,7 +111,29 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, CountryAdapter.OnIt
         }
     }
 
-    override fun setOnClickCountry(position: Int) {
+    override fun onSelectItemCategory(position: Int) {
 
     }
+
+    override fun onSelectLesson(position: Int) {
+
+    }
+
+    override fun onSelectQuiz(position: Int) {
+
+    }
+
+    override fun onSelectHomework(position: Int) {
+
+    }
+
+    override fun onSelectvc(position: Int) {
+
+    }
+
+    override fun onSelectshowOption(position: Int) {
+
+    }
+
+
 }

@@ -9,6 +9,8 @@ import android.view.ViewGroup.MarginLayoutParams
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordActivity
+import com.adolphinpos.adolphinpos.login.resetPassword.ResetPasswordEmailActivity
 import com.adolphinpos.adolphinpos.registeration.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -20,6 +22,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         Register.setOnClickListener{
             val i = Intent(this, RegisterActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
+        forgetPassword.setOnClickListener{
+            val i = Intent(this, ResetPasswordEmailActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }
