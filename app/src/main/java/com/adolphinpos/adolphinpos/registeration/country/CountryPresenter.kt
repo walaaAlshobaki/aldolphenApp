@@ -38,8 +38,8 @@ class CountryPresenter(var mContext: Context) {
 //
 //        }
 
-        serverManager.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.Country,paramsDictionary,object :
-            callBackApi {
+        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.Country,paramsDictionary,object :
+            callBackApiGet {
 
 
 
@@ -65,9 +65,11 @@ class CountryPresenter(var mContext: Context) {
                 delegate!!.didGetCountryFail(msg)
             }
 
-            override fun JSON(jsonObject: JSONObject, api: ApiModel?) {
-
+            override fun JSON(jsonObject: JSONObject, api: ApiModelGet?) {
+                TODO("Not yet implemented")
             }
+
+
 
             override fun EMPTY(result: Boolean) {
                 delegate!!.didGetCountryFail("Empty")

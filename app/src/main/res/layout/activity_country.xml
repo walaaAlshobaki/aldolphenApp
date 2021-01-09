@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="50dp"
     tools:context=".registeration.country.CountryActivity">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintWidth_percent="0.70"
-        app:layout_constraintHeight_percent="0.50"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.70">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -27,6 +30,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="50dp"
                 android:text="@string/country"
                 android:textColor="@color/red"
                 android:textSize="18sp"
@@ -36,13 +41,15 @@
                 app:autoSizeStepGranularity="1sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:text="@string/choose_your_country"
                 android:textColor="@color/appMainColor"
                 android:textSize="25sp"
+                android:layout_marginStart="50dp"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="30sp"
                 app:autoSizeMinTextSize="20sp"
@@ -53,7 +60,15 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.70"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 tools:listitem="@layout/cell_country_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,9 +7,9 @@ data class CountryModel(
     @SerializedName("data")
     var `data`: List<Data>,
     @SerializedName("errorCode")
-    var errorCode: Any?,
+    var errorCode: Any,
     @SerializedName("success")
-    var success: Boolean?
+    var success: Boolean
 ) {
     data class Data(
         @SerializedName("alpha2code")

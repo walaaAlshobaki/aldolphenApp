@@ -4,15 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="127dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/logo2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeStepGranularity="1sp"
+        android:text="you can choose between multiple "
+        android:textColor="@color/appMainColor"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="10dp"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeStepGranularity="1sp"
+        android:text="modules over here:"
+        android:textColor="@color/appMainColor"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/right_logo"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.35"
+        android:translationX="120dp"
+        android:translationY="50dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

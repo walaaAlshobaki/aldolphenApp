@@ -1,31 +1,31 @@
-package com.adolphinpos.adolphinpos.registeration.code
+package com.adolphinpos.adolphinpos.login.resetPassword
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.adolphinpos.adolphinpos.MainActivity
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.helper.OtpEditText
-import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.adolphinpos.adolphinpos.registeration.code.ValidateCodePresenter
+import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.activity_verification_screen_code.*
 
-
-class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate{
-    var mPresenter: ValidateCodePresenter? = null
+class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
+    var mPresenter: EmailValidatePresenter? = null
     var code:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_verification_screen_code)
-        mPresenter = ValidateCodePresenter(this)
+        setContentView(R.layout.activity_email_validate_code)
+        mPresenter = EmailValidatePresenter(this)
         mPresenter!!.delegate = this
         val txtPinEntry: OtpEditText =
             findViewById<View>(R.id.txt_pin_entry) as OtpEditText
+        val bundle = intent.extras
         txtPinEntry.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -40,22 +40,26 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
             }
         })
         loginBtn.setOnClickListener {
-            mPresenter!!.getCode(code)
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (bundle != null) {
+                if (!bundle.getString("email").isNullOrEmpty()) {
+                    mPresenter!!.emailValidate(bundle.getString("email").toString(),code)
+
+                }
+                }
+
         }
     }
 
-    override fun didGetValidateCodeSuccess(response: CodePresenter) {
-Log.d("didGetValidateCodeSuccess","WWWWWWWWWWWWWWWWWWWWWWWWWW")
+    override fun didEmailValidateSuccess(token: String) {
+        Toast.makeText(this@EmailValidateCodeActivity, "the Email send successfully", Toast.LENGTH_LONG).show()
+        val intent = Intent(applicationContext, ResetPasswordEmailActivity::class.java)
+        intent.putExtra("email",intent.extras!!.getString("email").toString())
+        intent.putExtra("code",code)
+        startActivity(intent)
+        finish()
     }
 
-    override fun didGetValidateCodeFail(msg: String) {
-
-    }
-
-    override fun didEmpty() {
+    override fun didEmailValidateFail(msg: String) {
 
     }
 }

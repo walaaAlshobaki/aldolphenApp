@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdolphinPOSApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".login.resetPassword.ForgetPasswordActivity"></activity>
+        <activity android:name=".login.resetPassword.ForgetNewPasswordActivity"></activity>
+        <activity android:name=".login.resetPassword.EmailValidateCodeActivity" />
+        <activity android:name=".login.LoadingScreenActivity" />
+        <activity android:name=".login.resetPassword.ForgetPasswordActivity" />
         <activity android:name=".login.resetPassword.ResetPasswordEmailActivity" />
         <activity android:name=".registeration.code.VerificationScreenCodeActivity" />
         <activity android:name=".registeration.code.VerificationScreenActivity" />

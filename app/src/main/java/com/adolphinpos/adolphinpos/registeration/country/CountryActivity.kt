@@ -1,16 +1,20 @@
 package com.adolphinpos.adolphinpos.registeration.country
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.RecyclerAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.helper.MessageEvent
+import com.adolphinpos.adolphinpos.helper.RxBus
 import kotlinx.android.synthetic.main.activity_country.*
-import java.lang.Exception
 
-class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.OnItemselectedDelegate {
+
+class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.ItemClickListener {
 
     private lateinit var countryAdapter: RecyclerAdapter
     private lateinit var recyclerVieww: RecyclerView
@@ -19,35 +23,19 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.OnI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country)
-//        val county=CountryModel.Data("ffff","ddddd","sdsddsds","sdsddsds",1,"ddddffd","ddddd")
-//        countryModel.add(county)
-//        countryModel.add(county)
-//        countryModel.add(county)
-//        countryModel.add(county)
-//        countryModel.add(county)
-//        countryModel.add(county)
-//        countryModel.add(county)
-
-
-
-
-        countryAdapter = RecyclerAdapter(baseContext,countryModel )
+        countryAdapter= RecyclerAdapter(this, countryModel)
+        countryAdapter.setOnClickItemCategory(this)
         mPresenter=CountryPresenter(this)
         mPresenter!!.delegate = this
-
-        countryModel.clear()
-        mPresenter!!.getCountry()
-
-
-        recyclerVieww = recyclerView
-
-        recyclerVieww.adapter = countryAdapter
-
         val llm = GridLayoutManager(this, 4)
-        recyclerVieww.layoutManager = llm
-
-
-
+        recyclerView.layoutManager = llm
+//        val dividerItemDecoration = DividerItemDecoration(
+//            recyclerView.context,
+//            llm.orientation
+//        )
+//        recyclerView.addItemDecoration(dividerItemDecoration)
+        recyclerView.adapter = countryAdapter
+        mPresenter!!.getCountry()
 
     }
 
@@ -59,12 +47,51 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.OnI
         try {
 
             countryModel.clear()
-            countryModel.addAll(response.data!!)
-            countryAdapter!!.notifyDataSetChanged()
+            countryAdapter.notifyDataSetChanged()
+            var size=response.data.size-1
+            val iterator = (0..size).iterator()
 
+            if (iterator.hasNext()) {
+                iterator.next()
+            }
+
+// do something with the rest of elements
+            iterator.forEach {
+               var call= ""
+               var region= ""
+                if (response.data[it].callingCodes.isNullOrEmpty()){
+                    call="33"
+                }else{
+                    call=response.data[it].callingCodes
+                }
+                if (response.data[it].region.isNullOrEmpty()){
+                    region="33"
+                }else{
+                    region=response.data[it].region
+                }
+                countryModel.add(
+                    CountryModel.Data(
+                        response.data[it].alpha2code,
+                        response.data[it].alpha3code,
+                        call,
+                        response.data[it].flag,
+                        response.data[it].id,
+                        response.data[it].name,
+                        region,
+                        "item"
+                    )
+                )
+
+                countryAdapter.notifyDataSetChanged()
+            }
+
+
+            countryAdapter= RecyclerAdapter(this@CountryActivity, countryModel)
+
+            recyclerView.adapter = countryAdapter
         } catch (ex: Exception) {
 
-            Log.d("apiExepction inside", ex.toString())
+            Log.d("apiExepction inside", ex.localizedMessage)
 
 
         }
@@ -111,27 +138,12 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.OnI
         }
     }
 
-    override fun onSelectItemCategory(position: Int) {
 
-    }
 
-    override fun onSelectLesson(position: Int) {
-
-    }
-
-    override fun onSelectQuiz(position: Int) {
-
-    }
-
-    override fun onSelectHomework(position: Int) {
-
-    }
-
-    override fun onSelectvc(position: Int) {
-
-    }
-
-    override fun onSelectshowOption(position: Int) {
+    override fun onSelectCountry(position: Int) {
+        RxBus.publish(MessageEvent(1, countryModel[position]))
+        Log.d("WWWWWWWWWWW",countryModel[position].name)
+        finish()
 
     }
 

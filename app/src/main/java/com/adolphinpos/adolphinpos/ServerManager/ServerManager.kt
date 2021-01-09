@@ -10,25 +10,33 @@ import android.os.Build
 import android.os.StrictMode
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.adolphinpos.adolphinpos.R
-import com.adolphinpos.adolphinpos.Splash.common
-import org.json.JSONArray
+import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.auth0.jwt.JWT
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
+
 
 var serverManager: ServerManager = ServerManager()
+
 class UrlAPIs {
 
     companion object {
         val instance = UrlAPIs()
     }
 
-    val login = "login?"
-    val Company = "Company?"
-    val Country = "Country"
+    val login = "http://13.59.88.58:8080/api/User"
+    val Company = "http://13.59.88.58:8080/api/Company"
+    val email = "http://13.59.88.58:8080/api/User/RestPassword/Email"
+    val code = "http://13.59.88.58:8080/api/User/Activation/Code"
+    val Country = "Country?"
+    val Validate = "User/Activation/Validate?"
+    val emailValidate = "http://13.59.88.58:8080/api/User/RestPassword/Validate"
 
 }
 
@@ -47,7 +55,7 @@ class AuthModel {
 
 interface callBackApi {
 
-    fun SUCCESS(jsonObject: String)
+    fun SUCCESS(jsonObject: String, auth_token: String)
     fun ERROR(msg: String)
     fun FAILER(msg: String)
     fun JSON(jsonObject: JSONObject, api: ApiModel?)
@@ -58,6 +66,7 @@ interface callBackApi {
 
 
 }
+
 interface CallBack {
 
     fun SUCCESS(jsonObject: String)
@@ -81,6 +90,7 @@ class ServerManager {
     var apiDomainRoot = ""
 
     var root = ""
+
     init {
 
         if (Build.VERSION.SDK_INT > 9) {
@@ -93,6 +103,7 @@ class ServerManager {
 
 
     }
+
     private fun isNetworkConnected(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return cm.activeNetworkInfo != null
@@ -102,7 +113,7 @@ class ServerManager {
         context: Context,
         requestMethod: HttpMethod,
         url: String,
-        postData: MutableMap<String, Any>,
+        postData: JSONObject,
         callBack: callBackApi
     ) {
 
@@ -113,7 +124,11 @@ class ServerManager {
 
             val activity = context as Activity
 
-            Toast.makeText(context, context.resources.getString(R.string.no_internet_msg), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                context.resources.getString(R.string.no_internet_msg),
+                Toast.LENGTH_LONG
+            ).show()
 
 
 
@@ -124,41 +139,46 @@ class ServerManager {
         }
 
 
-        val urlLinkApi: String = generateUrl(url, postData)
-        Log.d("TTTTTTTTTTTTTTTTTTTT",urlLinkApi)
+//        val urlLinkApi: String = generateUrl(url, postData)
+        Log.d("TTTTTTTTTTTTTTTTTTTT", url)
 
-        val postJsonData: JSONObject = generatePostData(url, postData)
-
+//        val postJsonData: JSONObject = generatePostData(url, postData)
+//        executePost(url, postData.toString())
 
         val call = @SuppressLint("StaticFieldLeak")
-        object : CallAPIOperation(context, requestMethod, postJsonData, url) {
+        object : CallAPIOperation(context, requestMethod, postData, url) {
 
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onProgressUpdate(vararg values: String?) {
+                var jsonObject: JSONObject = JSONObject()
+
+
+                jsonObject = JSONObject(values[0])
                 try {
 
-                    Log.d("tag", "responseCode ajax: " + values[0].toString())
+//                    Log.d("tag", "responseCode ajax: " + values[0].toString())
                     //var jsonArray: JSONArray = JSONArray(values[0].toString())
-                    var jsonObject: JSONObject = JSONObject()
-
-
-                    jsonObject = JSONObject(values[0].toString())
 
 
 
+                    val dataPayload = jsonObject.getString("data")
 
 
 
-
-                        val dataPayload = jsonObject.getString("data")
-
-
+                    //if json object
+                    if (!dataPayload.isNullOrEmpty()) {
                         try {
+                            val jwt = JWT.decode(dataPayload)
+//                            val test =jwt.getClaim("NameIdentifier")
+//                            println("Decoded: $decodedString")
+                            val claims = jwt.claims //Key is the Claim name
 
-                            //if json object
+                            val claim = claims["nameid"]
+                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
 
-                            val o = JSONObject(dataPayload)
-                            callBack.SUCCESS(dataPayload)
+
+                            callBack.SUCCESS(claim!!.asString(), dataPayload)
 
 
                         } catch (e: JSONException) {
@@ -167,26 +187,61 @@ class ServerManager {
                             //if json array
 
 
-                            val o = JSONArray(dataPayload)
-
-                            callBack.SUCCESS(values[0].toString())
+//                           val o = JSONArray(dataPayload)
+//
+//                            val jwt = JWT.decode(dataPayload)
+////                            val test =jwt.getClaim("NameIdentifier")
+////                            println("Decoded: $decodedString")
+//                            val claims = jwt.claims //Key is the Claim name
+//
+//                            val claim = claims["nameid"]
+//                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
+//
+//                            val o = JSONArray(claim!!.asString())
+//                            callBack.SUCCESS(dataPayload)
+//
+////                            decodeTokenParts(dataPayload.replace('-', '+').replace('_', '/'))
+//                            callBack.SUCCESS(dataPayload)
 
 
                         }
 
 
+                    } else {
+                        val dataPayload = jsonObject.getString("success")
+                        callBack.ERROR(dataPayload)
+
+                    }
 
 
-                        val msg = jsonObject.getString("message")
-
-                        callBack.ERROR(msg)
-
-
+                    val messae = jsonObject.getString("messae")
+                    callBack.ERROR(
+                        messae
+                    )
 
 
                 } catch (ex: Exception) {
-                    callBack.FAILER(ex.toString())
-                    Log.d("IS_LOGIN :", ex.toString())
+                    try {
+                        val messae = jsonObject.getString("messae")
+                        Log.d("messae :", messae)
+                        callBack.ERROR(
+                            messae
+                        )
+                        callBack.FAILER(messae)
+
+
+                    }catch (ex: Exception) {
+                        try {
+                        val msg = jsonObject.getBoolean("success")
+                        callBack.SUCCESS(msg.toString(), "")
+                        }catch (ex: Exception) {
+                            callBack.FAILER(ex.localizedMessage)
+                        }
+                        callBack.FAILER(ex.localizedMessage)
+                    }
+                    callBack.FAILER(ex.localizedMessage)
+
+                    Log.d("IS_LOGIN :", ex.localizedMessage)
 
                 }
             }
@@ -198,17 +253,27 @@ class ServerManager {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
-            call.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            call.executeOnExecutor(
+                AsyncTask.THREAD_POOL_EXECUTOR, url.replace(
+                    "\\s+".toRegex(),
+                    "%20"
+                )
+            )
 
-            Log.d("** < api calling > ***", "${url} " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            Log.d("** < api calling > ***", "${url} " + url.replace("\\s+".toRegex(), "%20"))
         } else {
-            Log.d("** < api calling > ***", "${url} " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            Log.d("** < api calling > ***", "${url} " + url.replace("\\s+".toRegex(), "%20"))
 
-            call.execute(urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            call.execute(url.replace("\\s+".toRegex(), "%20"))
         }
 
 
     }
+
+
+
+
+
     @SuppressLint("LogNotTimber")
     fun callApiUpload(
         context: Context,
@@ -226,7 +291,11 @@ class ServerManager {
 
             val activity = context as Activity
 
-            Toast.makeText(context, context.resources.getString(R.string.no_internet_msg), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                context.resources.getString(R.string.no_internet_msg),
+                Toast.LENGTH_LONG
+            ).show()
 
 
 
@@ -240,21 +309,19 @@ class ServerManager {
         val urlLinkApi: String = generateUrl(url, postData)
 
 
-
         val call = @SuppressLint("StaticFieldLeak")
         object : UploadOperation(context, requestMethod, fileData, url) {
-
 
 
             override fun onProgressUpdate(vararg values: String?) {
                 try {
 
-                    Log.d("tag", "responseCode ajax: *" + values[0].toString())
+                    Log.d("tag", "responseCode ajax: *" + values[0])
                     //var jsonArray: JSONArray = JSONArray(values[0].toString())
                     var jsonObject: JSONObject = JSONObject()
 
 
-                    jsonObject = JSONObject(values[0].toString())
+                    jsonObject = JSONObject(values[0])
 
 
                     val result = jsonObject.getString("result")
@@ -269,8 +336,8 @@ class ServerManager {
 
                             //if json object
 
-                            val o = JSONObject(dataPayload)
-                            callBack.SUCCESS(dataPayload)
+//                            val o = JSONObject(dataPayload)
+                            callBack.SUCCESS(dataPayload, "")
 
 
                         } catch (e: JSONException) {
@@ -279,9 +346,9 @@ class ServerManager {
                             //if json array
 
 
-                            val o = JSONArray(dataPayload)
+//                            val o = JSONArray(dataPayload)
 
-                            callBack.SUCCESS(values[0].toString())
+                            callBack.SUCCESS(values[0].toString(), "")
 
 
                         }
@@ -318,17 +385,29 @@ class ServerManager {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
-            call.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            call.executeOnExecutor(
+                AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace(
+                    "\\s+".toRegex(),
+                    "%20"
+                )
+            )
 
-            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            Log.d(
+                "** < api calling > ***",
+                "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
+            )
         } else {
-            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+            Log.d(
+                "** < api calling > ***",
+                "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
+            )
 
             call.execute(urlLinkApi.replace("\\s+".toRegex(), "%20"))
         }
 
 
     }
+
     private fun generateUrl(url: String, postData: MutableMap<String, Any>): String {
 
         var parametersString = ""
@@ -347,13 +426,9 @@ class ServerManager {
         }
 
 
-//        if (url == UrlAPIs.instance.LmsDomain) {
-//
-//            callUrl = "https://www.manhal.com/${common.langUI}/api/app/get-lms-domain/?"
-//        } else {
-           callUrl = apiRoot+ apiFolders+ url
-//
-//        }
+
+        callUrl = apiRoot + apiFolders + url
+
 
 
         callUrl += parametersString
@@ -364,21 +439,57 @@ class ServerManager {
     }
 
 
-    private fun generatePostData(url: String, postData: MutableMap<String, Any>): JSONObject {
+    fun executePost(targetURL: String?, requestJSON: String): String? {
+        var connection: HttpURLConnection? = null
+        var `is`: InputStream? = null
 
+        return try {
+            //Create connection
+            val url = URL(targetURL)
+            connection = url.openConnection() as HttpURLConnection
+            connection.requestMethod = "POST"
+            connection!!.setRequestProperty("Content-Type", "application/json")
 
-        val jsonParam = JSONObject()
+            connection.useCaches = false
+            connection.doOutput = true
 
+            //Send request
+            val wr = DataOutputStream(connection.outputStream)
+            wr.writeBytes(requestJSON)
+            wr.close()
 
-        for ((key, value) in postData) {
+            //Get Response
+            try {
+                `is` = connection.inputStream
+            } catch (ioe: IOException) {
+                if (connection is HttpURLConnection) {
+                    val httpConn = connection
+                    val statusCode = httpConn.responseCode
+                    if (statusCode != 200) {
+                        `is` = httpConn.errorStream
+                    }
+                }
+            }
+            val rd = BufferedReader(InputStreamReader(`is`))
+            val response = StringBuilder() // or StringBuffer if Java version 5+
+            var line: String?
+            while (rd.readLine().also { line = it } != null) {
+                response.append(line)
+                response.append('\r')
+            }
+            rd.close()
 
-            jsonParam.put(key, value)
+            Log.d("WWWWWWWWWWWWWWWW", response.toString())
+            response.toString()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            null
+        } finally {
+            connection?.disconnect()
         }
-
-        return jsonParam
     }
-
 }
+
 abstract class CallAPIOperation(
     context: Context,
     requestMethod: HttpMethod,
@@ -394,6 +505,7 @@ abstract class CallAPIOperation(
 
     var operationUrl: String = ""
 
+    var urlConnection: HttpURLConnection? = null
 
     init {
 
@@ -424,7 +536,7 @@ abstract class CallAPIOperation(
 
         Log.d(
             "** < api calling > ***",
-            "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******|||${operationUrl}|||"
+            "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******"
         )
 
         Log.d(
@@ -438,60 +550,76 @@ abstract class CallAPIOperation(
     @SuppressLint("LogNotTimber")
     override fun doInBackground(vararg p0: String?): String {
         try {
-            val url = URL(p0[0])
 
 
-            val urlConnection = url.openConnection() as HttpURLConnection
+            val url = URL(operationUrl)
+            urlConnection = url.openConnection() as HttpURLConnection
+            urlConnection!!.requestMethod = requestMethod
+            urlConnection!!.setRequestProperty("Content-Type", "application/json")
+            urlConnection!!.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
+            urlConnection!!.setRequestProperty("Content-Length", "" + postData.toString().length)
 
+            urlConnection!!.useCaches = false
+            urlConnection!!.doOutput = true
+            urlConnection!!.doInput = true
 
-            if (urlConnection.requestMethod == "POST") {
-                val os = DataOutputStream(urlConnection.outputStream)
-                os.writeBytes(postData.toString())
+            if (urlConnection!!.requestMethod == "POST") {
+                val wr = DataOutputStream(urlConnection!!.outputStream)
+                wr.writeBytes(postData.toString())
+                wr.close()
+                Log.d(
+                    "** < api calling > ***",
+                    "${operationUrl}* MSG :" + postData.toString()
+                )
+            } else if (urlConnection!!.requestMethod == "GET") {
 
-                os.flush()
-                os.close()
-
-
-                urlConnection.doOutput = true
-                urlConnection.doInput = true
-
+                urlConnection!!.connect()
             }
 
-            urlConnection.requestMethod = requestMethod
+            urlConnection!!.connect()
+            val responseCode = urlConnection!!.responseCode
 
-            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
-            urlConnection.setRequestProperty("Accept", "application/json")
-
-//            urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
-
-
-            urlConnection.useCaches = false
-
-            urlConnection.connect()
-
-
-            val responseCode = urlConnection.responseCode
 
             if (urlConnection != null) {
-
-
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    val jsonData = convertStreamToJson(urlConnection.inputStream)
+                    val jsonData = convertStreamToJson(urlConnection!!.inputStream)
 
-                    Log.w("** < api calling > ***", "${operationUrl} responseCode: " + jsonData)
+                    Log.w("** < api calling > ***", "${url} responseCode: " + jsonData)
 
                     publishProgress(jsonData)
 
-                } else {
+                } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
                     Log.w("** < api calling > ***", responseCode.toString())
+
+
+                    val jsonData = convertStreamToJson(urlConnection!!.errorStream)
+
+                    Log.w("** < api calling > ***", "${url} responseCode: " + jsonData)
+
+                    Log.d("body of Bad Request HttpURLConnection", "Response: $jsonData")
+                    publishProgress(jsonData)
+
                 }
 
 
-//                Log.d("** < api calling > ***", "$operationUrl auth_token :" + (userConfig.auth_token))
-                Log.d("** < api calling > ***", "$operationUrl CODE :" + (urlConnection.responseCode.toString()))
-                Log.d("** < api calling > ***", "$operationUrl MSG :" + urlConnection.responseMessage)
+                Log.d(
+                    "** < api calling > ***",
+                    "$operationUrl auth_token :" + (userConfig.auth_token)
+                )
+                Log.d(
+                    "** < api calling > ***",
+                    "$operationUrl auth_token :" + urlConnection!!.errorStream
+                )
+                Log.d(
+                    "** < api calling > ***",
+                    "$operationUrl CODE :" + (urlConnection!!.responseCode.toString())
+                )
+                Log.d(
+                    "** < api calling > ***",
+                    "$operationUrl MSG :" + urlConnection!!.responseMessage
+                )
 
-                urlConnection.disconnect()
+                urlConnection!!.disconnect()
             }
 
         } catch (ex: Exception) {
@@ -569,6 +697,7 @@ abstract class CallAPIOperation(
 
 
 }
+
 abstract class UploadOperation(
     context: Context,
     requestMethod: HttpMethod,
@@ -631,7 +760,7 @@ abstract class UploadOperation(
             val urlConnection = url.openConnection() as HttpURLConnection
 
 
-//            urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
+//           urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
 
             urlConnection.doOutput = true
             urlConnection.useCaches = false
@@ -671,8 +800,10 @@ abstract class UploadOperation(
 
 
             request.writeBytes(crlf)
-            request.writeBytes(twoHyphens + boundary +
-                    twoHyphens + crlf)
+            request.writeBytes(
+                twoHyphens + boundary +
+                        twoHyphens + crlf
+            )
 
 
 
@@ -704,12 +835,18 @@ abstract class UploadOperation(
                 }
 
 
-//                Log.d("** < api calling > ***", "${operationUrl}* auth_token :" + (userConfig.auth_token))
+                Log.d(
+                    "** < api calling > ***",
+                    "${operationUrl}* auth_token :" + (userConfig.auth_token)
+                )
                 Log.d(
                     "** < api calling > ***",
                     "${operationUrl}* CODE :" + (urlConnection.responseCode.toString())
                 )
-                Log.d("** < api calling > ***", "${operationUrl}* MSG :" + urlConnection.responseMessage)
+                Log.d(
+                    "** < api calling > ***",
+                    "${operationUrl}* MSG :" + urlConnection.responseMessage
+                )
 
                 urlConnection.disconnect()
             }
