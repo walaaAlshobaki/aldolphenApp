@@ -16,7 +16,7 @@ class LoadingScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading_screen)
         Handler().postDelayed({ /* Create an Intent that will start the Menu-Activity. */
-            val mainIntent = Intent(applicationContext, ForgetPasswordActivity::class.java)
+            val mainIntent = Intent(applicationContext, MainActivity::class.java)
            startActivity(mainIntent)
          finish()
         }, 1500)

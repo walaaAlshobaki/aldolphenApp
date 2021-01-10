@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_verification_screen_code.*
 class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
     var mPresenter: EmailValidatePresenter? = null
     var code:String=""
+    var email:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email_validate_code)
@@ -41,6 +42,7 @@ class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
         })
         loginBtn.setOnClickListener {
             if (bundle != null) {
+                email=bundle.getString("email").toString()
                 if (!bundle.getString("email").isNullOrEmpty()) {
                     mPresenter!!.emailValidate(bundle.getString("email").toString(),code)
 
@@ -51,9 +53,11 @@ class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
     }
 
     override fun didEmailValidateSuccess(token: String) {
+
         Toast.makeText(this@EmailValidateCodeActivity, "the Email send successfully", Toast.LENGTH_LONG).show()
         val intent = Intent(applicationContext, ResetPasswordEmailActivity::class.java)
-        intent.putExtra("email",intent.extras!!.getString("email").toString())
+
+        intent.putExtra("email",email)
         intent.putExtra("code",code)
         startActivity(intent)
         finish()
