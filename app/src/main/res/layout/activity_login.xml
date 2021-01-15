@@ -7,72 +7,103 @@
     android:background="@color/white"
     tools:context=".login.LoginActivity">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/banner_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
-        android:layout_width="0dp"
+        android:layout_width="582dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintWidth_percent="0.50"
+        android:layout_marginEnd="193dp"
+        android:layout_marginStart="193dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.50">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
             android:text="Sign In"
             android:textColor="@color/appMainColor"
             android:textColorHint="@color/appMainColor2"
-            android:textSize="25sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            app:autoSizeMaxTextSize="30sp"
-            app:autoSizeMinTextSize="20sp"
+            app:autoSizeMaxTextSize="36sp"
+            app:autoSizeMinTextSize="32sp"
             app:autoSizeStepGranularity="1sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/userNameTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            style="@style/LoginTextInputLayoutStyle"
+            app:errorEnabled="true"
+            android:theme="@style/LoginTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="10dp"
             android:hint="Email"
-            android:background="@drawable/textviewbox"
+            android:defaultFocusHighlightEnabled="true"
+            app:placeholderTextColor="@color/border"
+            android:imeOptions="actionNext"
+            app:placeholderText="Email"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+                android:imeOptions="actionNext"
+                android:hint="Email"
+
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"
-            android:background="@drawable/textviewbox"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="12dp"
             android:hint="Password"
-            app:endIconMode="password_toggle"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="Password"
+            android:imeOptions="actionNext"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:textColorHint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
+            android:theme="@style/LoginTextInputLayoutStyle"
+            app:endIconMode="password_toggle"
             app:endIconTint="@color/appMainColor"
-            android:layout_marginTop="10dp"
+            app:hintTextColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userNameTextInputLayout">
@@ -81,7 +112,10 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/roboto_bold"
+                android:password="true"
+                android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,9 +124,10 @@
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/roboto"
             android:text="Keep me signed in"
             android:textColor="@color/appMainColor"
-            android:layout_marginTop="8dp"
             android:textSize="14sp"
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="12sp"
@@ -104,6 +139,7 @@
             android:id="@+id/forgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:text="Forgot password?"
             android:textColor="@color/appMainColor"
             android:textSize="14sp"
@@ -117,10 +153,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="45dp"
+            android:layout_height="58dp"
+            app:cardBackgroundColor="@color/appMainColor"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="20dp"
+            android:minHeight="58dp"
+            app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,18 +177,20 @@
             android:id="@+id/Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/roboto_bold"
             android:text="REGISTER NOW"
             android:textColor="@color/appMainColor"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:autoSizeMaxTextSize="18sp"
             app:autoSizeMinTextSize="14sp"
             app:autoSizeStepGranularity="1sp"
             app:layout_constraintEnd_toEndOf="@+id/login"
             app:layout_constraintStart_toStartOf="@+id/login"
-            app:layout_constraintTop_toBottomOf="@+id/login"
-            android:focusable="true" />
+            app:layout_constraintTop_toBottomOf="@+id/login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import com.adolphinpos.adolphinpos.MainActivity
@@ -12,6 +13,7 @@ import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.helper.OtpEditText
 import com.adolphinpos.adolphinpos.registeration.code.ValidateCodePresenter
+import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_forget_password.*
 import kotlinx.android.synthetic.main.activity_verification_screen_code.*
 
@@ -53,7 +55,8 @@ class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
     }
 
     override fun didEmailValidateSuccess(token: String) {
-
+        DesignerToast.Custom(this,"the Email Validate successfully", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         Toast.makeText(this@EmailValidateCodeActivity, "the Email send successfully", Toast.LENGTH_LONG).show()
         val intent = Intent(applicationContext, ResetPasswordEmailActivity::class.java)
 
@@ -64,6 +67,7 @@ class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {
     }
 
     override fun didEmailValidateFail(msg: String) {
-
+        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
     }
 }

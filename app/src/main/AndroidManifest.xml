@@ -23,16 +23,25 @@
         <activity
             android:name=".registeration.country.CountryActivity"
             android:theme="@style/Theme.D1NoTitleDim4" />
-        <activity android:name=".registeration.register.RegisterActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".Splash.SplashActivity">
+        <activity android:name=".registeration.register.RegisterActivity"
+            android:screenOrientation="landscape"  />
+        <activity android:name=".login.LoginActivity"
+            android:screenOrientation="landscape"  />
+        <activity android:name=".Splash.SplashActivity"
+            android:screenOrientation="landscape"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="landscape" >
+
+        </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

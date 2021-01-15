@@ -1,10 +1,20 @@
 package com.adolphinpos.adolphinpos.registeration.code
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
+import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.helper.MessageEvent
+import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordPresenter
+import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.ahmadrosid.svgloader.SvgLoader
+import com.vdx.designertoast.DesignerToast
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_verification_screen.*
 
 class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDelegate {
@@ -14,19 +24,37 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
         setContentView(R.layout.activity_verification_screen)
         mPresenter = SendVerificationCodePresenter(this)
         mPresenter!!.delegate = this
+        val bundle = intent.extras
+        textTitle2.text="will send you a code to "+ bundle!!.getString("mobile")
+
+
+
         sendSMS.setOnClickListener{
             mPresenter!!.senCode()
-            val i = Intent(this, VerificationScreenCodeActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
+
         }
     }
 
     override fun didSendVerificationCodeSuccess(token: String) {
-
+        DesignerToast.Custom(this,"the code send successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+        val i = Intent(this, VerificationScreenCodeActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(i)
     }
 
     override fun didSendVerificationCodeFail(msg: String) {
+        if (msg=="LastCodeNotExpired"){
+            DesignerToast.Custom(this,msg , Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
+            val i = Intent(this, VerificationScreenCodeActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }else{
+            DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+        }
+
 
     }
 }

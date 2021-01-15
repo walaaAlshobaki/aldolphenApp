@@ -15,5 +15,8 @@
     <color name="red">#E00844</color>
     <color name="redtrans">#48E00844</color>
     <color name="back">#efefef</color>
+    <color name="border">#E0E0E0</color>
+    <color name="gradientStart">#545454B8</color>
+    <color name="gradientEnd">#545454B8</color>
 
 </resources>

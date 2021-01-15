@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mPager"
+            android:layout_width="455dp"
+            android:layout_height="match_parent"
+            android:clipChildren="true"
+            android:clipToPadding="true"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="455dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:background="@drawable/textviewbox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+       <ImageView
+           android:layout_width="50dp"
+           android:layout_height="60dp"
+           android:layout_marginStart="57dp"
+           android:layout_marginTop="34dp"
+           android:src="@drawable/whitelogo"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="437dp"
+            android:fontFamily="@font/roboto"
+            android:text="POS System"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="352dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="478dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="You can find our services matches your criteria with smarter full featured app."
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/slidinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="596dp"
+            android:fontFamily="@font/roboto"
+            android:text="if you don't have an account Please"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/registerText"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="596dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="register"
+            android:textColor="@color/red"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/slidinfo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/indicatiormain"
+            android:layout_width="455dp"
+            android:layout_height="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabGravity="center"
+            android:background="@android:color/transparent"
+            app:tabIndicatorHeight="0dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

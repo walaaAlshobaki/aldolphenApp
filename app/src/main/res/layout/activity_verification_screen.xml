@@ -148,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="will send you a code to 966-0101-231-455"
+
                         android:textColor="@color/appMainColor"
                         android:textSize="16sp" />
 

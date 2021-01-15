@@ -3,9 +3,11 @@ package com.adolphinpos.adolphinpos.login.resetPassword
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
+import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_reset_password_email.*
 
 class ResetPasswordEmailActivity : AppCompatActivity() ,ResetPasswordDelegate{
@@ -33,14 +35,18 @@ class ResetPasswordEmailActivity : AppCompatActivity() ,ResetPasswordDelegate{
     }
 
     override fun didSendSuccess(token: String) {
-        Toast.makeText(this@ResetPasswordEmailActivity, "the Password reset successfully", Toast.LENGTH_LONG).show()
+        DesignerToast.Custom(this,"the Password reset successfully", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+//        Toast.makeText(this@ResetPasswordEmailActivity, "the Password reset successfully", Toast.LENGTH_LONG).show()
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun didSendFail(msg: String) {
-        Toast.makeText(this@ResetPasswordEmailActivity, msg, Toast.LENGTH_LONG).show()
+        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+//        Toast.makeText(this@ResetPasswordEmailActivity, msg, Toast.LENGTH_LONG).show()
 
     }
 }

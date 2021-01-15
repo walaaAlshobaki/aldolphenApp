@@ -11,7 +11,7 @@ import org.json.JSONObject
 
 interface ValidateCodeDelegate{
 
-    fun didGetValidateCodeSuccess(response: CodePresenter)
+    fun didGetValidateCodeSuccess(response: String)
     fun didGetValidateCodeFail(msg:String)
     fun didEmpty()
 
@@ -53,7 +53,7 @@ class ValidateCodePresenter(var mContext: Context) {
 
                     val responseJson = common.parserJson.fromJson(
                         responseDatajson.toString(),
-                        CodePresenter::class.java
+                        String::class.java
                     )
 
                     delegate!!.didGetValidateCodeSuccess(responseJson)

@@ -35,6 +35,7 @@ class UrlAPIs {
     val email = "http://13.59.88.58:8080/api/User/RestPassword/Email"
     val code = "http://13.59.88.58:8080/api/User/Activation/Code"
     val Country = "Country?"
+    val userInfo = "User/Info?"
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://13.59.88.58:8080/api/User/RestPassword/Validate"
     val reset = "http://13.59.88.58:8080/api/User/RestPassword"
@@ -185,64 +186,51 @@ class ServerManager {
                         } catch (e: JSONException) {
 
 
-                            //if json array
-
-
-//                           val o = JSONArray(dataPayload)
-//
-//                            val jwt = JWT.decode(dataPayload)
-////                            val test =jwt.getClaim("NameIdentifier")
-////                            println("Decoded: $decodedString")
-//                            val claims = jwt.claims //Key is the Claim name
-//
-//                            val claim = claims["nameid"]
-//                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
-//
-//                            val o = JSONArray(claim!!.asString())
-//                            callBack.SUCCESS(dataPayload)
-//
-////                            decodeTokenParts(dataPayload.replace('-', '+').replace('_', '/'))
-//                            callBack.SUCCESS(dataPayload)
-
 
                         }
 
+                        val msg = jsonObject.getString("success")
 
-                    } else {
+                        callBack.ERROR(msg)
+                    }
+                    else {
                         val dataPayload = jsonObject.getString("success")
                         callBack.ERROR(dataPayload)
 
                     }
 
 
-                    val messae = jsonObject.getString("messae")
+                    val messae = jsonObject.getString("message")
                     callBack.ERROR(
                             messae
                     )
 
 
-                } catch (ex: Exception) {
+                }
+                catch (ex: Exception) {
                     try {
-                        val messae = jsonObject.getString("messae")
-                        Log.d("messae :", messae)
+                        val messae = jsonObject.getString("message")
+                        Log.d("message :", messae)
                         callBack.ERROR(
                                 messae
                         )
                         callBack.FAILER(messae)
 
+                        Log.d("IS_LOGIN :", ex.localizedMessage)
+
 
                     }catch (ex: Exception) {
-                        try {
-                        val msg = jsonObject.getBoolean("success")
-                        callBack.SUCCESS(msg.toString(), "")
-                        }catch (ex: Exception) {
-                            callBack.FAILER(ex.localizedMessage)
-                        }
                         callBack.FAILER(ex.localizedMessage)
-                    }
+                        }catch (ex: Exception) {
+//                            callBack.FAILER(ex.localizedMessage)
+                        }
                     callBack.FAILER(ex.localizedMessage)
 
                     Log.d("IS_LOGIN :", ex.localizedMessage)
+//                        callBack.FAILER(ex.localizedMessage)
+
+//                    callBack.FAILER(ex.localizedMessage)
+
 
                 }
             }

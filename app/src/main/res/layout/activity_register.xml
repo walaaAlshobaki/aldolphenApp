@@ -8,53 +8,76 @@
     android:background="@color/white"
     tools:context=".registeration.register.RegisterActivity">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="66dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@+id/container">
+    <include
+        android:id="@+id/include"
+        layout="@layout/banner_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="124dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/container"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/sign"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
             android:background="@color/white">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="29dp"
+                android:src="@drawable/ic_left_arrow"
+                android:tint="@color/appMainColor" />
 
             <TextView
                 android:id="@+id/signUp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Sign In"
                 android:textColor="@color/appMainColor"
-                android:textSize="25sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="30sp"
                 app:autoSizeMinTextSize="20sp"
                 app:autoSizeStepGranularity="1sp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintWidth_percent="0.50"
+        android:layout_marginEnd="113dp"
+        android:layout_marginStart="113dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.56">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
             android:text="Register"
             android:textColor="@color/appMainColor"
             android:textColorHint="@color/appMainColor2"
-            android:textSize="25sp"
+            android:textSize="33sp"
             android:textStyle="bold"
             app:autoSizeMaxTextSize="30sp"
             app:autoSizeMinTextSize="20sp"
@@ -63,42 +86,57 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstNameTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.45"
             android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="10dp"
             android:hint="First Name"
-            android:background="@drawable/textviewbox"
+            android:focusable="true"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="write your first name"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintWidth_percent="0.45">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+                app:placeholderTextColor="@color/border"
+                app:placeholderText="write your First name"
+                android:textColorHint="@color/border"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/lastNameTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/textviewbox"
+            android:layout_marginTop="42dp"
             android:hint="Last Name"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
-
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="write your last name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -108,143 +146,223 @@
                 android:id="@+id/lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
+        <ImageView
+            android:id="@+id/flag"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/CountryTextInputLayout"
-            android:background="@drawable/textviewbox"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
             android:layout_marginBottom="12dp"
-            android:hint="Country"
-            android:editable="false"
-            android:focusable="false"
             android:clickable="true"
-            app:layout_constraintWidth_percent="0.45"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            android:hint="Country"
+            app:endIconMode="custom"
             android:textColorHint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
             app:endIconTint="@color/appMainColor"
-            android:layout_marginTop="10dp"
+            app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
+            app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/country"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/PhoneTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/textviewbox"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="42dp"
             android:hint="Phone No."
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
-            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-            app:layout_constraintWidth_percent="0.45"
-            android:layout_marginLeft="8dp">
+            app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoText="false"
+                android:fontFamily="@font/roboto_bold"
+                android:phoneNumber="true"
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/phoneError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/PhoneTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout" />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/CompanyTextInputLayout"
-            android:background="@drawable/textviewbox"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
             android:layout_marginBottom="12dp"
             android:hint="Company Name"
-            app:layout_constraintWidth_percent="0.45"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="write your company name"
             android:textColorHint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
             app:endIconTint="@color/appMainColor"
-            android:layout_marginTop="10dp"
+            app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CountryTextInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/CountryTextInputLayout"
+            app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/companyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/companyNameError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+
+            app:layout_constraintStart_toStartOf="@+id/CompanyTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/EmailTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/textviewbox"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="42dp"
             android:hint="Email"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="ex. Mohamed@gmail.com"
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
-            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout"
-            app:layout_constraintWidth_percent="0.45"
-            android:layout_marginLeft="8dp">
+            app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/emailError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/EmailTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/EmailTextInputLayout" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordTextInputLayout"
-            android:background="@drawable/textviewbox"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
             android:layout_marginBottom="12dp"
             android:hint="Password"
-            app:layout_constraintWidth_percent="0.45"
-            app:endIconMode="password_toggle"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="*************"
             android:textColorHint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
+            app:endIconMode="password_toggle"
             app:endIconTint="@color/appMainColor"
-            android:layout_marginTop="10dp"
+            app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
+            app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/appMainColor"/>
+                android:fontFamily="@font/roboto_bold"
+                android:password="true"
+                android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ConfirmpasswordTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/LoginTextInputLayoutStyle"
+            android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/textviewbox"
+            android:layout_marginTop="42dp"
             android:hint="Confirm Password"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="*************"
             android:textColorHint="@color/appMainColor"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/appMainColor"
@@ -257,16 +375,20 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:password="true"
                 android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="688dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="36dp"
             android:minHeight="45dp"
-            android:layout_marginTop="50dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/appMainColor"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -274,14 +396,14 @@
 
             <Button
                 android:id="@+id/loginBtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="688dp"
+                android:layout_height="56dp"
                 android:background="@drawable/btn_style"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Sign Up"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

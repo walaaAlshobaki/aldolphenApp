@@ -4,10 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
 import com.adolphinpos.adolphinpos.login.LoginPresenter
+import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_forget_password.*
 
 class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
@@ -23,7 +25,9 @@ class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
     }
 
     override fun didSendSuccess(token: String) {
-        Toast.makeText(this@ForgetPasswordActivity, "the Email send successfully", Toast.LENGTH_LONG).show()
+        DesignerToast.Custom(this,"the Email send successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+
         val intent = Intent(applicationContext, EmailValidateCodeActivity::class.java)
         intent.putExtra("email",email.text.toString())
         startActivity(intent)
@@ -32,9 +36,14 @@ class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
     override fun didSendFail(msg: String) {
         Toast.makeText(this@ForgetPasswordActivity, msg, Toast.LENGTH_LONG).show()
         if (msg == "LastEmailNotExpired"){
+            DesignerToast.Custom(this,msg , Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
             val intent = Intent(applicationContext, EmailValidateCodeActivity::class.java)
             intent.putExtra("email",email.text.toString())
             startActivity(intent)
+        }else{
+            DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
         }
 
     }

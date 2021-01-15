@@ -1,28 +1,32 @@
 package com.adolphinpos.adolphinpos.login
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup.MarginLayoutParams
+import android.view.Gravity
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.adolphinpos.adolphinpos.MainActivity
+import androidx.viewpager.widget.ViewPager
+import com.adolphinpos.adolphinpos.Adapters.SlidingImagemain_Adapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordActivity
-import com.adolphinpos.adolphinpos.login.resetPassword.ResetPasswordEmailActivity
 import com.adolphinpos.adolphinpos.registeration.register.RegisterActivity
+import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.banner_slider.*
 
 
 class LoginActivity : AppCompatActivity(),LoginDelegate {
     var mPresenter: LoginPresenter? = null
+    var i = 0
+    private var handler: Handler = Handler()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,14 +36,58 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
 
         mPresenter!!.delegate = this
         initListiner()
+        val myImageList: ArrayList<Int> = ArrayList()
+        myImageList.add(R.drawable.image2)
+        myImageList.add(R.drawable.image1)
+        myImageList.add(R.drawable.image3)
+        myImageList.add(R.drawable.image4)
+        myImageList.add(R.drawable.image5)
+        myImageList.add(R.drawable.image6)
+        mPager!!.adapter = SlidingImagemain_Adapter(this, myImageList)
+        mPager!!.isNestedScrollingEnabled = true
+        indicatiormain.setupWithViewPager(mPager, true);
+
+        autoSlider(mPager)
+    }
+    fun autoSlider(viewPager: ViewPager) {
+        try {
 
 
-//        if (isTablet(this)){
-//            setMargins(  findViewById<ConstraintLayout>(R.id.container), 100, 0, 100, 0)
-//        }
+            var rr = Runnable {
+                try {
+                    val pos = viewPager.currentItem
+                    if (pos > i && pos != mPager!!.adapter!!.count - 1) {
+                        i = pos
+                        i++
+                    } else if (pos < i - 1) {
+                        i = pos
+                        i++
+                    }
+                    viewPager.setCurrentItem(i, true)
+                    i++
+                    if (mPager != null)
+                        if (i >= mPager!!.adapter!!.count) i = 0
+                    autoSlider(viewPager)
+                } catch (ex: Exception) {
+
+
+                }
+            }
+            handler.postDelayed(rr, 3000)
+
+        } catch (ex: Exception) {
+
+
+        }
     }
     fun initListiner() {
+        registerText.setOnClickListener{
+            val i = Intent(this, RegisterActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
         Register.setOnClickListener{
+
             val i = Intent(this, RegisterActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
@@ -50,39 +98,74 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
             startActivity(i)
         }
         loginBtn.setOnClickListener {
-            mPresenter!!.loginTap(
-                email.text.toString(),
-                password.text.toString(),
+            if (password.text.toString().isNullOrEmpty()&&email.text.toString().isNullOrEmpty()){
+                passwordTextInputLayout.error = "the password is required"
+                userNameTextInputLayout.error = "the email is required"
+                DesignerToast.Custom(this,"the email and password is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
+//                DesignerToast.Warning(this, "the email and is required", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG)
 
-            )
+            }else  if (password.text.toString().isNullOrEmpty()){
+//                DesignerToast.Warning(this, "the password is required", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG)
+                DesignerToast.Custom(this,"the password is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+                passwordTextInputLayout.error = "the password is required"
+                userNameTextInputLayout.error = null
+            }else if(email.text.toString().isNullOrEmpty()){
+                passwordTextInputLayout.error = null
+                DesignerToast.Custom(this,"the email is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+                userNameTextInputLayout.error = "the email is required"
+            }else{
+                mPresenter!!.loginTap(
+                    email.text.toString(),
+                    password.text.toString(),
+
+                    )
+            }
+
         }
     }
-    fun setMargins(v: View, l: Int, t: Int, r: Int, b: Int) {
-        if (v.getLayoutParams() is MarginLayoutParams) {
-            val p = v.getLayoutParams() as MarginLayoutParams
-            p.setMargins(l, t, r, b)
-            v.requestLayout()
-        }
-    }
-    fun isTablet(context: Context): Boolean {
-        return ((context.resources.configuration.screenLayout
-                and Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE)
-    }
 
-    override fun didLoginSuccess(token: userModel,auth_token:String) {
-       userConfig = UserConfig(token.firstName,token.lastName,"jo",token.userId.toString(),token.phoneNumber,token.email,auth_token)
+    override fun didLoginSuccess(token: userModel, auth_token: String) {
+       userConfig = UserConfig(
+           "token.firstName",
+           "token.lastName",
+           "jo",
+           token.userId.toString(),
+           "token.phoneNumber",
+           "token.email",
+           auth_token
+       )
        common.session!!.createLoginSession(userConfig)
-//        common.userToken=token
-//        common.userEmail=email.text.toString()
-        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
-        common.session!!.createLoginSession(userConfig)
+        DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun didLoginFail(msg: String) {
-        Toast.makeText(this@LoginActivity, msg,Toast.LENGTH_LONG).show()
+        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+//        DesignerToast.Success(this, "Success Toast", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_SHORT)
+//        Toast.makeText(this@LoginActivity, msg, Toast.LENGTH_LONG).setGravity(Gravity.TOP, 100, 250)
+        if (msg.equals("InCorrect Password")){
+            passwordTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
+            passwordTextInputLayout.error = msg
+            userNameTextInputLayout.error = null
+
+//            passError.text=msg
+        }else if (msg.equals("No Email Found")){
+
+            userNameTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
+            userNameTextInputLayout.error = msg
+            passwordTextInputLayout.error = null
+//            emailError.text=msg
+
+        }
+        Log.d("ttttttttttttttttttttttt", msg)
+//        passwordTextInputLayout.setDefaultStrokeColor(resources.getColor(R.color.red))
     }
+
 }

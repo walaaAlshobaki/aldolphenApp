@@ -12,9 +12,13 @@ import com.adolphinpos.adolphinpos.helper.SessionLoginCallBack
 import com.adolphinpos.adolphinpos.helper.SessionManager
 import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.LoginActivity
+import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_splash.*
 
 var common: Common = Common()
 var userConfig= UserConfig()
+var userInfo= UserInfoModel()
 class SplashActivity : AppCompatActivity() {
     private var isLogin=false
     private var mDelayHandler: Handler? = null
@@ -39,14 +43,14 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        Picasso.get().load("http://13.59.88.58:9000//assets/images/logos/logo.png").into(imageView15)
         userConfig=UserConfig()
         common = Common()
         //Initialize the Handler
         mDelayHandler = Handler()
 
         //Navigate with delay
-        mDelayHandler!!.postDelayed(mRunnable, 1000)
+        mDelayHandler!!.postDelayed(mRunnable, 2000)
 
 
         common.session= SessionManager(this@SplashActivity)

@@ -143,26 +143,18 @@ class ServerMamagerGet {
 
 
             override fun onProgressUpdate(vararg values: String?) {
+                var jsonObject: JSONObject = JSONObject()
+
+
+                jsonObject = JSONObject(values[0])
                 try {
 
                     Log.d("tag", "responseCode ajax: " + values[0].toString())
                     //var jsonArray: JSONArray = JSONArray(values[0].toString())
-                    var jsonObject: JSONObject = JSONObject()
-
-
-                    jsonObject = JSONObject(values[0].toString())
 
 
                     val dataPayload = jsonObject.getString("data")
-                    if (dataPayload.isNullOrEmpty()) {
-                        val msg = jsonObject.getString("success")
-                        if (msg == "true") {
-                            val o = JSONObject(values[0].toString())
-                            callBack.SUCCESS(values[0].toString())
-                        }
-
-
-                    } else {
+                    if (!dataPayload.isNullOrEmpty()) {
 
 
                         try {
@@ -190,14 +182,43 @@ class ServerMamagerGet {
                         val msg = jsonObject.getString("success")
 
                         callBack.ERROR(msg)
+
+                    } else {
+                        val dataPayload = jsonObject.getString("success")
+                        callBack.ERROR(dataPayload)
+
                     }
+
+
+                    val messae = jsonObject.getString("messae")
+                    callBack.ERROR(
+                            messae
+                    )
+
+                } catch (ex: Exception) {
+                    try {
+                        val messae = jsonObject.getString("messae")
+                        Log.d("messae :", messae)
+                        callBack.ERROR(
+                                messae
+                        )
+                        callBack.FAILER(messae)
+
 
                     } catch (ex: Exception) {
-                        callBack.FAILER(ex.toString())
-                        Log.d("IS_LOGIN :", ex.toString())
-
+//                        try {
+//                            val msg = jsonObject.getBoolean("success")
+//                            callBack.SUCCESS(msg.toString())
+//                        } catch (ex: Exception) {
+//                            callBack.FAILER(ex.localizedMessage)
+//                        }
+                        callBack.FAILER(ex.localizedMessage)
                     }
+                    callBack.FAILER(ex.localizedMessage)
 
+                    Log.d("IS_LOGIN :", ex.localizedMessage)
+
+                }
             }
         }
 
@@ -656,7 +677,7 @@ abstract class CallAPIOperationGet(
 
             urlConnection.setRequestProperty("Content-Type", "application/json")
 //            urlConnection.setRequestProperty("Accept", "application/json")
-            urlConnection.setRequestProperty("Authorization", "Bearer " + common.userToken)
+            urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
 
 
             urlConnection.useCaches = false
