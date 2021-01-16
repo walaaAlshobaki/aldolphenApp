@@ -190,15 +190,15 @@ class ServerMamagerGet {
                     }
 
 
-                    val messae = jsonObject.getString("messae")
+                    val messae = jsonObject.getString("message")
                     callBack.ERROR(
                             messae
                     )
 
                 } catch (ex: Exception) {
                     try {
-                        val messae = jsonObject.getString("messae")
-                        Log.d("messae :", messae)
+                        val messae = jsonObject.getString("message")
+                        Log.d("message :", messae)
                         callBack.ERROR(
                                 messae
                         )

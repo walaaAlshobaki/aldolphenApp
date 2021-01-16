@@ -154,11 +154,11 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
                 "token.email",
                 auth_token
         )
-        common.session!!.createLoginSession(userConfig)
+//        common.session!!.createLoginSession(userConfig)
 //        common.userToken=token
 //        common.userEmail=email.text.toString()
 //        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
-        common.session!!.createLoginSession(userConfig)
+//        common.session!!.createLoginSession(userConfig)
         common.userToken=auth_token
         DesignerToast.Custom(this,"successfully registration",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)

@@ -1,6 +1,7 @@
 package com.adolphinpos.adolphinpos.helper
 
 import com.google.gson.Gson
+import com.manhal.lms.app.Helper.SessionManager
 
 class Common {
 
@@ -13,7 +14,7 @@ class Common {
     var apiDomainRoot:String=""
     var userToken:String=""
     var userEmail:String=""
-    var session:SessionManager?=null
+    var session: SessionManager?=null
 
 
 }

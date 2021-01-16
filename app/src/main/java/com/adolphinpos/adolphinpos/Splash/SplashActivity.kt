@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.adolphinpos.adolphinpos.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.helper.Common
-import com.adolphinpos.adolphinpos.helper.SessionLoginCallBack
-import com.adolphinpos.adolphinpos.helper.SessionManager
 import com.adolphinpos.adolphinpos.helper.UserConfig
+import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
 import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
+import com.manhal.lms.app.Helper.SessionLoginCallBack
+import com.manhal.lms.app.Helper.SessionManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -27,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
             if (isLogin) {
 
-                val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
+                val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
                 this@SplashActivity.startActivity(mainIntent)
                 this@SplashActivity.finish()
 
@@ -48,24 +50,16 @@ class SplashActivity : AppCompatActivity() {
         common = Common()
         //Initialize the Handler
         mDelayHandler = Handler()
-
+        common.session = SessionManager(this)
         //Navigate with delay
         mDelayHandler!!.postDelayed(mRunnable, 2000)
 
-
-        common.session= SessionManager(this@SplashActivity)
         common.session!!.checkLogin(object : SessionLoginCallBack {
             @SuppressLint("LogNotTimber")
             override fun didLoginSuccess() {
+                Log.d("checkLogin",common.session!!.getUserDetails().firstName)
 
-
-
-
-
-
-                userConfig = common.session!!.getUserDetails()
-
-
+                userInfo = common.session!!.getUserDetails()
                 isLogin = true
 
 //                common.schoolInfo!!.schoolDomain = userConfig.domain

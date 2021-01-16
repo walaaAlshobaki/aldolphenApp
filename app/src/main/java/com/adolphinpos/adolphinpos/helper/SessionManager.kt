@@ -1,4 +1,4 @@
-package com.adolphinpos.adolphinpos.helper
+package com.manhal.lms.app.Helper
 
 import android.app.Activity
 import android.content.ContentValues
@@ -10,8 +10,10 @@ import android.os.Build
 import android.util.Log
 import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
-import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.login.LoginActivity
+import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
+
 
 interface SessionLoginCallBack{
 
@@ -26,31 +28,24 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
 
     companion object {
         private val DATABASE_VERSION = 5
-        private val DATABASE_NAME = "loginAppDataBaseManhal"
+        private val DATABASE_NAME = "loginAppDataBase"
     }
 
-    private val TABLE_NAME = "loginAppManhal"
+    private val TABLE_NAME = "loginApp"
     val trueWord = "true"
     private val IS_LOGIN = "IsLoggedIn"
 
 
 
     var KEY_ID = "id"
-    var key_firstName = "firstName"
-    var key_lastName = "lastName"
-    var key_country = "country"
-
-    var key_userid = "userid"
+    var key_firstname = "firstName"
+    var key_lastname = "lastName"
+    var key_semail = "email"
+    var key_isVerfied = "isVerfied"
     var key_phoneNumber = "phoneNumber"
-
-    var key_email = "email"
-
+    var key_token = "key_token"
+    var key_userid = "userId"
     var key_IS_LOGIN = "IS_LOGIN"
-
-    var key_AUTH = "auth"
-
-
-
 
     var context: Context? = null
 
@@ -60,17 +55,20 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         val CREATE_APPS_TABLE = "CREATE TABLE " + TABLE_NAME +
-                "(" +
+                " (" +
                 KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                key_firstName + " TEXT," +
-                key_lastName + " TEXT," +
-                key_country + " TEXT," +
+                key_firstname + " TEXT," +
+                key_lastname + " TEXT," +
+                key_semail + " TEXT," +
+                key_isVerfied + " TEXT," +
                 key_userid + " TEXT," +
                 key_phoneNumber + " TEXT," +
-                key_email + " TEXT," +
-                key_AUTH + " TEXT" +
+                key_token + " TEXT," +
+                key_IS_LOGIN + " TEXT" +
                 ")"
+
 
         db!!.execSQL(CREATE_APPS_TABLE)
     }
@@ -82,26 +80,27 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
     }
 
 
-    fun createLoginSession(userConfig:UserConfig ) {
+
+    fun createLoginSession(userConfig:UserInfoModel ) {
+        Log.d("createLoginSession",userConfig.toString())
         // Storing login value as TRUE
         val db = this.writableDatabase
         db.delete(TABLE_NAME, null, null);
         val values = ContentValues()
-        values.put(key_firstName, userConfig.firstName)
-        values.put(key_lastName, userConfig.lastName)
-        values.put(key_country, userConfig.country)
-
-        values.put(key_userid, userConfig.userid)
+        values.put(key_firstname, userConfig.firstName)
+        values.put(key_lastname, userConfig.lastName)
+        values.put(key_semail, userConfig.email)
+        values.put(key_isVerfied, userConfig.isVerfied)
         values.put(key_phoneNumber, userConfig.phoneNumber)
-        values.put(key_email, userConfig.email)
-        values.put(key_AUTH, userConfig.auth_token)
+        values.put(key_token, userConfig.token)
+        values.put(key_userid, userConfig.userId)
 
-
+        values.put(key_IS_LOGIN, "false")
 
 
         // Inserting new row into blogs table
         db.insert(TABLE_NAME, null, values)
-        db.close() // Closing database connection
+        // Closing database connection
 
     }
 
@@ -110,7 +109,7 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
 //    ) {
 //        Log.w("savelang :", lang)
 //        val db = this.writableDatabase
-//        val strSQL = "UPDATE " + TABLE_NAME + " SET langUI = " + "'" + common.langUI + "'"
+////        val strSQL = "UPDATE " + TABLE_NAME + " SET langUI = " + "'" + common.langUI + "'"
 //        db!!.execSQL(strSQL)
 //        Log.w("savelang done :", lang)
 //    }
@@ -123,9 +122,12 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
         val db = this.writableDatabase
         val countQuery = "SELECT  * FROM " + TABLE_NAME
         val cursor = db.rawQuery(countQuery, null)
+        Log.d("checkLogin",countQuery)
         var check: Boolean = false
 
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToLast()) {
+            Log.d("checkLogin",cursor.getString(7))
+
             check = true
 //            inetnt = Intent(context, language::class.java)
             result.didLoginSuccess()
@@ -151,10 +153,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
     /**
      * Get stored session data
      */
-    fun getUserDetails(): UserConfig {
+    fun getUserDetails(): UserInfoModel {
 
 
-        val user: UserConfig = UserConfig()
+        val user: UserInfoModel = UserInfoModel()
         val db = this.readableDatabase
         var selectQuery = ""
 
@@ -164,28 +166,26 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
 
         selectQuery = "SELECT  " +
                 KEY_ID + "," +
-                key_firstName + "," +
-                key_lastName + "," +
-                key_country + "," +
-
+                key_firstname + "," +
+                key_lastname + "," +
+                key_semail + "," +
+                key_isVerfied + "," +
                 key_userid + "," +
                 key_phoneNumber + "," +
-                key_email + "," +
-                key_AUTH +
+                key_token + "," +
+                key_IS_LOGIN +
+
+
 
                 " FROM " + TABLE_NAME
 
         val cursor = db.rawQuery(selectQuery, null)
         try {
             cursor.let {
-                if (cursor.moveToFirst()) {
+                if (cursor.moveToLast()) {
                     do {
 
 
-
-                        if (cursor != null && cursor.getString(0) != null) {
-                            user.userid = cursor.getString(0)
-                        }
 
                         if (cursor != null && cursor.getString(1) != null) {
                             user.firstName = cursor.getString(1)
@@ -193,21 +193,25 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
 
                         if (cursor != null && cursor.getString(2) != null) {
                             user.lastName = cursor.getString(2)
+                            Log.d("WWWWWWWWWWWWWWWWWWWww",user.lastName)
+
                         }
+
                         if (cursor != null && cursor.getString(3) != null) {
-                            user.country = cursor.getString(3)
+                            user.email = cursor.getString(3)
                         }
                         if (cursor != null && cursor.getString(4) != null) {
-                            user.phoneNumber = cursor.getString(4)
+                            user.isVerfied = cursor.getString(4).toBoolean()
                         }
                         if (cursor != null && cursor.getString(5) != null) {
-                            user.email = cursor.getString(5)
+                            user.userId = cursor.getString(5).toInt()
                         }
                         if (cursor != null && cursor.getString(6) != null) {
-                            user.auth_token = cursor.getString(6)
+                            user.phoneNumber = cursor.getString(6)
                         }
-
-
+                        if (cursor != null && cursor.getString(7) != null) {
+                            user.token = cursor.getString(7)
+                        }
 
 
 
@@ -245,7 +249,7 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
             val db = this.writableDatabase
             db.delete(TABLE_NAME, null, null);
 
-            userConfig=UserConfig()
+            userInfo=UserInfoModel()
 //            common.session!!.createLoginSession(userConfig);
 
             val i = Intent(context, LoginActivity::class.java)

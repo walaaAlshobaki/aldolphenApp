@@ -62,9 +62,14 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
                 response.isVerfied!!,
                 response.phoneNumber!!,
                 response.email!!,
-        )
-//        common.session!!.createLoginSession(userConfig)
+            userConfig.auth_token,
+            userConfig.userid.toInt()
 
+        )
+        common.session!!.createLoginSession(userInfo)
+        Log.d("createLoginSession2",common.session!!.createLoginSession(userInfo).toString())
+        userInfo= UserInfoModel()
+//        common.session!!.createLoginSession(userConfig)
         val mainIntent = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainIntent)
         finish()

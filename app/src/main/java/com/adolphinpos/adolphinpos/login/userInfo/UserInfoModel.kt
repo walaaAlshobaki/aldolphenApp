@@ -7,6 +7,8 @@ class UserInfoModel {
     var isVerfied: Boolean = false
     var phoneNumber: String = "normal"
     var email: String = "none"
+    var token: String = "none"
+    var userId: Int = 0
 
 
     constructor(
@@ -15,7 +17,8 @@ class UserInfoModel {
             isVerfied: Boolean = false,
             phoneNumber: String = "",
             email: String = "",
-
+            token: String = "",
+            userId: Int = 0
 
             ) {
         this.firstName = firstName
@@ -24,6 +27,8 @@ class UserInfoModel {
 
         this.phoneNumber = phoneNumber
         this.email = email
+        this.token=token
+        this.userId=userId
 
     }
 
