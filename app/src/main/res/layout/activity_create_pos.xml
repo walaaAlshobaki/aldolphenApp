@@ -5,8 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".createPOS.CreatePosActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="98dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/userName"
+        app:layout_constraintStart_toStartOf="@+id/userImage"
+        app:layout_constraintTop_toBottomOf="@id/userImage">
+
+        <LinearLayout
+            android:id="@+id/sign"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@color/red">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="29dp"
+                android:src="@drawable/ic_left_arrow"
+                android:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/signUp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="30sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeStepGranularity="1sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="127dp"
@@ -22,31 +62,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="21sp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="create a new POS: "
+        android:textColor="@color/appMainColor"
+        android:textSize="19sp"
         android:textStyle="bold"
-        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeMaxTextSize="20sp"
         app:autoSizeMinTextSize="18sp"
         app:autoSizeStepGranularity="1sp"
-        android:text="you can choose between multiple "
-        android:textColor="@color/appMainColor"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:autoSizeMaxTextSize="25sp"
-        app:autoSizeMinTextSize="18sp"
-        app:autoSizeStepGranularity="1sp"
-        android:text="modules over here:"
-        android:textColor="@color/appMainColor"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-
 
     <ImageView
         android:id="@+id/userImage"
@@ -72,19 +97,28 @@
         app:layout_constraintStart_toEndOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage" />
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/right_logo"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.35"
+        android:translationX="120dp"
+        android:translationY="50dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_marginTop="373dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:padding="15dp"
         android:layout_marginEnd="80dp"
-        tools:listitem="@layout/home_page_item_cell"
+        android:layout_marginTop="69dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:listitem="@layout/home_page_item_cell" />
 </androidx.constraintlayout.widget.ConstraintLayout>

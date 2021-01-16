@@ -4,11 +4,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
   app:cardCornerRadius="12dp"
-    android:layout_marginEnd="20dp"
+    app:cardBackgroundColor="@color/white"
+    android:elevation="4dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_marginBottom="20dp">
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="139dp"
-    android:layout_height="139dp"
+    android:layout_width="149dp"
+    android:layout_height="149dp"
     android:background="#EFEFEF"
     android:id="@+id/image_gradient"
     >
