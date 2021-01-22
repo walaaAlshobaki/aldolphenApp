@@ -373,6 +373,7 @@
             app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordConf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"

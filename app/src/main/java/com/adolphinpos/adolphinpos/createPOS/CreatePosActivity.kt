@@ -6,12 +6,16 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
+import com.adolphinpos.adolphinpos.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.home.HomeModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.userImage
+import kotlinx.android.synthetic.main.activity_main.userName
+import kotlinx.android.synthetic.main.activity_pos_setting.*
 
 class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelegate{
     private lateinit var dashboardAdapter: DashboardAdapter
@@ -19,6 +23,14 @@ class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_pos)
+
+
+        sign.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+            finish()
+        }
         userName.text= userInfo.firstName +" "+ userInfo.lastName
         Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
         val llm = GridLayoutManager(this, 6)

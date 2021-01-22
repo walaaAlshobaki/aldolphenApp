@@ -13,6 +13,7 @@ class Common {
     var parserJson = Gson()
     var apiDomainRoot:String=""
     var userToken:String=""
+    var userPhone:String=""
     var userEmail:String=""
     var session: SessionManager?=null
 

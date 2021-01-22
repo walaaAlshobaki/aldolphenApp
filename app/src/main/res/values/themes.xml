@@ -41,4 +41,11 @@
     <style name="myErrorTextAppearance" parent="TextAppearance.MaterialComponents.Caption" >
         <item name="android:textSize">16sp</item>
     </style>
+    <style name="SpinnerThemeLight" >
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <item name="android:textColorTertiary">@color/black</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/black</item>
+    </style>
 </resources>

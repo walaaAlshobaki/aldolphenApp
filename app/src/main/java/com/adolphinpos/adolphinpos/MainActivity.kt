@@ -8,6 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
+import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.createPOS.CreatePosActivity
 import com.adolphinpos.adolphinpos.helper.CircleTransform
@@ -23,11 +24,12 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
+        userName.text= userInfo.firstName +" "+ userInfo.lastName
+
         val llm = GridLayoutManager(this, 6)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
         setDashbordData()
-        userName.text= userInfo.firstName +" "+ userInfo.lastName
         dashboardAdapter.setOnClickItemCategory(this)
         recyclerView.adapter = dashboardAdapter
 //        recyclerView.measure(
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
     }
 
     override fun onSelectItemCategory(position: Int) {
-        Log.d("QQQQQQQQQQQQQQQQQQ",position.toString())
+        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
         if (dashboardModel[position].action=="create"){
             val i = Intent(this, CreatePosActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK

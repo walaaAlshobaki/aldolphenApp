@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".plan.PlanActivity">
+<androidx.cardview.widget.CardView
+    android:layout_width="124dp"
+    android:layout_height="48dp"
+    android:layout_marginTop="35dp"
+    android:layout_marginEnd="113dp"
+    app:cardCornerRadius="8dp"
+    android:elevation="5dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+    <LinearLayout
+        android:id="@+id/sign"
+        android:layout_width="124dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="29dp"
+            android:src="@drawable/ic_left_arrow"
+            app:tint="@color/appMainColor" />
+
+        <TextView
+            android:id="@+id/signUp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="Back"
+            android:textColor="@color/appMainColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeMinTextSize="20sp"
+            app:autoSizeStepGranularity="1sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="491dp"
+        android:layout_marginStart="491dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="choose your plan"
+        android:textColor="@color/appMainColor"
+        android:textSize="40sp"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="323dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="323dp"
+        android:fontFamily="@font/roboto"
+        android:text="check now the best suitable plan for you so as to start beginning!"
+        android:textColor="@color/appMainColor"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="492dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/trialPlanCard"
+            android:layout_width="322dp"
+            android:layout_height="420dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="15dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="133dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="3dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="$"
+                    android:textColor="@color/red"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toStartOf="@+id/trialPlanPrice"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/trialPlanPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginEnd="135dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="0"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/trialPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Trial Plan"
+                    android:textColor="@color/red"
+                    android:textSize="25dp"
+                    app:layout_constraintTop_toBottomOf="@+id/trialPlanPrice"
+                    app:layout_constraintEnd_toEndOf="@+id/trialPlanPrice"
+                    app:layout_constraintStart_toStartOf="@+id/textView7" />
+
+                <TextView
+                    android:id="@+id/trialPlanColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="10 Color Schemes"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/trialPlan"
+                    app:layout_constraintStart_toStartOf="@+id/trialPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/trialPlan" />
+                <TextView
+                    android:id="@+id/trialPlanStorage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="1 Gb Storage Space"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/trialPlanColor"
+                    app:layout_constraintStart_toStartOf="@+id/trialPlanColor"
+                    app:layout_constraintTop_toBottomOf="@+id/trialPlanColor" />
+
+                <TextView
+                    android:id="@+id/space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="—"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/trialPlanStorage"
+                    app:layout_constraintStart_toStartOf="@+id/trialPlanStorage"
+                    app:layout_constraintTop_toBottomOf="@+id/trialPlanStorage" />
+
+                <TextView
+                    android:id="@+id/space2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="—"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/space"
+                    app:layout_constraintStart_toStartOf="@+id/space"
+                    app:layout_constraintTop_toBottomOf="@+id/space" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/freeLinear"
+                    android:layout_width="124dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="8dp"
+                    android:elevation="8dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/space2">
+
+
+                    <TextView
+                        android:id="@+id/free"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="Free"
+                        android:textColor="@color/appMainColoro"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="30sp"
+                        app:autoSizeMinTextSize="20sp"
+                        app:autoSizeStepGranularity="1sp" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/daysFree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="15 days trial"
+                    android:textColor="@color/appMainColoro"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="18sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:layout_constraintEnd_toEndOf="@+id/freeLinear"
+                    app:layout_constraintStart_toStartOf="@+id/freeLinear"
+                    app:layout_constraintTop_toBottomOf="@+id/freeLinear" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/MonthlyPlanCard"
+            android:layout_width="322dp"
+            android:layout_height="440dp"
+            android:layout_gravity="center_vertical"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginStart="-40dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="3dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="$"
+                    android:textColor="@color/red"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/MonthlyPlanPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginEnd="135dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="200"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/MonthlytrialPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Monthly Plan"
+                    android:textColor="@color/red"
+                    android:textSize="25dp"
+                    app:layout_constraintTop_toBottomOf="@+id/MonthlyPlanPrice"
+                    app:layout_constraintEnd_toEndOf="@+id/MonthlyPlanPrice"
+                    app:layout_constraintStart_toStartOf="@+id/textView8" />
+
+                <TextView
+                    android:id="@+id/MonthlyPlanColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="50 Color Schemes"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/MonthlytrialPlan"
+                    app:layout_constraintStart_toStartOf="@+id/MonthlytrialPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/MonthlytrialPlan" />
+                <TextView
+                    android:id="@+id/MonthlyPlanStorage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Featured components"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/MonthlyPlanColor"
+                    app:layout_constraintStart_toStartOf="@+id/MonthlyPlanColor"
+                    app:layout_constraintTop_toBottomOf="@+id/MonthlyPlanColor" />
+
+                <TextView
+                    android:id="@+id/spaceMonthlyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Custom Domain"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/MonthlyPlanStorage"
+                    app:layout_constraintStart_toStartOf="@+id/MonthlyPlanStorage"
+                    app:layout_constraintTop_toBottomOf="@+id/MonthlyPlanStorage" />
+
+                <TextView
+                    android:id="@+id/space2MonthlyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="—"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/spaceMonthlyPlan"
+                    app:layout_constraintStart_toStartOf="@+id/spaceMonthlyPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/spaceMonthlyPlan" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MonthlyPlanLinear"
+                    android:layout_width="170dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@color/red"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="8dp"
+                    android:background="@color/red"
+                    android:layout_marginTop="62dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/space2MonthlyPlan">
+
+
+                    <TextView
+                        android:id="@+id/MonthlyPlan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="Get Started"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="30sp"
+                        app:autoSizeMinTextSize="20sp"
+                        app:autoSizeStepGranularity="1sp" />
+                </androidx.cardview.widget.CardView>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/yearlyPlanCard"
+            android:layout_width="322dp"
+            android:layout_height="492dp"
+            android:elevation="2dp"
+            app:cardBackgroundColor="@color/appMainColor"
+            android:layout_marginStart="-40dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="17dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="103dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="3dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="$"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/yearlyPlanPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginEnd="135dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="800"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/yearlytrialPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Yearly Plan"
+                    android:textColor="@color/red"
+                    android:textSize="25dp"
+                    app:layout_constraintTop_toBottomOf="@+id/yearlyPlanPrice"
+                    app:layout_constraintEnd_toEndOf="@+id/yearlyPlanPrice"
+                    app:layout_constraintStart_toStartOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/yearlyPlanColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="150 Color Schemes"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/yearlytrialPlan"
+                    app:layout_constraintStart_toStartOf="@+id/yearlytrialPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/yearlytrialPlan" />
+                <TextView
+                    android:id="@+id/yearlyPlanStorage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Featured components"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/yearlyPlanColor"
+                    app:layout_constraintStart_toStartOf="@+id/yearlyPlanColor"
+                    app:layout_constraintTop_toBottomOf="@+id/yearlyPlanColor" />
+
+                <TextView
+                    android:id="@+id/spaceyearlyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Custom Domain"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/yearlyPlanStorage"
+                    app:layout_constraintStart_toStartOf="@+id/yearlyPlanStorage"
+                    app:layout_constraintTop_toBottomOf="@+id/yearlyPlanStorage" />
+
+                <TextView
+                    android:id="@+id/space2yearlyPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Full featured"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/spaceyearlyPlan"
+                    app:layout_constraintStart_toStartOf="@+id/spaceyearlyPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/spaceyearlyPlan" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/yearlyPlanLinear"
+                    android:layout_width="170dp"
+                    android:layout_height="48dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_marginTop="83dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/space2yearlyPlan">
+
+
+                    <TextView
+                        android:id="@+id/yearlyPlan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="Get Started"
+                        android:textColor="@color/red"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="30sp"
+                        app:autoSizeMinTextSize="20sp"
+                        app:autoSizeStepGranularity="1sp" />
+                </androidx.cardview.widget.CardView>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/LifeTimelessCard"
+            android:layout_width="322dp"
+            android:layout_height="440dp"
+            android:layout_gravity="center_vertical"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginStart="-20dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="3dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="$"
+                    android:textColor="@color/red"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/LifeTimelessPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginEnd="135dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="2000"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/LifeTimelessPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Life Timeless"
+                    android:textColor="@color/red"
+                    android:textSize="25dp"
+                    app:layout_constraintTop_toBottomOf="@+id/LifeTimelessPrice"
+                    app:layout_constraintEnd_toEndOf="@+id/LifeTimelessPrice"
+                    app:layout_constraintStart_toStartOf="@+id/textView10" />
+
+                <TextView
+                    android:id="@+id/LifeTimelessColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Unlimited Color Schemes"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/LifeTimelessPlan"
+                    app:layout_constraintStart_toStartOf="@+id/LifeTimelessPlan"
+                    app:layout_constraintTop_toBottomOf="@+id/LifeTimelessPlan" />
+                <TextView
+                    android:id="@+id/LifeTimelessStorage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Featured components"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/LifeTimelessColor"
+                    app:layout_constraintStart_toStartOf="@+id/LifeTimelessColor"
+                    app:layout_constraintTop_toBottomOf="@+id/LifeTimelessColor" />
+
+                <TextView
+                    android:id="@+id/spaceLifeTimeless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Custom Domain"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/LifeTimelessStorage"
+                    app:layout_constraintStart_toStartOf="@+id/LifeTimelessStorage"
+                    app:layout_constraintTop_toBottomOf="@+id/LifeTimelessStorage" />
+
+                <TextView
+                    android:id="@+id/space2LifeTimeless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="Full featured"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/spaceLifeTimeless"
+                    app:layout_constraintStart_toStartOf="@+id/spaceLifeTimeless"
+                    app:layout_constraintTop_toBottomOf="@+id/spaceLifeTimeless" />
+
+                <TextView
+                    android:id="@+id/space3LifeTimeless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="100 Gb Storage Space"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/space2LifeTimeless"
+                    app:layout_constraintStart_toStartOf="@+id/space2LifeTimeless"
+                    app:layout_constraintTop_toBottomOf="@+id/space2LifeTimeless" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/LifeTimelessLinear"
+                    android:layout_width="170dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="@color/appMainColor"
+                    android:layout_marginTop="34dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/space3LifeTimeless">
+
+
+                    <TextView
+                        android:id="@+id/LifeTimeless"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="Get Started"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:autoSizeMaxTextSize="30sp"
+                        app:autoSizeMinTextSize="20sp"
+                        app:autoSizeStepGranularity="1sp" />
+                </androidx.cardview.widget.CardView>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

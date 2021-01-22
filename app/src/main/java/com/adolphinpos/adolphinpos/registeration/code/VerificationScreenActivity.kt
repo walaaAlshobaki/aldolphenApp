@@ -8,9 +8,11 @@ import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordPresenter
+import com.adolphinpos.adolphinpos.plan.PlanActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import com.ahmadrosid.svgloader.SvgLoader
 import com.vdx.designertoast.DesignerToast
@@ -24,15 +26,20 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
         setContentView(R.layout.activity_verification_screen)
         mPresenter = SendVerificationCodePresenter(this)
         mPresenter!!.delegate = this
-        val bundle = intent.extras
-        textTitle2.text="will send you a code to "+ bundle!!.getString("mobile")
-
+//        val bundle = intent.extras
+        textTitle2.text="will send you a code to "+ common.userPhone
+        back.setOnClickListener {
+            val intent = Intent(applicationContext, PlanActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
 
         sendSMS.setOnClickListener{
             mPresenter!!.senCode()
 
         }
+
     }
 
     override fun didSendVerificationCodeSuccess(token: String) {
