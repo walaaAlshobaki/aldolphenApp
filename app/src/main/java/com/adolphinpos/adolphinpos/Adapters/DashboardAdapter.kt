@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.adolphinpos.adolphinpos.home.HomeModel
 
 import java.util.*
@@ -129,6 +130,22 @@ class DashboardAdapter(
 //                        )
 //                        intent.putExtra("image", image)
 //                        context.startActivity(intent)
+                    }
+                }
+                data[position] is UserEmployeeModel.Data -> {
+                    val itemCat = data[position] as UserEmployeeModel.Data
+
+                    if (itemCat.id==0){
+                        img.setImageDrawable(context.resources.getDrawable(R.drawable.ic_add))
+                    }else{
+                        img.setImageDrawable(context.resources.getDrawable(R.drawable.ic_user))
+
+                    }
+                    txt.text=itemCat.firstName+" "+itemCat.lastName
+//                    charName.text= itemCat.firstName!!.first().toString().toUpperCase()+itemCat.lastName!!.first().toString().toUpperCase()
+//                    empEmail.text=itemCat.email
+                    image_gradient.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
                     }
                 }
 

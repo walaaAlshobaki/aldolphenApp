@@ -6,8 +6,9 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
-import com.adolphinpos.adolphinpos.MainActivity
+import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.home.HomeModel
@@ -44,8 +45,8 @@ class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedD
     fun setDashbordData() {
 
 
-        val data1 = HomeModel("create POS", R.drawable.ic_add,"createPOS")
-        val data2 = HomeModel("settings", R.drawable.setting,"settings")
+        val data1 = HomeModel("create POS",1, R.drawable.ic_add,"createPOS")
+        val data2 = HomeModel("settings",2, R.drawable.setting,"settings")
         val data3 = HomeModel(" ")
 
 
@@ -71,6 +72,7 @@ class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedD
     override fun onSelectItemCategory(position: Int) {
 
         val i = Intent(this, PosCatagoryActivity::class.java)
+        common.selectedServiceId=dashboardModel[position].id
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
     }

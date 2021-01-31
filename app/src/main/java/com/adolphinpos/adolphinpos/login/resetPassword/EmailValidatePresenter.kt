@@ -3,12 +3,13 @@ package com.adolphinpos.adolphinpos.login.resetPassword
 import android.content.Context
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.registeration.code.SendVerificationCodeDelegate
 import org.json.JSONObject
 
 interface EmailValidateDelegate {
 
-    fun didEmailValidateSuccess(token: String)
+    fun didEmailValidateSuccess(token: EmailVlidateModel)
     fun didEmailValidateFail(msg: String)
 
 
@@ -37,8 +38,8 @@ class EmailValidatePresenter (var mContext: Context) {
                 override fun SUCCESS(jsonObject: String,auth_token:String) {
 
 
-//                    var responseJson =
-//                        common.parserJson.fromJson(jsonObject.toString(), String()::class.java)
+                    var responseJson =
+                        common.parserJson.fromJson(jsonObject.toString(), EmailVlidateModel::class.java)
 //
 //                    var email = uname
 //                    val auth_token = responseJson
@@ -53,7 +54,7 @@ class EmailValidatePresenter (var mContext: Context) {
 //
 //                        )
 //                    common.session!!.createLoginSession(userConfig)
-                    delegate!!.didEmailValidateSuccess(jsonObject)
+                    delegate!!.didEmailValidateSuccess(responseJson)
 
                 }
 

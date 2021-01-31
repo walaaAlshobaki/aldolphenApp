@@ -67,7 +67,7 @@ class UserInfoPresenter (var mContext: Context) {
             }
 
             override fun JSON(jsonObject: JSONObject, api: ApiModelGet?) {
-                TODO("Not yet implemented")
+
             }
 
 

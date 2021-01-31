@@ -140,6 +140,8 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
            auth_token
        )
 
+        userInfo.token=auth_token
+
 //       common.session!!.createLoginSession(userConfig)
         DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)

@@ -17,6 +17,7 @@ import com.adolphinpos.adolphinpos.Adapters.SlidingImagemain_Adapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.helper.UserConfig
@@ -57,6 +58,10 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
                     .with(this as Activity?)
                     .setPlaceHolder(R.drawable.ca,R.drawable.ca)
                     .load(countryModel!!.flag, flag)
+                SvgLoader.pluck()
+                    .with(this as Activity?)
+                    .setPlaceHolder(R.drawable.ca,R.drawable.ca)
+                    .load(countryModel!!.flag, flagphone)
 
             }
         }
@@ -80,9 +85,14 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
         }
         autoSlider(mPager)
 //        country.setEnabled(false)
-        CountryTextInputLayout.isFocusable = true
-        CountryTextInputLayout.isClickable = true
+//        CountryTextInputLayout.isFocusable = true
+//        CountryTextInputLayout.isClickable = true
         country.setOnClickListener{
+            val i = Intent(this, CountryActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
+        flagphone.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
@@ -152,6 +162,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     override fun didRegisterationSuccess(token: userModel, auth_token:String) {
+        userInfo.token=auth_token
         userConfig = UserConfig(
                 "token.firstName",
                 "token.lastName",

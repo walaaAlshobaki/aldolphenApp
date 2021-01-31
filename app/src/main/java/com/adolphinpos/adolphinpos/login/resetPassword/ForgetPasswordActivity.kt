@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
+import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.LoginPresenter
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_forget_password.*
@@ -19,6 +20,12 @@ class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
         setContentView(R.layout.activity_forget_password)
         mPresenter = ForgetPasswordPresenter(this)
         mPresenter!!.delegate = this
+
+        back.setOnClickListener {
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+
+            startActivity(intent)
+        }
         resetBtn.setOnClickListener{
             mPresenter!!.sendEmailTap(email.text.toString())
         }
@@ -34,8 +41,7 @@ class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
     }
 
     override fun didSendFail(msg: String) {
-        Toast.makeText(this@ForgetPasswordActivity, msg, Toast.LENGTH_LONG).show()
-        if (msg == "LastEmailNotExpired"){
+        if (msg == "EmailNotExpired"){
             DesignerToast.Custom(this,msg , Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                 R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
             val intent = Intent(applicationContext, EmailValidateCodeActivity::class.java)

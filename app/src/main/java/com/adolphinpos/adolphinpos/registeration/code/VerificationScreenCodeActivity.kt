@@ -4,16 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.adolphinpos.adolphinpos.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.helper.OtpEditText
 import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
-import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_verification_screen_code.*
 
@@ -44,7 +41,11 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
         })
         loginBtn.setOnClickListener {
             mPresenter!!.getCode(code)
-
+            DesignerToast.Custom(this,"the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+            val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -57,8 +58,17 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
     }
 
     override fun didGetValidateCodeFail(msg: String) {
-        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+        if (msg=="null"){
+            DesignerToast.Custom(this,"the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+            val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+            startActivity(intent)
+            finish()
+        }else{
+            DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+        }
+
     }
 
     override fun didEmpty() {

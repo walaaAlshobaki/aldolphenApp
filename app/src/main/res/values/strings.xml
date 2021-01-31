@@ -4,4 +4,11 @@
     <string name="country">country</string>
     <string name="choose_your_country">Choose your country:</string>
     <string name="no_internet_msg">You are offline please connect to the internet!</string>
+    <string name="select_action">Select Action</string>
+    <string name="select_action_from_gallery">Select photo from gallery</string>
+    <string name="select_action_from_camera">Select photo from camera</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="logoutmsg">Are you sure you want to sign out?</string>
+    <string name="logout">Sign Out</string>
 </resources>

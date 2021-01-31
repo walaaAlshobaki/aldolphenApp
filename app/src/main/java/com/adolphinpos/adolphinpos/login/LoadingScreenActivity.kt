@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.adolphinpos.adolphinpos.MainActivity
+import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
-import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoDelegate
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter

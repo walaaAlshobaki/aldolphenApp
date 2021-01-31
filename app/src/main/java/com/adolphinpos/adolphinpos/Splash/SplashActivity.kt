@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.adolphinpos.adolphinpos.MainActivity
+import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.helper.Common
 import com.adolphinpos.adolphinpos.helper.UserConfig
-import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
 import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.manhal.lms.app.Helper.SessionLoginCallBack

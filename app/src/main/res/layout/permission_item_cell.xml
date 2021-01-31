@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/permissionsCard"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="190dp"
+    android:layout_height="63dp"
+    android:background="@color/white"
+    app:cardCornerRadius="10dp"
+    android:layout_marginStart="7.5dp"
+    android:layout_marginEnd="7.5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/permissionsText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+android:background="@color/border"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@color/appMainColor"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Accountant" />
+</androidx.cardview.widget.CardView>

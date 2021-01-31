@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="50dp"
+    android:layout_marginBottom="50dp"
+
+    tools:context=".userProfile.UserProfileActivity">
+    <androidx.cardview.widget.CardView
+        android:layout_width="730dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.70">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/roboto"
+                android:text="My Profile"
+                android:textColor="@color/red"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeStepGranularity="1sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/titleDividerNoCustom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="#EFEFEF"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:clipChildren="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/upload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom"
+        >
+
+        <ImageView
+            android:id="@+id/avatar_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle_layer"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user"
+            app:layout_constraintDimensionRatio="H,1:1" />
+
+        <ImageView
+            android:id="@+id/change_img_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:translationY="-25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_img"
+            app:srcCompat="@drawable/ic_cam"
+            app:tint="#FFFFFF"
+            tools:ignore="VectorDrawableCompat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <ImageView
+                android:id="@+id/update_active_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_margin="8dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/titleDividerNoCustom"
+                app:layout_constraintEnd_toEndOf="@+id/titleDividerNoCustom"
+                app:srcCompat="@drawable/ic_edit"
+                app:tint="@color/red" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstNameTextInputLayout"
+        android:background="@drawable/back"
+        android:layout_width="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:hint="First Name"
+        android:focusable="true"
+        app:placeholderTextColor="@color/border"
+        android:textColorHint="@color/appMainColor"
+        app:hintTextColor="@color/appMainColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintWidth_percent="0.45">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/FirstName"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="13dp"
+            app:placeholderTextColor="@color/border"
+            android:textColorHint="@color/border"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/appMainColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastNameTextInputLayout"
+        android:background="@drawable/back"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="10dp"
+
+        android:hint="Last name"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:textColorHint="@color/appMainColor"
+        app:hintTextColor="@color/border"
+        app:placeholderTextColor="@color/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintWidth_percent="0.45">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastName"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="13dp"
+            app:placeholderTextColor="@color/border"
+            android:textColorHint="@color/border"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/appMainColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneNumTextInputLayout"
+        android:background="@drawable/back"
+        android:layout_width="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="12dp"
+        android:hint="Phone number"
+        android:focusable="true"
+        app:placeholderTextColor="@color/border"
+        android:textColorHint="@color/appMainColor"
+        app:hintTextColor="@color/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
+        app:layout_constraintWidth_percent="0.45">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNum"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="13dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="write your First name"
+            android:textColorHint="@color/border"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/appMainColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/EmailTextInputLayout"
+        android:background="@drawable/back"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="21dp"
+        android:hint="Email"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:textColorHint="@color/appMainColor"
+        app:hintTextColor="@color/border"
+        app:placeholderTextColor="@color/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+        app:layout_constraintWidth_percent="0.45">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="13dp"
+            app:placeholderTextColor="@color/border"
+            app:placeholderText="write your First name"
+            android:textColorHint="@color/border"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/appMainColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/update_layer"
+                android:layout_width="511dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="30dp"
+                android:minHeight="45dp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+
+                app:layout_constraintEnd_toEndOf="@+id/EmailTextInputLayout"
+
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/EmailTextInputLayout">
+
+                <Button
+                    android:id="@+id/loginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_style"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Update"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

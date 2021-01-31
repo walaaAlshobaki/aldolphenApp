@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.adolphinpos.adolphinpos.Splash.userInfo
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -191,18 +192,18 @@ class ServerMamagerGet {
 
 
                     val messae = jsonObject.getString("message")
-                    callBack.ERROR(
-                            messae
-                    )
+//                    callBack.ERROR(
+//                            messae
+//                    )
 
                 } catch (ex: Exception) {
                     try {
                         val messae = jsonObject.getString("message")
                         Log.d("message :", messae)
-                        callBack.ERROR(
-                                messae
-                        )
-                        callBack.FAILER(messae)
+//                        callBack.ERROR(
+//                                messae
+//                        )
+//                        callBack.FAILER(messae)
 
 
                     } catch (ex: Exception) {
@@ -212,9 +213,9 @@ class ServerMamagerGet {
 //                        } catch (ex: Exception) {
 //                            callBack.FAILER(ex.localizedMessage)
 //                        }
-                        callBack.FAILER(ex.localizedMessage)
+//                        callBack.FAILER(ex.localizedMessage)
                     }
-                    callBack.FAILER(ex.localizedMessage)
+//                    callBack.FAILER(ex.localizedMessage)
 
                     Log.d("IS_LOGIN :", ex.localizedMessage)
 
@@ -244,126 +245,126 @@ class ServerMamagerGet {
     }
 
 
-    @SuppressLint("LogNotTimber")
-    fun callApiUpload(
-        context: Context,
-        requestMethod: HttpMethod,
-        url: String,
-        postData: MutableMap<String, Any>,
-        fileData: Bitmap,
-        callBack: callBackApiGet
-    ) {
-
-
-        val checkInternet = isNetworkConnected(context)
-
-        if (!checkInternet) {
-
-            val activity = context as Activity
-
-            Toast.makeText(context, context.resources.getString(R.string.no_internet_msg), Toast.LENGTH_LONG).show()
-
-
-
-            callBack.NO_INTERNET()
-
-            return
-
-        }
-
-
-        val urlLinkApi: String = generateUrl(url, postData)
-
-
-
-        val call = @SuppressLint("StaticFieldLeak")
-        object : UploadOperation(context, requestMethod, fileData, url) {
-
-
-
-            override fun onProgressUpdate(vararg values: String?) {
-                try {
-
-                    Log.d("tag", "responseCode ajax: *" + values[0].toString())
-                    //var jsonArray: JSONArray = JSONArray(values[0].toString())
-                    var jsonObject: JSONObject = JSONObject()
-
-
-                    jsonObject = JSONObject(values[0].toString())
-
-
-                    val result = jsonObject.getString("result")
-
-                    if (result == "1") {
-
-
-                        val dataPayload = jsonObject.getString("data")
-
-
-                        try {
-
-                            //if json object
-
-                            val o = JSONObject(dataPayload)
-                            callBack.SUCCESS(dataPayload)
-
-
-                        } catch (e: JSONException) {
-
-
-                            //if json array
-
-
-                            val o = JSONArray(dataPayload)
-
-                            callBack.SUCCESS(values[0].toString())
-
-
-                        }
-
-
-                    } else if (result == "2") {
-
-                        callBack.NoMore("No more")
-
-
-                    } else {
-
-                        val msg = jsonObject.getString("message")
-                        val msgData = jsonObject.getString("data")
-
-                        Log.d("** < api calling > ***", url + "* message: " + msgData)
-
-                        callBack.ERROR(msg)
-
-                    }
-
-
-                } catch (ex: Exception) {
-                    callBack.FAILER(ex.toString())
-                    Log.d("IS_LOGIN :", ex.toString())
-
-                }
-            }
-        }
-
-
-
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-
-            call.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace("\\s+".toRegex(), "%20"))
-
-            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
-        } else {
-            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
-
-            call.execute(urlLinkApi.replace("\\s+".toRegex(), "%20"))
-        }
-
-
-    }
+//    @SuppressLint("LogNotTimber")
+//    fun callApiUpload(
+//        context: Context,
+//        requestMethod: HttpMethod,
+//        url: String,
+//        postData: MutableMap<String, Any>,
+//        fileData: Bitmap,
+//        callBack: callBackApiGet
+//    ) {
+//
+//
+//        val checkInternet = isNetworkConnected(context)
+//
+//        if (!checkInternet) {
+//
+//            val activity = context as Activity
+//
+//            Toast.makeText(context, context.resources.getString(R.string.no_internet_msg), Toast.LENGTH_LONG).show()
+//
+//
+//
+//            callBack.NO_INTERNET()
+//
+//            return
+//
+//        }
+//
+//
+//        val urlLinkApi: String = generateUrl(url, postData)
+//
+//
+//
+//        val call = @SuppressLint("StaticFieldLeak")
+//        object : UploadOperation(context, requestMethod, fileData, url) {
+//
+//
+//
+//            override fun onProgressUpdate(vararg values: String?) {
+//                try {
+//
+//                    Log.d("tag", "responseCode ajax: *" + values[0].toString())
+//                    //var jsonArray: JSONArray = JSONArray(values[0].toString())
+//                    var jsonObject: JSONObject = JSONObject()
+//
+//
+//                    jsonObject = JSONObject(values[0].toString())
+//
+//
+//                    val result = jsonObject.getString("result")
+//
+//                    if (result == "1") {
+//
+//
+//                        val dataPayload = jsonObject.getString("data")
+//
+//
+//                        try {
+//
+//                            //if json object
+//
+//                            val o = JSONObject(dataPayload)
+//                            callBack.SUCCESS(dataPayload)
+//
+//
+//                        } catch (e: JSONException) {
+//
+//
+//                            //if json array
+//
+//
+//                            val o = JSONArray(dataPayload)
+//
+//                            callBack.SUCCESS(values[0].toString())
+//
+//
+//                        }
+//
+//
+//                    } else if (result == "2") {
+//
+//                        callBack.NoMore("No more")
+//
+//
+//                    } else {
+//
+//                        val msg = jsonObject.getString("message")
+//                        val msgData = jsonObject.getString("data")
+//
+//                        Log.d("** < api calling > ***", url + "* message: " + msgData)
+//
+//                        callBack.ERROR(msg)
+//
+//                    }
+//
+//
+//                } catch (ex: Exception) {
+//                    callBack.FAILER(ex.toString())
+//                    Log.d("IS_LOGIN :", ex.toString())
+//
+//                }
+//            }
+//        }
+//
+//
+//
+//
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//
+//            call.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace("\\s+".toRegex(), "%20"))
+//
+//            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+//        } else {
+//            Log.d("** < api calling > ***", "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20"))
+//
+//            call.execute(urlLinkApi.replace("\\s+".toRegex(), "%20"))
+//        }
+//
+//
+//    }
 
 
 
@@ -599,6 +600,7 @@ class ServerMamagerGet {
 abstract class CallAPIOperationGet(
     context: Context,
     requestMethod: HttpMethod,
+
     postData: JSONObject,
     operationUrl: String
 ) : AsyncTask<String, String, String>() {
@@ -677,7 +679,7 @@ abstract class CallAPIOperationGet(
 
             urlConnection.setRequestProperty("Content-Type", "application/json")
 //            urlConnection.setRequestProperty("Accept", "application/json")
-            urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
+            urlConnection.setRequestProperty("Authorization", "Bearer " + userInfo.token)
 
 
             urlConnection.useCaches = false

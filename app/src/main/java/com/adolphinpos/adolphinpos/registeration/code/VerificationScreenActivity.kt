@@ -51,7 +51,7 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
     }
 
     override fun didSendVerificationCodeFail(msg: String) {
-        if (msg=="LastCodeNotExpired"){
+        if (msg=="LastCodeNotExpired" || msg=="CodeSent"){
             DesignerToast.Custom(this,msg , Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                 R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
             val i = Intent(this, VerificationScreenCodeActivity::class.java)

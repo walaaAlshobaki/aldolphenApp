@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.home.HomeModel
 import kotlinx.android.synthetic.main.activity_pos_catagory.*
 
@@ -32,24 +33,24 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     fun setDashbordData() {
 
 
-        val data1 = HomeModel("Restaurant", R.drawable.restaurant,"restaurant")
-        val data2 = HomeModel("Supermarket", R.drawable.supermarket,"supermarket")
-        val data3 = HomeModel("Caffee", R.drawable.caffee,"caffee")
-        val data4 = HomeModel("Smart assistant", R.drawable.smart,"smart assistant")
-        val data5 = HomeModel("Hotel", R.drawable.hotel,"Hotel")
-        val data6 = HomeModel("Hypermarket", R.drawable.hypermarket,"hypermarket")
-        val data7 = HomeModel("Restaurant & caffee", R.drawable.restaurantcaffee,"Restaurant & caffee")
+        val data1 = HomeModel("Restaurant", 1,R.drawable.restaurant,"restaurant")
+//        val data2 = HomeModel("Supermarket",2, R.drawable.supermarket,"supermarket")
+        val data3 = HomeModel("Coffe shop",2, R.drawable.caffee,"caffee")
+//        val data4 = HomeModel("Smart assistant",4, R.drawable.smart,"smart assistant")
+//        val data5 = HomeModel("Hotel",5, R.drawable.hotel,"Hotel")
+//        val data6 = HomeModel("Hypermarket",6, R.drawable.hypermarket,"hypermarket")
+//        val data7 = HomeModel("Restaurant & caffee",7, R.drawable.restaurantcaffee,"Restaurant & caffee")
 
 
 
 
         dashboardModel.add(data1)
-        dashboardModel.add(data2)
+//        dashboardModel.add(data2)
         dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data5)
-        dashboardModel.add(data6)
-        dashboardModel.add(data7)
+//        dashboardModel.add(data4)
+//        dashboardModel.add(data5)
+//        dashboardModel.add(data6)
+//        dashboardModel.add(data7)
 
 
 
@@ -58,8 +59,10 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     }
 
     override fun onSelectItemCategory(position: Int) {
+        common.selectedServiceTypeId=dashboardModel[position].id
         val i = Intent(this, PosCatCompanyDataActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
         startActivity(i)
         finish()
     }

@@ -150,77 +150,147 @@
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"
+            android:textColor="@color/appMainColor"
+            android:layout_marginTop="33dp"
+            android:textSize="13sp"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/con"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="42dp"
+            app:cardElevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintWidth_percent="0.45"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_edge">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:background="@color/white">
+
+
+
+
+        <TextView
+            android:id="@+id/country"
+            android:clickable="true"
+            android:text="saudi arabia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            app:layout_constraintWidth_percent="0.75"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/appMainColoro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
             android:id="@+id/flag"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/CountryTextInputLayout"
-            style="@style/LoginTextInputLayoutStyle"
-            android:theme="@style/LoginTextInputLayoutStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="12dp"
-            android:clickable="true"
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:hint="Country"
-            app:endIconMode="custom"
-            android:textColorHint="@color/appMainColor"
-            app:endIconTint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
-            app:layout_constraintWidth_percent="0.45">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/country"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/appMainColor" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/PhoneTextInputLayout"
-            style="@style/LoginTextInputLayoutStyle"
-            android:theme="@style/LoginTextInputLayoutStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:src="@drawable/sa"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@+id/country"
+            app:layout_constraintWidth_percent="0.15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone No."
+            android:textColor="@color/appMainColor"
+            android:layout_marginTop="33dp"
+            android:textSize="13sp"
+            android:layout_marginStart="50dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+            app:layout_constraintStart_toEndOf="@+id/con"/>
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/PhoneTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
             android:layout_marginTop="42dp"
-            android:hint="Phone No."
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:textColorHint="@color/appMainColor"
-            app:hintTextColor="@color/appMainColor"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
+            app:layout_constraintStart_toEndOf="@+id/con"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
             app:layout_constraintWidth_percent="0.45">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phoneNum"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoText="false"
-                android:fontFamily="@font/roboto_bold"
-                android:phoneNumber="true"
-                android:textColor="@color/appMainColor" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:background="@drawable/card_edge">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:background="@color/white">
+
+
+
+
+                    <EditText
+                        android:id="@+id/phoneNum"
+                        android:clickable="true"
+                        android:hint="Write your phone No."
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textSize="18sp"
+                        android:phoneNumber="true"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintWidth_percent="0.75"
+                        android:fontFamily="@font/roboto"
+                        android:textColorHint="@color/appMainColoro"
+                        android:textColor="@color/appMainColor"
+                        app:layout_constraintStart_toEndOf="@+id/flagphone"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                    <ImageView
+                        android:id="@+id/flagphone"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/sa"
+
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        app:layout_constraintWidth_percent="0.15"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+
+        </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/phoneError"
             android:layout_width="wrap_content"
@@ -252,7 +322,7 @@
             app:endIconTint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CountryTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/con"
             app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -294,7 +364,7 @@
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/CountryTextInputLayout"
+            app:layout_constraintStart_toEndOf="@+id/con"
             app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout"
             app:layout_constraintWidth_percent="0.45">
 

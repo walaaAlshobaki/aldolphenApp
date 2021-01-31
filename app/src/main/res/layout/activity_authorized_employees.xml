@@ -173,6 +173,7 @@
         android:translationY="50dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="1005dp"
         android:layout_height="418dp"
         android:layout_marginTop="53dp"

@@ -172,9 +172,11 @@ class CountryActivity : AppCompatActivity(),CountryDelegate, RecyclerAdapter.Ite
     override fun onSelectCountry(position: Int) {
         RxBus.publish(MessageEvent(1, countryModel[position]))
         Log.d("WWWWWWWWWWW",countryModel[position].name)
-        finish()
+      onBackPressed()
 
     }
 
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

@@ -14,8 +14,14 @@ class Common {
     var apiDomainRoot:String=""
     var userToken:String=""
     var userPhone:String=""
+    var userPrermtion:ArrayList<Int> = arrayListOf(1)
+    val mutableList = userPrermtion.toMutableList()
+    var selectedServiceId:Int=0
+    var selectedServiceTypeId:Int=0
     var userEmail:String=""
     var session: SessionManager?=null
+    val RESULT_LOAD_IMAGE_GALLERY=121
+    val RESULT_LOAD_IMAGE_CAMERA=122
 
 
 }

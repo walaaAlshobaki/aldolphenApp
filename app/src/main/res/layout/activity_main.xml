@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".home.MainActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -47,17 +47,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
-
+<LinearLayout
+    android:id="@+id/user"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="1108dp"
+    android:layout_marginTop="56dp"
+    android:layout_marginEnd="229dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
     <ImageView
         android:id="@+id/userImage"
         android:layout_width="29dp"
         android:layout_height="29dp"
         android:src="@drawable/user"
-        android:layout_marginStart="1108dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="229dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        />
 
     <TextView
         android:id="@+id/userName"
@@ -68,9 +72,13 @@
         android:text="Mohamed Gamal"
         android:textColor="@color/appMainColor"
         android:textSize="14dp"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/userImage"
         app:layout_constraintStart_toEndOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage" />
+</LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

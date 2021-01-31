@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.auth0.jwt.JWT
 import org.json.JSONException
 import org.json.JSONObject
@@ -34,11 +35,17 @@ class UrlAPIs {
     val Company = "http://13.59.88.58:8080/api/Company"
     val email = "http://13.59.88.58:8080/api/User/RestPassword/Email"
     val code = "http://13.59.88.58:8080/api/User/Activation/Code"
+    val newBranch = "http://13.59.88.58:8080/api/Company/Service/Branch"
     val Country = "Country?"
     val userInfo = "User/Info?"
+    val Poliicy = "User/Poliicy?"
+    val Service = "Service?"
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://13.59.88.58:8080/api/User/RestPassword/Validate"
     val reset = "http://13.59.88.58:8080/api/User/RestPassword"
+    val Invite = "http://13.59.88.58:8080/api/User/Invite"
+    val Users = "Company/Users?"
+    val Branches = "Company/Service/Branches?"
 
 }
 
@@ -112,11 +119,11 @@ class ServerManager {
     }
 
     fun callApi(
-            context: Context,
-            requestMethod: HttpMethod,
-            url: String,
-            postData: JSONObject,
-            callBack: callBackApi
+        context: Context,
+        requestMethod: HttpMethod,
+        url: String,
+        postData: JSONObject,
+        callBack: callBackApi
     ) {
 
 
@@ -127,9 +134,9 @@ class ServerManager {
             val activity = context as Activity
 
             Toast.makeText(
-                    context,
-                    context.resources.getString(R.string.no_internet_msg),
-                    Toast.LENGTH_LONG
+                context,
+                context.resources.getString(R.string.no_internet_msg),
+                Toast.LENGTH_LONG
             ).show()
 
 
@@ -202,7 +209,7 @@ class ServerManager {
 
                     val messae = jsonObject.getString("message")
                     callBack.ERROR(
-                            messae
+                        messae
                     )
 
 
@@ -212,7 +219,7 @@ class ServerManager {
                         val messae = jsonObject.getString("message")
                         Log.d("message :", messae)
                         callBack.ERROR(
-                                messae
+                            messae
                         )
                         callBack.FAILER(messae)
 
@@ -243,10 +250,10 @@ class ServerManager {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
             call.executeOnExecutor(
-                    AsyncTask.THREAD_POOL_EXECUTOR, url.replace(
+                AsyncTask.THREAD_POOL_EXECUTOR, url.replace(
                     "\\s+".toRegex(),
                     "%20"
-            )
+                )
             )
 
             Log.d("** < api calling > ***", "${url} " + url.replace("\\s+".toRegex(), "%20"))
@@ -265,12 +272,12 @@ class ServerManager {
 
     @SuppressLint("LogNotTimber")
     fun callApiUpload(
-            context: Context,
-            requestMethod: HttpMethod,
-            url: String,
-            postData: MutableMap<String, Any>,
-            fileData: Bitmap,
-            callBack: callBackApi
+        context: Context,
+        requestMethod: HttpMethod,
+        url: String,
+        postData: MutableMap<String, Any>,
+        fileData: Bitmap,
+        callBack: callBackApi
     ) {
 
 
@@ -281,9 +288,9 @@ class ServerManager {
             val activity = context as Activity
 
             Toast.makeText(
-                    context,
-                    context.resources.getString(R.string.no_internet_msg),
-                    Toast.LENGTH_LONG
+                context,
+                context.resources.getString(R.string.no_internet_msg),
+                Toast.LENGTH_LONG
             ).show()
 
 
@@ -299,7 +306,7 @@ class ServerManager {
 
 
         val call = @SuppressLint("StaticFieldLeak")
-        object : UploadOperation(context, requestMethod, fileData, url) {
+        object : UploadOperation(context, requestMethod, fileData,postData, url) {
 
 
             override fun onProgressUpdate(vararg values: String?) {
@@ -375,20 +382,20 @@ class ServerManager {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
             call.executeOnExecutor(
-                    AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace(
+                AsyncTask.THREAD_POOL_EXECUTOR, urlLinkApi.replace(
                     "\\s+".toRegex(),
                     "%20"
-            )
+                )
             )
 
             Log.d(
-                    "** < api calling > ***",
-                    "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
+                "** < api calling > ***",
+                "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
             )
         } else {
             Log.d(
-                    "** < api calling > ***",
-                    "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
+                "** < api calling > ***",
+                "${url}* " + urlLinkApi.replace("\\s+".toRegex(), "%20")
             )
 
             call.execute(urlLinkApi.replace("\\s+".toRegex(), "%20"))
@@ -481,10 +488,10 @@ class ServerManager {
 }
 
 abstract class CallAPIOperation(
-        context: Context,
-        requestMethod: HttpMethod,
-        postData: JSONObject,
-        operationUrl: String
+    context: Context,
+    requestMethod: HttpMethod,
+    postData: JSONObject,
+    operationUrl: String
 ) : AsyncTask<String, String, String>() {
 
 
@@ -520,18 +527,18 @@ abstract class CallAPIOperation(
     @SuppressLint("LogNotTimber")
     override fun onPreExecute() {
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *************************************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *************************************************************************************************"
         )
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******"
+            "** < api calling > ***",
+            "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******"
         )
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *************************************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *************************************************************************************************"
         )
 
     }
@@ -546,9 +553,12 @@ abstract class CallAPIOperation(
             urlConnection = url.openConnection() as HttpURLConnection
             urlConnection!!.requestMethod = requestMethod
             urlConnection!!.setRequestProperty("Content-Type", "application/json; charset=utf-8 ")
-            urlConnection!!.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
+            urlConnection!!.setRequestProperty("Authorization", "Bearer " + userInfo.token)
 //            urlConnection!!.setRequestProperty("Content-Length", "" + postData.toString().length)
-            urlConnection!!.setRequestProperty("Content-Length", Integer.toString(postData.toString().length))
+            urlConnection!!.setRequestProperty(
+                "Content-Length",
+                Integer.toString(postData.toString().length)
+            )
 
             urlConnection!!.useCaches = false
             urlConnection!!.doOutput = true
@@ -560,21 +570,22 @@ abstract class CallAPIOperation(
                 wr.writeBytes(postData.toString())
                 wr.close()
                 Log.d(
-                        "** < api calling > ***",
-                        "${operationUrl}* MSG :" + postData.toString()
+                    "** < api calling > ***",
+                    "${operationUrl}* MSG :" + postData.toString()
                 )
             } else if (urlConnection!!.requestMethod == "PUT") {
 
                 val out = OutputStreamWriter(
-                        urlConnection!!.getOutputStream())
+                    urlConnection!!.getOutputStream()
+                )
                 out.write(postData.toString())
                 out.close()
 //                val wr = DataOutputStream(urlConnection!!.outputStream)
 //                wr.writeBytes(postData.toString())
 //                wr.close()
                 Log.d(
-                        "** < api calling > ***",
-                        "${operationUrl}* MSG :" + postData.toString()
+                    "** < api calling > ***",
+                    "${operationUrl}* MSG :" + postData.toString()
                 )
             }
 
@@ -598,27 +609,27 @@ abstract class CallAPIOperation(
 
                     Log.w("** < api calling > ***", "${url} responseCode: " + jsonData)
 
-                    Log.d("body of Bad Request HttpURLConnection", "Response: $jsonData")
+                    Log.d("HttpURLConnection", "Response: $jsonData")
                     publishProgress(jsonData)
 
                 }
 
 
                 Log.d(
-                        "** < api calling > ***",
-                        "$operationUrl auth_token :" + (userConfig.auth_token)
+                    "** < api calling > ***",
+                    "$operationUrl auth_token :" + (userConfig.auth_token)
                 )
                 Log.d(
-                        "** < api calling > ***",
-                        "$operationUrl auth_token :" + urlConnection!!.errorStream
+                    "** < api calling > ***",
+                    "$operationUrl auth_token :" + urlConnection!!.errorStream
                 )
                 Log.d(
-                        "** < api calling > ***",
-                        "$operationUrl CODE :" + (urlConnection!!.responseCode.toString())
+                    "** < api calling > ***",
+                    "$operationUrl CODE :" + (urlConnection!!.responseCode.toString())
                 )
                 Log.d(
-                        "** < api calling > ***",
-                        "$operationUrl MSG :" + urlConnection!!.responseMessage
+                    "** < api calling > ***",
+                    "$operationUrl MSG :" + urlConnection!!.responseMessage
                 )
 
                 urlConnection!!.disconnect()
@@ -627,12 +638,12 @@ abstract class CallAPIOperation(
         } catch (ex: Exception) {
             Log.d("** < api calling > ***", "$operationUrl " + ex.toString())
             Log.d(
-                    "** < api calling > ***",
-                    "$operationUrl *** END CALLING API ***************************************************************************"
+                "** < api calling > ***",
+                "$operationUrl *** END CALLING API ***************************************************************************"
             )
             Log.d(
-                    "** < api calling > ***",
-                    "$operationUrl ***********************************************************************************************"
+                "** < api calling > ***",
+                "$operationUrl ***********************************************************************************************"
             )
 
 
@@ -657,12 +668,12 @@ abstract class CallAPIOperation(
     override fun onPostExecute(result: String?) {
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *** END CALLING API ***************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *** END CALLING API ***************************************************************************"
         )
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl ***********************************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl ***********************************************************************************************"
         )
 
 
@@ -701,10 +712,11 @@ abstract class CallAPIOperation(
 }
 
 abstract class UploadOperation(
-        context: Context,
-        requestMethod: HttpMethod,
-        fileData: Bitmap,
-        operationUrl: String
+    context: Context,
+    requestMethod: HttpMethod,
+    fileData: Bitmap,
+    postData: MutableMap<String, Any>,
+    operationUrl: String
 ) : AsyncTask<String, String, String>() {
 
 
@@ -712,6 +724,7 @@ abstract class UploadOperation(
     var requestMethod: String
     val fileData: Bitmap
     var operationUrl: String = ""
+    var postData: MutableMap<String, Any>? = null
 
 
     init {
@@ -730,6 +743,7 @@ abstract class UploadOperation(
         this.fileData = fileData
 
         this.operationUrl = operationUrl
+        this.postData=postData
 
     }
 
@@ -737,18 +751,18 @@ abstract class UploadOperation(
     @SuppressLint("LogNotTimber")
     override fun onPreExecute() {
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *************************************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *************************************************************************************************"
         )
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******|||${operationUrl}|||"
+            "** < api calling > ***",
+            "$operationUrl *** START CALLING API *****|||${requestMethod}|||*******|||${operationUrl}|||"
         )
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *************************************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *************************************************************************************************"
         )
 
     }
@@ -757,9 +771,10 @@ abstract class UploadOperation(
     @SuppressLint("LogNotTimber")
     override fun doInBackground(vararg p0: String?): String {
         try {
-            val url = URL(p0[0])
 
-            val urlConnection = url.openConnection() as HttpURLConnection
+
+            val url = URL(operationUrl)
+           val urlConnection = url.openConnection() as HttpURLConnection
 
 
 //           urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)
@@ -768,7 +783,7 @@ abstract class UploadOperation(
             urlConnection.useCaches = false
 
 
-            val paramName = "avatar"
+            val paramName = "Logo"
             val fileName = "fileName.jpg"
 
 
@@ -779,20 +794,21 @@ abstract class UploadOperation(
 
             urlConnection.setRequestProperty("Connection", "Keep-Alive")
             urlConnection.setRequestProperty("Cache-Control", "no-cache")
+            urlConnection.setRequestProperty("Authorization", "Bearer " + userInfo.token)
             urlConnection.setRequestProperty(
-                    "Content-Type", "multipart/form-data;boundary=$boundary"
+                "Content-Type", "multipart/form-data;boundary=$boundary"
             )
 
 
             val request = DataOutputStream(
-                    urlConnection.outputStream
+                urlConnection.outputStream
             )
 
             request.writeBytes(twoHyphens + boundary + crlf)
             request.writeBytes(
-                    "Content-Disposition: form-data; name=\"" +
-                            paramName + "\";filename=\"" +
-                            fileName + "\"" + crlf
+                "Content-Disposition: form-data; name=\"" +
+                        paramName + "\";filename=\"" +
+                        fileName + "\"" + crlf
             )
 
             request.writeBytes(crlf)
@@ -803,9 +819,22 @@ abstract class UploadOperation(
 
             request.writeBytes(crlf)
             request.writeBytes(
-                    twoHyphens + boundary +
-                            twoHyphens + crlf
+                twoHyphens + boundary +
+                        twoHyphens + crlf
             )
+
+            for((key, value) in postData!!){
+                request.writeBytes("Content-Disposition: form-data; name=\"" + key + "\"")
+                request.writeBytes(crlf)
+
+                request.writeBytes(crlf);
+                request.writeBytes(value.toString())
+                request.writeBytes(crlf)
+
+            }
+
+
+
 
 
 
@@ -838,16 +867,16 @@ abstract class UploadOperation(
 
 
                 Log.d(
-                        "** < api calling > ***",
-                        "${operationUrl}* auth_token :" + (userConfig.auth_token)
+                    "** < api calling > ***",
+                    "${operationUrl}* auth_token :" + (userConfig.auth_token)
                 )
                 Log.d(
-                        "** < api calling > ***",
-                        "${operationUrl}* CODE :" + (urlConnection.responseCode.toString())
+                    "** < api calling > ***",
+                    "${operationUrl}* CODE :" + (urlConnection.responseCode.toString())
                 )
                 Log.d(
-                        "** < api calling > ***",
-                        "${operationUrl}* MSG :" + urlConnection.responseMessage
+                    "** < api calling > ***",
+                    "${operationUrl}* MSG :" + urlConnection.responseMessage
                 )
 
                 urlConnection.disconnect()
@@ -856,12 +885,12 @@ abstract class UploadOperation(
         } catch (ex: Exception) {
             Log.d("** < api calling > ***", "${operationUrl} " + ex.toString())
             Log.d(
-                    "** < api calling > ***",
-                    "${operationUrl} *** END CALLING API ***************************************************************************"
+                "** < api calling > ***",
+                "${operationUrl} *** END CALLING API ***************************************************************************"
             )
             Log.d(
-                    "** < api calling > ***",
-                    "${operationUrl} ***********************************************************************************************"
+                "** < api calling > ***",
+                "${operationUrl} ***********************************************************************************************"
             )
 
 
@@ -898,12 +927,12 @@ abstract class UploadOperation(
     override fun onPostExecute(result: String?) {
 
         Log.d(
-                "** < api calling > ***",
-                "$operationUrl *** END CALLING API ***************************************************************************"
+            "** < api calling > ***",
+            "$operationUrl *** END CALLING API ***************************************************************************"
         )
         Log.d(
-                "** < api calling > ***",
-                "${operationUrl} ***********************************************************************************************"
+            "** < api calling > ***",
+            "${operationUrl} ***********************************************************************************************"
         )
 
 

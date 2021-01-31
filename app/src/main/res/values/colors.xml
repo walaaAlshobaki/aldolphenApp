@@ -19,5 +19,6 @@
     <color name="border">#E0E0E0</color>
     <color name="gradientStart">#545454B8</color>
     <color name="gradientEnd">#545454B8</color>
+    <color name="editTextBorderColor">#E6E9E9</color>
 
 </resources>

@@ -19,6 +19,10 @@ class ResetPasswordEmailActivity : AppCompatActivity() ,ResetPasswordDelegate{
         setContentView(R.layout.activity_reset_password_email)
         mPresenter = ResetPasswordPresenter(this)
         mPresenter!!.delegate = this
+        back.setOnClickListener {
+            val intent = Intent(applicationContext, ForgetPasswordActivity::class.java)
+            startActivity(intent)
+        }
         val bundle = intent.extras
         email=bundle!!.getString("email").toString()
         code=bundle!!.getString("code").toString()
@@ -26,7 +30,13 @@ class ResetPasswordEmailActivity : AppCompatActivity() ,ResetPasswordDelegate{
             if (bundle != null) {
                 email=bundle.getString("email").toString()
                 if (!bundle.getString("email").isNullOrEmpty()) {
-                    mPresenter!!.sendEmailTap(email,password.text.toString(),code)
+                    if (password.text.toString()!=confirm.text.toString()){
+                        newpasswordTextInputLayout.error="the password is not matches"
+                        ConfirmpasswordTextInputLayout.error="the password is not matches"
+
+                    }else{
+                        mPresenter!!.sendEmailTap(email,password.text.toString(),code)
+                    }
 
                 }
             }
@@ -44,9 +54,19 @@ class ResetPasswordEmailActivity : AppCompatActivity() ,ResetPasswordDelegate{
     }
 
     override fun didSendFail(msg: String) {
-        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+        if (msg=="PasswordUpdated"){
+            DesignerToast.Custom(this,"the Password reset successfully", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                    R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+//        Toast.makeText(this@ResetPasswordEmailActivity, "the Password reset successfully", Toast.LENGTH_LONG).show()
+            val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+            startActivity(intent)
+            finish()
+        }else{
+            DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
 //        Toast.makeText(this@ResetPasswordEmailActivity, msg, Toast.LENGTH_LONG).show()
+        }
+
 
     }
 }
