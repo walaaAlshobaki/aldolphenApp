@@ -65,7 +65,7 @@ class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedD
 //        dashboardModel.add(data3)
 
 
-        dashboardAdapter = DashboardAdapter(this, dashboardModel)
+        dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
 
     }
 

@@ -39,6 +39,7 @@ class UrlAPIs {
     val Country = "Country?"
     val userInfo = "User/Info?"
     val Poliicy = "User/Poliicy?"
+    val PoliicyPermissions = "User/Poliicy/Permissions?"
     val Service = "Service?"
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://13.59.88.58:8080/api/User/RestPassword/Validate"

@@ -58,9 +58,9 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
         loginBtn.setOnClickListener {
 //            mPresenter!!.uploadImageTap(BitmapFactory.decodeFile(picturePath), userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId,PhoneNo.text.toString(),Email.text.toString(),
 //                TaxNo.text.toString(),Taxrecord.text.toString(),BranchName.text.toString(),countryModel!!.id!!)
-//            val i = Intent(this, PosSettingActivity::class.java)
-//            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(i)
+            val i = Intent(this, PosSettingActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
         }
         flag.setOnClickListener {
             val i = Intent(this, SelectEmployeeActivity::class.java)

@@ -43,7 +43,7 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
         recyclerView.adapter = dashboardAdapter
     }
     fun getListData(){
-        dashboardAdapter = DashboardAdapter(context = this,dashboardModel)
+        dashboardAdapter = DashboardAdapter(context = this,dashboardModel,"DashboardViewHolder")
         dashboardAdapter.setOnClickItemCategory(this)
         dashboardAdapter!!.notifyDataSetChanged()
         Log.d("didGetUsersSuccess",dashboardModel.toString())

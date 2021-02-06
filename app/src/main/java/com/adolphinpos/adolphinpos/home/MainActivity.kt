@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         dashboardModel.add(data1)
         dashboardModel.add(data2)
         Log.d("didGetServicesSuccess",dashboardModel.toString())
-        dashboardAdapter = DashboardAdapter(this, dashboardModel)
+        dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
         dashboardAdapter.notifyDataSetChanged()
 
     }

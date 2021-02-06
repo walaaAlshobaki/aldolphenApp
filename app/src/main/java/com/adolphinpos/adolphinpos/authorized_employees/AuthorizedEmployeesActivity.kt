@@ -15,12 +15,16 @@ import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addEmp.AddEmployeeActivity
 import com.adolphinpos.adolphinpos.addEmp.PoliicyModel
 import com.adolphinpos.adolphinpos.createPOS.PosSettingActivity
+import com.adolphinpos.adolphinpos.employee_permissions.EmpPermissionsActivity
 import com.adolphinpos.adolphinpos.helper.CircleTransform
+import com.adolphinpos.adolphinpos.helper.MessageEvent
+import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.login.resetPassword.ResetPasswordPresenter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_authorized_employees.*
 import kotlinx.android.synthetic.main.activity_authorized_employees.recyclerView
 import kotlinx.android.synthetic.main.activity_country.*
+import java.io.Serializable
 
 class AuthorizedEmployeesActivity : AppCompatActivity() ,UsersDelegate,MainAdapter.OnItemselectedDelegate{
     var mPresenter: UsersPresenter? = null
@@ -38,6 +42,7 @@ class AuthorizedEmployeesActivity : AppCompatActivity() ,UsersDelegate,MainAdapt
         val llm = GridLayoutManager(this, 2)
         recyclerView.layoutManager = llm
         getListData()
+
         recyclerView.adapter = mAdapter
 
 
@@ -59,6 +64,7 @@ class AuthorizedEmployeesActivity : AppCompatActivity() ,UsersDelegate,MainAdapt
     }
     fun getListData(){
         mAdapter = MainAdapter(context = this,mModelList,"AuthorizedEmployeesViewHolder")
+        mAdapter!!.setOnClickItemCategory(this)
         mAdapter!!.notifyDataSetChanged()
         Log.d("didGetUsersSuccess",mModelList.toString())
         recyclerView.adapter = mAdapter
@@ -112,6 +118,10 @@ try {
     }
 
     override fun onSelectItemCategory(position: Int) {
-
+        RxBus.publish(MessageEvent(9, mModelList[position]))
+        val i = Intent(this, EmpPermissionsActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(i)
+        finish()
     }
 }

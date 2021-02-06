@@ -32,7 +32,7 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
         Log.d("selectedServiceTypeId", common.selectedServiceTypeId.toString())
         val bundle = intent.extras
         if (bundle!=null){
-            if (!bundle!!.getString("action").isNullOrEmpty() && bundle!!.getString("action")=="new"){
+            if (!bundle.getString("action").isNullOrEmpty() && bundle.getString("action")=="new"){
                 BranchTextInputLayout.visibility=View.GONE
             }
         }
@@ -42,13 +42,13 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
        recyclerView!!.layoutManager = linearVertical
 
         recyclerView.setHasFixedSize(true)
-        recyclerView.setAdapter(mAdapter)
+        recyclerView.adapter = mAdapter
         getListData()
 
 
         loginBtn.setOnClickListener {
             IPresenter!!.userInvite(Email.text.toString(),UserName.text.toString(),PhoneNo.text.toString(),
-                common.mutableList as ArrayList<Int>
+                common.userPrermtion
             )
         }
     }

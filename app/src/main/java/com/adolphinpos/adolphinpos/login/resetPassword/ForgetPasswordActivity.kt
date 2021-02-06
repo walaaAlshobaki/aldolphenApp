@@ -41,7 +41,7 @@ class ForgetPasswordActivity : AppCompatActivity(),ForgetPasswordDelegate {
     }
 
     override fun didSendFail(msg: String) {
-        if (msg == "EmailNotExpired"){
+        if (msg == "EmailNotExpired"||msg == "codeSent"){
             DesignerToast.Custom(this,msg , Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                 R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
             val intent = Intent(applicationContext, EmailValidateCodeActivity::class.java)

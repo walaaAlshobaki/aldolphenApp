@@ -9,57 +9,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.addEmp.PoliicyModel
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
+import com.adolphinpos.adolphinpos.employee_permissions.PoliicyPermissionModel
 import com.adolphinpos.adolphinpos.home.HomeModel
 
 import java.util.*
 
 class DashboardAdapter(
     private val context: Context,
-    private val data: List<*>
+    private val data: List<*>,
+    val action: String
 ):  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    val VIEW_TYPE_ONE = 1
+    val VIEW_TYPE_TWO = 2
+    val VIEW_TYPE_THREE = 3
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
-
-        vv =  LayoutInflater.from(context).inflate(R.layout.home_page_item_cell, parent, false)
-
-//        val Width = parent.measuredWidth
-//        val Height = parent.measuredHeight
-//
-//        vv.minimumWidth = (Width * 0.5).toInt()
-//        vv.minimumHeight=  (Height/ 3.5).toInt()
-//
-//
-//
-//        vv.setPadding(10, 10, 10, 10)
-
-
-
-
-
-//        val display: Display = (context as Activity).windowManager.defaultDisplay
-//        val stageWidth = display.width-100
-//        val stageHeight = display.height-300
-//
-//        val width: Int = stageWidth
-//        val params: ViewGroup.LayoutParams = vv.layoutParams
-//        params.height = (stageHeight  /4.5).toInt()
-//        params.width = (stageWidth /2)
-//
-//        vv.layoutParams = params
-
-
-
-        return DashboardViewHolder(vv)
-
-
+        return if (viewType == VIEW_TYPE_ONE) {
+            DashboardViewHolder(
+                    LayoutInflater.from(context).inflate(R.layout.home_page_item_cell, parent, false)
+            )
+        }else if (viewType == VIEW_TYPE_TWO) {
+            EmpPermissionsViewHolder(
+                    LayoutInflater.from(parent.context).inflate(R.layout.permission_item_cell, parent, false)
+            )
+        }else{
+            PoliicyPermissionViewHolder(
+                    LayoutInflater.from(parent.context).inflate(R.layout.emp_permissions_item_cell, parent, false)
+            )
+        }
 
 
 
@@ -80,9 +66,27 @@ class DashboardAdapter(
 //
 //
 //        holder.itemView.layoutParams = params
-        (holder as DashboardViewHolder).bind(position)
-    }
+        if (action=="DashboardViewHolder"){
+            (holder as DashboardViewHolder).bind(position)
 
+        }else if (action== "EmpPermissionsActivity"){
+            (holder as EmpPermissionsViewHolder).bind(position)
+        }
+        else if (action== "PoliicyPermissionModel"){
+            (holder as PoliicyPermissionViewHolder).bind(position)
+        }
+
+    }
+    override fun getItemViewType(position: Int): Int {
+
+        return if (action == "DashboardViewHolder") {
+            VIEW_TYPE_ONE
+        } else if (action == "PoliicyPermissionModel") {
+            VIEW_TYPE_THREE
+        } else {
+            VIEW_TYPE_TWO
+        }
+    }
     override fun getItemCount(): Int {
         return data.size
     }
@@ -148,6 +152,90 @@ class DashboardAdapter(
                         onClick!!.onSelectItemCategory(position)
                     }
                 }
+
+
+            }
+
+        }
+
+    }
+
+
+    private inner class EmpPermissionsViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var myTextView: TextView= itemView.findViewById(R.id.permissionsText)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data[position] is PoliicyModel.Data -> {
+                    val itemCat = data[position] as PoliicyModel.Data
+
+                    myTextView.text=itemCat.name
+                    if(!itemCat.isSelected){
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+                        myTextView.setTextColor(context.resources.getColor(R.color.appMainColor))
+
+
+                    }else{
+
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+
+                    }
+
+
+                    myTextView.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    private inner class PoliicyPermissionViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var empName: TextView= itemView.findViewById(R.id.empName)
+        var switch1: Switch= itemView.findViewById(R.id.switch1)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data[position] is PoliicyPermissionModel.Data -> {
+                    val itemCat = data[position] as PoliicyPermissionModel.Data
+
+                    empName.text=itemCat.name
+
+                        switch1.setChecked(true)
+
+
+//
+//                    myTextView.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+
 
 
             }

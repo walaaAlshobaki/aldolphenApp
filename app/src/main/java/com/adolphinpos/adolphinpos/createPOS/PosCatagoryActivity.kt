@@ -54,7 +54,7 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
 
 
 
-        dashboardAdapter = DashboardAdapter(this, dashboardModel)
+        dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
 
     }
 

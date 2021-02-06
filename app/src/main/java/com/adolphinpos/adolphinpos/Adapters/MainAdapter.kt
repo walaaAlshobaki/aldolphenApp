@@ -90,6 +90,10 @@ class MainAdapter(
                     empName.text=itemCat.firstName+" "+itemCat.lastName
                     charName.text= itemCat.firstName!!.first().toString().toUpperCase()+itemCat.lastName!!.first().toString().toUpperCase()
                     empEmail.text=itemCat.email
+                    empRole.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
+                    }
+
                 }
 
 
@@ -109,12 +113,14 @@ class MainAdapter(
 
 
 
-
     }
 
     fun setOnClickItemCategory(onClick: OnItemselectedDelegate) {
         this.onClick = onClick
     }
+
+
+
     private inner class EmployeesPermissionsViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
