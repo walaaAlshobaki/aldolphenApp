@@ -1,5 +1,7 @@
 package com.adolphinpos.adolphinpos.userProfile
 
+import android.content.pm.ActivityInfo
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +16,9 @@ class UserProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        }
         initData()
         Picasso.get()
             .load(R.drawable.user)

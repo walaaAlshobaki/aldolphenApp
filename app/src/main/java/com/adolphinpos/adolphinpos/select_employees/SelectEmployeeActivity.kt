@@ -1,6 +1,8 @@
 package com.adolphinpos.adolphinpos.select_employees
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +32,9 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_employee)
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        }
         mPresenter = UsersPresenter(this)
         mPresenter!!.delegate = this
         mPresenter!!.getUsersTap(userInfo.userId.toString())

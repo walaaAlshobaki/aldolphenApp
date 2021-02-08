@@ -458,15 +458,15 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
-            android:layout_width="588dp"
-            android:layout_height="46dp"
+            android:layout_width="450dp"
+            android:layout_height="40dp"
             android:layout_marginTop="36dp"
-            android:minHeight="45dp"
-            app:cardCornerRadius="10dp"
+            android:minHeight="40dp"
             app:cardBackgroundColor="@color/appMainColor"
+            app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ConfirmpasswordTextInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/passwordTextInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/ConfirmpasswordTextInputLayout">
 
             <Button

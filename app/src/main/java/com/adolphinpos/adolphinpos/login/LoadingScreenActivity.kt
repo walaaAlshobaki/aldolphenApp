@@ -56,11 +56,11 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
 
     override fun didGetUserInfoSuccess(response: UserInfoModel) {
         userInfo = UserInfoModel(
-                response.firstName!!,
-                response.lastName!!,
-                response.isVerfied!!,
-                response.phoneNumber!!,
-                response.email!!,
+                response.firstName,
+                response.lastName,
+                response.isVerfied,
+                response.phoneNumber,
+                response.email,
             userConfig.auth_token,
             userConfig.userid.toInt()
 

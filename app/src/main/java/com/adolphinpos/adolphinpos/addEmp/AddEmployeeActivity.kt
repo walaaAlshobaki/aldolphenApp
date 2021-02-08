@@ -1,6 +1,8 @@
 package com.adolphinpos.adolphinpos.addEmp
 
+import android.content.pm.ActivityInfo
 import android.graphics.ColorSpace.Model
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -24,6 +26,9 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_employee)
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        }
         mPresenter=PoliicyPresenter(this)
         mPresenter!!.delegate = this
         IPresenter=UserInvitePresenter(this)

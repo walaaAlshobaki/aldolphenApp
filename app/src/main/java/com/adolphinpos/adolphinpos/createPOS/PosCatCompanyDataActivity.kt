@@ -2,10 +2,12 @@ package com.adolphinpos.adolphinpos.createPOS
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
@@ -38,7 +40,9 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pos_cat_company_data)
-
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        }
         mPresenter = CompanyServiceBranchesPresenter(this)
         mPresenter!!.delegate = this
         userName.text= userInfo.firstName +" "+ userInfo.lastName

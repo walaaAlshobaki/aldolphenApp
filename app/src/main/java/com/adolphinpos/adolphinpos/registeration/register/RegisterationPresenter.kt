@@ -9,7 +9,7 @@ import org.json.JSONObject
 
 interface RegisterationDelegate {
 
-    fun didRegisterationSuccess(token: userModel, auth_token:String)
+    fun didRegisterationSuccess(token: String)
     fun didRegisterationFail(msg: String)
 
 
@@ -36,7 +36,7 @@ class RegisterationPresenter(var mContext: Context) {
             object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String,auth_token:String) {
+                override fun SUCCESS(jsonObject: String) {
 
 
 //                    var responseJson =
@@ -57,8 +57,8 @@ class RegisterationPresenter(var mContext: Context) {
 //                    common.session!!.createLoginSession(userConfig)
                     val responseDatajson = JSONObject(jsonObject.toString())
 
-                    val responseJson = common.parserJson.fromJson(responseDatajson.toString(), userModel::class.java)
-                    delegate!!.didRegisterationSuccess(responseJson,auth_token)
+                    val responseJson = common.parserJson.fromJson(responseDatajson.toString(), RegisterModel::class.java)
+                    delegate!!.didRegisterationSuccess(jsonObject)
 
                 }
 

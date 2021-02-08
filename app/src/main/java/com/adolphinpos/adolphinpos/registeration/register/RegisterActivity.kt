@@ -88,9 +88,11 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
 //        CountryTextInputLayout.isFocusable = true
 //        CountryTextInputLayout.isClickable = true
         country.setOnClickListener{
-            val i = Intent(this, CountryActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
+
+              val i = Intent(this, CountryActivity::class.java)
+              i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+              startActivity(i)
+
         }
         flagphone.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
@@ -161,28 +163,28 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
         }
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
-    override fun didRegisterationSuccess(token: userModel, auth_token:String) {
-        userInfo.token=auth_token
+    override fun didRegisterationSuccess(token: String) {
+        userInfo.token=token!!
         userConfig = UserConfig(
                 "token.firstName",
                 "token.lastName",
                 "jo",
-                token.userId.toString(),
+                "-1",
                 "token.phoneNumber",
                 "token.email",
-                auth_token
+            token!!
         )
 //        common.session!!.createLoginSession(userConfig)
 //        common.userToken=token
 //        common.userEmail=email.text.toString()
 //        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
 //        common.session!!.createLoginSession(userConfig)
-        common.userToken=auth_token
+        common.userToken=token!!
         common.userPhone=countryModel!!.callingCodes+phoneNum.text.toString()
         DesignerToast.Custom(this,"successfully registration",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         val i = Intent(this, PlanActivity::class.java)
-        i.putExtra("auth_token",auth_token)
+        i.putExtra("auth_token",token!!)
         i.putExtra("mobile",countryModel!!.callingCodes+phoneNum.text.toString())
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)

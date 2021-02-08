@@ -24,6 +24,7 @@
         <item name="colorPrimary">@color/appMainColor</item>
         <item name="android:textColor">@color/appMainColor</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>

@@ -31,20 +31,20 @@ class UrlAPIs {
         val instance = UrlAPIs()
     }
 
-    val login = "http://13.59.88.58:8080/api/User"
-    val Company = "http://13.59.88.58:8080/api/Company"
-    val email = "http://13.59.88.58:8080/api/User/RestPassword/Email"
-    val code = "http://13.59.88.58:8080/api/User/Activation/Code"
-    val newBranch = "http://13.59.88.58:8080/api/Company/Service/Branch"
+    val login = "http://161.97.164.114:8080/api/User"
+    val Company = "http://161.97.164.114:8080/api/Company"
+    val email = "http://161.97.164.114:8080/api/User/RestPassword/Email"
+    val code = "http://161.97.164.114:8080/api/User/Activation/Code"
+    val newBranch = "http://161.97.164.114:8080/api/Company/Service/Branch"
     val Country = "Country?"
     val userInfo = "User/Info?"
     val Poliicy = "User/Poliicy?"
     val PoliicyPermissions = "User/Poliicy/Permissions?"
     val Service = "Service?"
     val Validate = "User/Activation/Validate?"
-    val emailValidate = "http://13.59.88.58:8080/api/User/RestPassword/Validate"
-    val reset = "http://13.59.88.58:8080/api/User/RestPassword"
-    val Invite = "http://13.59.88.58:8080/api/User/Invite"
+    val emailValidate = "http://161.97.164.114:8080/api/User/RestPassword/Validate"
+    val reset = "http://161.97.164.114:8080/api/User/RestPassword"
+    val Invite = "http://161.97.164.114:8080/api/User/Invite"
     val Users = "Company/Users?"
     val Branches = "Company/Service/Branches?"
 
@@ -65,7 +65,7 @@ class AuthModel {
 
 interface callBackApi {
 
-    fun SUCCESS(jsonObject: String, auth_token: String)
+    fun SUCCESS(jsonObject: String)
     fun ERROR(msg: String)
     fun FAILER(msg: String)
     fun JSON(jsonObject: JSONObject, api: ApiModel?)
@@ -94,7 +94,7 @@ enum class HttpMethod {
 class ServerManager {
     val urlAPIs = UrlAPIs.instance
 
-    var apiRoot = "http://13.59.88.58:8080/"
+    var apiRoot = "http://161.97.164.114:8080/"
 
     var apiFolders: String = "api/"
     var apiDomainRoot = ""
@@ -179,16 +179,16 @@ class ServerManager {
                     //if json object
                     if (!dataPayload.isNullOrEmpty()) {
                         try {
-                            val jwt = JWT.decode(dataPayload)
+//                            val jwt = JWT.decode(dataPayload)
 //                            val test =jwt.getClaim("NameIdentifier")
 //                            println("Decoded: $decodedString")
-                            val claims = jwt.claims //Key is the Claim name
+//                            val claims = jwt.claims //Key is the Claim name
 
-                            val claim = claims["nameid"]
-                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
+//                            val claim = claims["nameid"]
+//                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
 
 
-                            callBack.SUCCESS(claim!!.asString(), dataPayload)
+                            callBack.SUCCESS(dataPayload)
 
 
                         } catch (e: JSONException) {
@@ -197,21 +197,21 @@ class ServerManager {
 
                         }
 
-                        val msg = jsonObject.getString("success")
-
-                        callBack.ERROR(msg)
+//                        val msg = jsonObject.getString("success")
+//
+//                        callBack.ERROR(msg)
                     }
-                    else {
-                        val dataPayload = jsonObject.getString("success")
-                        callBack.ERROR(dataPayload)
+//                    else {
+//                        val dataPayload = jsonObject.getString("success")
+//                        callBack.ERROR(dataPayload)
+//
+//                    }
 
-                    }
-
-
-                    val messae = jsonObject.getString("message")
-                    callBack.ERROR(
-                        messae
-                    )
+//
+//                    val messae = jsonObject.getString("message")
+//                    callBack.ERROR(
+//                        messae
+//                    )
 
 
                 }
@@ -334,7 +334,7 @@ class ServerManager {
                             //if json object
 
 //                            val o = JSONObject(dataPayload)
-                            callBack.SUCCESS(dataPayload, "")
+                            callBack.SUCCESS(dataPayload)
 
 
                         } catch (e: JSONException) {
@@ -345,7 +345,7 @@ class ServerManager {
 
 //                            val o = JSONArray(dataPayload)
 
-                            callBack.SUCCESS(values[0].toString(), "")
+                            callBack.SUCCESS(values[0].toString())
 
 
                         }
