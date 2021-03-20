@@ -35,7 +35,7 @@ class EmailValidatePresenter (var mContext: Context) {
             object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String,auth_token:String) {
+                override fun SUCCESS(jsonObject: String) {
 
 
                     var responseJson =

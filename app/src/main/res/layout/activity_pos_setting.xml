@@ -12,7 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="61dp"
         android:layout_height="74dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/logo2"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="113dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_bold"
         android:text="select your preference to start your POS."
         android:textColor="@color/appMainColor"
@@ -35,34 +35,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="29dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="1108dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="229dp"
-        android:src="@drawable/user"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/userName"
+    <LinearLayout
+        android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Mohamed Gamal"
-        android:textColor="@color/appMainColor"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/userImage"
-        app:layout_constraintStart_toEndOf="@+id/userImage"
-        app:layout_constraintTop_toTopOf="@+id/userImage" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Mohamed Gamal"
+            android:textColor="@color/appMainColor"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userImage"
+            app:layout_constraintStart_toEndOf="@+id/userImage"
+            app:layout_constraintTop_toTopOf="@+id/userImage" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="148dp"
         android:layout_height="30dp"
-        android:layout_marginStart="482dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/user"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3">
 
@@ -93,28 +100,31 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="98dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        app:cardElevation="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/userName"
-        app:layout_constraintStart_toStartOf="@+id/userImage"
-        app:layout_constraintTop_toBottomOf="@id/userImage">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white"
+
+        app:layout_constraintEnd_toEndOf="@+id/user"
+        app:layout_constraintStart_toStartOf="@+id/user"
+        app:layout_constraintTop_toBottomOf="@id/user">
 
         <LinearLayout
             android:id="@+id/sign"
-            android:layout_width="124dp"
-            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="10dp"
             android:background="@color/red">
 
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="29dp"
                 android:src="@drawable/ic_left_arrow"
-                app:tint="@color/white" />
+                android:tint="@color/white" />
 
             <TextView
                 android:id="@+id/signUp"
@@ -136,17 +146,26 @@
     <ScrollView
         android:id="@+id/scrollable"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="280dp"
         android:layout_marginStart="113dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="113dp"
+        android:scrollbarThumbVertical="@drawable/scrollbar"
+        android:scrollIndicators="end"
+        android:fadeScrollbars="false"
+        android:scrollbarTrackVertical="@color/appMainColor"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -156,7 +175,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/PointTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="380dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:focusable="true"
@@ -170,6 +189,7 @@
                     app:hintTextColor="@color/appMainColor"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.40"
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -186,9 +206,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/PhoneTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
-                    android:layout_width="380dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="70dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
                     android:hint="Phone No."
@@ -201,7 +221,7 @@
                     app:hintTextColor="@color/appMainColor"
                     app:layout_constraintStart_toEndOf="@+id/PointTextInputLayout"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.45"
+                    app:layout_constraintWidth_percent="0.40"
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -213,7 +233,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="115dp"
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"
@@ -222,15 +242,16 @@
 
 
                     <CheckBox
-                        android:id="@+id/checkBox1"
-                        android:layout_width="20dp"
+                        android:id="@+id/checkBox11"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
-                        android:text="CheckBoxAuthorized" />
+
+                        android:text="CheckBox" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
@@ -253,6 +274,7 @@
                             android:layout_marginTop="17dp"
                             android:text="Use Employee Credentials To Log In To The Pos Session And Switch Cashier"
                             android:textColor="#5D5D5D"
+                            android:layout_marginEnd="10dp"
                             android:textSize="14sp" />
 
                         <LinearLayout
@@ -285,7 +307,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="115dp"
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"
@@ -294,15 +316,16 @@
 
 
                     <CheckBox
-                        android:id="@+id/checkBox11"
-                        android:layout_width="20dp"
+                        android:id="@+id/checkBox12"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
+
                         android:text="CheckBox" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
@@ -315,7 +338,107 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
-                            android:text="Authorized Employees"
+                            android:text="Business Profile Edit"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="17dp"
+                            android:text="here you can change your company information, exp, tax no, logo, etc."
+                            android:textColor="#5D5D5D"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="10dp"/>
+
+                        <LinearLayout
+                            android:id="@+id/CompanyProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Company Profile"
+                                android:textColor="@color/red"
+                                android:textSize="14sp" />
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_forward"
+                                app:tint="@color/red" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="28dp"
+                android:background="@color/appMainColor">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="31dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center_vertical"
+                    android:text="Products and Price list:"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="28dp">
+
+                <LinearLayout
+                    android:id="@+id/prudact"
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+
+
+                    <CheckBox
+
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+
+                        android:text="CheckBox" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/appMainColor" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Products Management"
                             android:textColor="@color/appMainColor"
                             android:textSize="18sp" />
 
@@ -325,12 +448,113 @@
                             android:layout_marginTop="17dp"
                             android:text="Use Employee Credentials To Log In To The Pos Session And Switch Cashier"
                             android:textColor="#5D5D5D"
+                            android:layout_marginEnd="10dp"
                             android:textSize="14sp" />
 
+                        <LinearLayout
+                            android:id="@+id/Products"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Manage Products"
+                                android:textColor="@color/red"
+                                android:textSize="14sp" />
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_forward"
+                                app:tint="@color/red" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="70dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
+                    app:layout_constraintStart_toEndOf="@+id/prudact"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
 
+
+                    <CheckBox
+
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+
+                        android:text="CheckBox" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/appMainColor" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Price List"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="17dp"
+                            android:text="Use Employee Credentials To Log In To The Pos Session And Switch Cashier"
+                            android:textColor="#5D5D5D"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:id="@+id/Price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Manage Price List"
+                                android:textColor="@color/red"
+                                android:textSize="14sp" />
+
+                            <ImageView
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="8dp"
+                                android:src="@drawable/ic_forward"
+                                app:tint="@color/red" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
@@ -357,22 +581,24 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="155dp"
                     android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
 
                     <CheckBox
                         android:id="@+id/checkBox3"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
-                        android:text="CheckBox" />
+
+                         />
 
                     <View
                         android:layout_width="1dp"
+                        android:layout_marginStart="8dp"
                         android:layout_height="match_parent"
                         android:background="@color/appMainColor" />
 
@@ -461,19 +687,19 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="70dp"
                     android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2"
                     app:layout_constraintTop_toTopOf="parent">
 
 
                     <CheckBox
                         android:id="@+id/checkBox4"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
                         android:text="CheckBox" />
 
                     <View
@@ -482,7 +708,7 @@
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
-                        android:layout_width="341dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical">
@@ -507,19 +733,20 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout2"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
 
                     <CheckBox
                         android:id="@+id/checkBox"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
+
                         android:text="CheckBox" />
 
                     <View
@@ -528,7 +755,7 @@
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
-                        android:layout_width="341dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical">
@@ -567,19 +794,20 @@
 
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.40"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout3"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
 
                     <CheckBox
                         android:id="@+id/checkBox2"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
+
                         android:text="CheckBox" />
 
                     <View
@@ -588,7 +816,7 @@
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
-                        android:layout_width="341dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical">
@@ -652,8 +880,9 @@
 
                 <LinearLayout
                     android:id="@+id/linear4"
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="175dp"
+                    app:layout_constraintWidth_percent="0.40"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -661,18 +890,18 @@
 
                     <CheckBox
                         android:id="@+id/checkBox6"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
                         android:text="CheckBox" />
 
                     <View
                         android:layout_width="1dp"
+                        android:layout_marginStart="8dp"
                         android:layout_height="match_parent"
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
-                        android:layout_width="341dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical">
@@ -700,10 +929,10 @@
 
                             <CheckBox
                                 android:id="@+id/checkBox7"
-                                android:layout_width="20dp"
+                                android:layout_width="30dp"
                                 android:layout_height="20dp"
                                 android:layout_margin="8dp"
-                                android:layout_weight="1"
+
                                 android:text="CheckBox" />
 
                             <LinearLayout
@@ -755,9 +984,10 @@
 
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="115dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="70dp"
+                    app:layout_constraintWidth_percent="0.40"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toEndOf="@+id/linear4"
                     app:layout_constraintTop_toTopOf="parent">
@@ -765,9 +995,8 @@
 
                     <CheckBox
                         android:id="@+id/checkBox5"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
                         android:text="CheckBox" />
 
                     <View
@@ -776,7 +1005,7 @@
                         android:background="@color/appMainColor" />
 
                     <LinearLayout
-                        android:layout_width="341dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:orientation="vertical">
@@ -839,18 +1068,19 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout7"
-                android:layout_width="390dp"
+                android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:orientation="horizontal"
+                app:layout_constraintWidth_percent="0.40"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <CheckBox
                     android:id="@+id/checkBox8"
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_weight="1"
+
                     android:text="CheckBox" />
 
                 <View
@@ -859,7 +1089,7 @@
                     android:background="@color/appMainColor" />
 
                 <LinearLayout
-                    android:layout_width="341dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:orientation="vertical">
@@ -886,28 +1116,30 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout8"
-                android:layout_width="390dp"
+                android:layout_width="0dp"
                 android:layout_height="145dp"
-                android:layout_marginStart="190dp"
+                android:layout_marginStart="70dp"
                 android:orientation="horizontal"
+                app:layout_constraintWidth_percent="0.40"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout7"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <CheckBox
                     android:id="@+id/checkBox9"
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="20dp"
-                    android:layout_weight="1"
+
                     android:text="CheckBox" />
 
                 <View
                     android:layout_width="1dp"
+                    android:layout_marginStart="8dp"
                     android:layout_height="match_parent"
                     android:background="@color/appMainColor" />
 
                 <LinearLayout
-                    android:layout_width="341dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:orientation="vertical">
@@ -948,9 +1180,10 @@
             </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="390dp"
+                    android:layout_width="0dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="30dp"
+                    app:layout_constraintWidth_percent="0.40"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout7"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
@@ -958,9 +1191,9 @@
 
                     <CheckBox
                         android:id="@+id/checkBox10"
-                        android:layout_width="20dp"
+                        android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
+
                         android:text="CheckBox" />
 
                     <View
@@ -1031,46 +1264,48 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/login"
-        android:layout_width="235dp"
-        android:layout_height="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="113dp"
-        app:cardBackgroundColor="@color/appMainColor"
         android:layout_marginTop="10dp"
-        android:minHeight="58dp"
+        android:minHeight="40dp"
+        app:cardBackgroundColor="@color/appMainColor"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollable">
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-          <TextView
+            <TextView
 
-              android:layout_width="148dp"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:fontFamily="@font/roboto_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Start your session"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="15sp"
+                app:autoSizeStepGranularity="1sp" />
 
-              android:text="Start your session"
-              android:textColor="@color/white"
-              android:textSize="16sp"
-              android:textStyle="bold"
-              android:layout_marginStart="30dp"
-              app:autoSizeMaxTextSize="30sp"
-              app:autoSizeMinTextSize="20sp"
-              app:autoSizeStepGranularity="1sp" />
-          <ImageView
-              android:layout_width="15dp"
-              android:layout_height="15dp"
-              android:layout_marginStart="10dp"
-              android:layout_gravity="center"
-              android:src="@drawable/ic_forward"
-              app:tint="@color/white" />
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_forward"
+                app:tint="@color/white" />
 
-      </LinearLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

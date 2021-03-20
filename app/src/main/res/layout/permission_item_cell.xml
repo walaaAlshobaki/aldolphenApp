@@ -9,7 +9,7 @@
     android:layout_marginEnd="7.5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
-        android:padding="20dp"
+        android:padding="10dp"
         android:id="@+id/permissionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

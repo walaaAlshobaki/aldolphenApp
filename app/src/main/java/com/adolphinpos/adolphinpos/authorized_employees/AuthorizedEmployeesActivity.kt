@@ -38,7 +38,7 @@ class AuthorizedEmployeesActivity : AppCompatActivity() ,UsersDelegate,MainAdapt
         userName.text= userInfo.firstName +" "+ userInfo.lastName
         mPresenter = UsersPresenter(this)
         mPresenter!!.delegate = this
-        mPresenter!!.getUsersTap(userInfo.userId.toString())
+        mPresenter!!.getUsersTap(userInfo.companyId.toString())
         val llm = GridLayoutManager(this, 2)
         recyclerView.layoutManager = llm
         getListData()
@@ -118,10 +118,12 @@ try {
     }
 
     override fun onSelectItemCategory(position: Int) {
-        RxBus.publish(MessageEvent(9, mModelList[position]))
+        RxBus.publish(MessageEvent(20, mModelList[position]))
         val i = Intent(this, EmpPermissionsActivity::class.java)
+        i.putExtra("name",mModelList[position].firstName+" "+mModelList[position].lastName)
+        i.putExtra("email",mModelList[position].email)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
-        finish()
+
     }
 }

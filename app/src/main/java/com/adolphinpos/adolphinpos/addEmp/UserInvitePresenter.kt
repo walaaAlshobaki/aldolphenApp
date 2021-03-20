@@ -4,8 +4,9 @@ import android.content.Context
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
-import com.adolphinpos.adolphinpos.registeration.code.SendVerificationCodeDelegate
+import org.json.JSONArray
 import org.json.JSONObject
+
 
 interface UserInviteDelegate {
 
@@ -14,11 +15,11 @@ interface UserInviteDelegate {
 
 
 }
-class UserInvitePresenter (var mContext: Context) {
+class UserInvitePresenter(var mContext: Context) {
 
     var delegate: UserInviteDelegate? = null
 
-    fun userInvite(email:String,name:String,phoneNumber:String,policyids:ArrayList<Int>) {
+    fun userInvite(email: String, name: String, phoneNumber: String, policyids: ArrayList<Int>) {
 
 
 
@@ -28,10 +29,16 @@ class UserInvitePresenter (var mContext: Context) {
 
 
 
-        cred.put("email",email);
+        cred.put("email", email);
         cred.put("name", name);
         cred.put("phoneNumber", phoneNumber);
-        cred.put("policyids", policyids)
+        val arr = JSONArray()
+        for (item in policyids) {
+
+            arr.put(item)
+
+        }
+        cred.put("policyids", arr)
 
         serverManager.callApi(
             this.mContext,
@@ -41,7 +48,7 @@ class UserInvitePresenter (var mContext: Context) {
             object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String,auth_token:String) {
+                override fun SUCCESS(jsonObject: String) {
 
 
                     var responseJson =
@@ -49,8 +56,6 @@ class UserInvitePresenter (var mContext: Context) {
 //
 //                    var email = uname
 //                    val auth_token = responseJson
-
-
 
 
 //

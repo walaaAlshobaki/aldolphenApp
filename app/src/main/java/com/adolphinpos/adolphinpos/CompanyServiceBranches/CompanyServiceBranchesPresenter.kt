@@ -52,8 +52,8 @@ class CompanyServiceBranchesPresenter(var mContext: Context) {
 
 
 
-            override fun SUCCESS(jsonObject: String, auth_token: String) {
-                val responseDatajson = JSONObject(jsonObject.toString())
+            override fun SUCCESS( auth_token: String) {
+                val responseDatajson = JSONObject(auth_token.toString())
 
                 val responseJson = common.parserJson.fromJson(responseDatajson.toString(), AvatarParser::class.java)
 

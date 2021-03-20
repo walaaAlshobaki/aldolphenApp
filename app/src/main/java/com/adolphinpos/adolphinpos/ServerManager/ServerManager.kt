@@ -40,11 +40,13 @@ class UrlAPIs {
     val userInfo = "User/Info?"
     val Poliicy = "User/Poliicy?"
     val PoliicyPermissions = "User/Poliicy/Permissions?"
+    val Permissions = "User/Permissions?"
     val Service = "Service?"
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://161.97.164.114:8080/api/User/RestPassword/Validate"
     val reset = "http://161.97.164.114:8080/api/User/RestPassword"
     val Invite = "http://161.97.164.114:8080/api/User/Invite"
+    val addPolice = "http://161.97.164.114:8080/api/User/Poliicy"
     val Users = "Company/Users?"
     val Branches = "Company/Service/Branches?"
 
@@ -65,7 +67,7 @@ class AuthModel {
 
 interface callBackApi {
 
-    fun SUCCESS(jsonObject: String)
+    fun SUCCESS(auth_token: String)
     fun ERROR(msg: String)
     fun FAILER(msg: String)
     fun JSON(jsonObject: JSONObject, api: ApiModel?)
@@ -180,15 +182,15 @@ class ServerManager {
                     if (!dataPayload.isNullOrEmpty()) {
                         try {
 //                            val jwt = JWT.decode(dataPayload)
-//                            val test =jwt.getClaim("NameIdentifier")
-//                            println("Decoded: $decodedString")
+////                            val test =jwt.getClaim("NameIdentifier")
+////                            println("Decoded: $decodedString")
 //                            val claims = jwt.claims //Key is the Claim name
-
+//
 //                            val claim = claims["nameid"]
 //                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
 
 
-                            callBack.SUCCESS(dataPayload)
+                            callBack.SUCCESS( dataPayload)
 
 
                         } catch (e: JSONException) {
@@ -197,21 +199,21 @@ class ServerManager {
 
                         }
 
-//                        val msg = jsonObject.getString("success")
-//
-//                        callBack.ERROR(msg)
-                    }
-//                    else {
-//                        val dataPayload = jsonObject.getString("success")
-//                        callBack.ERROR(dataPayload)
-//
-//                    }
+                        val msg = jsonObject.getString("success")
 
-//
-//                    val messae = jsonObject.getString("message")
-//                    callBack.ERROR(
-//                        messae
-//                    )
+                        callBack.ERROR(msg)
+                    }
+                    else {
+                        val dataPayload = jsonObject.getString("success")
+                        callBack.ERROR(dataPayload)
+
+                    }
+
+
+                    val messae = jsonObject.getString("message")
+                    callBack.ERROR(
+                        messae
+                    )
 
 
                 }
@@ -229,9 +231,9 @@ class ServerManager {
 
                     }catch (ex: Exception) {
                         callBack.FAILER(ex.localizedMessage)
-                        }catch (ex: Exception) {
+                    }catch (ex: Exception) {
 //                            callBack.FAILER(ex.localizedMessage)
-                        }
+                    }
 //                    callBack.FAILER(ex.localizedMessage)
 
                     Log.d("IS_LOGIN :", ex.localizedMessage)
@@ -775,7 +777,7 @@ abstract class UploadOperation(
 
 
             val url = URL(operationUrl)
-           val urlConnection = url.openConnection() as HttpURLConnection
+            val urlConnection = url.openConnection() as HttpURLConnection
 
 
 //           urlConnection.setRequestProperty("Authorization", "Bearer " + userConfig.auth_token)

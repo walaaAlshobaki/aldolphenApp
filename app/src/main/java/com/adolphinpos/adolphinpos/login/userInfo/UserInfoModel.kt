@@ -9,6 +9,10 @@ class UserInfoModel {
     var email: String = "none"
     var token: String = "none"
     var userId: Int = 0
+    var companyId: String = "none"
+//    var profilePicturePath: String ?= "none"
+//    var age: Int? =0
+//    var branchId: String = "none"
 
 
     constructor(
@@ -18,7 +22,12 @@ class UserInfoModel {
             phoneNumber: String = "",
             email: String = "",
             token: String = "",
-            userId: Int = 0
+            userId: Int = 0,
+            companyId: String = "",
+//
+//            profilePicturePath: String ?= "",
+//            age: Int ?= 0,
+//            branchId: String = "",
 
             ) {
         this.firstName = firstName
@@ -29,6 +38,11 @@ class UserInfoModel {
         this.email = email
         this.token=token
         this.userId=userId
+        this.companyId=companyId
+//
+//        this.profilePicturePath=profilePicturePath!!
+//        this.age=age!!
+//        this.branchId=branchId
 
     }
 

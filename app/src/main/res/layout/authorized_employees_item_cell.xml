@@ -18,18 +18,18 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox1"
         app:layout_constraintStart_toEndOf="@+id/checkBox1"
         app:layout_constraintTop_toTopOf="@+id/checkBox1">
 
         <TextView
             android:id="@+id/charName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@color/appMainColor"
             android:fontFamily="@font/roboto_bold"
@@ -43,13 +43,13 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView"
-        app:layout_constraintWidth_percent="0.4">
+        app:layout_constraintWidth_percent="0.5">
 
         <TextView
             android:id="@+id/empName"
@@ -76,7 +76,7 @@
         android:id="@+id/empRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="113dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/roboto"
         android:text="Admin"
         android:textColor="@color/appMainColor"

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.RecyclerViewAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.policyManagement.AddPolicyModel
 import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
 import kotlinx.android.synthetic.main.activity_add_employee.*
 
@@ -81,6 +82,14 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
     }
 
     override fun didEmpty() {
+    }
+
+    override fun didAddPoliicySuccess(response: AddPolicyModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun didAddPoliicyFail(msg: String) {
+        TODO("Not yet implemented")
     }
 
     override fun didUserInviteSuccess(token: AddModel) {

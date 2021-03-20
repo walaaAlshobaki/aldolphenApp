@@ -1,19 +1,17 @@
-package com.adolphinpos.adolphinpos.login
 
 import android.content.Context
-import android.util.Log
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.helper.UserConfig
-import com.adolphinpos.adolphinpos.registeration.register.RegisterModel
+import com.adolphinpos.adolphinpos.login.userModel
 import org.json.JSONObject
 
 
 interface LoginDelegate {
 
-    fun didLoginSuccessful(token: String)
+    fun didLoginSuccess( auth_token:String)
     fun didLoginFail(msg: String)
 
 
@@ -39,18 +37,18 @@ class LoginPresenter(var mContext: Context) {
 
 
         serverManager.callApi(
-            this.mContext,
-            HttpMethod.POST,
-            UrlAPIs.instance.login,
-            cred,
-            object : callBackApi {
+                this.mContext,
+                HttpMethod.POST,
+                UrlAPIs.instance.login,
+                cred,
+                object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String) {
-                    Log.d("WWWWWWWWWWWWWWWWWWWWW", jsonObject)
-                    val responseDatajson = JSONObject(jsonObject.toString())
+                    override fun SUCCESS(auth_token:String) {
 
-                    val responseJson = common.parserJson.fromJson(responseDatajson.toString(), String::class.java)
+//                        val responseDatajson = JSONObject(jsonObject.toString())
+
+//                        val responseJson = common.parserJson.fromJson(responseDatajson.toString(), userModel::class.java)
 
 
 //                    userConfig = UserConfig(
@@ -59,38 +57,38 @@ class LoginPresenter(var mContext: Context) {
 //
 //                        )
 //                    common.session!!.createLoginSession(userConfig)
-                    delegate!!.didLoginSuccessful(jsonObject)
+                        delegate!!.didLoginSuccess(auth_token)
 
-                }
+                    }
 
-                override fun ERROR(msg: String) {
-                    delegate!!.didLoginFail(msg)
-                }
+                    override fun ERROR(msg: String) {
+                        delegate!!.didLoginFail(msg)
+                    }
 
-                override fun FAILER(msg: String) {
-                    delegate!!.didLoginFail(msg)
-                }
+                    override fun FAILER(msg: String) {
+                        delegate!!.didLoginFail(msg)
+                    }
 
-                override fun JSON(jsonObject: JSONObject, api: ApiModel?) {
+                    override fun JSON(jsonObject: JSONObject, api: ApiModel?) {
 
-                }
+                    }
 
-                override fun EMPTY(result: Boolean) {
-                    delegate!!.didLoginFail("Empty")
-                }
+                    override fun EMPTY(result: Boolean) {
+                        delegate!!.didLoginFail("Empty")
+                    }
 
-                override fun NO_INTERNET() {
-                    delegate!!.didLoginFail(mContext.resources.getString(R.string.no_internet_msg))
-                }
+                    override fun NO_INTERNET() {
+                        delegate!!.didLoginFail(mContext.resources.getString(R.string.no_internet_msg))
+                    }
 
-                override fun ERROR_MSG(msg: String) {
-                    delegate!!.didLoginFail(msg)
-                }
+                    override fun ERROR_MSG(msg: String) {
+                        delegate!!.didLoginFail(msg)
+                    }
 
-                override fun NoMore(msg: String) {
-                    delegate!!.didLoginFail(msg)
-                }
-            })
+                    override fun NoMore(msg: String) {
+                        delegate!!.didLoginFail(msg)
+                    }
+                })
 
     }
 }

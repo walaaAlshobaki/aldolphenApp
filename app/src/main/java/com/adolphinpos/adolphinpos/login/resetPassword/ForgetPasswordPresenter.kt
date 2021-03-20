@@ -3,7 +3,6 @@ package com.adolphinpos.adolphinpos.login.resetPassword
 import android.content.Context
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
-import com.adolphinpos.adolphinpos.login.LoginDelegate
 import org.json.JSONObject
 
 
@@ -36,7 +35,7 @@ class ForgetPasswordPresenter (var mContext: Context) {
             object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String,auth_token:String) {
+                override fun SUCCESS(jsonObject: String) {
 
 
 //                    var responseJson =

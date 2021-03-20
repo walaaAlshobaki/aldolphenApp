@@ -44,7 +44,11 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
     var key_isVerfied = "isVerfied"
     var key_phoneNumber = "phoneNumber"
     var key_token = "key_token"
+    var companyId = "companyId"
     var key_userid = "userId"
+    var age = "age"
+    var branchId = "branchId"
+    var profilePicturePath = "profilePicturePath"
     var key_IS_LOGIN = "IS_LOGIN"
 
     var context: Context? = null
@@ -66,6 +70,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                 key_userid + " TEXT," +
                 key_phoneNumber + " TEXT," +
                 key_token + " TEXT," +
+                companyId + " TEXT," +
+                branchId + " TEXT," +
+                profilePicturePath + " TEXT," +
+                age + " TEXT," +
                 key_IS_LOGIN + " TEXT" +
                 ")"
 
@@ -94,6 +102,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
         values.put(key_phoneNumber, userConfig.phoneNumber)
         values.put(key_token, userConfig.token)
         values.put(key_userid, userConfig.userId)
+        values.put(companyId, userConfig.companyId)
+//        values.put(branchId, userConfig.branchId.toString())
+//        values.put(profilePicturePath, userConfig.profilePicturePath)
+//        values.put(age, userConfig.age.toString())
 
         values.put(key_IS_LOGIN, "false")
 
@@ -173,6 +185,11 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                 key_userid + "," +
                 key_phoneNumber + "," +
                 key_token + "," +
+                companyId + "," +
+//                branchId + "," +
+//                profilePicturePath + "," +
+//                age + "," +
+
                 key_IS_LOGIN +
 
 
@@ -212,6 +229,18 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                         if (cursor != null && cursor.getString(7) != null) {
                             user.token = cursor.getString(7)
                         }
+                        if (cursor != null && cursor.getString(8) != null) {
+                            user.companyId = cursor.getString(8)
+                        }
+//                        if (cursor != null && cursor.getString(9) != null) {
+//                            user.branchId = cursor.getString(9)
+//                        }
+//                        if (cursor != null && cursor.getString(10) != null) {
+//                            user.profilePicturePath = cursor.getString(10)
+//                        }
+//                        if (cursor != null && cursor.getString(11) != null) {
+//                            user.age = cursor.getInt(11)
+//                        }
 
 
 

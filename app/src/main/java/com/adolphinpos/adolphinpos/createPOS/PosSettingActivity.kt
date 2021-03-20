@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.authorized_employees.AuthorizedEmployeesActivity
+import com.adolphinpos.adolphinpos.companyProfile.CompanyProfileActivity
 import com.adolphinpos.adolphinpos.helper.CircleTransform
+import com.adolphinpos.adolphinpos.productManagement.ProductManagementActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pos_setting.*
 
@@ -22,13 +24,25 @@ class PosSettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pos_setting)
         Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
-        userName.text= userInfo.firstName +" "+ userInfo.lastName
+        userName.text = userInfo.firstName + " " + userInfo.lastName
         val country = arrayOf("Drinks Category", "USA", "China", "Japan", "Other")
         authEmps.setOnClickListener {
             val i = Intent(this, AuthorizedEmployeesActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
-            finish()
+
+        }
+        Products.setOnClickListener {
+            val i = Intent(this, ProductManagementActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+
+        }
+    CompanyProfile.setOnClickListener {
+            val i = Intent(this, CompanyProfileActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+
         }
         sign.setOnClickListener {
             val i = Intent(this, CreatePosActivity::class.java)

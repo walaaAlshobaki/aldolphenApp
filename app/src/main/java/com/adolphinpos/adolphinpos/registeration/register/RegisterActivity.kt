@@ -94,6 +94,20 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
               startActivity(i)
 
         }
+        flag.setOnClickListener{
+
+            val i = Intent(this, CountryActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+
+        }
+        phoneNum.setOnClickListener{
+
+            val i = Intent(this, CountryActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+
+        }
         flagphone.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK

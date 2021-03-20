@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="127dp"
-        android:layout_height="178dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/logo2"
@@ -24,7 +24,7 @@
         android:layout_marginTop="20dp"
         android:textSize="21sp"
         android:textStyle="bold"
-        app:autoSizeMaxTextSize="25sp"
+        app:autoSizeMaxTextSize="20sp"
         app:autoSizeMinTextSize="18sp"
         app:autoSizeStepGranularity="1sp"
         android:text="you can choose between multiple "
@@ -33,65 +33,64 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:autoSizeMaxTextSize="25sp"
-        app:autoSizeMinTextSize="18sp"
-        app:autoSizeStepGranularity="1sp"
         android:text="modules over here:"
         android:textColor="@color/appMainColor"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
-<LinearLayout
-    android:id="@+id/user"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="1108dp"
-    android:layout_marginTop="56dp"
-    android:layout_marginEnd="229dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="29dp"
-        android:layout_height="29dp"
-        android:src="@drawable/user"
-        />
-
-    <TextView
-        android:id="@+id/userName"
+    <LinearLayout
+        android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Mohamed Gamal"
-        android:textColor="@color/appMainColor"
-        android:textSize="14dp"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/userImage"
-        app:layout_constraintStart_toEndOf="@+id/userImage"
-        app:layout_constraintTop_toTopOf="@+id/userImage" />
-</LinearLayout>
+android:layout_marginEnd="20dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Mohamed Gamal"
+            android:textColor="@color/appMainColor"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userImage"
+            app:layout_constraintStart_toEndOf="@+id/userImage"
+            app:layout_constraintTop_toTopOf="@+id/userImage" />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_marginTop="373dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:padding="15dp"
         android:layout_marginEnd="80dp"
-        tools:listitem="@layout/home_page_item_cell"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        tools:listitem="@layout/home_page_item_cell" />
 
 
 

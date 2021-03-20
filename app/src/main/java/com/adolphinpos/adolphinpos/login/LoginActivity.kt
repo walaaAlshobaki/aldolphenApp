@@ -1,5 +1,8 @@
+
 package com.adolphinpos.adolphinpos.login
 
+import LoginDelegate
+import LoginPresenter
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -19,7 +22,6 @@ import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.registeration.register.RegisterActivity
-import com.adolphinpos.adolphinpos.registeration.register.RegisterModel
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.banner_slider.*
@@ -130,30 +132,28 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
         }
     }
 
-
-    override fun didLoginSuccessful(token: String) {
+    override fun didLoginSuccess( auth_token: String) {
         userConfig = UserConfig(
-                "token.firstName",
-                "token.lastName",
-                "jo",
-                "-1",
-                "token.phoneNumber",
-                "token.email",
-                token
+            "token.firstName",
+            "token.lastName",
+            "jo",
+            "1",
+            "token.phoneNumber",
+            "token.email",
+            auth_token
         )
 
-        userInfo.token=token
+        userInfo.token=auth_token
 
+//       common.session!!.createLoginSession(userConfig)
         DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-
     override fun didLoginFail(msg: String) {
-        Log.d("ttttttttttttttttttttttt", msg)
         DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
 //        DesignerToast.Success(this, "Success Toast", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_SHORT)
@@ -172,7 +172,7 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
 ////            emailError.text=msg
 //
 //        }
-
+        Log.d("ttttttttttttttttttttttt", msg)
 //        passwordTextInputLayout.setDefaultStrokeColor(resources.getColor(R.color.red))
     }
 

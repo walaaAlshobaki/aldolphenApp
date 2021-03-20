@@ -1,14 +1,19 @@
 package com.adolphinpos.adolphinpos.employee_permissions
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addEmp.PoliicyDelegate
 import com.adolphinpos.adolphinpos.addEmp.PoliicyModel
@@ -18,13 +23,19 @@ import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
+import com.adolphinpos.adolphinpos.policyManagement.AddPolicyModel
+import com.adolphinpos.adolphinpos.policyManagement.PolicyManagementActivity
+import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_authorized_employees.*
+import com.vdx.designertoast.DesignerToast
+import kotlinx.android.synthetic.main.activity_add_employee.*
 import kotlinx.android.synthetic.main.activity_emp_permissions.*
 import kotlinx.android.synthetic.main.activity_emp_permissions.recyclerView
 import kotlinx.android.synthetic.main.activity_emp_permissions.sign
 import kotlinx.android.synthetic.main.activity_emp_permissions.userImage
 import kotlinx.android.synthetic.main.activity_emp_permissions.userName
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardAdapter.OnItemselectedDelegate,PoliicyPermissionDelegate {
@@ -35,18 +46,46 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
 
     var countryModel: UserEmployeeModel.Data? =null
     var mPresenter: PoliicyPresenter?=null
+    var policeName: String?=""
+    var action: String?="old"
     var PoliicyPermissionPresenter: PoliicyPermissionPresenter?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emp_permissions)
 
+
+        val bundle = intent.extras
+        if (bundle!=null){
+            if (!bundle.getString("name").isNullOrEmpty() ){
+                usere.text=bundle.getString("name")
+                emp_email.text=bundle.getString("email")
+            }
+        }
         RxBus.listen(MessageEvent::class.java).subscribe {
-            if (it.action == 9) {
+            if (it.action == 20) {
                 countryModel = it.message as UserEmployeeModel.Data
-                user.text=countryModel!!.firstName+" "+countryModel!!.lastName
+                usere.text=countryModel!!.firstName+" "+countryModel!!.lastName
                 emp_email.text=countryModel!!.email
             }
         }
+
+
+        RxBus.listen(MessageEvent::class.java).subscribe {
+            if (it.action == 0) {
+
+                policeName=it.message.toString()
+                if (common.prermtion[0]==0){
+                    DesignerToast.Custom(this,"PLZ select the permissions", Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                        R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+                }else{
+                    common.prermtion.remove(0)
+                    mPresenter!!.addPoliicy(policeName!!, common.prermtion)
+
+                }
+
+            }
+        }
+
         mPresenter=PoliicyPresenter(this)
         mPresenter!!.delegate = this
         PoliicyPermissionPresenter=PoliicyPermissionPresenter(this)
@@ -61,6 +100,23 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
             finish()
+        }
+
+
+
+        confirm.setOnClickListener {
+
+            if (action=="new"){
+                if (common.prermtion[0]==0){
+                    DesignerToast.Custom(this,"PLZ select the permissions", Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                        R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+                }else{
+                    val i = Intent(this, PolicyManagementActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(i)
+                }
+
+            }
         }
 
         mAdapter = DashboardAdapter(this, mModelList,"EmpPermissionsActivity")
@@ -91,6 +147,7 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
 
 
     override fun didGetPoliicySuccess(response: PoliicyModel) {
+        mModelList.clear()
         mModelList.add(PoliicyModel.Data(id = -2," + ",false))
         mModelList.addAll(response.data)
         Log.d("didGetPoliicySuccess",mModelList.toString())
@@ -109,7 +166,38 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
     override fun didEmpty() {
     }
 
+    override fun didAddPoliicySuccess(response: AddPolicyModel) {
+        getListData()
+        DesignerToast.Custom(this,"Added successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+
+    }
+
+    override fun didAddPoliicyFail(msg: String) {
+        Log.d("WWWWWWWWWWWWWWWWWWWW",msg)
+        if (msg=="true"|| msg=="null"){
+            getListData()
+            DesignerToast.Custom(this,"Added successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+        }else{
+
+            DesignerToast.Custom(this,msg, Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+        }
+
+
+    }
+
     override fun onSelectItemCategory(position: Int) {
+        if (mModelList[position].id==-2){
+            action="new"
+            PoliicyPermissionPresenter!!.getPermission()
+
+        }else{
+            action="old"
+            PoliicyPermissionPresenter!!.getPoliicyPermission(mModelList[position].id.toString())
+
+        }
 
 
         for (n in mModelList.indices){
@@ -120,7 +208,7 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
         recyclerView.adapter = mAdapter
         mAdapter!!.notifyDataSetChanged()
 
-        PoliicyPermissionPresenter!!.getPoliicyPermission(mModelList[position].id.toString())
+
 
 
     }

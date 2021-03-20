@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -32,11 +33,12 @@ import kotlinx.android.synthetic.main.activity_pos_cat_company_data.*
 import kotlinx.android.synthetic.main.activity_pos_cat_company_data.flag
 import kotlinx.android.synthetic.main.activity_pos_cat_company_data.loginBtn
 import kotlinx.android.synthetic.main.activity_register.*
+import java.lang.Exception
 
 class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDelegate {
     var countryModel: UserEmployeeModel.Data? =null
     var mPresenter: CompanyServiceBranchesPresenter? = null
-    var picturePath:String=""
+    var picturePath: Bitmap? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pos_cat_company_data)
@@ -46,6 +48,7 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
         mPresenter = CompanyServiceBranchesPresenter(this)
         mPresenter!!.delegate = this
         userName.text= userInfo.firstName +" "+ userInfo.lastName
+
         RxBus.listen(MessageEvent::class.java).subscribe {
             if (it.action == 2) {
                 countryModel = it.message as UserEmployeeModel.Data
@@ -60,8 +63,15 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
 
 
         loginBtn.setOnClickListener {
-//            mPresenter!!.uploadImageTap(BitmapFactory.decodeFile(picturePath), userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId,PhoneNo.text.toString(),Email.text.toString(),
-//                TaxNo.text.toString(),Taxrecord.text.toString(),BranchName.text.toString(),countryModel!!.id!!)
+//            mPresenter!!.uploadImageTap(picturePath!!, userInfo.userId,
+//                common.selectedServiceId,
+//                common.selectedServiceTypeId,
+//                PhoneNo.text.toString(),
+//                Email.text.toString(),
+//                TaxNo.text.toString(),
+//                Taxrecord.text.toString()
+//                ,BranchName.text.toString(),
+//                countryModel!!.id!!)
             val i = Intent(this, PosSettingActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
@@ -73,6 +83,11 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
         }
         imageView4.setOnClickListener {
             showPictureDialog()
+        }
+        userName.setOnClickListener {
+            val i = Intent(this, SelectEmployeeActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
         }
     }
 
@@ -218,7 +233,7 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
 //            try {
                 val selectedImage = data.data
                 val filePath = arrayOf(MediaStore.Images.Media.DATA)
-            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+            picturePath= MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
 //                val cursor: Cursor? = contentResolver.query(selectedImage!!, filePath, null, null, null)
 //                cursor!!.moveToFirst()
 //                val imagePath: String = cursor!!.getString(cursor!!.getColumnIndex(filePath[0]))
@@ -237,9 +252,14 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
 
                 // At the end remember to close the cursor or you will end with the RuntimeException!
 //                cursor.close()
+            try {
+//                mPresenter!!.uploadImageTap(bitmap, userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId, PhoneNo.text.toString(), Email.text.toString(),
+//                    TaxNo.text.toString(), Taxrecord.text.toString(), BranchName.text.toString(), countryModel!!.id!!)
 
-                mPresenter!!.uploadImageTap(bitmap, userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId, PhoneNo.text.toString(), Email.text.toString(),
-                        TaxNo.text.toString(), Taxrecord.text.toString(), BranchName.text.toString(), countryModel!!.id!!)
+            }catch (e:Exception){
+                Log.d("EEEEEEEEEEEEEE", e.localizedMessage)
+
+            }
                 Picasso.get()
                     .load(selectedImage)
                     .placeholder(R.drawable.ic_user)
@@ -279,7 +299,9 @@ class PosCatCompanyDataActivity : AppCompatActivity(), CompanyServiceBranchesDel
     }
 
     override fun didAddSuccess(response: AvatarParser) {
-
+            val i = Intent(this, PosSettingActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
     }
 
     override fun didAddFail(msg: String) {

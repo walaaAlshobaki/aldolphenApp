@@ -19,6 +19,7 @@ import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter
+import com.adolphinpos.adolphinpos.login.userInfo.UserOptionsActivity
 import com.adolphinpos.adolphinpos.userOption.UserOptionDialogFragment
 import com.adolphinpos.adolphinpos.userProfile.UserProfileActivity
 import com.squareup.picasso.Picasso
@@ -54,10 +55,8 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
 //            ), View.MeasureSpec.UNSPECIFIED
 //        )
         user.setOnClickListener {
-            UserOptionDialogFragment.newInstance(0).show(
-                this.supportFragmentManager,
-                "HOME"
-            )
+            val intent = Intent(applicationContext, UserOptionsActivity::class.java)
+            startActivity(intent)
         }
 
 

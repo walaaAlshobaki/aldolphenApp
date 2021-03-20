@@ -77,4 +77,66 @@ class PoliicyPermissionPresenter (var mContext: Context) {
         })
 
     }
+
+    fun getPermission(){
+
+        val paramsDictionary = mutableMapOf<String, Any>()
+
+
+        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.Permissions,paramsDictionary,object :
+            callBackApiGet {
+
+
+
+            override fun SUCCESS(jsonObject: String) {
+
+                val responseDatajson = JSONObject(jsonObject.toString())
+
+                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), PoliicyPermissionModel::class.java)
+
+                delegate!!.didGetPoliicyPermissionSuccess(responseJson)
+
+
+
+
+
+            }
+
+            override fun ERROR(msg: String) {
+                delegate!!.didGetPoliicyPermissionFail(msg)
+            }
+
+            override fun FAILER(msg: String) {
+                delegate!!.didGetPoliicyPermissionFail(msg)
+            }
+
+            override fun JSON(jsonObject: JSONObject, api: ApiModelGet?) {
+                TODO("Not yet implemented")
+            }
+
+
+
+            override fun EMPTY(result: Boolean) {
+                delegate!!.didGetPoliicyPermissionFail("Empty")
+
+
+            }
+
+            override fun NO_INTERNET() {
+                delegate!!.didGetPoliicyPermissionFail(mContext.resources.getString(R.string.no_internet_msg))
+            }
+
+            override fun ERROR_MSG(msg: String) {
+                delegate!!.didGetPoliicyPermissionFail(msg)
+            }
+
+            override fun NoMore(msg: String) {
+                delegate!!.didGetPoliicyPermissionFail(msg)
+                delegate!!.didEmptyPoliicyPermission()
+            }
+        })
+
+    }
+
+
 }

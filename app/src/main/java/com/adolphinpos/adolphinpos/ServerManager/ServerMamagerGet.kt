@@ -77,7 +77,7 @@ class ServerMamagerGet {
 
 
 
-    var apiRoot = "http://13.59.88.58:8080/"
+    var apiRoot = "http://161.97.164.114:8080/"
 
     var apiFolders: String = "api/"
     var apiDomainRoot = ""

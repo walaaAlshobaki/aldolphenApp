@@ -1,6 +1,8 @@
 package com.adolphinpos.adolphinpos.createPOS
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,6 +19,9 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pos_catagory)
+        if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        }
         val llm = GridLayoutManager(this, 4)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm

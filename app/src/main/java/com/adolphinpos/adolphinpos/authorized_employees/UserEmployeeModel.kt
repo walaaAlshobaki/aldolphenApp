@@ -13,14 +13,31 @@ data class UserEmployeeModel(
     var success: Boolean?
 ) {
     data class Data(
+        @SerializedName("email")
+        var email: String?,
         @SerializedName("firstName")
         var firstName: String?,
         @SerializedName("id")
         var id: Int?,
         @SerializedName("lastName")
         var lastName: String?,
-        @SerializedName("email")
-        var email: String?,
+        @SerializedName("policies")
+        var policies: List<Policy>?,
         var Image:Int= R.drawable.ic_user
-    )
+    ) {
+        data class Policy(
+            @SerializedName("id")
+            var id: Int?,
+            @SerializedName("isPreDefined")
+            var isPreDefined: Boolean?,
+            @SerializedName("name")
+            var name: String?,
+            @SerializedName("policyPermission")
+            var policyPermission: List<Any>,
+            @SerializedName("userPolicy")
+            var userPolicy: List<Any>
+        )
+    }
+
+
 }

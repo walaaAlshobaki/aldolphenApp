@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
 import com.adolphinpos.adolphinpos.login.LoginActivity
-import com.adolphinpos.adolphinpos.login.LoginPresenter
+
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_forget_password.*
 

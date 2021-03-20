@@ -9,19 +9,15 @@ import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
-import com.adolphinpos.adolphinpos.Adapters.MainAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addEmp.AddEmployeeActivity
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.adolphinpos.adolphinpos.authorized_employees.UsersDelegate
 import com.adolphinpos.adolphinpos.authorized_employees.UsersPresenter
-import com.adolphinpos.adolphinpos.createPOS.CreatePosActivity
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.home.HomeModel
-import kotlinx.android.synthetic.main.activity_authorized_employees.*
-import kotlinx.android.synthetic.main.activity_select_employee.*
 import kotlinx.android.synthetic.main.activity_select_employee.recyclerView
 
 class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate,
@@ -37,7 +33,7 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
         }
         mPresenter = UsersPresenter(this)
         mPresenter!!.delegate = this
-        mPresenter!!.getUsersTap(userInfo.userId.toString())
+        mPresenter!!.getUsersTap(userInfo.companyId)
         val llm = GridLayoutManager(this, 3)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
@@ -119,8 +115,8 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
 //    mModelList.addAll(token.data)
             dashboardModel.clear()
             dashboardModel.addAll(token.data)
-            val data1 = UserEmployeeModel.Data("NEW",0,"USER"," ",
-                R.drawable.ic_add)
+            val data1 = UserEmployeeModel.Data("NEW","NEW",0,"USER",
+                null,R.drawable.ic_add)
             dashboardModel.add(data1)
             getListData()
 

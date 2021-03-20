@@ -18,22 +18,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdolphinPOSApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WebActivity">
-
-        </activity>
 
         <activity
-            android:name=".userProfile.UserProfileActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/Theme.D1NoTitleDim4" />
+            android:name=".addCategory.AddCategoryActivity"
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".productManagement.ProductManagementActivity" />
+        <activity
+            android:name=".policyManagement.PolicyManagementActivity"
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".companyProfile.CompanyProfileActivity" />
+        <activity
+            android:name=".login.userInfo.UserOptionsActivity"
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".WebActivity" />
+        <activity android:name=".userProfile.UserProfileActivity" />
         <activity
             android:name=".select_employees.SelectEmployeeActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/Theme.D1NoTitleDim4" />
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".addEmp.AddEmployeeActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/Theme.D1NoTitleDim4" />
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".plan.PlanActivity"
             android:screenOrientation="landscape" />
@@ -48,12 +57,12 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".createPOS.PosCatCompanyDataActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/Theme.D1NoTitleDim4" />
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".createPOS.PosCatagoryActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.D1NoTitleDim4" />
+            android:theme="@style/Theme.D1NoTitleDim4"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".createPOS.CreatePosActivity"
             android:screenOrientation="landscape" />
@@ -80,9 +89,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".registeration.country.CountryActivity"
-
             android:theme="@style/Theme.D1NoTitleDim4"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".registeration.register.RegisterActivity"
             android:screenOrientation="landscape" />

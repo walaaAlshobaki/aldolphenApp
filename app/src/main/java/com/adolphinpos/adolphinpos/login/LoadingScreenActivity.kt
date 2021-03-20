@@ -10,10 +10,12 @@ import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
+import com.adolphinpos.adolphinpos.login.userInfo.TestModel
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoDelegate
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter
 import kotlinx.android.synthetic.main.activity_loading_screen.*
+import java.lang.Exception
 
 
 class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
@@ -55,23 +57,32 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
     }
 
     override fun didGetUserInfoSuccess(response: UserInfoModel) {
-        userInfo = UserInfoModel(
-                response.firstName,
-                response.lastName,
-                response.isVerfied,
-                response.phoneNumber,
-                response.email,
-            userConfig.auth_token,
-            userConfig.userid.toInt()
+        try {
+            userInfo = UserInfoModel(
+                response.firstName!!,
+                response.lastName!!,
+                response.isVerfied!!,
+                response.phoneNumber!!,
+                response.email!!,
+                userConfig.auth_token,
+                userConfig.userid.toInt(),
+//                response.profilePicturePath!!.toString()
+               response.companyId!!.toString(),
+//
+//,response.age!!,response.branchId
 
-        )
-        common.session!!.createLoginSession(userInfo)
-        Log.d("createLoginSession2",common.session!!.createLoginSession(userInfo).toString())
-        userInfo= UserInfoModel()
+            )
+            common.session!!.createLoginSession(userInfo)
+            Log.d("createLoginSession2",common.session!!.createLoginSession(userInfo).toString())
+            userInfo= UserInfoModel()
 //        common.session!!.createLoginSession(userConfig)
-        val mainIntent = Intent(applicationContext, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
+            val mainIntent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(mainIntent)
+            finish()
+        }catch (e:Exception){
+            Log.d("EEEEEEEEEEEE",e.localizedMessage)
+        }
+
     }
 
     override fun didGetUserInfoFail(msg: String) {

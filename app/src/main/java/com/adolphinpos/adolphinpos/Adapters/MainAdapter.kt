@@ -88,7 +88,8 @@ class MainAdapter(
                 data[position] is UserEmployeeModel.Data -> {
                     val itemCat = data[position] as UserEmployeeModel.Data
                     empName.text=itemCat.firstName+" "+itemCat.lastName
-                    charName.text= itemCat.firstName!!.first().toString().toUpperCase()+itemCat.lastName!!.first().toString().toUpperCase()
+                    charName.text= itemCat.firstName!!.first().toString().toUpperCase()
+//                    +itemCat.lastName!!.first().toString().toUpperCase()
                     empEmail.text=itemCat.email
                     empRole.setOnClickListener {
                         onClick!!.onSelectItemCategory(position)
