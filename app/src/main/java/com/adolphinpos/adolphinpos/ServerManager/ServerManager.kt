@@ -42,6 +42,7 @@ class UrlAPIs {
     val PoliicyPermissions = "User/Poliicy/Permissions?"
     val Permissions = "User/Permissions?"
     val Service = "Service?"
+    val ServiceTypes = "Service/Types?"
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://161.97.164.114:8080/api/User/RestPassword/Validate"
     val reset = "http://161.97.164.114:8080/api/User/RestPassword"

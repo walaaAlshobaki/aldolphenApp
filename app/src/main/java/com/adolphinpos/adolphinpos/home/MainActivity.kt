@@ -29,8 +29,8 @@ import kotlinx.android.synthetic.main.alert.view.*
 
 class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelegate,ServicesDelegate{
     private lateinit var dashboardAdapter: DashboardAdapter
-   var dashboardModel: ArrayList<HomeModel> = ArrayList()
-//    var dashboardModel: ArrayList<ServiesModel.Data> = ArrayList()
+//   var dashboardModel: ArrayList<HomeModel> = ArrayList()
+    var dashboardModel: ArrayList<ServiceTypeModel.Data> = ArrayList()
     var mPresenter: ServicesPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         val llm = GridLayoutManager(this, 6)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
-        setDashbordData()
-
-//        mPresenter!!.getService()
+//        setDashbordData()
+        dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
+        mPresenter!!.getService()
         dashboardAdapter.setOnClickItemCategory(this)
-        recyclerView.adapter = dashboardAdapter
+
 //        recyclerView.measure(
 //            View.MeasureSpec.makeMeasureSpec(
 //                recyclerView.width,
@@ -101,16 +101,18 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
 
 
 
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
+//        dashboardModel.add(data1)
+//        dashboardModel.add(data2)
         Log.d("didGetServicesSuccess",dashboardModel.toString())
         dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
+
         dashboardAdapter.notifyDataSetChanged()
 
     }
 
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
+        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId)
         if (dashboardModel[position].name=="POS"){
             val i = Intent(this, CreatePosActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -119,13 +121,18 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
 
     }
 
-    override fun didGetServicesSuccess(response: ServiesModel) {
+    override fun didGetServicesSuccess(response: ServiceTypeModel) {
         try {
-//        dashboardModel.addAll(response.data)
+            Log.d("EEEEEEEEEEEEEEEEE",response.toString())
+        dashboardModel.addAll(response.data)
 //            setDashbordData()
-
+//
 //        val data2 = ServiesModel.Data(0,"settings",null, R.drawable.setting,"setting")
 //        dashboardModel.add(data2)
+            dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
+            dashboardAdapter.setOnClickItemCategory(this)
+            dashboardAdapter.notifyDataSetChanged()
+            recyclerView.adapter = dashboardAdapter
 //            Log.d("didGetServicesSuccess",dashboardModel.toString())
 //            dashboardAdapter.notifyDataSetChanged()
     } catch (ex: Exception) {
@@ -148,9 +155,9 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
     }
 
     override fun didGetServicesFail(msg: String) {
-        runOnUiThread {
-            emptyCell()
-        }
+//        runOnUiThread {
+//            emptyCell()
+//        }
     }
 
     override fun didEmpty() {

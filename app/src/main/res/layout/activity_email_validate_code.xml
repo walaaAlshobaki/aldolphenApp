@@ -7,48 +7,47 @@
     android:background="@color/white"
     tools:context=".login.resetPassword.EmailValidateCodeActivity">
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="66dp"
 
+        android:layout_width="124dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="100dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="5dp"
         app:cardElevation="10dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@+id/container">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:id="@+id/back"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:padding="20dp"
-            android:paddingEnd="30dp"
-            android:paddingStart="30dp"
-            android:orientation="horizontal">
+            android:background="@color/white">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_left_arrow"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
-                />
+                android:layout_marginStart="29dp"
+                android:src="@drawable/ic_left_arrow"
+                app:tint="@color/appMainColor" />
 
             <TextView
-
-                android:layout_width="wrap_content"
+                android:id="@+id/signUp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Back"
                 android:textColor="@color/appMainColor"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="30sp"
                 app:autoSizeMinTextSize="20sp"
-                app:autoSizeStepGranularity="1sp"
-                android:layout_gravity="center"/>
+                app:autoSizeStepGranularity="1sp" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"

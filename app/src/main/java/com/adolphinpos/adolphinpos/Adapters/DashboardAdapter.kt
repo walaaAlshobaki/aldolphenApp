@@ -23,6 +23,8 @@ import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import com.adolphinpos.adolphinpos.employee_permissions.PoliicyPermissionModel
 import com.adolphinpos.adolphinpos.home.HomeModel
+import com.adolphinpos.adolphinpos.home.ServiceTypeModel
+import com.adolphinpos.adolphinpos.home.ServiesModel
 import com.adolphinpos.adolphinpos.product.ProductModel
 import com.squareup.picasso.Picasso
 import java.util.*
@@ -177,8 +179,8 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is HomeModel -> {
-                    val itemCat = data[position] as HomeModel
+                data[position] is ServiesModel.Data -> {
+                    val itemCat = data[position] as ServiesModel.Data
                     val color: Int =getColors()
                     txt.text=itemCat.name
                     img.setImageResource(itemCat.Image!!)
@@ -195,6 +197,49 @@ class DashboardAdapter(
 //                        context.startActivity(intent)
                     }
                 }
+                data[position] is ServiceTypeModel.Data -> {
+                    val itemCat = data[position] as ServiceTypeModel.Data
+                    val color: Int =getColors()
+                    txt.text=itemCat.name
+
+                    if (itemCat.name=="Restaurant"){
+                        img.setImageDrawable(context.resources.getDrawable(R.drawable.restaurant))
+                    }else if (itemCat.name=="Coffe shop"){
+                        img.setImageDrawable(context.resources.getDrawable(R.drawable.caffee))
+
+                    }else{
+                        img.setImageResource(itemCat.Image!!)
+ 
+                    }
+
+                    image_gradient.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                    }
+                }
+                data[position] is HomeModel-> {
+                val itemCat = data[position] as HomeModel
+                val color: Int =getColors()
+                txt.text=itemCat.name
+                img.setImageResource(itemCat.Image!!)
+
+
+
+                image_gradient.setOnClickListener {
+                    onClick!!.onSelectItemCategory(position)
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                }
+            }
                 data[position] is UserEmployeeModel.Data -> {
                     val itemCat = data[position] as UserEmployeeModel.Data
 

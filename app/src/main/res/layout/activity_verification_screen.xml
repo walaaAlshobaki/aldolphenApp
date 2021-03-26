@@ -8,48 +8,45 @@
     android:background="@color/white"
     tools:context=".registeration.code.VerificationScreenActivity">
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="66dp"
-
-        app:cardElevation="10dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/container"
-        app:layout_constraintEnd_toEndOf="@+id/container">
-
+        android:layout_width="124dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="100dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
             android:id="@+id/back"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
+            android:layout_width="124dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
-            android:padding="20dp"
-            android:paddingEnd="30dp"
-            android:paddingStart="30dp"
-            android:orientation="horizontal">
+            android:background="@color/white">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_left_arrow"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
-               />
+                android:layout_marginStart="29dp"
+                android:src="@drawable/ic_left_arrow"
+                app:tint="@color/appMainColor" />
 
             <TextView
                 android:id="@+id/signUp"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Back"
                 android:textColor="@color/appMainColor"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="30sp"
                 app:autoSizeMinTextSize="20sp"
-                app:autoSizeStepGranularity="1sp"
-                android:layout_gravity="center"/>
+                app:autoSizeStepGranularity="1sp" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
@@ -141,33 +138,26 @@
                         android:layout_height="wrap_content"
                         android:text="Text Message"
                         android:textColor="@color/appMainColor"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textTitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-
+                        android:text="will send you a code to 966-0101-231-455"
                         android:textColor="@color/appMainColor"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="use a different number"
-                        android:textColor="@color/appMainColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_right_arrow"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout"
                     app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
@@ -220,40 +210,47 @@
                         android:layout_height="wrap_content"
                         android:text="Text Message"
                         android:textColor="@color/appMainColor"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/whatsapptextTitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:text="will send you a code to 966-0101-231-455"
                         android:textColor="@color/appMainColor"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="use a different number"
-                        android:textColor="@color/appMainColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+
                 </LinearLayout>
 
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_right_arrow"
                     app:layout_constraintBottom_toBottomOf="@+id/linear2"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linear2"
                     app:layout_constraintTop_toTopOf="@+id/linear2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/different"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="use a different number"
+            android:textColor="@color/appMainColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/whatsappCard"
+            app:layout_constraintStart_toStartOf="@+id/whatsappCard"
+            app:layout_constraintTop_toBottomOf="@+id/whatsappCard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ImageView

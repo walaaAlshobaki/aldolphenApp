@@ -207,33 +207,38 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
     override fun didRegisterationFail(msg: String) {
         Log.d("didRegisterationFail",msg)
         Log.d("ttttttttttttttttttttttt", msg)
+        if (msg=="CompanyAdded"){
+            userConfig = UserConfig(
+                    "token.firstName",
+                    "token.lastName",
+                    "jo",
+                    "-1",
+                    "token.phoneNumber",
+                    "token.email",
+                    userInfo.token!!
+            )
+//        common.session!!.createLoginSession(userConfig)
+//        common.userToken=token
+//        common.userEmail=email.text.toString()
+//        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
+//        common.session!!.createLoginSession(userConfig)
+            common.userToken= userInfo.token!!
+            common.userPhone=countryModel!!.callingCodes+phoneNum.text.toString()
+            DesignerToast.Custom(this,"successfully registration",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+            val i = Intent(this, PlanActivity::class.java)
+            i.putExtra("auth_token", userInfo.token!!)
+            i.putExtra("mobile",countryModel!!.callingCodes+phoneNum.text.toString())
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }else{
+
         DesignerToast.Custom(this,msg, Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
         Toast.makeText(this@RegisterActivity, msg, Toast.LENGTH_LONG).show()
-//        if (msg.equals("Email is used")){
-//            EmailTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
-//            EmailTextInputLayout.error = msg
-//            PhoneTextInputLayout.error = null
-//            CompanyTextInputLayout.error = null
-////            emailError.text=msg
-//
-//
-//        }else if (msg.equals("Phone Number is used")){
-//            PhoneTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
-//            PhoneTextInputLayout.error = msg
-//
-//            EmailTextInputLayout.error = null
-//            CompanyTextInputLayout.error = null
-////            phoneError.text=msg
-//
-//        }else if (msg.equals("Coampny name is used")){
-//            CompanyTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
-//            CompanyTextInputLayout.error = msg
-//            EmailTextInputLayout.error = null
-//            PhoneTextInputLayout.error = null
-////            companyNameError.text=msg
-//
-//        }
+
+        }
+
     }
 
 }

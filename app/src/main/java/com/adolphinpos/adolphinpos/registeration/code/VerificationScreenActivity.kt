@@ -16,7 +16,9 @@ import com.adolphinpos.adolphinpos.plan.PlanActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import com.ahmadrosid.svgloader.SvgLoader
 import com.vdx.designertoast.DesignerToast
+import kotlinx.android.synthetic.main.activity_edit_number.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.flagphone
 import kotlinx.android.synthetic.main.activity_verification_screen.*
 
 class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDelegate {
@@ -26,8 +28,18 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
         setContentView(R.layout.activity_verification_screen)
         mPresenter = SendVerificationCodePresenter(this)
         mPresenter!!.delegate = this
+        RxBus.listen(MessageEvent::class.java).subscribe {
+            if (it.action == 20) {
+                textTitle2.text="will send you a code to "+  it.message
+                whatsapptextTitle2.text="will send you a code to "+  it.message
+
+
+
+            }
+        }
 //        val bundle = intent.extras
         textTitle2.text="will send you a code to "+ common.userPhone
+        whatsapptextTitle2.text="will send you a code to "+ common.userPhone
         back.setOnClickListener {
             val intent = Intent(applicationContext, PlanActivity::class.java)
             startActivity(intent)
@@ -37,6 +49,12 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
 
         sendSMS.setOnClickListener{
             mPresenter!!.senCode()
+
+        }
+        different.setOnClickListener{
+            val intent = Intent(applicationContext, EditNumberActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
 

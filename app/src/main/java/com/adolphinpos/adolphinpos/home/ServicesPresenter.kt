@@ -1,6 +1,7 @@
 package com.adolphinpos.adolphinpos.home
 
 import android.content.Context
+import android.util.Log
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
@@ -10,7 +11,7 @@ import org.json.JSONObject
 
 interface ServicesDelegate{
 
-    fun didGetServicesSuccess(response: ServiesModel)
+    fun didGetServicesSuccess(response: ServiceTypeModel)
     fun didGetServicesFail(msg:String)
     fun didEmpty()
 
@@ -31,7 +32,7 @@ class ServicesPresenter (var mContext: Context) {
 
 
 
-//        paramsDictionary["lang"] = common.langUI
+        paramsDictionary["SCId"] = 2
 //        paramsDictionary["day"] = day
 //
 //
@@ -41,7 +42,7 @@ class ServicesPresenter (var mContext: Context) {
 //
 //        }
 
-        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.Service,paramsDictionary,object :
+        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.ServiceTypes,paramsDictionary,object :
                 callBackApiGet {
 
 
@@ -49,8 +50,8 @@ class ServicesPresenter (var mContext: Context) {
             override fun SUCCESS(jsonObject: String) {
 
                 val responseDatajson = JSONObject(jsonObject.toString())
-                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), ServiesModel::class.java)
-
+                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), ServiceTypeModel::class.java)
+                Log.d("EEEEEEEEEEEEEEEEE",responseDatajson.toString())
 
                 delegate!!.didGetServicesSuccess(responseJson)
 
