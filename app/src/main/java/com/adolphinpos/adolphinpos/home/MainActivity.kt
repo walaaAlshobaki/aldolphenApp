@@ -5,22 +5,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
-import com.adolphinpos.adolphinpos.createPOS.CreatePosActivity
 import com.adolphinpos.adolphinpos.helper.Alert
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
-import com.adolphinpos.adolphinpos.login.LoginActivity
-import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter
 import com.adolphinpos.adolphinpos.login.userInfo.UserOptionsActivity
-import com.adolphinpos.adolphinpos.userOption.UserOptionDialogFragment
+import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
 import com.adolphinpos.adolphinpos.userProfile.UserProfileActivity
 import com.squareup.picasso.Picasso
 import com.tapadoo.alerter.Alerter
@@ -113,12 +109,16 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId)
-        if (dashboardModel[position].name=="POS"){
-            val i = Intent(this, CreatePosActivity::class.java)
+//        if (dashboardModel[position].name=="POS"){
+            val i = Intent(this, ProductManagerMainActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
-        }
+//        }
 
+    }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
     }
 
     override fun didGetServicesSuccess(response: ServiceTypeModel) {

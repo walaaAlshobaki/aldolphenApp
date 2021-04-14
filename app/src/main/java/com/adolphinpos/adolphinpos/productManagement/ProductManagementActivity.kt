@@ -11,14 +11,9 @@ import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addCategory.AddCategoryActivity
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
-import com.adolphinpos.adolphinpos.employee_permissions.PoliicyPermissionModel
 import com.adolphinpos.adolphinpos.helper.CircleTransform
-import com.adolphinpos.adolphinpos.policyManagement.PolicyManagementActivity
 import com.adolphinpos.adolphinpos.product.ProductModel
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_emp_permissions.*
-import kotlinx.android.synthetic.main.activity_emp_permissions.recyclerView
-import kotlinx.android.synthetic.main.activity_pos_setting.*
 import kotlinx.android.synthetic.main.activity_pos_setting.userImage
 import kotlinx.android.synthetic.main.activity_pos_setting.userName
 import kotlinx.android.synthetic.main.activity_product_management.*
@@ -96,5 +91,9 @@ class ProductManagementActivity : AppCompatActivity(), DashboardAdapter.OnItemse
         mAdapter.setOnClickItemCategory(this)
         category.adapter = mAdapter
         mAdapter.notifyDataSetChanged()
+    }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
     }
 }

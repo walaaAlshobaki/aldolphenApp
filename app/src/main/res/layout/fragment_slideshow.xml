@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".productManagerHomePage.ui.slideshow.SlideshowFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="60dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="transactions"
+            android:textAllCaps="true"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+        <TextView
+            android:id="@+id/text_home2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+
+            android:fontFamily="@font/roboto"
+            android:text="here can manage all your transaction over this feature"
+
+            android:textColor="@color/appMainColoro"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_home"
+
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.90"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_home2"
+            app:layout_constraintWidth_percent="0.40">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="10dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="10dp">
+                    <LinearLayout
+                        android:id="@+id/searchLin"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        app:layout_constraintHeight_percent="0.12"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+
+                        <ImageView
+                            android:id="@+id/searchImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_search" />
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+
+                            android:background="@color/appMainColoro"/>
+                        <TextView
+                            android:id="@+id/search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto"
+                            android:text="Search for Order No."
+                            android:textColor="@color/searchColor"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/userImage"
+                            app:layout_constraintStart_toEndOf="@+id/userImage"
+                            app:layout_constraintTop_toTopOf="@+id/userImage" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/layer"
+                        app:layout_constraintTop_toBottomOf="@+id/searchLin"
+                        tools:layout_editor_absoluteX="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="THURSDAY, NOVEMBER 11"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@color/appMainColor"/>
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewTransactions"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:fadeScrollbars="false"
+                        android:scrollIndicators="end"
+                        android:scrollbarAlwaysDrawVerticalTrack="true"
+                        android:scrollbarStyle="outsideInset"
+                        android:scrollbarThumbVertical="@drawable/scrollbar"
+                        android:scrollbarTrackVertical="@color/appMainColor"
+                        android:scrollbars="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHeight_percent="0.70"
+                        app:layout_constraintTop_toBottomOf="@+id/date"
+                        tools:itemCount="12"
+                        tools:listitem="@layout/transactions_item_cell" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintHeight_percent="0.90"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+
+            app:layout_constraintTop_toTopOf="@+id/text_home"
+            app:layout_constraintWidth_percent="0.55">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/layer"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/appMainColor"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+
+                            android:text="Rebecca Dean   $ 234.00 Sale"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="@color/red"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintStart_toStartOf="@+id/linearLayout12"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+                        app:layout_constraintWidth_percent="0.45">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:paddingStart="30dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="30dp"
+                            android:paddingBottom="15dp"
+                            android:text="Issue refund"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/appMainColor"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintWidth_percent="0.45"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:paddingTop="15dp"
+                            android:textAllCaps="true"
+                            android:paddingStart="30dp"
+                            android:layout_gravity="center"
+                            android:paddingEnd="30dp"
+                            android:paddingBottom="15dp"
+                            android:text="reordering"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="card payment"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+
+                    <TextView
+                        android:id="@+id/customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="customer: Rebecca Dean 11/11, 03:30 Pm"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/appMainColoro"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_visa"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="visa"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                        app:layout_constraintStart_toEndOf="@+id/imageView7"
+                        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/ic_receipt"
+                        app:layout_constraintStart_toStartOf="@+id/customer"
+                        app:layout_constraintTop_toBottomOf="@+id/customer" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="receipt number We12"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="16sp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                        app:layout_constraintStart_toEndOf="@+id/imageView8"
+                        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/appMainColoro"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Items"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.30"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:listitem="@layout/transactions_items_cell"
+                        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/appMainColoro"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerViewItem" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:layout_marginTop="10dp"
+                        android:text="invoice"
+                        android:textAllCaps="true"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="you can check your invoice and print it"
+                        android:textColor="@color/appMainColor"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        app:cardCornerRadius="5dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view7">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/appMainColor"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_print"
+                                app:layout_constraintBottom_toBottomOf="parent"
+
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto"
+                                android:paddingStart="12dp"
+                                android:paddingTop="5dp"
+                                android:paddingEnd="12dp"
+                                android:paddingBottom="5dp"
+                                android:text="Print invoice"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/image"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,4 +76,8 @@ class CreatePosActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedD
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
     }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
+    }
 }

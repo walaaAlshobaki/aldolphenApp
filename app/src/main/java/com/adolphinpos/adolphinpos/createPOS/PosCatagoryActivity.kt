@@ -71,4 +71,8 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         startActivity(i)
         finish()
     }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
+    }
 }

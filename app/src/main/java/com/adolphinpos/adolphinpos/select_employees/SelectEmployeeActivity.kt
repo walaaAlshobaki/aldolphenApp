@@ -109,6 +109,10 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
         }
     }
 
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun didGetUsersSuccess(token: UserEmployeeModel) {
 
         try {

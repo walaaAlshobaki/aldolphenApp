@@ -1,12 +1,10 @@
 package com.adolphinpos.adolphinpos.employee_permissions
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,17 +23,13 @@ import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.policyManagement.AddPolicyModel
 import com.adolphinpos.adolphinpos.policyManagement.PolicyManagementActivity
-import com.adolphinpos.adolphinpos.registeration.country.CountryModel
-import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.Picasso
 import com.vdx.designertoast.DesignerToast
-import kotlinx.android.synthetic.main.activity_add_employee.*
 import kotlinx.android.synthetic.main.activity_emp_permissions.*
 import kotlinx.android.synthetic.main.activity_emp_permissions.recyclerView
 import kotlinx.android.synthetic.main.activity_emp_permissions.sign
 import kotlinx.android.synthetic.main.activity_emp_permissions.userImage
 import kotlinx.android.synthetic.main.activity_emp_permissions.userName
-import kotlinx.android.synthetic.main.activity_register.*
 
 
 class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardAdapter.OnItemselectedDelegate,PoliicyPermissionDelegate {
@@ -211,6 +205,10 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
 
 
 
+    }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
     }
 
     override fun didGetPoliicyPermissionSuccess(response: PoliicyPermissionModel) {

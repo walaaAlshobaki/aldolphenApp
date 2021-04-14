@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home"
+            />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_home2"
+            android:title="CASH IN/OUT" />
+        <item
+            android:id="@+id/transaction"
+            android:icon="@drawable/tranc"
+            android:title="TRANSACTION" />
+
+        <item
+            android:id="@+id/hold"
+            android:icon="@drawable/holdo"
+            android:title="HOLDED ORDERS " />
+
+        <item
+            android:id="@+id/products"
+            android:icon="@drawable/ic_home5"
+            android:title="products Man. " />
+
+        <item
+            android:id="@+id/Restaurant"
+            android:icon="@drawable/ic_home6"
+            android:title="Restaurant Man. " />
+        <item
+            android:id="@+id/hint"
+            android:icon="@drawable/ic_home6"
+            android:title="HINTS " />
+        <item
+            android:id="@+id/lock"
+            android:icon="@drawable/ic_home6"
+            android:title="lock " />
+    </group>
+</menu>

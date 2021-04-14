@@ -1,6 +1,5 @@
 package com.adolphinpos.adolphinpos.login.userInfo
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
-import com.adolphinpos.adolphinpos.createPOS.CreatePosActivity
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.home.HomeModel
-import com.adolphinpos.adolphinpos.home.ServicesDelegate
 import kotlinx.android.synthetic.main.activity_main.*
 
 class UserOptionsActivity : AppCompatActivity()  , DashboardAdapter.OnItemselectedDelegate {
@@ -81,5 +78,9 @@ class UserOptionsActivity : AppCompatActivity()  , DashboardAdapter.OnItemselect
             finish()
             }
 
+    }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
     }
 }

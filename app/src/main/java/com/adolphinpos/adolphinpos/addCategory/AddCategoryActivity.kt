@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
-import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import kotlinx.android.synthetic.main.activity_add_category.*
-import kotlinx.android.synthetic.main.activity_product_management.*
 
 class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate {
     var categoryModel: ArrayList<IconModel> = ArrayList()
@@ -41,5 +39,9 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         mAdapter!!.setOnClickItemCategory(this)
         recyclerViewIcon.adapter = mAdapter
         mAdapter!!.notifyDataSetChanged()
+    }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+        TODO("Not yet implemented")
     }
 }

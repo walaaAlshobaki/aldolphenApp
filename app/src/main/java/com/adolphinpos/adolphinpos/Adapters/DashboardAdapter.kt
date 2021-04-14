@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyModel
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.addCategory.IconModel
@@ -26,13 +27,15 @@ import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.home.ServiceTypeModel
 import com.adolphinpos.adolphinpos.home.ServiesModel
 import com.adolphinpos.adolphinpos.product.ProductModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.CashDrawerModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.productManagmentModel
 import com.squareup.picasso.Picasso
 import java.util.*
 
 
 class DashboardAdapter(
     private val context: Context,
-    private val data: List<*>,
+    private val data: List<*>?,
     val action: String
 ):  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val VIEW_TYPE_ONE = 1
@@ -41,6 +44,14 @@ class DashboardAdapter(
     val VIEW_TYPE_4 = 4
     val VIEW_TYPE_5 = 5
     val VIEW_TYPE_6 = 6
+    val VIEW_TYPE_7 = 7
+    val VIEW_TYPE_8 = 8
+    val VIEW_TYPE_9 = 9
+    val VIEW_TYPE_10 = 10
+    val VIEW_TYPE_11 = 11
+    val VIEW_TYPE_12 = 12
+    val VIEW_TYPE_13 = 13
+    val VIEW_TYPE_14 = 14
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
@@ -81,6 +92,70 @@ class DashboardAdapter(
             ProductViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.product_cell_item,
+                    parent,
+                    false
+                )
+            )
+        } else if (viewType == VIEW_TYPE_7) {
+            ProductManagmentModelViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.product_maneger_item_cell,
+                    parent,
+                    false
+                )
+            )
+        } else if (viewType == VIEW_TYPE_9) {
+            OrderManagmentModelViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.main_order_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_8) {
+            MainCategoryViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.main_category_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_10) {
+            CurrencyViewModel(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.cell_currency_item,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_11) {
+            CashDrawerViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.cash_drawer_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_12) {
+            TransactionViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.transactions_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_13) {
+            ItemsViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.transactions_items_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_14) {
+            OrderOnHoldViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.order_on_hold_item_cell,
                     parent,
                     false
                 )
@@ -128,6 +203,22 @@ class DashboardAdapter(
             (holder as IconViewHolder).bind(position)
         }else if (action== "productModel"){
             (holder as ProductViewHolder).bind(position)
+        }else if (action== "productManagmentModel"){
+            (holder as ProductManagmentModelViewHolder).bind(position)
+        }else if (action== "mainCategoryModel"){
+            (holder as MainCategoryViewHolder).bind(position)
+        }else if (action== "currencyModel"){
+            (holder as CurrencyViewModel).bind(position)
+        }else if (action== "CashDrawer"){
+            (holder as CashDrawerViewHolder).bind(position)
+        }else if (action== "orderDashboardAdapter"){
+            (holder as OrderManagmentModelViewHolder).bind(position)
+        }else if (action== "Transactions"){
+            (holder as TransactionViewHolder).bind(position)
+        }else if (action== "items"){
+            (holder as ItemsViewHolder).bind(position)
+        }else if (action== "orderOn"){
+            (holder as OrderOnHoldViewHolder).bind(position)
         }
 
 
@@ -144,12 +235,30 @@ class DashboardAdapter(
             VIEW_TYPE_5
         }else if (action == "productModel") {
             VIEW_TYPE_6
+        }else if (action == "productManagmentModel") {
+            VIEW_TYPE_7
+        }else if (action == "mainCategoryModel") {
+            VIEW_TYPE_8
+        } else if (action == "orderDashboardAdapter") {
+            VIEW_TYPE_9
+        } else if (action == "currencyModel") {
+            VIEW_TYPE_10
+        }  else if (action == "CashDrawer") {
+            VIEW_TYPE_11
+        }else if (action == "Transactions") {
+            VIEW_TYPE_12
+        }else if (action == "items") {
+            VIEW_TYPE_13
+        } else if (action == "orderOn") {
+            VIEW_TYPE_14
         } else {
             VIEW_TYPE_TWO
         }
     }
     override fun getItemCount(): Int {
-        return data.size
+
+        return data!!.size
+
     }
     fun getColors(): Int {
         val rnd = Random()
@@ -179,7 +288,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is ServiesModel.Data -> {
+                data!![position] is ServiesModel.Data -> {
                     val itemCat = data[position] as ServiesModel.Data
                     val color: Int =getColors()
                     txt.text=itemCat.name
@@ -197,7 +306,7 @@ class DashboardAdapter(
 //                        context.startActivity(intent)
                     }
                 }
-                data[position] is ServiceTypeModel.Data -> {
+                data!![position] is ServiceTypeModel.Data -> {
                     val itemCat = data[position] as ServiceTypeModel.Data
                     val color: Int =getColors()
                     txt.text=itemCat.name
@@ -222,7 +331,7 @@ class DashboardAdapter(
 //                        context.startActivity(intent)
                     }
                 }
-                data[position] is HomeModel-> {
+                data!![position] is HomeModel-> {
                 val itemCat = data[position] as HomeModel
                 val color: Int =getColors()
                 txt.text=itemCat.name
@@ -240,7 +349,7 @@ class DashboardAdapter(
 //                        context.startActivity(intent)
                 }
             }
-                data[position] is UserEmployeeModel.Data -> {
+                data!![position] is UserEmployeeModel.Data -> {
                     val itemCat = data[position] as UserEmployeeModel.Data
 
                     if (itemCat.id==0){
@@ -274,7 +383,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is IconModel -> {
+                data!![position] is IconModel -> {
                     val itemCat = data[position] as IconModel
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_add)
@@ -321,6 +430,242 @@ class DashboardAdapter(
         }
 
     }
+    private inner class CashDrawerViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
+
+
+    private inner class TransactionViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
+
+    private inner class ItemsViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
+
+    private inner class OrderOnHoldViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
     private inner class CategoryViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
@@ -332,7 +677,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is CategoryModel -> {
+                data!![position] is CategoryModel -> {
                     val itemCat = data[position] as CategoryModel
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_add)
@@ -379,6 +724,64 @@ class DashboardAdapter(
         }
 
     }
+    private inner class MainCategoryViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var myTextView: TextView= itemView.findViewById(R.id.categoryName)
+        var image: ImageView= itemView.findViewById(R.id.image)
+        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CategoryModel -> {
+                    val itemCat = data[position] as CategoryModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+                        image.setImageResource(R.drawable.ic_sandweshes)
+
+//                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+
+//                    }
+                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+//                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+//                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+
+
+                    myTextView.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
     private inner class ProductViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
@@ -392,7 +795,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is ProductModel -> {
+                data!![position] is ProductModel -> {
                     val itemCat = data[position] as ProductModel
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_add)
@@ -439,6 +842,153 @@ class DashboardAdapter(
         }
 
     }
+
+
+    private inner class ProductManagmentModelViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+//        var productsName: TextView= itemView.findViewById(R.id.productsName)
+        var priceText: TextView= itemView.findViewById(R.id.priceText)
+        var discountText: TextView= itemView.findViewById(R.id.discountText)
+//        var stock: TextView= itemView.findViewById(R.id.stock)
+        var image: ImageView= itemView.findViewById(R.id.image)
+        var permissionsCard: CardView= itemView.findViewById(R.id.permissionsCard)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is productManagmentModel -> {
+                    val itemCat = data[position] as productManagmentModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.test)
+
+                        Picasso.get().load(itemCat.image).placeholder(R.drawable.test).into(image)
+                    priceText.text=itemCat.price.toString()+" sar"
+                    discountText.text=itemCat.discount.toString()+"%"
+
+//                    }
+//                    productsName.text=itemCat.name
+
+
+
+                    permissionsCard.setOnClickListener {
+                        onClick!!.onSelectItemProduct(position,"productManagmentModel")
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+    private inner class OrderManagmentModelViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+//        var productsName: TextView= itemView.findViewById(R.id.productsName)
+        var category: TextView= itemView.findViewById(R.id.category)
+        var productName: TextView= itemView.findViewById(R.id.productName)
+        var priceAfterDiscount: TextView= itemView.findViewById(R.id.priceAfterDiscount)
+        var discount: TextView= itemView.findViewById(R.id.discount)
+        var total: TextView= itemView.findViewById(R.id.total)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is productManagmentModel -> {
+                    val itemCat = data[position] as productManagmentModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.test)
+
+                    category.text=itemCat.category
+                    productName.text=itemCat.name
+                    priceAfterDiscount.text="USD. 07.30"
+                    discount.text="11.50 10%OFF"
+                    total.text="USD. 28.50"
+
+//                    }
+//                    productsName.text=itemCat.name
+
+
+
+//                    myTextView.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+    private inner class CurrencyViewModel   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+//        var productsName: TextView= itemView.findViewById(R.id.productsName)
+        var titlec: TextView= itemView.findViewById(R.id.titlec)
+
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CurrencyModel -> {
+                    val itemCat = data[position] as CurrencyModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.test)
+
+                    titlec.text=itemCat.name
+
+
+//                    }
+//                    productsName.text=itemCat.name
+
+
+
+//                    myTextView.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
     private inner class EmpPermissionsViewHolder   constructor(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
 
@@ -448,7 +998,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is PoliicyModel.Data -> {
+                data!![position] is PoliicyModel.Data -> {
                     val itemCat = data[position] as PoliicyModel.Data
 
                     myTextView.text=itemCat.name
@@ -494,7 +1044,7 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data[position] is PoliicyPermissionModel.Data -> {
+                data!![position] is PoliicyPermissionModel.Data -> {
                     val itemCat = data[position] as PoliicyPermissionModel.Data
 
                     empName.text=itemCat.name
@@ -543,6 +1093,8 @@ class DashboardAdapter(
 
 
         fun onSelectItemCategory(position: Int)
+        fun onSelectItemProduct(position: Int,action:String)
+
 
 
 
