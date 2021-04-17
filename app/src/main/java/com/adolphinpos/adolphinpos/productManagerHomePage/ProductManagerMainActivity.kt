@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -43,6 +45,8 @@ class ProductManagerMainActivity : AppCompatActivity(),
     val sdf = SimpleDateFormat("hh:mm a")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_product_manager_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -132,61 +136,61 @@ class ProductManagerMainActivity : AppCompatActivity(),
 //        navView.setupWithNavController(navController)
 
 
-            val bottomNavigationView: BottomNavigationView =
-                findViewById<View>(R.id.bottomNavigation) as BottomNavigationView
-
-            val bottomNavigationItem = BottomNavigationItem(
-                "Home",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home
-            )
-            val bottomNavigationItem1 = BottomNavigationItem(
-                "cash in/out",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home2
-            )
-            val bottomNavigationItem2 = BottomNavigationItem(
-                "transaction",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home3
-            )
-            val bottomNavigationItem3 = BottomNavigationItem(
-                "holded orders",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home4
-            )
-            val bottomNavigationItem4 = BottomNavigationItem(
-                "products Man.",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home5
-            )
-            val bottomNavigationItem5 = BottomNavigationItem(
-                "Restaurant Man.",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_home6
-            )
-            val bottomNavigationItem6 = BottomNavigationItem(
-                "hints",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_menu_slideshow
-            )
-            val bottomNavigationItem7 = BottomNavigationItem(
-                "lock",
-                ContextCompat.getColor(this, R.color.appMainColor),
-                R.drawable.ic_menu_slideshow
-            )
-            bottomNavigationView.addTab(bottomNavigationItem)
-            bottomNavigationView.addTab(bottomNavigationItem1)
-            bottomNavigationView.addTab(bottomNavigationItem2)
-            bottomNavigationView.addTab(bottomNavigationItem3)
-            bottomNavigationView.addTab(bottomNavigationItem4)
-            bottomNavigationView.addTab(bottomNavigationItem5)
-            bottomNavigationView.addTab(bottomNavigationItem6)
-            bottomNavigationView.addTab(bottomNavigationItem7)
-            bottomNavigationView.activateTabletMode();
-            bottomNavigationView.isColoredBackground(true);
-            bottomNavigationView.setItemActiveColorWithoutColoredBackground(R.color.red);
-            bottomNavigationView.setBackgroundColor(resources.getColor(R.color.appMainColor))
+//            val bottomNavigationView: BottomNavigationView =
+//                findViewById<View>(R.id.bottomNavigation) as BottomNavigationView
+//
+//            val bottomNavigationItem = BottomNavigationItem(
+//                "Home",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home
+//            )
+//            val bottomNavigationItem1 = BottomNavigationItem(
+//                "cash in/out",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home2
+//            )
+//            val bottomNavigationItem2 = BottomNavigationItem(
+//                "transaction",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home3
+//            )
+//            val bottomNavigationItem3 = BottomNavigationItem(
+//                "holded orders",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home4
+//            )
+//            val bottomNavigationItem4 = BottomNavigationItem(
+//                "products Man.",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home5
+//            )
+//            val bottomNavigationItem5 = BottomNavigationItem(
+//                "Restaurant Man.",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_home6
+//            )
+//            val bottomNavigationItem6 = BottomNavigationItem(
+//                "hints",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_menu_slideshow
+//            )
+//            val bottomNavigationItem7 = BottomNavigationItem(
+//                "lock",
+//                ContextCompat.getColor(this, R.color.appMainColor),
+//                R.drawable.ic_menu_slideshow
+//            )
+//            bottomNavigationView.addTab(bottomNavigationItem)
+//            bottomNavigationView.addTab(bottomNavigationItem1)
+//            bottomNavigationView.addTab(bottomNavigationItem2)
+//            bottomNavigationView.addTab(bottomNavigationItem3)
+//            bottomNavigationView.addTab(bottomNavigationItem4)
+//            bottomNavigationView.addTab(bottomNavigationItem5)
+//            bottomNavigationView.addTab(bottomNavigationItem6)
+//            bottomNavigationView.addTab(bottomNavigationItem7)
+//            bottomNavigationView.activateTabletMode();
+//            bottomNavigationView.isColoredBackground(true);
+//            bottomNavigationView.setItemActiveColorWithoutColoredBackground(R.color.red);
+//            bottomNavigationView.setBackgroundColor(resources.getColor(R.color.appMainColor))
         }
 
 

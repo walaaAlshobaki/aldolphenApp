@@ -76,6 +76,15 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         orderDashboardAdapter.setOnClickItemCategory(this)
         view.orderRecyclerView.adapter = orderDashboardAdapter
 
+        view.Proceed.setOnClickListener {
+            val intent = Intent(
+                activity,
+                ProceedActivity::class.java
+            )
+
+            startActivity(intent)
+
+        }
 
         categoryModel.add(CategoryModel(1,"sandwitches","",false))
         categoryModel.add(CategoryModel(2,"Dishes","",false))
@@ -119,6 +128,11 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         dashboardModel.add(data2)
         dashboardModel.add(data3)
         dashboardModel.add(data4)
+        dashboardModel.add(data1)
+        dashboardModel.add(data2)
+        dashboardModel.add(data3)
+        dashboardModel.add(data4)
+
 //
 //
 //

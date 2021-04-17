@@ -10,6 +10,7 @@
         <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+            android:background="@color/white"
         android:theme="@style/Theme.AdolphinPOSApp.AppBarOverlay">
 
 
@@ -305,24 +306,24 @@
                     app:layout_constraintEnd_toStartOf="@+id/imageView9"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@color/appMainColor">
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@color/appMainColor">-->
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_home_setting1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+<!--                        <ImageView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/ic_home_setting1"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent"-->
 
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                            />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
                 </androidx.cardview.widget.CardView>
 
 <!--                <androidx.cardview.widget.CardView-->
@@ -380,26 +381,43 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/appMainColor"
+<!--    <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/appMainColor"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginTop="?attr/actionBarSize"-->
+<!--        app:bnv_active_color="@color/red"-->
+<!--        app:itemBackground="@color/appMainColor"-->
+<!--        app:itemTextColor="@drawable/bottom_nav_color"-->
+<!--        app:itemIconTint="@drawable/bottom_nav_color"-->
+<!--        app:bnv_colored_background="false"-->
+<!--        app:bnv_inactive_text_size="@dimen/bottom_navigation_text_size_inactive"-->
+<!--        app:bnv_shadow="true"-->
+<!--        app:bnv_tablet="true"-->
+<!--        app:bnv_viewpager_slide="true"-->
+<!--        app:bnv_with_text="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
         android:layout_alignParentBottom="true"
+        app:bb_tabletMode="true"
+        app:bb_behavior="shifting|shy|underNavbar"
+        app:bb_inActiveTabAlpha="0.6"
+        app:bb_activeTabAlpha="1"
+        app:bb_inActiveTabColor="@color/red"
+        app:bb_activeTabColor="@color/white"
+        app:bb_badgesHideWhenActive="true"
+        app:bb_badgeBackgroundColor="@color/white"
+        android:background="@color/appMainColor"
         android:layout_marginTop="?attr/actionBarSize"
-        app:bnv_active_color="@color/red"
-        app:itemBackground="@color/appMainColor"
-        app:itemTextColor="@drawable/bottom_nav_color"
-        app:itemIconTint="@drawable/bottom_nav_color"
-        app:bnv_colored_background="false"
-        app:bnv_inactive_text_size="@dimen/bottom_navigation_text_size_inactive"
-        app:bnv_shadow="true"
-        app:bnv_tablet="true"
-        app:bnv_viewpager_slide="true"
-        app:bnv_with_text="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:bb_showShadow="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
     <include layout="@layout/content_main" />
 
 

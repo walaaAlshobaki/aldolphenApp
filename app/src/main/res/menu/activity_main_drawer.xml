@@ -16,7 +16,7 @@
             android:title="CASH IN/OUT" />
         <item
             android:id="@+id/transaction"
-            android:icon="@drawable/tranc"
+            android:icon="@drawable/tr"
             android:title="TRANSACTION" />
 
         <item
@@ -35,11 +35,11 @@
             android:title="Restaurant Man. " />
         <item
             android:id="@+id/hint"
-            android:icon="@drawable/ic_home6"
+            android:icon="@drawable/ic_hint"
             android:title="HINTS " />
         <item
             android:id="@+id/lock"
-            android:icon="@drawable/ic_home6"
+            android:icon="@drawable/ic_lock"
             android:title="lock " />
     </group>
 </menu>

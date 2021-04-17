@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_home"
+        title="Favorites"
+        inActiveColor="@color/red"
+        activeColor="@color/white"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/tr"
+        title="Nearby" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_home"
+        title="Friends" />
+</tabs>

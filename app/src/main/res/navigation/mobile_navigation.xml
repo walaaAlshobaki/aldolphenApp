@@ -27,4 +27,15 @@
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.ordersOnHold.OrdersOnHoldFragment"
         android:label="hold"
         tools:layout="@layout/fragment_orders_on_hold" />
+    <fragment
+        android:id="@+id/Restaurant"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.RestaurantManFragment"
+        android:label="Restaurant"
+        tools:layout="@layout/fragment_restaurant_man" />
+
+    <fragment
+        android:id="@+id/lock"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockFragment"
+        android:label="lock"
+        tools:layout="@layout/fragment_lock" />
 </navigation>

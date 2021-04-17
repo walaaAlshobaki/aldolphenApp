@@ -17,6 +17,7 @@ import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.login.userInfo.UserOptionsActivity
 import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockActivity
 import com.adolphinpos.adolphinpos.userProfile.UserProfileActivity
 import com.squareup.picasso.Picasso
 import com.tapadoo.alerter.Alerter
@@ -109,11 +110,15 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId)
-//        if (dashboardModel[position].name=="POS"){
+        if (dashboardModel[position].name=="Restaurant"){
             val i = Intent(this, ProductManagerMainActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
-//        }
+        }else{
+            val i = Intent(this, LockActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
 
     }
 

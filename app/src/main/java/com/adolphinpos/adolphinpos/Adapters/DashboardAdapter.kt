@@ -52,6 +52,8 @@ class DashboardAdapter(
     val VIEW_TYPE_12 = 12
     val VIEW_TYPE_13 = 13
     val VIEW_TYPE_14 = 14
+    val VIEW_TYPE_15 = 15
+    val VIEW_TYPE_16 = 16
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
@@ -160,6 +162,22 @@ class DashboardAdapter(
                     false
                 )
             )
+        }else if (viewType == VIEW_TYPE_15) {
+            HallsHoldViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.halls_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_16) {
+            HallsInfoHoldViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.halls_info_cell_item,
+                    parent,
+                    false
+                )
+            )
         }else{
             PoliicyPermissionViewHolder(
                 LayoutInflater.from(parent.context).inflate(
@@ -219,6 +237,10 @@ class DashboardAdapter(
             (holder as ItemsViewHolder).bind(position)
         }else if (action== "orderOn"){
             (holder as OrderOnHoldViewHolder).bind(position)
+        }else if (action== "hallsModel"){
+            (holder as HallsHoldViewHolder).bind(position)
+        }else if (action== "hallsInfoModel"){
+            (holder as HallsInfoHoldViewHolder).bind(position)
         }
 
 
@@ -251,6 +273,10 @@ class DashboardAdapter(
             VIEW_TYPE_13
         } else if (action == "orderOn") {
             VIEW_TYPE_14
+        } else if (action == "hallsModel") {
+            VIEW_TYPE_15
+        } else if (action == "hallsInfoModel") {
+            VIEW_TYPE_16
         } else {
             VIEW_TYPE_TWO
         }
@@ -609,6 +635,123 @@ class DashboardAdapter(
     }
 
     private inner class OrderOnHoldViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
+
+    private inner class HallsHoldViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+
+//        var image: ImageView= itemView.findViewById(R.id.image)
+//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CashDrawerModel -> {
+//                    val itemCat = data[position] as IconModel
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.ic_sandweshes)
+//
+////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//
+//                    }
+////                    myTextView.text=itemCat.categoryName
+//                    if(!itemCat.isSelected){
+//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
+////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//
+//
+//                    }else{
+//
+//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
+//
+////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+//
+//                    }
+//
+//
+//                    image.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+//
+//
+//
+            }
+//
+        }
+
+    }
+    private inner class HallsInfoHoldViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
 

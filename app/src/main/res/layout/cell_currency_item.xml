@@ -64,8 +64,8 @@
                         android:layout_marginRight="20dp"
                         android:clickable="false"
                         android:foregroundGravity="center"
-                        android:src="@drawable/ic_coin"
-                        app:srcCompat="@drawable/ic_coin"
+                        android:src="@drawable/ic_curr"
+                        app:srcCompat="@drawable/ic_curr"
                         app:tint="@color/appMainColor"
                         tools:ignore="VectorDrawableCompat" />
 
