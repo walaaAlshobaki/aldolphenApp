@@ -38,23 +38,6 @@ class SendVerificationCodePresenter (var mContext: Context) {
 
                 override fun SUCCESS(jsonObject: String) {
 
-
-//                    var responseJson =
-//                        common.parserJson.fromJson(jsonObject.toString(), String()::class.java)
-//
-//                    var email = uname
-//                    val auth_token = responseJson
-
-
-
-
-//
-//                    userConfig = UserConfig(
-//                        uname,
-//                        jsonObject,
-//
-//                        )
-//                    common.session!!.createLoginSession(userConfig)
                     delegate!!.didSendVerificationCodeSuccess(jsonObject)
 
                 }

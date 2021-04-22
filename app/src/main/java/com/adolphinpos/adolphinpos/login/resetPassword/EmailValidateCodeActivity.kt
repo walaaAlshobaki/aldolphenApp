@@ -12,7 +12,6 @@ import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.helper.OtpEditText
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_email_validate_code.*
-import kotlinx.android.synthetic.main.activity_verification_screen_code.*
 import kotlinx.android.synthetic.main.activity_verification_screen_code.loginBtn
 
 class EmailValidateCodeActivity : AppCompatActivity(),EmailValidateDelegate {

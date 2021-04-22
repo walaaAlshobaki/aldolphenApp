@@ -9,7 +9,17 @@
         android:id="@+id/nav_home"
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/procees"
+            app:destination="@id/ProceedActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/ProceedActivity"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.ProceedActivity"
+        android:label="ProceedActivity"
+        tools:layout="@layout/activity_proceed"
+        />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -38,4 +48,6 @@
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockFragment"
         android:label="lock"
         tools:layout="@layout/fragment_lock" />
+
+
 </navigation>

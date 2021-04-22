@@ -142,10 +142,7 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
             "token.email",
             auth_token
         )
-
         userInfo.token=auth_token
-
-//       common.session!!.createLoginSession(userConfig)
         DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
@@ -156,24 +153,7 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
     override fun didLoginFail(msg: String) {
         DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
             R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
-//        DesignerToast.Success(this, "Success Toast", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_SHORT)
-//        Toast.makeText(this@LoginActivity, msg, Toast.LENGTH_LONG).setGravity(Gravity.TOP, 100, 250)
-//        if (msg.equals("InCorrect Password")){
-//            passwordTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
-//            passwordTextInputLayout.error = msg
-//            userNameTextInputLayout.error = null
-//
-////            passError.text=msg
-//        }else if (msg.equals("No Email Found")){
-//
-//            userNameTextInputLayout.setBoxStrokeColor(resources.getColor(R.color.red))
-//            userNameTextInputLayout.error = msg
-//            passwordTextInputLayout.error = null
-////            emailError.text=msg
-//
-//        }
         Log.d("ttttttttttttttttttttttt", msg)
-//        passwordTextInputLayout.setDefaultStrokeColor(resources.getColor(R.color.red))
     }
 
 }

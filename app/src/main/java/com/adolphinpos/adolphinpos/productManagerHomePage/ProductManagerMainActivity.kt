@@ -13,10 +13,11 @@ import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -25,10 +26,8 @@ import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.CircleTransform
-import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.ViewPruduct.ViewProductActivity
 import com.google.android.material.navigation.NavigationView
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
+import com.roughike.bottombar.BottomBar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.text.SimpleDateFormat
@@ -46,7 +45,10 @@ class ProductManagerMainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
         setContentView(R.layout.activity_product_manager_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -118,88 +120,36 @@ class ProductManagerMainActivity : AppCompatActivity(),
         }, 10)
 
             userName.text= userInfo.firstName +" "+ userInfo.lastName
-            // Passing each menu ID as a set of Ids because each
-            // menu should be considered as top level destinations.
-//        appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.nav_home,
-//                R.id.nav_gallery,
-//                R.id.transaction,
-//                R.id.hold,
-//                R.id.products,
-//                R.id.Restaurant,
-//                R.id.hint,
-//                R.id.lock
-//            ), drawerLayout
-//        )
-////       setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
 
 
-//            val bottomNavigationView: BottomNavigationView =
-//                findViewById<View>(R.id.bottomNavigation) as BottomNavigationView
-//
-//            val bottomNavigationItem = BottomNavigationItem(
-//                "Home",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home
-//            )
-//            val bottomNavigationItem1 = BottomNavigationItem(
-//                "cash in/out",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home2
-//            )
-//            val bottomNavigationItem2 = BottomNavigationItem(
-//                "transaction",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home3
-//            )
-//            val bottomNavigationItem3 = BottomNavigationItem(
-//                "holded orders",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home4
-//            )
-//            val bottomNavigationItem4 = BottomNavigationItem(
-//                "products Man.",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home5
-//            )
-//            val bottomNavigationItem5 = BottomNavigationItem(
-//                "Restaurant Man.",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_home6
-//            )
-//            val bottomNavigationItem6 = BottomNavigationItem(
-//                "hints",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_menu_slideshow
-//            )
-//            val bottomNavigationItem7 = BottomNavigationItem(
-//                "lock",
-//                ContextCompat.getColor(this, R.color.appMainColor),
-//                R.drawable.ic_menu_slideshow
-//            )
-//            bottomNavigationView.addTab(bottomNavigationItem)
-//            bottomNavigationView.addTab(bottomNavigationItem1)
-//            bottomNavigationView.addTab(bottomNavigationItem2)
-//            bottomNavigationView.addTab(bottomNavigationItem3)
-//            bottomNavigationView.addTab(bottomNavigationItem4)
-//            bottomNavigationView.addTab(bottomNavigationItem5)
-//            bottomNavigationView.addTab(bottomNavigationItem6)
-//            bottomNavigationView.addTab(bottomNavigationItem7)
-//            bottomNavigationView.activateTabletMode();
-//            bottomNavigationView.isColoredBackground(true);
-//            bottomNavigationView.setItemActiveColorWithoutColoredBackground(R.color.red);
-//            bottomNavigationView.setBackgroundColor(resources.getColor(R.color.appMainColor))
+        val bottomBar = findViewById<View>(R.id.bottomBar) as BottomBar
+        bottomBar.setOnTabSelectListener { tabId ->
+            if (tabId == R.id.home) {
+                findNavController(R.id.nav_host_fragment)
+                    .navigate(R.id.nav_home)
+
+            }else if(tabId == R.id.CASH){
+               findNavController(R.id.nav_host_fragment).navigate(R.id.nav_gallery)
+            }else if(tabId == R.id.transaction){
+                findNavController(R.id.nav_host_fragment).navigate(R.id.transaction)
+            }
+            else if(tabId == R.id.hold){
+                 findNavController(R.id.nav_host_fragment).navigate(R.id.hold)
+
+            }else if(tabId == R.id.products){
+
+            }else if(tabId == R.id.Restaurant){
+           findNavController(R.id.nav_host_fragment).navigate(R.id.Restaurant)
+
+            }else if(tabId == R.id.hint){
+
+            }else if(tabId == R.id.lock){
+                findNavController(R.id.nav_host_fragment).navigate(R.id.lock)
+
+            }
         }
+    }
 
-
-//
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.product_manager_main, menu)
-//        return true
-//    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

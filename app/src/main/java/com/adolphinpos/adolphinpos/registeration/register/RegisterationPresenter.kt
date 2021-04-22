@@ -1,9 +1,13 @@
 package com.adolphinpos.adolphinpos.registeration.register
 
 import android.content.Context
+import android.util.Log
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.Splash.userConfig
+import com.adolphinpos.adolphinpos.Splash.userInfo
+import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.userModel
 import org.json.JSONObject
 
@@ -36,29 +40,20 @@ class RegisterationPresenter(var mContext: Context) {
             object : callBackApi {
 
 
-                override fun SUCCESS(jsonObject: String) {
+                override fun SUCCESS(auth_token:String) {
+
+//                        val responseDatajson = JSONObject(jsonObject.toString())
+
+//                        val responseJson = common.parserJson.fromJson(responseDatajson.toString(), userModel::class.java)
 
 
-//                    var responseJson =
-//                        common.parserJson.fromJson(jsonObject.toString(), String()::class.java)
-//
-//                    var email = uname
-//                    val auth_token = responseJson
-
-
-
-
-//
 //                    userConfig = UserConfig(
 //                        uname,
 //                        jsonObject,
 //
 //                        )
 //                    common.session!!.createLoginSession(userConfig)
-                    val responseDatajson = JSONObject(jsonObject.toString())
-
-                    val responseJson = common.parserJson.fromJson(responseDatajson.toString(), RegisterModel::class.java)
-                    delegate!!.didRegisterationSuccess(jsonObject)
+                    delegate!!.didRegisterationSuccess(auth_token)
 
                 }
 

@@ -38,13 +38,19 @@ class EditNumberActivity : AppCompatActivity() {
             startActivity(i)
 
         }
+        close.setOnClickListener{
+
+           finish()
+
+        }
+
         flagphone.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }
         confirmBtn.setOnClickListener{
-            RxBus.publish(MessageEvent(20, phoneNum.text.toString()))
+            RxBus.publish(MessageEvent(20, "00"+countryModel!!.callingCodes+phoneNum.text.toString()))
             onBackPressed()
         }
     }

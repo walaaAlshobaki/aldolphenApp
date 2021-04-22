@@ -33,6 +33,7 @@ class UrlAPIs {
 
     val login = "http://161.97.164.114:8080/api/User"
     val Company = "http://161.97.164.114:8080/api/Company"
+    val CompanyInfo = "http://161.97.164.114:8080/api/Company"
     val email = "http://161.97.164.114:8080/api/User/RestPassword/Email"
     val code = "http://161.97.164.114:8080/api/User/Activation/Code"
     val newBranch = "http://161.97.164.114:8080/api/Company/Service/Branch"
@@ -50,6 +51,7 @@ class UrlAPIs {
     val addPolice = "http://161.97.164.114:8080/api/User/Poliicy"
     val Users = "Company/Users?"
     val Branches = "Company/Service/Branches?"
+    val restPhoneNumber = "User/RestPhoneNumber?"
 
 }
 

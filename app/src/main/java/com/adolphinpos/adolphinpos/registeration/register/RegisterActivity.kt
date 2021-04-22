@@ -21,6 +21,7 @@ import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.helper.UserConfig
+import com.adolphinpos.adolphinpos.login.LoadingScreenActivity
 import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.userModel
 import com.adolphinpos.adolphinpos.plan.PlanActivity
@@ -125,7 +126,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
             }else{
                  if(password.text.toString().equals(passwordConf.text.toString())){
                      mPresenter!!.RegisterTap(companyName.text.toString(),firstname.text.toString(),lastname.text.toString(),
-                         countryModel!!.id,email.text.toString(),countryModel!!.callingCodes+phoneNum.text.toString(),password.text.toString())
+                         countryModel!!.id,email.text.toString(),"00"+countryModel!!.callingCodes+phoneNum.text.toString(),password.text.toString())
                 }else{
                      passwordTextInputLayout.error = "password is not matches"
                      ConfirmpasswordTextInputLayout.error = "password is not matches"
@@ -178,36 +179,34 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
     }
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     override fun didRegisterationSuccess(token: String) {
-        userInfo.token=token!!
+        Log.d("didRegisterationSuccess", token)
         userConfig = UserConfig(
                 "token.firstName",
                 "token.lastName",
                 "jo",
-                "-1",
+                "1",
                 "token.phoneNumber",
                 "token.email",
-            token!!
+                token
         )
-//        common.session!!.createLoginSession(userConfig)
-//        common.userToken=token
-//        common.userEmail=email.text.toString()
-//        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
-//        common.session!!.createLoginSession(userConfig)
-        common.userToken=token!!
-        common.userPhone=countryModel!!.callingCodes+phoneNum.text.toString()
-        DesignerToast.Custom(this,"successfully registration",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+        userInfo.token=token
+        common.userToken=token
+//        DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+//                R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
         val i = Intent(this, PlanActivity::class.java)
         i.putExtra("auth_token",token!!)
         i.putExtra("mobile",countryModel!!.callingCodes+phoneNum.text.toString())
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
+
     }
 
     override fun didRegisterationFail(msg: String) {
         Log.d("didRegisterationFail",msg)
-        Log.d("ttttttttttttttttttttttt", msg)
-        if (msg=="CompanyAdded"){
+        Log.d("didRegisterationFail", msg+userInfo.token)
+        Log.d("didRegisterationFail", msg+ common.userToken)
+
+        if (msg=="CompanyAdded"||msg=="true"){
             userConfig = UserConfig(
                     "token.firstName",
                     "token.lastName",
@@ -215,20 +214,15 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
                     "-1",
                     "token.phoneNumber",
                     "token.email",
-                    userInfo.token!!
+                    userInfo.token
             )
-//        common.session!!.createLoginSession(userConfig)
-//        common.userToken=token
-//        common.userEmail=email.text.toString()
-//        Log.d("RRRRRRRRRRRRRR",token.firstName.toString())
-//        common.session!!.createLoginSession(userConfig)
-            common.userToken= userInfo.token!!
+            userInfo.token= common.userToken!!
             common.userPhone=countryModel!!.callingCodes+phoneNum.text.toString()
             DesignerToast.Custom(this,"successfully registration",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                     R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
             val i = Intent(this, PlanActivity::class.java)
             i.putExtra("auth_token", userInfo.token!!)
-            i.putExtra("mobile",countryModel!!.callingCodes+phoneNum.text.toString())
+            i.putExtra("mobile","00"+countryModel!!.callingCodes+phoneNum.text.toString())
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }else{

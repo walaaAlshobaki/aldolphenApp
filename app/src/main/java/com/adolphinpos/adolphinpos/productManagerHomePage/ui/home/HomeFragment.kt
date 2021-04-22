@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -77,12 +78,10 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         view.orderRecyclerView.adapter = orderDashboardAdapter
 
         view.Proceed.setOnClickListener {
-            val intent = Intent(
-                activity,
-                ProceedActivity::class.java
-            )
 
-            startActivity(intent)
+
+
+            findNavController().navigate(R.id.procees)
 
         }
 

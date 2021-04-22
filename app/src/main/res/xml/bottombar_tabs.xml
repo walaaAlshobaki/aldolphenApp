@@ -1,20 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        id="@+id/tab_favorites"
+        id="@+id/home"
         icon="@drawable/ic_home"
-        title="Favorites"
-        inActiveColor="@color/red"
-        activeColor="@color/white"
+
+        inActiveColor="@color/white"
+        activeColor="@color/red"
         barColorWhenSelected="@color/appMainColor"
         badgeBackgroundColor="@color/white"
         badgeHidesWhenActive="true"/>
     <tab
-        id="@+id/tab_nearby"
-        icon="@drawable/tr"
-        title="Nearby" />
+        id="@+id/CASH"
+        icon="@drawable/ic_home2"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true" />
     <tab
-        id="@+id/tab_friends"
-        icon="@drawable/ic_home"
-        title="Friends" />
+        id="@+id/transaction"
+        icon="@drawable/tr"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+
+    <tab
+        id="@+id/hold"
+        icon="@drawable/holdo"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+
+
+    <tab
+        id="@+id/products"
+        icon="@drawable/ic_home5"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+
+    <tab
+        id="@+id/Restaurant"
+        icon="@drawable/ic_home6"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+
+
+    <tab
+        id="@+id/hint"
+        icon="@drawable/ic_hint"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
+    <tab
+        id="@+id/lock"
+        icon="@drawable/ic_lock"
+        inActiveColor="@color/white"
+        activeColor="@color/red"
+        barColorWhenSelected="@color/appMainColor"
+        badgeBackgroundColor="@color/white"
+        badgeHidesWhenActive="true"/>
 </tabs>

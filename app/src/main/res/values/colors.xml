@@ -18,7 +18,9 @@
     <color name="back">#efefef</color>
     <color name="border">#E0E0E0</color>
     <color name="gradientStart">#060811</color>
+    <color name="gradientStart2">#E2060811</color>
     <color name="gradientEnd">#20285400</color>
+    <color name="gradientEnd2">#9F285400</color>
     <color name="editTextBorderColor">#E6E9E9</color>
     <color name="searchColor">#5D5D5D</color>
     <color name="backbtn">#A5A5A5</color>

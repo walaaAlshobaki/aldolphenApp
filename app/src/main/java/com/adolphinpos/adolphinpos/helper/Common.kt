@@ -13,6 +13,7 @@ class Common {
     var parserJson = Gson()
     var apiDomainRoot:String=""
     var userToken:String=""
+    var codeTimer:Int=0
     var userPhone:String=""
     var userPrermtion:ArrayList<Int> = arrayListOf(1)
     var prermtion:ArrayList<Int> = arrayListOf(0)

@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".registeration.code.VerificationScreenActivity">
+    <include
+        android:id="@+id/include"
+        layout="@layout/banner_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.cardview.widget.CardView
         android:layout_width="124dp"
         android:layout_height="48dp"
@@ -48,27 +56,29 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
         android:padding="10dp"
-        app:layout_constraintWidth_percent="0.70"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/include"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.70">
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="choose method to authenticate"
             android:textColor="@color/appMainColor"
             android:textColorHint="@color/appMainColor2"
             android:textSize="25sp"
-            android:gravity="center"
             android:textStyle="bold"
             app:autoSizeMaxTextSize="30sp"
             app:autoSizeMinTextSize="20sp"
@@ -97,26 +107,27 @@
             android:id="@+id/smsCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-
             android:layout_marginTop="25dp"
+
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintWidth_percent="0.40">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sendSMS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:background="@color/back">
+                android:background="@color/back"
+                android:clickable="true">
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/sms"
                     android:layout_marginStart="10dp"
+                    android:src="@drawable/sms"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -125,12 +136,12 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginStart="15dp"
-                    app:layout_constraintWidth_percent="0.60"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="@+id/imageView">
+                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintWidth_percent="0.60">
 
                     <TextView
                         android:id="@+id/textTitle"
@@ -154,8 +165,8 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_right_arrow"
                     android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_right_arrow"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout"
@@ -165,18 +176,20 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/whatsappCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-
             android:layout_marginTop="15dp"
+
             android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="@+id/smsCard"
             app:layout_constraintStart_toStartOf="@id/smsCard"
             app:layout_constraintTop_toBottomOf="@+id/smsCard"
             app:layout_constraintWidth_percent="0.40">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -187,8 +200,8 @@
                     android:id="@+id/whatsappimageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/whats"
                     android:layout_marginStart="10dp"
+                    android:src="@drawable/whats"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -197,12 +210,12 @@
                     android:id="@+id/linear2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintWidth_percent="0.60"
                     android:layout_marginStart="15dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="@+id/whatsappimageView"
                     app:layout_constraintStart_toEndOf="@+id/whatsappimageView"
-                    app:layout_constraintTop_toTopOf="@+id/whatsappimageView">
+                    app:layout_constraintTop_toTopOf="@+id/whatsappimageView"
+                    app:layout_constraintWidth_percent="0.60">
 
                     <TextView
                         android:id="@+id/whatsapptextTitle"
