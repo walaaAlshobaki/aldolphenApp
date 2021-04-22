@@ -37,7 +37,7 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
     var number: String? =null
     private var mCountDownTimer: CountDownTimer? = null
     private var mTimerRunning = false
-    private val START_TIME_IN_MILLIS: Long = 60000
+    private val START_TIME_IN_MILLIS: Long = 300000
     private var mTimeLeftInMillis: Long = START_TIME_IN_MILLIS
     private var handler: Handler = Handler()
     var SendVerificationPresenter: SendVerificationCodePresenter? = null

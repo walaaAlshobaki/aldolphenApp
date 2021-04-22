@@ -73,7 +73,7 @@
                 android:layout_height="15dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_left_arrow"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/signUp"
@@ -211,7 +211,6 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-
                     android:translationY="-25dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -421,10 +420,6 @@
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:background="@color/white">
-
-
-
-
                         <EditText
                             android:id="@+id/phoneNum"
                             android:clickable="true"
@@ -494,17 +489,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/update_layer"
-                android:layout_width="511dp"
-                android:layout_height="53dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:minHeight="45dp"
                 app:cardBackgroundColor="@color/appMainColor"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp"
-
                 app:layout_constraintEnd_toEndOf="@+id/EmailTextInputLayout"
-
-                app:layout_constraintStart_toStartOf="@+id/image"
                 app:layout_constraintTop_toBottomOf="@+id/con">
 
                 <Button
@@ -513,9 +505,9 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/btn_style"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Update"
+                    android:text="Confirm"
                     android:textColor="#ffffff"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
             </androidx.cardview.widget.CardView>
 
 
