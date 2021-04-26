@@ -90,50 +90,8 @@
                 app:autoSizeStepGranularity="1sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <LinearLayout
-        android:layout_width="148dp"
-        android:layout_height="30dp"
 
-        app:layout_constraintEnd_toStartOf="@+id/user"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_search"
-            app:tint="@color/appMainColoro" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@color/appMainColoro" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/roboto"
-            android:text="Search settings"
-            android:textColor="@color/appMainColoro"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/update_active_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="start"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
-        app:srcCompat="@drawable/ic_edit"
-        app:tint="@color/red" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -183,43 +141,89 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageCard"
+                android:layout_width="80dp"
+                android:layout_height="70dp"
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
-                android:clipChildren="true"
-                android:src="@drawable/upload"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
 
-                <ImageView
-                    android:id="@+id/avatar_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/circle_layer"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/user"
-                    app:layout_constraintDimensionRatio="H,1:1" />
-
-                <ImageView
-                    android:id="@+id/change_img_btn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-
-                    android:translationY="-25dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/avatar_img"
-                    app:srcCompat="@drawable/ic_cam"
-                    app:tint="#FFFFFF"
-                    tools:ignore="VectorDrawableCompat" />
+                    app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/avatar_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_layer"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/user"
+                        app:layout_constraintDimensionRatio="H,1:1" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/uploadImageCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:layout_marginStart="10dp"
+                android:clipChildren="true"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintStart_toEndOf="@+id/imageCard"
+                app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/uploadImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:padding="10dp"
+                    android:background="@color/layer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+
+                    <ImageView
+                        android:id="@+id/upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/upload"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="H,1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="change picture use jpg, png, jpeg etc.."
+                android:textColor="@color/appMainColoro"
+                android:layout_marginStart="10dp"
+                android:textSize="12sp"
+                android:lines="2"
+                android:maxLines="2"
+                android:minLines="1"
+                app:layout_constraintBottom_toBottomOf="@+id/uploadImageCard"
+                app:layout_constraintStart_toEndOf="@+id/uploadImageCard" />
 
 
 
@@ -228,7 +232,7 @@
                 style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
+                android:layout_marginTop="10dp"
                 android:focusable="true"
                 android:hint="Company Name"
                 android:textColorHint="@color/appMainColor"
@@ -237,8 +241,8 @@
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
-                app:layout_constraintStart_toStartOf="@+id/image"
-                app:layout_constraintTop_toBottomOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/imageCard"
+                app:layout_constraintTop_toBottomOf="@+id/imageCard"
                 app:layout_constraintWidth_percent="0.25"
                 app:placeholderText="write your Company Name"
                 app:placeholderTextColor="@color/border">
@@ -261,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-
+                android:layout_marginTop="10dp"
                 android:hint="Tax No."
                 android:textColorHint="@color/appMainColor"
                 android:theme="@style/LoginTextInputLayoutStyle"
@@ -272,7 +276,7 @@
                 app:hintTextColor="@color/appMainColor"
 
                 app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
-                app:layout_constraintTop_toBottomOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/imageCard"
                 app:layout_constraintWidth_percent="0.25"
                 app:placeholderText="write your Tax No."
                 app:placeholderTextColor="@color/border">
@@ -299,6 +303,7 @@
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
+                android:layout_marginTop="10dp"
                 app:boxCornerRadiusTopStart="10dp"
                 app:placeholderTextColor="@color/border"
                 app:placeholderText="ex. Mohamed@gmail.com"
@@ -306,7 +311,7 @@
                 app:hintTextColor="@color/appMainColor"
 
                 app:layout_constraintStart_toEndOf="@+id/lastNameTextInputLayout"
-                app:layout_constraintTop_toBottomOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/imageCard"
                 app:layout_constraintWidth_percent="0.30">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -491,34 +496,31 @@
                     android:textColor="@color/appMainColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.cardview.widget.CardView
+            <Button
                 android:id="@+id/update_layer"
-                android:layout_width="511dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="30dp"
-                android:minHeight="45dp"
-                app:cardBackgroundColor="@color/appMainColor"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="10dp"
-
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_style"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Confirm"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/EmailTextInputLayout"
-
-                app:layout_constraintStart_toStartOf="@+id/image"
-                app:layout_constraintTop_toBottomOf="@+id/con">
-
-                <Button
-                    android:id="@+id/loginBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/btn_style"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Update"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp" />
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toBottomOf="@+id/con"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/right_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.25"
+        android:translationX="10dp"
+        android:translationY="80dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

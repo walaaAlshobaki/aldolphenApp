@@ -33,7 +33,7 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
         }
         mPresenter = UsersPresenter(this)
         mPresenter!!.delegate = this
-        mPresenter!!.getUsersTap(userInfo.companyId)
+        mPresenter!!.getUsersTap(userInfo.companyId.toString())
         val llm = GridLayoutManager(this, 3)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm

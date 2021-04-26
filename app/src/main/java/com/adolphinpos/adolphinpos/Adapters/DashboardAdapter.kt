@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyModel
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeModel
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.addCategory.IconModel
@@ -54,6 +55,7 @@ class DashboardAdapter(
     val VIEW_TYPE_14 = 14
     val VIEW_TYPE_15 = 15
     val VIEW_TYPE_16 = 16
+    val VIEW_TYPE_17 = 17
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
@@ -126,6 +128,14 @@ class DashboardAdapter(
             CurrencyViewModel(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.cell_currency_item,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_17) {
+            PaymantViewModel(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.payment_item_cell,
                     parent,
                     false
                 )
@@ -241,6 +251,8 @@ class DashboardAdapter(
             (holder as HallsHoldViewHolder).bind(position)
         }else if (action== "hallsInfoModel"){
             (holder as HallsInfoHoldViewHolder).bind(position)
+        }else if (action== "PaymentMethodsActivity"){
+            (holder as PaymantViewModel).bind(position)
         }
 
 
@@ -277,6 +289,8 @@ class DashboardAdapter(
             VIEW_TYPE_15
         } else if (action == "hallsInfoModel") {
             VIEW_TYPE_16
+        } else if (action == "PaymentMethodsActivity") {
+            VIEW_TYPE_17
         } else {
             VIEW_TYPE_TWO
         }
@@ -1099,14 +1113,59 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is CurrencyModel -> {
-                    val itemCat = data[position] as CurrencyModel
+                data!![position] is CurrencyTypeModel.Data -> {
+                    val itemCat = data[position] as  CurrencyTypeModel.Data
 //                    if (itemCat.id==-2){
 //                        image.setImageResource(R.drawable.ic_add)
 //                    }else{
 //                        image.setImageResource(R.drawable.test)
 
-                    titlec.text=itemCat.name
+                    titlec.text=itemCat.currenciesCode
+
+
+//                    }
+//                    productsName.text=itemCat.name
+
+
+
+//                    myTextView.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+    private inner class PaymantViewModel   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+//        var productsName: TextView= itemView.findViewById(R.id.productsName)
+        var titlec: TextView= itemView.findViewById(R.id.txt)
+
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is CurrencyTypeModel.Data -> {
+                    val itemCat = data[position] as  CurrencyTypeModel.Data
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.test)
+
+                    titlec.text=itemCat.currenciesCode
 
 
 //                    }

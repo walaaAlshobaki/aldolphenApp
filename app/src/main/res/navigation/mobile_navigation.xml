@@ -43,11 +43,11 @@
         android:label="Restaurant"
         tools:layout="@layout/fragment_restaurant_man" />
 
-    <fragment
+    <activity
         android:id="@+id/lock"
-        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockFragment"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockActivity"
         android:label="lock"
-        tools:layout="@layout/fragment_lock" />
+        tools:layout="@layout/activity_lock" />
 
 
 </navigation>

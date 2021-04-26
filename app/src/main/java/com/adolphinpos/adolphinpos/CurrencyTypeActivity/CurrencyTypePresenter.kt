@@ -1,31 +1,29 @@
-package com.adolphinpos.adolphinpos.home
+package com.adolphinpos.adolphinpos.CurrencyTypeActivity
 
 import android.content.Context
 import android.util.Log
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
-import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
-import com.adolphinpos.adolphinpos.registeration.country.CountryModel
 import org.json.JSONObject
 
-interface ServicesDelegate{
+interface CurrencyTypeDelegate{
 
-    fun didGetServicesSuccess(response: ServiceTypeModel)
-    fun didGetServicesFail(msg:String)
+    fun didGetCurrencyTypeSuccess(response: CurrencyTypeModel)
+    fun didGetCurrencyTypeFail(msg:String)
     fun didEmpty()
 
 
 }
-class ServicesPresenter (var mContext: Context) {
-    var delegate: ServicesDelegate? = null
+class CurrencyTypePresenter (var mContext: Context) {
+    var delegate: CurrencyTypeDelegate? = null
 
 
-    fun getService(){
+    fun getCurrencyType(){
 
         val paramsDictionary = mutableMapOf<String, Any>()
-        paramsDictionary["SCId"] = 2
-        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.ServiceTypes,paramsDictionary,object :
+
+        serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.Currency,paramsDictionary,object :
                 callBackApiGet {
 
 
@@ -33,10 +31,10 @@ class ServicesPresenter (var mContext: Context) {
             override fun SUCCESS(jsonObject: String) {
 
                 val responseDatajson = JSONObject(jsonObject.toString())
-                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), ServiceTypeModel::class.java)
+                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), CurrencyTypeModel::class.java)
                 Log.d("EEEEEEEEEEEEEEEEE",responseDatajson.toString())
 
-                delegate!!.didGetServicesSuccess(responseJson)
+                delegate!!.didGetCurrencyTypeSuccess(responseJson)
 
 
 
@@ -45,11 +43,11 @@ class ServicesPresenter (var mContext: Context) {
             }
 
             override fun ERROR(msg: String) {
-                delegate!!.didGetServicesFail(msg)
+                delegate!!.didGetCurrencyTypeFail(msg)
             }
 
             override fun FAILER(msg: String) {
-                delegate!!.didGetServicesFail(msg)
+                delegate!!.didGetCurrencyTypeFail(msg)
             }
 
             override fun JSON(jsonObject: JSONObject, api: ApiModelGet?) {
@@ -59,21 +57,21 @@ class ServicesPresenter (var mContext: Context) {
 
 
             override fun EMPTY(result: Boolean) {
-                delegate!!.didGetServicesFail("Empty")
+                delegate!!.didGetCurrencyTypeFail("Empty")
 
 
             }
 
             override fun NO_INTERNET() {
-                delegate!!.didGetServicesFail(mContext.resources.getString(R.string.no_internet_msg))
+                delegate!!.didGetCurrencyTypeFail(mContext.resources.getString(R.string.no_internet_msg))
             }
 
             override fun ERROR_MSG(msg: String) {
-                delegate!!.didGetServicesFail(msg)
+                delegate!!.didGetCurrencyTypeFail(msg)
             }
 
             override fun NoMore(msg: String) {
-                delegate!!.didGetServicesFail(msg)
+                delegate!!.didGetCurrencyTypeFail(msg)
                 delegate!!.didEmpty()
             }
         })

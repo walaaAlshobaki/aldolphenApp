@@ -11,6 +11,9 @@ import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
+import com.adolphinpos.adolphinpos.createPOS.PosCatCompanyDataActivity
+import com.adolphinpos.adolphinpos.createPOS.PosCatagoryActivity
+import com.adolphinpos.adolphinpos.createPOS.PosSettingActivity
 import com.adolphinpos.adolphinpos.helper.Alert
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
@@ -44,7 +47,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
         mPresenter!!.getService()
         dashboardAdapter.setOnClickItemCategory(this)
-
+        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.profilePicturePath!!)
 //        recyclerView.measure(
 //            View.MeasureSpec.makeMeasureSpec(
 //                recyclerView.width,
@@ -109,13 +112,13 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
 
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
-        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId)
+        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId.toString())
         if (dashboardModel[position].name=="Restaurant"){
-            val i = Intent(this, ProductManagerMainActivity::class.java)
+            val i = Intent(this, PosCatagoryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }else{
-            val i = Intent(this, LockActivity::class.java)
+            val i = Intent(this, PosCatCompanyDataActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }

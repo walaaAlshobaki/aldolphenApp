@@ -37,6 +37,7 @@ class UrlAPIs {
     val email = "http://161.97.164.114:8080/api/User/RestPassword/Email"
     val code = "http://161.97.164.114:8080/api/User/Activation/Code"
     val newBranch = "http://161.97.164.114:8080/api/Company/Service/Branch"
+    val updateInfo = "http://161.97.164.114:8080/api/User/Info"
     val Country = "Country?"
     val userInfo = "User/Info?"
     val Poliicy = "User/Poliicy?"
@@ -51,7 +52,8 @@ class UrlAPIs {
     val addPolice = "http://161.97.164.114:8080/api/User/Poliicy"
     val Users = "Company/Users?"
     val Branches = "Company/Service/Branches?"
-    val restPhoneNumber = "User/RestPhoneNumber?"
+    val restPhoneNumber = "http://161.97.164.114:8080/api/User/RestPhoneNumber"
+    val Currency = "Setup/Currency?"
 
 }
 
@@ -789,7 +791,7 @@ abstract class UploadOperation(
             urlConnection.useCaches = false
 
 
-            val paramName = "Logo"
+            val paramName = "Image"
             val fileName = "fileName.jpg"
 
 
@@ -849,7 +851,7 @@ abstract class UploadOperation(
             request.close()
 
 
-            urlConnection.requestMethod = "POST"
+            urlConnection.requestMethod = "PUT"
 
 
             urlConnection.connect()
@@ -874,7 +876,7 @@ abstract class UploadOperation(
 
                 Log.d(
                     "** < api calling > ***",
-                    "${operationUrl}* auth_token :" + (userConfig.auth_token)
+                    "${operationUrl}* auth_token :" + (userInfo.token)
                 )
                 Log.d(
                     "** < api calling > ***",

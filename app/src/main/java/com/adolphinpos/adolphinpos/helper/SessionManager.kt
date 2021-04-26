@@ -103,9 +103,16 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
         values.put(key_token, userConfig.token)
         values.put(key_userid, userConfig.userId)
         values.put(companyId, userConfig.companyId)
-//        values.put(branchId, userConfig.branchId.toString())
-//        values.put(profilePicturePath, userConfig.profilePicturePath)
-//        values.put(age, userConfig.age.toString())
+
+        if (userConfig.profilePicturePath==null){
+            values.put(profilePicturePath, "")
+
+        }else{
+            values.put(profilePicturePath, userConfig.profilePicturePath.toString())
+
+        }
+                values.put(branchId, userConfig.branchId.toString())
+           values.put(age, userConfig.age.toString())
 
         values.put(key_IS_LOGIN, "false")
 
@@ -186,9 +193,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                 key_phoneNumber + "," +
                 key_token + "," +
                 companyId + "," +
-//                branchId + "," +
-//                profilePicturePath + "," +
-//                age + "," +
+
+                profilePicturePath + "," +
+                                branchId + "," +
+                age + "," +
 
                 key_IS_LOGIN +
 
@@ -232,15 +240,16 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                         if (cursor != null && cursor.getString(8) != null) {
                             user.companyId = cursor.getString(8)
                         }
-//                        if (cursor != null && cursor.getString(9) != null) {
-//                            user.branchId = cursor.getString(9)
-//                        }
-//                        if (cursor != null && cursor.getString(10) != null) {
-//                            user.profilePicturePath = cursor.getString(10)
-//                        }
-//                        if (cursor != null && cursor.getString(11) != null) {
-//                            user.age = cursor.getInt(11)
-//                        }
+//
+                        if (cursor != null && cursor.getString(9) != null) {
+                            user.profilePicturePath = cursor.getString(9)
+                        }
+                        if (cursor != null && cursor.getString(10) != null) {
+                            user.branchId = cursor.getInt(10)
+                        }
+                        if (cursor != null && cursor.getString(11) != null) {
+                            user.age = cursor.getInt(11)
+                        }
 
 
 

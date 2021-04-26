@@ -10,8 +10,8 @@
     tools:context=".createPOS.PosCatagoryActivity">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="796dp"
-        android:layout_height="525dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -31,13 +31,14 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/roboto"
-                android:text="POS CATEGORIES"
+                android:text="Restaurant subcategory"
                 android:textColor="@color/red"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textAllCaps="true"
                 app:autoSizeMaxTextSize="20sp"
                 app:autoSizeMinTextSize="16sp"
                 app:autoSizeStepGranularity="1sp"
@@ -48,16 +49,24 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="choose your pos category"
+                android:text="choose your Restaurant subcategory"
+                android:textAllCaps="true"
                 android:textColor="@color/appMainColor"
-                android:textSize="25sp"
-                android:layout_marginStart="40dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                app:autoSizeMaxTextSize="25sp"
-                app:autoSizeMinTextSize="22sp"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="15sp"
                 app:autoSizeStepGranularity="1sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
             <View
                 android:id="@+id/titleDividerNoCustom"
                 android:layout_width="match_parent"
@@ -75,13 +84,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-
-                app:layout_constraintStart_toStartOf="parent"
-
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.60"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom"
                 tools:listitem="@layout/home_page_item_cell" />
         </androidx.constraintlayout.widget.ConstraintLayout>

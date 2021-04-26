@@ -11,6 +11,8 @@ import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.home.HomeModel
+import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethodsActivity
+import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
 import kotlinx.android.synthetic.main.activity_pos_catagory.*
 
 class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate {
@@ -38,11 +40,11 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     fun setDashbordData() {
 
 
-        val data1 = HomeModel("Restaurant", 1,R.drawable.restaurant,"restaurant")
-//        val data2 = HomeModel("Supermarket",2, R.drawable.supermarket,"supermarket")
-        val data3 = HomeModel("Coffe shop",2, R.drawable.caffee,"caffee")
-//        val data4 = HomeModel("Smart assistant",4, R.drawable.smart,"smart assistant")
-//        val data5 = HomeModel("Hotel",5, R.drawable.hotel,"Hotel")
+        val data1 = HomeModel("Burger Restaurant", 1,R.drawable.ic_burger,"Burger Restaurant")
+
+        val data3 = HomeModel("Shawarma",2, R.drawable.ic_popularmeals,"Shawarma")
+        val data4 = HomeModel("Popular Meals",3, R.drawable.ic_popularmeals,"Popular Meals")
+        val data5 = HomeModel("Other",4, R.drawable.ic_othermeals,"Other")
 //        val data6 = HomeModel("Hypermarket",6, R.drawable.hypermarket,"hypermarket")
 //        val data7 = HomeModel("Restaurant & caffee",7, R.drawable.restaurantcaffee,"Restaurant & caffee")
 
@@ -52,8 +54,8 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         dashboardModel.add(data1)
 //        dashboardModel.add(data2)
         dashboardModel.add(data3)
-//        dashboardModel.add(data4)
-//        dashboardModel.add(data5)
+        dashboardModel.add(data4)
+        dashboardModel.add(data5)
 //        dashboardModel.add(data6)
 //        dashboardModel.add(data7)
 
@@ -65,9 +67,9 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
 
     override fun onSelectItemCategory(position: Int) {
         common.selectedServiceTypeId=dashboardModel[position].id
-        val i = Intent(this, PosCatCompanyDataActivity::class.java)
+//        val i = Intent(this, ProductManagerMainActivity::class.java)
+        val i = Intent(this, PaymentMethodsActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
         startActivity(i)
         finish()
     }

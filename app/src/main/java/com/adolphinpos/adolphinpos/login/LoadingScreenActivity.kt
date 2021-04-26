@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.adolphinpos.adolphinpos.CompanyServiceBranches.AvatarParser
 import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
@@ -57,7 +58,32 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
     }
 
     override fun didGetUserInfoSuccess(response: UserInfoModel) {
+      var profilePicturePathString=""
+        var ageString=0
+        var branchIdString=0
         try {
+            if (response.profilePicturePath==null){
+                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.profilePicturePath.toString())
+                profilePicturePathString=""
+            }else{
+
+                profilePicturePathString=response.profilePicturePath.toString()
+            }
+            if (response.age==null){
+                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.age.toString())
+                ageString=0
+            }else{
+
+                ageString=response.age as Int
+            }
+
+            if (response.branchId==null){
+                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.branchId.toString())
+                branchIdString=0
+            }else{
+
+                branchIdString=response.branchId as Int
+            }
             userInfo = UserInfoModel(
                 response.firstName!!,
                 response.lastName!!,
@@ -66,8 +92,9 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
                 response.email!!,
                 userConfig.auth_token,
                 userConfig.userid.toInt(),
-//                response.profilePicturePath!!.toString()
                response.companyId!!.toString(),
+                    profilePicturePathString,ageString,branchIdString
+
 //
 //,response.age!!,response.branchId
 
@@ -80,7 +107,8 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
             startActivity(mainIntent)
             finish()
         }catch (e:Exception){
-            Log.d("EEEEEEEEEEEE",e.localizedMessage)
+            println(e.stackTrace)
+            Log.d("EEEEEEEEEEEE","***********************************************")
         }
 
     }
@@ -91,5 +119,12 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
 
     override fun didEmpty() {
 
+    }
+
+    override fun didAddSuccess(response: AvatarParser) {
+
+    }
+
+    override fun didAddFail(msg: String) {
     }
 }
