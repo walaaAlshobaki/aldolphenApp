@@ -104,4 +104,8 @@ dependencies {
     implementation 'com.github.armcha:LuseenBottomNavigation:1.8.2'
     implementation 'com.roughike:bottom-bar:2.3.1'
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.companyBranch.CompanyBranchActivity
 import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethodsActivity
 import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
@@ -45,19 +46,14 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         val data3 = HomeModel("Shawarma",2, R.drawable.ic_popularmeals,"Shawarma")
         val data4 = HomeModel("Popular Meals",3, R.drawable.ic_popularmeals,"Popular Meals")
         val data5 = HomeModel("Other",4, R.drawable.ic_othermeals,"Other")
-//        val data6 = HomeModel("Hypermarket",6, R.drawable.hypermarket,"hypermarket")
-//        val data7 = HomeModel("Restaurant & caffee",7, R.drawable.restaurantcaffee,"Restaurant & caffee")
 
 
 
 
         dashboardModel.add(data1)
-//        dashboardModel.add(data2)
         dashboardModel.add(data3)
         dashboardModel.add(data4)
         dashboardModel.add(data5)
-//        dashboardModel.add(data6)
-//        dashboardModel.add(data7)
 
 
 
@@ -68,10 +64,10 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     override fun onSelectItemCategory(position: Int) {
         common.selectedServiceTypeId=dashboardModel[position].id
 //        val i = Intent(this, ProductManagerMainActivity::class.java)
-        val i = Intent(this, PaymentMethodsActivity::class.java)
+        val i = Intent(this, CompanyBranchActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
-        finish()
+
     }
 
     override fun onSelectItemProduct(position: Int, action: String) {

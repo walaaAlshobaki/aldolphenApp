@@ -27,6 +27,7 @@ import com.adolphinpos.adolphinpos.employee_permissions.PoliicyPermissionModel
 import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.home.ServiceTypeModel
 import com.adolphinpos.adolphinpos.home.ServiesModel
+import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodModel
 import com.adolphinpos.adolphinpos.product.ProductModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.CashDrawerModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.productManagmentModel
@@ -1151,6 +1152,7 @@ class DashboardAdapter(
 
 //        var productsName: TextView= itemView.findViewById(R.id.productsName)
         var titlec: TextView= itemView.findViewById(R.id.txt)
+        var textBack: TextView= itemView.findViewById(R.id.textBack)
 
 
 
@@ -1166,6 +1168,7 @@ class DashboardAdapter(
 //                        image.setImageResource(R.drawable.test)
 
                     titlec.text=itemCat.currenciesCode
+                    textBack.text=itemCat.currenciesName
 
 
 //                    }
@@ -1183,7 +1186,31 @@ class DashboardAdapter(
 ////                        context.startActivity(intent)
 //                    }
                 }
+                data!![position] is PaymentMethoodModel.Data -> {
+                    val itemCat = data[position] as  PaymentMethoodModel.Data
+//                    if (itemCat.id==-2){
+//                        image.setImageResource(R.drawable.ic_add)
+//                    }else{
+//                        image.setImageResource(R.drawable.test)
 
+                    titlec.text=itemCat.name
+                    textBack.text=itemCat.name
+
+//                    }
+//                    productsName.text=itemCat.name
+
+
+
+//                    myTextView.setOnClickListener {
+//                        onClick!!.onSelectItemCategory(position)
+////                        val intent = Intent(
+////                            context,
+////                            ShowImages::class.java
+////                        )
+////                        intent.putExtra("image", image)
+////                        context.startActivity(intent)
+//                    }
+                }
 
 
             }

@@ -94,4 +94,14 @@ class CurrencyActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDel
 
     override fun didEmpty() {
     }
+
+    override fun didAddCurrencyTypeSuccess(response: AddCurrencyTypeModel) {
+
+    }
+
+
+
+    override fun didAddCurrencyTypeFail(msg: String) {
+
+    }
 }

@@ -10,6 +10,7 @@
     <color name="appColor">#FFFFFFFF</color>
     <color name="appMainColor">#202854</color>
     <color name="appMainColoro">#81202854</color>
+    <color name="appMainColoro2">#0F202854</color>
     <color name="appMainColor2">#171D3C</color>
     <color name="colorBlackGradient">#efefef</color>
     <color name="layer">#E6E5E6</color>
@@ -26,5 +27,6 @@
     <color name="backbtn">#A5A5A5</color>
     <color name="cat">#DFDFDF</color>
     <color name="card">#A9000000</color>
+    <color name="card2">#0FFFFFFF</color>
 
 </resources>

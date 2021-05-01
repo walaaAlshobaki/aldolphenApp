@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="5dp"
     app:cardBackgroundColor="@color/white"
     android:elevation="4dp"
     android:layout_marginStart="5dp"
@@ -12,33 +12,36 @@
     app:layout_constraintWidth_percent="0.30"
     android:layout_marginBottom="20dp">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:background="@color/appMainColor"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:background="@color/layer"
         android:id="@+id/image_gradient"
         >
         <TextView
+            android:id="@+id/textBack"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Madda"
             android:gravity="center"
-            android:textSize="40sp"
-
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeMinTextSize="35sp"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:autoSizeMaxTextSize="20sp"
+            app:autoSizeMinTextSize="15sp"
             app:autoSizeStepGranularity="1sp"
             android:fontFamily="@font/roboto"
-            android:textColor="@color/backbtn"/>
+            android:textColor="@color/appMainColoro2"/>
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_check2"
+            android:id="@+id/check"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_checked"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/appMainColor" />
         <TextView
             android:id="@+id/txt"
             android:layout_width="wrap_content"
@@ -49,7 +52,7 @@
             android:text="POS"
 
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/appMainColor"
             android:textSize="16sp"
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="14sp"

@@ -1,10 +1,15 @@
 package com.adolphinpos.adolphinpos.home
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
@@ -32,6 +37,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
 //   var dashboardModel: ArrayList<HomeModel> = ArrayList()
     var dashboardModel: ArrayList<ServiceTypeModel.Data> = ArrayList()
     var mPresenter: ServicesPresenter? = null
+    val MY_PERMISSIONS_REQUEST_LOCATION = 99
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +49,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         val llm = GridLayoutManager(this, 6)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = llm
+        checkLocationPermission()
 //        setDashbordData()
         dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
         mPresenter!!.getService()
@@ -109,7 +116,63 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         dashboardAdapter.notifyDataSetChanged()
 
     }
+fun checkLocationPermission(): Boolean {
+        return if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSIONS_REQUEST_LOCATION
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSIONS_REQUEST_LOCATION
+                )
+            }
+            false
+        } else {
+            true
+        }
+    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            MY_PERMISSIONS_REQUEST_LOCATION -> {
+                if (grantResults.size > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                    }
+                } else {
+                    Toast.makeText(
+                        this, "permission denied",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                return
+            }
+        }
+
+}
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId.toString())

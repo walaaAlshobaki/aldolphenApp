@@ -50,10 +50,13 @@ class UrlAPIs {
     val reset = "http://161.97.164.114:8080/api/User/RestPassword"
     val Invite = "http://161.97.164.114:8080/api/User/Invite"
     val addPolice = "http://161.97.164.114:8080/api/User/Poliicy"
+    val addCurrency= "http://161.97.164.114:8080/api/Company/Currency"
+    val addPaymentMethood = "http://161.97.164.114:8080/api/Company/PaymentMethod"
     val Users = "Company/Users?"
     val Branches = "Company/Service/Branches?"
     val restPhoneNumber = "http://161.97.164.114:8080/api/User/RestPhoneNumber"
     val Currency = "Setup/Currency?"
+    val PaymentMethood = "Setup/PaymentMethood?"
 
 }
 

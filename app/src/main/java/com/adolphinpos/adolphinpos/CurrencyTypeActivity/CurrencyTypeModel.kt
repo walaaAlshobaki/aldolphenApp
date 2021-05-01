@@ -21,6 +21,7 @@ data class CurrencyTypeModel(
         @SerializedName("id")
         var id: Int,
         @SerializedName("name")
-        var name: String
+        var name: String,
+        var isSelected : Boolean= false
     )
 }
