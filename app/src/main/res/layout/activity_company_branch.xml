@@ -37,8 +37,8 @@
                     android:text="company Branch"
                     android:textAllCaps="true"
                     android:textColor="@color/red"
-                    android:textSize="18sp"
-                    app:autoSizeMaxTextSize="20sp"
+                    android:textSize="16sp"
+                    app:autoSizeMaxTextSize="18sp"
                     app:autoSizeMinTextSize="16sp"
                     app:autoSizeStepGranularity="1sp"
                     app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -53,8 +53,8 @@
                     android:textColor="@color/appMainColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:autoSizeMaxTextSize="25sp"
-                    app:autoSizeMinTextSize="20sp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="17sp"
                     app:autoSizeStepGranularity="1sp"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -99,31 +99,36 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/firstNameTextInputLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:background="@drawable/back"
+                                android:layout_height="50dp"
+                                android:textAlignment="viewStart"
                                 android:focusable="true"
-                                android:hint="Branch Name"
+                                android:theme="@style/LoginTextInputLayoutStyle"
+                                app:placeholderTextColor="@color/appMainColor"
+                                app:placeholderText="write your Branch Name"
                                 android:textColorHint="@color/appMainColor"
                                 app:hintTextColor="@color/appMainColor"
-                                app:placeholderTextColor="@color/border">
-
+                                android:hint="Branch Name"
+                                android:fontFamily="@font/roboto_bold"
+                             >
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/UserName"
+                                    android:id="@+id/BranchName"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="20dp"
-                                    android:background="@android:color/transparent"
-                                    android:fontFamily="@font/roboto_bold"
-                                    android:textColor="@color/appMainColor"
+                                    android:layout_height="match_parent"
+                                    app:placeholderTextColor="@color/border"
+                                    app:placeholderText="Branch Name"
+                                    android:textSize="13sp"
+                                    android:padding="10dp"
+                                    android:background="@drawable/back"
                                     android:textColorHint="@color/border"
-                                    android:textSize="13dp"
-                                    app:placeholderTextColor="@color/border" />
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:textColor="@color/appMainColor" />
+
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="55dp"
                             android:layout_marginTop="10dp">
 
                             <TextView
@@ -143,7 +148,7 @@
                                 android:id="@+id/con"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="12dp"
+                                android:layout_marginTop="15dp"
                                 app:cardCornerRadius="12dp"
                                 app:cardElevation="1dp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +205,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="55dp"
                             android:layout_marginTop="10dp"
                             >
 
@@ -221,7 +226,7 @@
                                 android:id="@+id/PhoneTextInputLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="12dp"
+                                android:layout_marginTop="15dp"
                                 app:cardCornerRadius="12dp"
                                 app:cardElevation="1dp"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -239,16 +244,17 @@
                                         android:padding="5dp">
 
 
-                                        <TextView
+                                        <EditText
                                             android:id="@+id/phoneNum"
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
-                                            android:layout_marginStart="10dp"
                                             android:clickable="true"
-                                            android:fontFamily="@font/roboto"
-                                            android:gravity="center_vertical"
                                             android:hint="Write your phone No."
-                                            android:textColor="@color/appMainColoro"
+
+                                            android:layout_marginStart="8dp"
+
+                                            android:phoneNumber="true"
+                                            android:background="@android:color/transparent"
                                             android:textSize="15sp"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintStart_toEndOf="@+id/flagphone"
@@ -259,7 +265,7 @@
                                             android:id="@+id/flagphone"
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
-                                            android:layout_marginStart="8dp"
+
                                             android:src="@drawable/sa"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -284,8 +290,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/BranchesTextInputLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:background="@drawable/back"
+                                android:layout_height="50dp"
                                 android:focusable="true"
                                 android:hint="City"
                                 android:textColorHint="@color/appMainColor"
@@ -295,13 +300,18 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/Branches"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="20dp"
-                                    android:background="@android:color/transparent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp"
+                                    android:background="@drawable/back"
                                     android:fontFamily="@font/roboto_bold"
                                     android:textColor="@color/appMainColor"
                                     android:textColorHint="@color/border"
                                     android:textSize="13dp"
+                                    android:clickable="true"
+                                    android:cursorVisible="false"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:importantForAutofill="no"
                                     app:placeholderText="write your First name"
                                     app:placeholderTextColor="@color/border" />
                             </com.google.android.material.textfield.TextInputLayout>

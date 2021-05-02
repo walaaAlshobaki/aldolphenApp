@@ -32,7 +32,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/border</item>
         <item name="boxStrokeWidth">1dp</item>
 
@@ -40,7 +40,10 @@
         <item name="errorTextColor">@color/red</item>
 
     </style>
-
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#fff</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
     <style name="myErrorTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">16sp</item>
     </style>
@@ -82,10 +85,21 @@
     <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
+    <style name="MyTransparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">#68070000</item> <!-- Background color transparency -->
+        <item name="android:windowNoTitle">true</item><!-- No title -->
+        <item name="android:windowIsTranslucent">true</item><!-- Translucent, set to false without transparency effect -->
+        <item name="android:backgroundDimEnabled">true</item><!-- fuzzy -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item> <!-- Window style Dialog -->
+    </style>
     <style name="Theme.AppCompat.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.1</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="DialogTheme" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 </resources>

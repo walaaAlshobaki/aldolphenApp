@@ -19,7 +19,7 @@
         badgeHidesWhenActive="true" />
     <tab
         id="@+id/transaction"
-        icon="@drawable/tr"
+        icon="@drawable/test12"
         inActiveColor="@color/white"
         activeColor="@color/red"
         barColorWhenSelected="@color/appMainColor"

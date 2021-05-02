@@ -1,5 +1,6 @@
 package com.adolphinpos.adolphinpos.paymentMethods
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,8 @@ import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeModel
 import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypePresenter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
+import com.adolphinpos.adolphinpos.steps.Step2Activity
 import kotlinx.android.synthetic.main.activity_payment_methods.*
 import kotlinx.android.synthetic.main.activity_payment_methods.recyclerView
 
@@ -48,6 +51,11 @@ class PaymentMethodsActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
         confirm.setOnClickListener {
             mPresenter!!.addCurrencyType(common.userCurrencyType)
             paymentMethoodPresenter!!.addPaymentMethood(common.userPayment)
+
+
+            val i = Intent(this, ProductManagerMainActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
         }
     }
 
@@ -97,20 +105,36 @@ class PaymentMethodsActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
     }
 
     override fun didAddPaymentMethoodSuccess(response: AddCurrencyTypeModel) {
+        Log.d("EEEEEEEEEEEEEEEEEEEEEEEEEEEE","EEEEEEEEEEEEEEEEEEEEEEEEe")
+        val i = Intent(this, ProductManagerMainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(i)
+
 
     }
 
     override fun didAddPaymentMethoodFail(msg: String) {
+        if (msg==null){
+            val i = Intent(this, ProductManagerMainActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
 
     }
 
     override fun didAddCurrencyTypeSuccess(response: AddCurrencyTypeModel) {
-
+        val i = Intent(this, ProductManagerMainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(i)
     }
 
 
 
     override fun didAddCurrencyTypeFail(msg: String) {
-
+        if (msg==null){
+            val i = Intent(this, ProductManagerMainActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(i)
+        }
     }
 }

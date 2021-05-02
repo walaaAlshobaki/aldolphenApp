@@ -24,9 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdolphinPOSApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".companyBranch.CompanyBranchActivity"
+        <activity android:name=".steps.Step3Activity"></activity>
+        <activity android:name=".steps.Step2Activity" />
+        <activity
+            android:name=".companyBranch.CompanyBranchActivity"
             android:theme="@style/Theme.D1NoTitleDim4"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".paymentMethods.PaymentMethodsActivity"
             android:theme="@style/Theme.D1NoTitleDim4"
@@ -48,7 +51,8 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".productManagerHomePage.ui.lock.LockActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/MyTransparent"
+            />
         <activity
             android:name=".productManagerHomePage.ui.home.ProceedActivity"
             android:theme="@style/Theme.D1NoTitleDim4"

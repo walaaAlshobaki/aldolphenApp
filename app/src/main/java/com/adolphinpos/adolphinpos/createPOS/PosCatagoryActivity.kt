@@ -14,6 +14,7 @@ import com.adolphinpos.adolphinpos.companyBranch.CompanyBranchActivity
 import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethodsActivity
 import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
+import com.adolphinpos.adolphinpos.steps.Step2Activity
 import kotlinx.android.synthetic.main.activity_pos_catagory.*
 
 class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate {
@@ -63,8 +64,9 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
 
     override fun onSelectItemCategory(position: Int) {
         common.selectedServiceTypeId=dashboardModel[position].id
-//        val i = Intent(this, ProductManagerMainActivity::class.java)
-        val i = Intent(this, CompanyBranchActivity::class.java)
+        val i = Intent(this, ProductManagerMainActivity::class.java)
+//        val i = Intent(this, CompanyBranchActivity::class.java)
+//        val i = Intent(this, Step2Activity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(i)
 

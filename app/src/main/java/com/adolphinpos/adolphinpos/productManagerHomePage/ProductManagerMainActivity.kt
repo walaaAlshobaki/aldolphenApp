@@ -91,7 +91,7 @@ class ProductManagerMainActivity : AppCompatActivity(),
         toggle.setDrawerIndicatorEnabled(false);
         toggle.setHomeAsUpIndicator(R.drawable.ic_logohome);
         toggle.syncState()
-//        navigationView.setNavigationItemSelectedListener(this)
+        navigationView.setNavigationItemSelectedListener(this)
         val headerLayout = navigationView.getHeaderView(0)
         toggle.toolbarNavigationClickListener = View.OnClickListener {
             val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout

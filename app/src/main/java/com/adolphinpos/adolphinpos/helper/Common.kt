@@ -14,6 +14,8 @@ class Common {
     var apiDomainRoot:String=""
     var userToken:String=""
     var codeTimer:Int=0
+    var branchId:Int=0
+    var isLock:Boolean=false
     var userPhone:String=""
     var userPrermtion:ArrayList<Int> = arrayListOf()
     var userPayment:ArrayList<Int> = arrayListOf()

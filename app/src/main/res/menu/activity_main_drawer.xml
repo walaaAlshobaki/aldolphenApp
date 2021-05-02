@@ -16,12 +16,12 @@
             android:title="CASH IN/OUT" />
         <item
             android:id="@+id/transaction"
-            android:icon="@drawable/tr"
+            android:icon="@drawable/test12"
             android:title="TRANSACTION" />
 
         <item
             android:id="@+id/hold"
-            android:icon="@drawable/holdo"
+            android:icon="@drawable/test12"
             android:title="HOLDED ORDERS " />
 
         <item
