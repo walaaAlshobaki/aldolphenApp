@@ -1,33 +1,62 @@
 package com.adolphinpos.adolphinpos.productManagerHomePage.ui.orderPaymant
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.adolphinpos.adolphinpos.Adapters.CurrencyTypeAdapter
+import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
+import com.adolphinpos.adolphinpos.Adapters.PaymentAdapter
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.AddCurrencyTypeModel
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeDelegate
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeModel
+import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypePresenter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodDelegate
+import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodModel
+import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodPresnter
+import kotlinx.android.synthetic.main.fragment_order_paymant.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.android.synthetic.main.fragment_order_paymant.view.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderPaymantFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class OrderPaymantFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+class OrderPaymantFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate,
+        CurrencyTypeDelegate, PaymentMethoodDelegate {
+
+    var currencyModel: ArrayList<CurrencyTypeModel.Data> = ArrayList()
+    var paymentMethoodModel: ArrayList<PaymentMethoodModel.Data> = ArrayList()
+    private lateinit var dashboardAdapter: CurrencyTypeAdapter
+
+    private lateinit var paymentMethoodDashboardAdapter: PaymentAdapter
+    var mPresenter: CurrencyTypePresenter? = null
+    var paymentMethoodPresenter: PaymentMethoodPresnter? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        val llm = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
+        val llm2 = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
+
+        view.recyclerView.layoutManager = llm
+        view. recyclerViewCurrency.layoutManager = llm2
+        mPresenter = CurrencyTypePresenter(requireActivity())
+        mPresenter!!.delegate = this
+        paymentMethoodPresenter = PaymentMethoodPresnter(requireActivity()!!)
+        paymentMethoodPresenter!!.delegate = this
+
+        mPresenter!!.getCurrencyType()
+        paymentMethoodPresenter!!.getPaymentMethood()
+        dashboardAdapter= CurrencyTypeAdapter( currencyModel,requireActivity()!!)
+//        dashboardAdapter.setOnClickItemCategory(this)
+        paymentMethoodDashboardAdapter= PaymentAdapter(paymentMethoodModel,requireActivity())
+//        paymentMethoodDashboardAdapter.setOnClickItemCategory(this)
+        view. recyclerView.adapter = dashboardAdapter
+        view.recyclerViewCurrency.adapter = paymentMethoodDashboardAdapter
+
     }
 
     override fun onCreateView(
@@ -35,26 +64,92 @@ class OrderPaymantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_paymant, container, false)
+        val view=inflater.inflate(R.layout.fragment_order_paymant, container, false)
+
+        val llm = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
+        val llm2 = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
+
+        view.recyclerView.layoutManager = llm
+        view. recyclerViewCurrency.layoutManager = llm2
+        mPresenter = CurrencyTypePresenter(requireActivity())
+        mPresenter!!.delegate = this
+        paymentMethoodPresenter = PaymentMethoodPresnter(requireActivity())
+        paymentMethoodPresenter!!.delegate = this
+
+        mPresenter!!.getCurrencyType()
+        paymentMethoodPresenter!!.getPaymentMethood()
+        dashboardAdapter= CurrencyTypeAdapter( currencyModel,requireActivity())
+//        dashboardAdapter.setOnClickItemCategory(this)
+        paymentMethoodDashboardAdapter= PaymentAdapter(paymentMethoodModel,requireActivity())
+//        paymentMethoodDashboardAdapter.setOnClickItemCategory(this)
+        view.recyclerView.adapter = dashboardAdapter
+        view.recyclerViewCurrency.adapter = paymentMethoodDashboardAdapter
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrderPaymantFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderPaymantFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onSelectItemCategory(position: Int) {
+
     }
+
+    override fun onSelectItemProduct(position: Int, action: String) {
+
+    }
+
+    override fun didGetCurrencyTypeSuccess(response: CurrencyTypeModel) {
+        try {
+            currencyModel.addAll(response.data)
+            dashboardAdapter = CurrencyTypeAdapter( currencyModel,requireActivity())
+
+            dashboardAdapter.notifyDataSetChanged()
+            recyclerView.adapter = dashboardAdapter
+
+        } catch (ex: Exception) {
+
+            Log.d("apiExepction inside", ex.localizedMessage)
+
+
+        }
+    }
+
+    override fun didGetCurrencyTypeFail(msg: String) {
+
+    }
+
+    override fun didGetPaymentMethoodSuccess(response: PaymentMethoodModel) {
+        paymentMethoodModel.addAll(response.data)
+        paymentMethoodDashboardAdapter = PaymentAdapter(paymentMethoodModel,requireActivity())
+
+        paymentMethoodDashboardAdapter.notifyDataSetChanged()
+        recyclerViewCurrency.adapter = paymentMethoodDashboardAdapter
+
+    }
+
+    override fun didGetPaymentMethoodFail(msg: String) {
+
+    }
+
+    override fun didEmpty() {
+
+    }
+
+    override fun didAddPaymentMethoodSuccess(response: AddCurrencyTypeModel) {
+
+
+
+    }
+
+    override fun didAddPaymentMethoodFail(msg: String) {
+
+
+    }
+
+    override fun didAddCurrencyTypeSuccess(response: AddCurrencyTypeModel) {
+
+    }
+
+
+    override fun didAddCurrencyTypeFail(msg: String) {
+
+    }
+
 }

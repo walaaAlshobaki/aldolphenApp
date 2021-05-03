@@ -142,7 +142,7 @@ class ProductManagerMainActivity : AppCompatActivity(),
            findNavController(R.id.nav_host_fragment).navigate(R.id.Restaurant)
 
             }else if(tabId == R.id.hint){
-
+                findNavController(R.id.nav_host_fragment).navigate(R.id.OrderPaymantFragment)
             }else if(tabId == R.id.lock){
                 findNavController(R.id.nav_host_fragment).navigate(R.id.lock)
 
@@ -158,49 +158,27 @@ class ProductManagerMainActivity : AppCompatActivity(),
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
-//        R.id.nav_home,
-//                R.id.nav_gallery,
-//                R.id.transaction,
-//                R.id.hold,
-//                R.id.products,
-//                R.id.Restaurant,
-//                R.id.hint,
-//                R.id.lock
+
         if (id == R.id.nav_home) {
-//            val intent = Intent(
-//                com.towInOnesolution.bymyeyes.ui.HomePage.currentActivity,
-//                CustomAlartDialog::class.java
-//            )
-//            intent.putExtra("action", "language")
-//            startActivity(intent)
+            findNavController(R.id.nav_host_fragment)
+                    .navigate(R.id.nav_home)
         } else if (id == R.id.nav_gallery) {
-//            val intent = Intent(
-//                com.towInOnesolution.bymyeyes.ui.HomePage.currentActivity,
-//                CustomAlartDialog::class.java
-//            )
-//            intent.putExtra("action", "logout")
-//            startActivity(intent)
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_gallery)
         } else if (id == R.id.transaction) {
-//            val userId: String = PrefUtilities.with(this).getUserId()
-//            val profileIntent = Intent(applicationContext, HelperProfileActivity::class.java)
-//            profileIntent.putExtra("userId", userId)
-//            println("userId   $userId")
-//            startActivity(profileIntent)
+            findNavController(R.id.nav_host_fragment).navigate(R.id.transaction)
         } else if (id == R.id.hold) {
-//            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
-//            startActivity(contactIntent)
+            findNavController(R.id.nav_host_fragment).navigate(R.id.hold)
         }else if (id == R.id.products) {
 //            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
 //            startActivity(contactIntent)
         }else if (id == R.id.Restaurant) {
-//            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
-//            startActivity(contactIntent)
+            findNavController(R.id.nav_host_fragment).navigate(R.id.Restaurant)
         }else if (id == R.id.hint) {
 //            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
 //            startActivity(contactIntent)
         }else if (id == R.id.lock) {
-//            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
-//            startActivity(contactIntent)
+
+            findNavController(R.id.nav_host_fragment).navigate(R.id.lock)
         }
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         drawer.closeDrawer(GravityCompat.START)

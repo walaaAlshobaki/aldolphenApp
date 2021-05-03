@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.ViewPruduct.ViewProductActivity
+
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
@@ -79,11 +82,22 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
 
         view.Proceed.setOnClickListener {
 
+            ProceedActivity.visibility=View.VISIBLE
 
 
-            findNavController().navigate(R.id.procees)
 
         }
+        close.setOnClickListener {
+            ProceedActivity.visibility=View.GONE
+
+        }
+
+        onlineCon.setOnClickListener {
+            ProceedActivity.visibility=View.GONE
+
+            findNavController().navigate(R.id.procees)
+        }
+
 
         categoryModel.add(CategoryModel(1,"sandwitches","",false))
         categoryModel.add(CategoryModel(2,"Dishes","",false))

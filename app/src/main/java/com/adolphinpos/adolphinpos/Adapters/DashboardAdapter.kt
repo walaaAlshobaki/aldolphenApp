@@ -29,9 +29,13 @@ import com.adolphinpos.adolphinpos.home.ServiceTypeModel
 import com.adolphinpos.adolphinpos.home.ServiesModel
 import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodModel
 import com.adolphinpos.adolphinpos.product.ProductModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.HallsInfoModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.MainHallsModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.TableModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.CashDrawerModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.productManagmentModel
 import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -57,6 +61,7 @@ class DashboardAdapter(
     val VIEW_TYPE_15 = 15
     val VIEW_TYPE_16 = 16
     val VIEW_TYPE_17 = 17
+    val VIEW_TYPE_18 = 18
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
@@ -141,6 +146,14 @@ class DashboardAdapter(
                     false
                 )
             )
+        }else if (viewType == VIEW_TYPE_18) {
+            HallsViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.permission_item_cell,
+                    parent,
+                    false
+                )
+            )
         }else if (viewType == VIEW_TYPE_11) {
             CashDrawerViewHolder(
                 LayoutInflater.from(parent.context).inflate(
@@ -206,18 +219,7 @@ class DashboardAdapter(
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        val params = LinearLayout.LayoutParams(
-//            ViewGroup.LayoutParams.WRAP_CONTENT,
-//            ViewGroup.LayoutParams.WRAP_CONTENT
-//        )
-//        val Width = params.width
-//        val Height = params.height
-//
-//        params.weight =  (Width /2f)
-//        params.height=  (Height/ 4.5).toInt()
-//
-//
-//        holder.itemView.layoutParams = params
+
         if (action=="DashboardViewHolder"){
             (holder as DashboardViewHolder).bind(position)
 
@@ -254,6 +256,8 @@ class DashboardAdapter(
             (holder as HallsInfoHoldViewHolder).bind(position)
         }else if (action== "PaymentMethodsActivity"){
             (holder as PaymantViewModel).bind(position)
+        }else if (action== "HallsViewHolder"){
+            (holder as HallsViewHolder).bind(position)
         }
 
 
@@ -292,6 +296,8 @@ class DashboardAdapter(
             VIEW_TYPE_16
         } else if (action == "PaymentMethodsActivity") {
             VIEW_TYPE_17
+        } else if (action == "HallsViewHolder") {
+            VIEW_TYPE_18
         } else {
             VIEW_TYPE_TWO
         }
@@ -712,57 +718,28 @@ class DashboardAdapter(
         RecyclerView.ViewHolder(itemView) {
 
 
-//        var image: ImageView= itemView.findViewById(R.id.image)
+        var tableName: TextView= itemView.findViewById(R.id.tableName)
+        var table: ImageView= itemView.findViewById(R.id.table)
 //        var container: ConstraintLayout= itemView.findViewById(R.id.container)
 
         @SuppressLint("SetTextI18n")
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is CashDrawerModel -> {
-//                    val itemCat = data[position] as IconModel
-//                    if (itemCat.id==-2){
-//                        image.setImageResource(R.drawable.ic_add)
-//                    }else{
-//                        image.setImageResource(R.drawable.ic_sandweshes)
-//
-////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
-//
-//                    }
-////                    myTextView.text=itemCat.categoryName
-//                    if(!itemCat.isSelected){
-//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
-////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
-//                        image.setColorFilter(context.resources.getColor(R.color.red))
-////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
-//
-//
-//                    }else{
-//
-//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
-////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-//                        image.setColorFilter(context.resources.getColor(R.color.white))
-//
-////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
-//
-//                    }
-//
-//
-//                    image.setOnClickListener {
-//                        onClick!!.onSelectItemCategory(position)
-////                        val intent = Intent(
-////                            context,
-////                            ShowImages::class.java
-////                        )
-////                        intent.putExtra("image", image)
-////                        context.startActivity(intent)
-//                    }
+                data!![position] is TableModel.Data -> {
+                    val itemCat = data[position] as TableModel.Data
+                    if (itemCat.status==1){
+                        table.setImageResource(R.drawable.ic_free)
+                    }else{
+                        table.setImageResource(R.drawable.ic_checkedin)
+
+                    }
+                    tableName.text=itemCat.id.toString()
+
                 }
-//
-//
-//
+
             }
-//
+
         }
 
     }
@@ -770,59 +747,27 @@ class DashboardAdapter(
         RecyclerView.ViewHolder(itemView) {
 
 
-//        var image: ImageView= itemView.findViewById(R.id.image)
-//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+        var image: ImageView = itemView.findViewById(R.id.imageView11)
+        var count: TextView = itemView.findViewById(R.id.count)
+        var hallsName: TextView = itemView.findViewById(R.id.hallsName)
 
         @SuppressLint("SetTextI18n")
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is CashDrawerModel -> {
-//                    val itemCat = data[position] as IconModel
-//                    if (itemCat.id==-2){
-//                        image.setImageResource(R.drawable.ic_add)
-//                    }else{
-//                        image.setImageResource(R.drawable.ic_sandweshes)
-//
-////                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
-//
-//                    }
-////                    myTextView.text=itemCat.categoryName
-//                    if(!itemCat.isSelected){
-//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
-////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
-//                        image.setColorFilter(context.resources.getColor(R.color.red))
-////                        myTextView.setTextColor(context.resources.getColor(R.color.red))
-//
-//
-//                    }else{
-//
-//                        container.setBackgroundColor(context.resources.getColor(R.color.red))
-////                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-//                        image.setColorFilter(context.resources.getColor(R.color.white))
-//
-////                        myTextView.setTextColor(context.resources.getColor(R.color.white))
-//
-//                    }
-//
-//
-//                    image.setOnClickListener {
-//                        onClick!!.onSelectItemCategory(position)
-////                        val intent = Intent(
-////                            context,
-////                            ShowImages::class.java
-////                        )
-////                        intent.putExtra("image", image)
-////                        context.startActivity(intent)
-//                    }
+                data!![position] is HallsInfoModel -> {
+                    val itemCat = data[position] as HallsInfoModel
+
+                    image.setImageResource(itemCat.Image)
+
+                    count.text = itemCat.count.toString()
+                    hallsName.text = itemCat.name
+
                 }
 //
-//
-//
             }
-//
-        }
 
+        }
     }
     private inner class CategoryViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -862,6 +807,53 @@ class DashboardAdapter(
                         myTextView.setTextColor(context.resources.getColor(R.color.white))
 
                     }
+
+
+                    myTextView.setOnClickListener {
+                        onClick!!.onSelectItemCategory(position)
+//                        val intent = Intent(
+//                            context,
+//                            ShowImages::class.java
+//                        )
+//                        intent.putExtra("image", image)
+//                        context.startActivity(intent)
+                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    private inner class HallsViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var myTextView: TextView= itemView.findViewById(R.id.permissionsText)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is MainHallsModel.Data -> {
+                    val itemCat = data[position] as MainHallsModel.Data
+
+                    myTextView.text=itemCat.name
+                    if(!itemCat.isSelected){
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+                        myTextView.setTextColor(context.resources.getColor(R.color.appMainColor))
+
+                    }else{
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+                    }
+
+
+
+
 
 
                     myTextView.setOnClickListener {

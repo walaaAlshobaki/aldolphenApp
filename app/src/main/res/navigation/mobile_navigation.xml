@@ -12,14 +12,16 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/procees"
-            app:destination="@id/ProceedActivity" />
+            app:destination="@id/OrderPaymantFragment" />
     </fragment>
     <activity
         android:id="@+id/ProceedActivity"
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.ProceedActivity"
         android:label="ProceedActivity"
         tools:layout="@layout/activity_proceed"
-        />
+        >
+
+    </activity>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -43,6 +45,12 @@
         android:label="Restaurant"
         tools:layout="@layout/fragment_restaurant_man" />
 
+
+    <fragment
+        android:id="@+id/OrderPaymantFragment"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.orderPaymant.OrderPaymantFragment"
+        android:label="OrderPaymantFragment"
+        tools:layout="@layout/fragment_order_paymant" />
     <activity
         android:id="@+id/lock"
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.lock.LockActivity"

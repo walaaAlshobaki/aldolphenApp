@@ -42,6 +42,8 @@ class UrlAPIs {
     val Country = "Country?"
     val userInfo = "User/Info?"
     val Poliicy = "User/Poliicy?"
+    val Hall = "Company/Hall?"
+    val Tables = "Company/Tables?"
     val PoliicyPermissions = "User/Poliicy/Permissions?"
     val Permissions = "User/Permissions?"
     val Service = "Service?"

@@ -1,21 +1,31 @@
 package com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import kotlinx.android.synthetic.main.fragment_restaurant_man.*
 import kotlinx.android.synthetic.main.fragment_restaurant_man.view.*
 
-class RestaurantManFragment : Fragment() , DashboardAdapter.OnItemselectedDelegate{
-    var hallsModel: ArrayList<HallsModel> = ArrayList()
+class RestaurantManFragment : Fragment() , DashboardAdapter.OnItemselectedDelegate,HallsDelegate{
+
+
+    var mModelList: ArrayList<MainHallsModel.Data> = ArrayList()
+    private lateinit var mAdapter: DashboardAdapter
+
+    var mPresenter: HallsPresenter?=null
+    var hallsModel: ArrayList<TableModel.Data> = ArrayList()
     var hallsInfoModel: ArrayList<HallsInfoModel> = ArrayList()
     private lateinit var dashboardAdapter: DashboardAdapter
     private lateinit var infoDashboardAdapter: DashboardAdapter
+    private lateinit var recyclerViewHalls: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +44,20 @@ class RestaurantManFragment : Fragment() , DashboardAdapter.OnItemselectedDelega
         val llm = GridLayoutManager(activity, 9)
         llm.orientation = LinearLayoutManager.VERTICAL
         root.recyclerView.layoutManager = llm
-        root.recyclerView!!.setHasFixedSize(true)
+        mPresenter=HallsPresenter(requireActivity())
+        mPresenter!!.delegate = this
+
+        mAdapter =DashboardAdapter(requireActivity(), mModelList,"HallsViewHolder")
+        mAdapter.setOnClickItemCategory(this)
+
+        val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
+        recyclerViewHalls=root.recyclerViewHalls
+      recyclerViewHalls!!.layoutManager = linearVertical
+
+        recyclerViewHalls.setHasFixedSize(true)
+        recyclerViewHalls.adapter = mAdapter
+        getListData()
+
         dashboardAdapter = DashboardAdapter(requireActivity(), hallsModel,"hallsModel")
         dashboardAdapter.setOnClickItemCategory(this)
         root.recyclerView.adapter = dashboardAdapter
@@ -48,51 +71,82 @@ class RestaurantManFragment : Fragment() , DashboardAdapter.OnItemselectedDelega
         return root
     }
 
+    fun getListData(){
+        mPresenter!!.getHalls()
+
+
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hallsModel.add(HallsModel(1,1,R.drawable.ic_free))
-        hallsModel.add(HallsModel(2,2,R.drawable.ic_reserved))
-        hallsModel.add(HallsModel(3,3,R.drawable.ic_checkedin))
-        hallsModel.add(HallsModel(4,4,R.drawable.ic_ordered))
-        hallsModel.add(HallsModel(5,5,R.drawable.ic_blocked))
-        hallsModel.add(HallsModel(6,6,R.drawable.ic_delivered))
-        hallsModel.add(HallsModel(1,1,R.drawable.ic_free))
-        hallsModel.add(HallsModel(2,2,R.drawable.ic_reserved))
-        hallsModel.add(HallsModel(3,3,R.drawable.ic_checkedin))
-        hallsModel.add(HallsModel(4,4,R.drawable.ic_ordered))
-        hallsModel.add(HallsModel(5,5,R.drawable.ic_blocked))
-        hallsModel.add(HallsModel(6,6,R.drawable.ic_delivered))
-        hallsModel.add(HallsModel(1,1,R.drawable.ic_free))
-        hallsModel.add(HallsModel(2,2,R.drawable.ic_reserved))
-        hallsModel.add(HallsModel(3,3,R.drawable.ic_checkedin))
-        hallsModel.add(HallsModel(4,4,R.drawable.ic_ordered))
-        hallsModel.add(HallsModel(5,5,R.drawable.ic_blocked))
-        hallsModel.add(HallsModel(6,6,R.drawable.ic_delivered))
-        hallsModel.add(HallsModel(1,1,R.drawable.ic_free))
-        hallsModel.add(HallsModel(2,2,R.drawable.ic_reserved))
-        hallsModel.add(HallsModel(3,3,R.drawable.ic_checkedin))
-        hallsModel.add(HallsModel(4,4,R.drawable.ic_ordered))
-        hallsModel.add(HallsModel(5,5,R.drawable.ic_blocked))
-        hallsModel.add(HallsModel(6,6,R.drawable.ic_delivered))
+
         dashboardAdapter = DashboardAdapter(requireActivity(), hallsModel,"hallsModel")
         dashboardAdapter.setOnClickItemCategory(this)
         view.recyclerView.adapter = dashboardAdapter
 
-        hallsInfoModel.add(HallsInfoModel(1,1,"",R.drawable.ic_free_info))
-        hallsInfoModel.add(HallsInfoModel(2,2,"",R.drawable.ic_reserved_info))
-        hallsInfoModel.add(HallsInfoModel(3,3,"",R.drawable.ic_checkedinfo))
-        hallsInfoModel.add(HallsInfoModel(4,4,"",R.drawable.ic_ordered_info))
-        hallsInfoModel.add(HallsInfoModel(5,5,"",R.drawable.ic_blocked_info))
-        hallsInfoModel.add(HallsInfoModel(6,6,"",R.drawable.ic_delivered_info))
+        hallsInfoModel.add(HallsInfoModel(1,3,"Free",R.drawable.ic_free_info))
+        hallsInfoModel.add(HallsInfoModel(2,0,"reserved",R.drawable.ic_reserved_info))
+        hallsInfoModel.add(HallsInfoModel(3,0,"checked in",R.drawable.ic_checkedinfo))
+        hallsInfoModel.add(HallsInfoModel(4,0,"Ordered",R.drawable.ic_ordered_info))
+        hallsInfoModel.add(HallsInfoModel(5,0,"blocked",R.drawable.ic_blocked_info))
+        hallsInfoModel.add(HallsInfoModel(6,0,"delivered",R.drawable.ic_delivered_info))
         infoDashboardAdapter = DashboardAdapter(requireActivity(), hallsInfoModel,"hallsInfoModel")
         infoDashboardAdapter.setOnClickItemCategory(this)
         view.recyclerViewList.adapter = infoDashboardAdapter
     }
     override fun onSelectItemCategory(position: Int) {
 
+        for (n in mModelList.indices){
+            mModelList[n].isSelected = n==position
+        }
+
+
+        mPresenter!!.getTables(mModelList[position].id!!)
+        mAdapter = DashboardAdapter(requireContext(), mModelList,"HallsViewHolder")
+        mAdapter.setOnClickItemCategory(this)
+        recyclerViewHalls.adapter = mAdapter
+        mAdapter.notifyDataSetChanged()
     }
 
     override fun onSelectItemProduct(position: Int, action: String) {
+
+    }
+
+    override fun didGetHallsySuccess(response: MainHallsModel) {
+        mModelList.addAll(response.data)
+        Log.d("didGetPoliicySuccess",mModelList.toString())
+
+
+        activity!!.runOnUiThread {
+            mAdapter!!.notifyDataSetChanged()
+
+        }
+    }
+
+    override fun didGetHallsFail(msg: String) {
+
+    }
+
+    override fun didEmpty() {
+    }
+
+    override fun didGetTablesSuccess(response: TableModel) {
+        hallsModel.clear()
+        hallsModel.addAll(response.data)
+        Log.d("didGetPoliicySuccess",hallsModel.toString())
+
+
+        activity!!.runOnUiThread {
+            dashboardAdapter!!.notifyDataSetChanged()
+
+        }
+
+    }
+
+    override fun didGetTablesFail(msg: String) {
+
+    }
+
+    override fun didEmptyTables() {
 
     }
 

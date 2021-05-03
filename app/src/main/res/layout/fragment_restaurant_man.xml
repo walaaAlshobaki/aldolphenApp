@@ -13,56 +13,29 @@
         android:layout_marginStart="60dp"
         android:background="@color/colorBlackGradient">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginStart="20dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHalls"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginTop="20dp"
-            android:text="Hall 1"
-            android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Hall 2"
-            android:textAllCaps="false"
-            android:layout_marginTop="20dp"
-            android:background="@color/layer"
-            android:textColor="@color/appMainColor"
-            android:backgroundTint="@color/layer"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Hall 3"
-            android:textAllCaps="false"
-            android:layout_marginTop="20dp"
-            android:background="@color/layer"
-            android:textColor="@color/appMainColor"
-            android:backgroundTint="@color/layer"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@+id/button1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHeight_percent="0.10"
+            tools:listitem="@layout/permission_item_cell"
+            app:layout_constraintTop_toTopOf="parent"
+        />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerViewHalls"
             app:layout_constraintHeight_percent="0.50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button1"
+            app:layout_constraintStart_toStartOf="@+id/recyclerViewHalls"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewHalls"
             tools:listitem="@layout/halls_item_cell" />
 
         <androidx.recyclerview.widget.RecyclerView
