@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.addEmp.PoliicyModel
+import kotlinx.android.synthetic.main.activity_view_product.*
 
 class ViewProductActivity : AppCompatActivity() {
     var mModelList: ArrayList<AdditionalModel> = ArrayList()
@@ -12,6 +13,9 @@ class ViewProductActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_product)
+        close.setOnClickListener {
+            finish()
+        }
 
     }
 }

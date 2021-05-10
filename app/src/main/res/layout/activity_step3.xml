@@ -26,7 +26,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="40dp">
+        android:padding="30dp">
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="80dp"
@@ -40,7 +40,7 @@
             android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -74,7 +74,6 @@
             app:cardBackgroundColor="@color/white"
             android:id="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="@+id/user"
-            app:layout_constraintStart_toStartOf="@+id/user"
             app:layout_constraintTop_toBottomOf="@id/user">
 
             <LinearLayout
@@ -243,7 +242,7 @@
                     android:id="@+id/firstNameTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="51dp"
                     android:layout_marginTop="10dp"
                     android:focusable="true"
                     android:hint="Company Name"
@@ -255,14 +254,15 @@
                     app:boxCornerRadiusTopStart="10dp"
                     app:layout_constraintStart_toStartOf="@+id/imageCard"
                     app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                    app:layout_constraintWidth_percent="0.30"
+                    app:layout_constraintWidth_percent="0.33"
                     app:placeholderText="write your Company Name"
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/firstname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/appMainColor"
                         android:textColorHint="@color/border"
@@ -274,7 +274,7 @@
                     android:id="@+id/lastNameTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="51dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
@@ -289,14 +289,15 @@
 
                     app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
                     app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                    app:layout_constraintWidth_percent="0.30"
+                    app:layout_constraintWidth_percent="0.33"
                     app:placeholderText="write your Tax No."
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/lastname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/appMainColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -306,7 +307,7 @@
                     android:id="@+id/EmailTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="51dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="10dp"
@@ -321,14 +322,15 @@
                     app:layout_constraintStart_toEndOf="@+id/lastNameTextInputLayout"
                     app:layout_constraintTop_toBottomOf="@+id/imageCard"
 
-                    app:layout_constraintWidth_percent="0.30"
+                    app:layout_constraintWidth_percent="0.32"
                     app:placeholderText="ex. Mohamed@gmail.com"
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/appMainColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -356,7 +358,7 @@
                     app:cardElevation="1dp"
                     app:layout_constraintStart_toStartOf="@+id/firstNameTextInputLayout"
                     app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
-                    app:layout_constraintWidth_percent="0.30">
+                    app:layout_constraintWidth_percent="0.33">
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -392,9 +394,10 @@
                                 android:layout_marginStart="8dp"
                                 android:src="@drawable/sa"
                                 app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/country"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintWidth_percent="0.15" />
+                                app:layout_constraintWidth_percent="0.10" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </FrameLayout>
@@ -426,7 +429,7 @@
                     app:cardElevation="1dp"
                     app:layout_constraintStart_toEndOf="@+id/con"
                     app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-                    app:layout_constraintWidth_percent="0.30">
+                    app:layout_constraintWidth_percent="0.33">
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -468,7 +471,7 @@
 
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintWidth_percent="0.15" />
+                                app:layout_constraintWidth_percent="0.10" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </FrameLayout>
@@ -481,7 +484,7 @@
                     android:id="@+id/AgeTextInputLayout"
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="51dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="30dp"
@@ -496,14 +499,15 @@
                     app:layout_constraintStart_toEndOf="@+id/PhoneTextInputLayout"
                     app:layout_constraintTop_toBottomOf="@+id/EmailTextInputLayout"
 
-                    app:layout_constraintWidth_percent="0.30"
+                    app:layout_constraintWidth_percent="0.32"
                     app:placeholderText=" "
                     app:placeholderTextColor="@color/border">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/age"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/appMainColor" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -522,8 +526,9 @@
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView10" />
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ImageView
         android:layout_width="0dp"

@@ -5,15 +5,21 @@ import android.graphics.ColorSpace.Model
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.Menu
 import android.view.View
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.RecyclerViewAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
+import com.adolphinpos.adolphinpos.companyBranch.CityModel
 import com.adolphinpos.adolphinpos.policyManagement.AddPolicyModel
-import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
+import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_add_employee.*
 
 
@@ -57,6 +63,10 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
                 common.userPrermtion
             )
         }
+
+        close.setOnClickListener {
+           finish()
+        }
     }
 
      fun getListData(){
@@ -71,6 +81,7 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
         Log.d("didGetPoliicySuccess",mModelList.toString())
 
 
+
       runOnUiThread {
             mAdapter!!.notifyDataSetChanged()
 
@@ -83,6 +94,17 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
 
     override fun didEmpty() {
     }
+    private fun getPopup(textView: TextView, arrayList: ArrayList<CityModel.Data>) {
+        val popupMenu = PopupMenu(this, textView)
+        for (i in 0 until arrayList.size) {
+            popupMenu.menu.add(i, Menu.FIRST, i, arrayList[i].name)
+        }
+        popupMenu.setOnMenuItemClickListener { item ->
+            textView.text = item.title
+            false
+        }
+        popupMenu.show()
+    }
 
     override fun didAddPoliicySuccess(response: AddPolicyModel) {
         TODO("Not yet implemented")
@@ -93,10 +115,17 @@ class AddEmployeeActivity : AppCompatActivity() ,PoliicyDelegate,UserInviteDeleg
     }
 
     override fun didUserInviteSuccess(token: AddModel) {
-
+        finish()
     }
 
     override fun didUserInviteFail(msg: String) {
+        if (msg=="Invited"){
+
+        }else{
+            DesignerToast.Custom(this,msg, Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+        }
 
     }
 }

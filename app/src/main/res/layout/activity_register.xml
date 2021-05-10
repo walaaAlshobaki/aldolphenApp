@@ -11,8 +11,9 @@
     <include
         android:id="@+id/include"
         layout="@layout/banner_slider"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        app:layout_constraintWidth_percent="0.30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,9 +21,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-
-        app:cardElevation="4dp"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@color/white"
         app:layout_constraintWidth_percent="0.10"
         app:layout_constraintHeight_percent="0.10"
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:padding="12dp"
             android:background="@color/white">
 
             <ImageView
@@ -46,12 +46,13 @@
 
             <TextView
                 android:id="@+id/signUp"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Sign In"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/appMainColor"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -95,7 +96,7 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
             android:hint="First Name"
@@ -115,7 +116,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 app:placeholderTextColor="@color/border"
                 app:placeholderText="write your First name"
                 android:textColorHint="@color/border"
@@ -128,9 +130,8 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="20dp"
             android:hint="Last Name"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -149,43 +150,43 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/lastname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Country"
-            android:textColor="@color/appMainColor"
-            android:layout_marginTop="23dp"
-            android:textSize="13sp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:elevation="2dp"
             android:fontFamily="@font/roboto_bold"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/con"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="32dp"
-            app:cardElevation="1dp"
+            android:text="Country"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintWidth_percent="0.45"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout" />
+
+
 <FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/con"
+    android:layout_width="0dp"
+    android:layout_height="51dp"
+    android:layout_marginTop="32dp"
+
+    app:layout_constraintStart_toStartOf="parent"
+
+    app:layout_constraintWidth_percent="0.35"
+    app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
+
     android:background="@drawable/card_edge">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:background="@color/white">
+        android:background="@drawable/card_white">
 
 
 
@@ -204,35 +205,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-        <ImageView
-            android:id="@+id/flag"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:src="@drawable/sa"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/country"
-            app:layout_constraintWidth_percent="0.15"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 
 
-        </androidx.cardview.widget.CardView>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/code"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            android:clickable="true"
+            android:background="@drawable/card_country"
+            app:layout_constraintBottom_toBottomOf="@+id/con"
+            app:layout_constraintStart_toEndOf="@+id/con"
+            app:layout_constraintTop_toTopOf="@+id/con"
+            app:layout_constraintWidth_percent="0.10">
+
+            <ImageView
+                android:id="@+id/flag"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:src="@drawable/sa"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Phone No."
             android:textColor="@color/appMainColor"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="16dp"
             android:textSize="13sp"
             android:layout_marginStart="50dp"
             android:elevation="2dp"
             android:fontFamily="@font/roboto_bold"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-            app:layout_constraintStart_toEndOf="@+id/con"/>
+            app:layout_constraintStart_toEndOf="@+id/code"/>
 
 
 
@@ -245,7 +265,7 @@
             app:cardElevation="1dp"
             app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/con"
+            app:layout_constraintStart_toEndOf="@+id/code"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
             app:layout_constraintWidth_percent="0.45">
             <FrameLayout
@@ -256,7 +276,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp"
-                    android:background="@color/white">
+                    android:background="@drawable/card_white">
 
 
 
@@ -271,24 +291,47 @@
                         android:textSize="15sp"
                         android:phoneNumber="true"
                         android:background="@android:color/transparent"
-                        app:layout_constraintWidth_percent="0.75"
+                        app:layout_constraintWidth_percent="0.55"
                         android:fontFamily="@font/roboto"
                         android:textColorHint="@color/appMainColoro"
                         android:textColor="@color/appMainColor"
-                        app:layout_constraintStart_toEndOf="@+id/flagphone"
+                        app:layout_constraintStart_toEndOf="@+id/flagcode"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView
-                        android:id="@+id/flagphone"
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/flagcode"
                         android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/sa"
-
+                        android:layout_height="51dp"
                         app:layout_constraintStart_toStartOf="parent"
-
-                        app:layout_constraintWidth_percent="0.15"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintWidth_percent="0.30">
+
+                        <ImageView
+                            android:id="@+id/flagphone"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/sa"
+                            app:layout_constraintBottom_toBottomOf="parent"
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/callCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="(+996)"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="12sp"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/flagphone"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
@@ -312,7 +355,7 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="12dp"
             android:hint="Company Name"
@@ -326,13 +369,14 @@
             app:endIconTint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con"
+            app:layout_constraintTop_toBottomOf="@+id/code"
             app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/companyName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
 
@@ -354,7 +398,7 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="22dp"
@@ -368,14 +412,15 @@
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/con"
+            app:layout_constraintStart_toEndOf="@+id/code"
             app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout"
             app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -395,7 +440,7 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="12dp"
             android:hint="Password"
@@ -416,7 +461,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:password="true"
                 android:textColor="@color/appMainColor" />
@@ -428,7 +474,7 @@
             style="@style/LoginTextInputLayoutStyle"
             android:theme="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_marginTop="22dp"
             android:hint="Confirm Password"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -449,7 +495,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordConf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:password="true"
                 android:textColor="@color/appMainColor" />
@@ -458,8 +505,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
-            android:layout_width="450dp"
-            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:minHeight="40dp"
             app:cardBackgroundColor="@color/appMainColor"

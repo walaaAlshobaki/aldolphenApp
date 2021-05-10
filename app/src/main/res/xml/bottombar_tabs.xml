@@ -67,6 +67,7 @@
         id="@+id/lock"
         icon="@drawable/ic_lock"
         inActiveColor="@color/white"
+        background="@color/white"
         activeColor="@color/red"
         barColorWhenSelected="@color/appMainColor"
         badgeBackgroundColor="@color/white"

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView android:id="@+id/permissionsCard"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:background="@color/cat"
     app:cardCornerRadius="10dp"
+    app:cardElevation="0dp"
     android:layout_marginStart="7.5dp"
     android:layout_marginEnd="7.5dp"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/cat"
-        android:padding="10dp">
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
         <ImageView
             android:id="@+id/image"
             android:layout_width="wrap_content"
@@ -24,22 +29,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/appMainColor" />
+
         <TextView
             android:id="@+id/categoryName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textAllCaps="true"
             android:layout_marginTop="8dp"
-            android:textColor="@color/appMainColor"
-            android:textSize="10dp"
             android:fontFamily="@font/roboto_bold"
-            app:layout_constraintTop_toBottomOf="@id/image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Accountant"/>
+            android:gravity="center"
+            android:text="Accountant"
+            android:textAllCaps="true"
+            android:textColor="@color/appMainColor"
+            android:textSize="12dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@id/image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

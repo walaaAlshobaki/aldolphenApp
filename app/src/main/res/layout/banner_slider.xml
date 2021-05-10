@@ -20,7 +20,7 @@
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/mPager"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="true"
             android:clipToPadding="true"
@@ -35,7 +35,7 @@
 
         <View
             android:id="@+id/view7"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintWidth_percent="0.90"
             android:visibility="visible"
@@ -58,44 +58,41 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="150dp"
             android:fontFamily="@font/roboto"
             android:text="POS System"
             android:textColor="@color/white"
             android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/indicatiormain"
+            app:layout_constraintStart_toStartOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_medium"
             android:text="You can find our services matches your criteria with smarter full featured app."
             android:textColor="@color/white"
             android:textSize="18dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintWidth_percent="0.60" />
+            app:layout_constraintWidth_percent="0.90" />
 
         <TextView
             android:id="@+id/slidinfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto"
             android:text="if you don't have an account Please"
             android:textColor="@color/white"
             android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="@+id/text"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text"
-        />
+            app:layout_constraintStart_toStartOf="@+id/text"
+            app:layout_constraintTop_toBottomOf="@+id/text" />
 
         <TextView
             android:id="@+id/registerText"
@@ -119,6 +116,7 @@
             android:layout_marginBottom="50dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintWidth_percent="0.60"
             app:tabBackground="@drawable/indicator_selector"

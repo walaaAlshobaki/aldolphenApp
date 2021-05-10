@@ -41,7 +41,7 @@ class RecyclerAdapter internal constructor(context: Context, data: List<CountryM
 //        Picasso.get().load(animal.flag).placeholder(R.drawable.ca).into(holder.myImage)
         SvgLoader.pluck()
             .with(context as Activity?)
-            .setPlaceHolder(R.drawable.ca,R.drawable.ca)
+            .setPlaceHolder(R.drawable.empty,R.drawable.empty)
             .load(animal.flag, holder.myImage)
     }
 

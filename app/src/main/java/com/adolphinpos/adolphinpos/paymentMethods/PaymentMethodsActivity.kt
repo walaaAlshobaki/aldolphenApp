@@ -18,7 +18,9 @@ import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
 import com.adolphinpos.adolphinpos.steps.Step2Activity
 import kotlinx.android.synthetic.main.activity_payment_methods.*
+import kotlinx.android.synthetic.main.activity_payment_methods.close
 import kotlinx.android.synthetic.main.activity_payment_methods.recyclerView
+import kotlinx.android.synthetic.main.activity_pos_catagory.*
 
 class PaymentMethodsActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate,
     CurrencyTypeDelegate ,PaymentMethoodDelegate{
@@ -56,6 +58,9 @@ class PaymentMethodsActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
             val i = Intent(this, ProductManagerMainActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
+        }
+        close.setOnClickListener {
+            finish()
         }
     }
 

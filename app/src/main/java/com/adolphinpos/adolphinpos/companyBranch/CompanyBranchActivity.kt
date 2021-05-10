@@ -38,18 +38,20 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_company_branch.*
+import kotlinx.android.synthetic.main.activity_company_branch.callCode
+import kotlinx.android.synthetic.main.activity_company_branch.code
 import kotlinx.android.synthetic.main.activity_company_branch.country
+import kotlinx.android.synthetic.main.activity_company_branch.currentPosition
 import kotlinx.android.synthetic.main.activity_company_branch.flag
+import kotlinx.android.synthetic.main.activity_company_branch.flagcode
 import kotlinx.android.synthetic.main.activity_company_branch.flagphone
 import kotlinx.android.synthetic.main.activity_company_branch.loginBtn
 import kotlinx.android.synthetic.main.activity_company_branch.phoneNum
-import kotlinx.android.synthetic.main.activity_register.*
+
+
 import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -57,22 +59,26 @@ import kotlin.collections.ArrayList
 
 class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDelegate,BranchDelegate {
     private var mLocationRequest: LocationRequest? = null
-    private val UPDATE_INTERVAL = (10 * 1000).toLong()  /* 10 secs */
-    private val FASTEST_INTERVAL: Long = 2000 /* 2 sec */
+    private val UPDATE_INTERVAL = (600000).toLong()  /* 10 secs */
+    private val FASTEST_INTERVAL: Long = 600000 /* 2 sec */
     var rawArray: ArrayList<Int> = ArrayList()
     var cityModel: ArrayList<CityModel.Data> = ArrayList()
     private var latitude = 0.0
     private var longitude = 0.0
     private var cityId = 0
+    private lateinit var marker: Marker
     var cityPresenter: CityPresenter? = null
     var BranchPresnter: BranchPresnter? = null
     var countryModel: CountryModel.Data? =null
+    var latLng: LatLng? =null
     private lateinit var mGoogleMap: GoogleMap
     val MY_PERMISSIONS_REQUEST_LOCATION = 99
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_branch)
-
+        close.setOnClickListener {
+            finish()
+        }
         cityPresenter = CityPresenter(this)
         cityPresenter!!.delegate = this
        BranchPresnter = BranchPresnter(this)
@@ -94,10 +100,43 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
                     .with(this as Activity?)
                     .setPlaceHolder(R.drawable.ca, R.drawable.ca)
                     .load(countryModel!!.flag, flagphone)
-
+                callCode.text= "(+"+countryModel!!.callingCodes+")"
 
                 cityPresenter!!.getCity(countryModel!!.id)
+
+
+            }else if (it.action== 100){
+
+                Log.d("LLLLLLLLLLLLLLLLLLLL",it.message.toString())
+
+                mGoogleMap!!.clear()
+//                marker.remove()
+//                marker.setVisible(false)
+
+                latLng = it.message as LatLng
+                latitude=latLng!!.latitude
+                longitude=latLng!!.longitude
+
+
+                mGoogleMap!!.addMarker(MarkerOptions().position( it.message).title("Current Location"))
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng( it.message))
+                var cameraPosition: CameraPosition = CameraPosition.Builder()
+                    .target( it.message)
+                    .zoom(15f)
+                    .bearing(0f)
+                    .tilt(1f)
+                    .build();
+
+
+                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 1000, null);
+//
+
             }
+
+        }
+        currentPosition.setOnClickListener {
+
+            getCurrentLocation()
         }
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -123,78 +162,84 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
             startActivity(i)
 
         }
-        flag.setOnClickListener{
+        code.setOnClickListener{
 
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
 
         }
-        flagphone.setOnClickListener{
+        flagcode.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
         }
 
         loginBtn.setOnClickListener {
-            for (i in cityModel.indices) {
-                if (Branches.text.toString()==cityModel[i].name){
-                    Log.d("Branches",cityModel[i].id.toString())
-                    cityId=cityModel[i].id!!
+
+
+            if (BranchName.text.isNullOrEmpty()||country.text.isNullOrEmpty()||phoneNum.text.isNullOrEmpty()|| Branches.text.isNullOrEmpty()){
+                DesignerToast.Custom(this,"All filed is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+            }else{
+                for (i in cityModel.indices) {
+                    if (Branches.text.toString()==cityModel[i].name){
+                        Log.d("Branches",cityModel[i].id.toString())
+                        cityId=cityModel[i].id!!
+                    }
+
                 }
-
-            }
-            var address = ""
-            var city = ""
-            var adminArea = ""
-            var zip = 0
-            var country = ""
-            var url = "https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}"
-            val geocoder = Geocoder(this, Locale.ENGLISH)
-            try {
+                var address = ""
+                var city = ""
+                var adminArea = ""
+                var zip = 0
+                var country = ""
+                var url = "https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}"
+                val geocoder = Geocoder(this, Locale.ENGLISH)
+                try {
 
 
-                val addresses = geocoder.getFromLocation(latitude, longitude, 5)
+                    val addresses = geocoder.getFromLocation(latitude, longitude, 5)
 
-                if (addresses.size > 0) {
+                    if (addresses.size > 0) {
 
-                    var strAddress = StringBuilder()
+                        var strAddress = StringBuilder()
 
 
 
-                    for (i in 0..addresses.size) {
+                        for (i in 0..addresses.size) {
 
-                        val fetchedAddress = addresses.get(i)
+                            val fetchedAddress = addresses.get(i)
 
 
-                         address = addresses[i].getAddressLine(0)
-                         city = addresses[i].locality
-                         adminArea = addresses[i].adminArea
-                        if (addresses[i].postalCode==null){
-                            zip=0
-                        }else{
-                            zip = addresses[i].postalCode as Int
+                            address = addresses[i].getAddressLine(0)
+                            city = addresses[i].locality
+                            adminArea = addresses[i].adminArea
+                            if (addresses[i].postalCode==null){
+                                zip=0
+                            }else{
+                                zip = 0
 
-                        }
-                        if (addresses[i].countryName==null){
-                            country = countryModel!!.name
-                        }else{
-                            country = addresses[i].countryName
-                        }
+                            }
+                            if (addresses[i].countryName==null){
+                                country = countryModel!!.name
+                            }else{
+                                country = addresses[i].countryName
+                            }
 
 
 
 
-                        strAddress = StringBuilder()
+                            strAddress = StringBuilder()
 
-                        for (r in 0..fetchedAddress.getMaxAddressLineIndex()) {
-
-
-                            strAddress.append(fetchedAddress.getAddressLine(i)).append("\n")
+                            for (r in 0..fetchedAddress.getMaxAddressLineIndex()) {
 
 
-                            Log.d("getAddressFromLocation", "IDLE ${addresses[i]}")
-                        }
+                                strAddress.append(fetchedAddress.getAddressLine(i)).append("\n")
+
+
+                                Log.d("getAddressFromLocation", "IDLE ${addresses[i]}")
+                            }
 
 //
 //                    if (strAddress.toString().contains("Unnamed Road,", ignoreCase = true) || strAddress.toString().contains("Unnamed Road،,", ignoreCase = true)) {
@@ -203,31 +248,33 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
 //                    }else{
 
 
-                        break
+                            break
 
 //                    }
 
 
+                        }
+
+
+                    } else {
+
+
+
                     }
+                } catch (e: IOException) {
+                    e.printStackTrace()
 
-
-                } else {
-
-
-
+                    Log.d("didGetGeocoderSearching", "Could not get address..!")
                 }
-            } catch (e: IOException) {
-                e.printStackTrace()
 
-                Log.d("didGetGeocoderSearching", "Could not get address..!")
+                BranchPresnter!!.addPaymentMethood(BranchName.text.toString()
+                    ,zip,"","",longitude.toString(),latitude.toString()
+                    ,url,"",country,"","",
+                    address,address,cityId,countryModel!!.id,"00"+countryModel!!.callingCodes+phoneNum.text.toString())
+
+            }
             }
 
-            BranchPresnter!!.addPaymentMethood(BranchName.text.toString()
-            ,zip,"","",longitude.toString(),latitude.toString()
-                ,url,"",country,"","",
-                address,address,cityId,countryModel!!.id,"00"+countryModel!!.callingCodes+phoneNum.text.toString())
-
-        }
     }
 
     override fun onStart() {
@@ -318,10 +365,43 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
         mGoogleMap = googleMap;
 
         if (mGoogleMap != null) {
-            mGoogleMap!!.addMarker(
-                MarkerOptions().position(LatLng(latitude, longitude)).title("Current Location")
-            )
+            mGoogleMap!!.clear()
+
+//            mGoogleMap!!.addMarker(
+//                MarkerOptions().position(LatLng(latitude, longitude)).title("Current Location")
+//
+//            )
+
+
+            RxBus.listen(MessageEvent::class.java).subscribe {
+                if (it.action == 100) {
+                    mGoogleMap!!.clear()
+//                    marker.remove()
+//                    marker.setVisible(false)
+                    latLng = it.message as LatLng
+                    latitude=latLng!!.latitude
+                    longitude=latLng!!.longitude
+
+
+                    mGoogleMap!!.addMarker(MarkerOptions().position(latLng).title("Current Location"))
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                    var cameraPosition: CameraPosition = CameraPosition.Builder()
+                        .target(latLng)
+                        .zoom(15f)
+                        .bearing(0f)
+                        .tilt(1f)
+                        .build();
+
+
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 1000, null);
+//
+////
+                }
+
+            }
         }
+
+
 
         mGoogleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
         mGoogleMap.isTrafficEnabled = false
@@ -345,11 +425,33 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
     }
 
 
+    fun getCurrentLocation(duration: Int = 1000) {
+
+
+        val current = LatLng(latitude, longitude)
+
+
+
+
+
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(current))
+        var cameraPosition: CameraPosition = CameraPosition.Builder()
+            .target(current)
+            .zoom(15f)
+            .bearing(0f)
+            .tilt(1f)
+            .build()
+
+
+        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 1000, null)
+
+
+    }
     protected fun startLocationUpdates() {
         // initialize location request object
         mLocationRequest = LocationRequest.create()
         mLocationRequest!!.run {
-            setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+            setPriority(LocationRequest.PRIORITY_LOW_POWER)
             setInterval(UPDATE_INTERVAL)
             setFastestInterval(FASTEST_INTERVAL)
         }
@@ -370,6 +472,7 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
         // initialize location callback object
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult?) {
+
                 onLocationChanged(locationResult!!.getLastLocation())
             }
         }
@@ -383,28 +486,30 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
         }
     }
     private fun onLocationChanged(location: Location) {
-        // create message for toast with updated latitude and longitudefa
+
         var msg = "Updated Location: " + location.latitude  + " , " +location.longitude
 
-        // show toast message with updated location
-        //Toast.makeText(this,msg, Toast.LENGTH_LONG).show()
         val location = LatLng(location.latitude, location.longitude)
+
         latitude=location.latitude
         longitude=location.longitude
-        mGoogleMap!!.clear()
         mGoogleMap!!.addMarker(MarkerOptions().position(location).title("Current Location"))
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-        var cameraPosition: CameraPosition = CameraPosition.Builder()
-            .target(location)
-            .zoom(15f)
-            .bearing(0f)
-            .tilt(1f)
-            .build();
-
-
-        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 1000, null);
+//        val markerOptions = MarkerOptions().position(location)
+//
+//        marker = mGoogleMap.addMarker(markerOptions)
+//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+//        var cameraPosition: CameraPosition = CameraPosition.Builder()
+//            .target(location)
+//            .zoom(15f)
+//            .bearing(0f)
+//            .tilt(1f)
+//            .build();
+//
+//
+//        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 1000, null);
 
     }
+
     fun checkLocationPermission(): Boolean {
         return if (ContextCompat.checkSelfPermission(
                 this,

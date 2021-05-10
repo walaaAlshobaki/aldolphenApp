@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 
 class MainAdapter(
@@ -93,6 +94,10 @@ class MainAdapter(
                     empEmail.text=itemCat.email
                     empRole.setOnClickListener {
                         onClick!!.onSelectItemCategory(position)
+                    }
+                    checkBox1.setOnClickListener {
+
+                        common.usersDelete=itemCat!!
                     }
 
                 }

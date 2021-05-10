@@ -150,4 +150,12 @@ class SelectEmployeeActivity : AppCompatActivity(), DashboardAdapter.OnItemselec
             emptyCell()
         }
     }
+
+    override fun didDeleteUsersSuccess(token: UserEmployeeModel) {
+        TODO("Not yet implemented")
+    }
+
+    override fun didGetDeleteUsersFail(msg: String) {
+        TODO("Not yet implemented")
+    }
 }

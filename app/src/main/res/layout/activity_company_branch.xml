@@ -13,9 +13,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+
             app:cardCornerRadius="8dp"
             app:cardBackgroundColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +25,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -59,6 +57,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 <ImageView
+                    android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_close"
@@ -88,7 +87,7 @@
 
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent="0.50">
+                        app:layout_constraintWidth_percent="0.5">
 
 
                         <LinearLayout
@@ -108,6 +107,7 @@
                                 android:textColorHint="@color/appMainColor"
                                 app:hintTextColor="@color/appMainColor"
                                 android:hint="Branch Name"
+
                                 android:fontFamily="@font/roboto_bold"
                              >
                                 <com.google.android.material.textfield.TextInputEditText
@@ -116,6 +116,7 @@
                                     android:layout_height="match_parent"
                                     app:placeholderTextColor="@color/border"
                                     app:placeholderText="Branch Name"
+
                                     android:textSize="13sp"
                                     android:padding="10dp"
                                     android:background="@drawable/back"
@@ -125,84 +126,6 @@
 
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_marginTop="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:elevation="2dp"
-
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="Country"
-                                android:textColor="@color/appMainColor"
-                                android:textSize="13sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/con"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="15dp"
-                                app:cardCornerRadius="12dp"
-                                app:cardElevation="1dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@drawable/card_edge">
-
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="@color/white"
-                                        android:padding="5dp">
-
-
-                                        <TextView
-                                            android:id="@+id/country"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_marginStart="10dp"
-                                            android:clickable="true"
-                                            android:fontFamily="@font/roboto"
-                                            android:gravity="center_vertical"
-                                            android:text="saudi arabia"
-                                            android:textColor="@color/appMainColoro"
-                                            android:textSize="15sp"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintWidth_percent="0.75" />
-
-                                        <ImageView
-                                            android:id="@+id/flag"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_marginStart="8dp"
-                                            android:src="@drawable/sa"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/country"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintWidth_percent="0.15" />
-
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
-                                </FrameLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
@@ -229,48 +152,76 @@
                                 android:layout_marginTop="15dp"
                                 app:cardCornerRadius="12dp"
                                 app:cardElevation="1dp"
+                                app:layout_constraintWidth_percent="0.95"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <FrameLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/card_edge">
+                                    android:background="@drawable/card_full">
 
                                     <androidx.constraintlayout.widget.ConstraintLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:background="@color/white"
-                                        android:padding="5dp">
+
+                                        android:background="@drawable/card_full_white">
+
+
 
 
                                         <EditText
                                             android:id="@+id/phoneNum"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
                                             android:clickable="true"
                                             android:hint="Write your phone No."
-
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
                                             android:layout_marginStart="8dp"
-
+                                            android:textSize="15sp"
                                             android:phoneNumber="true"
                                             android:background="@android:color/transparent"
-                                            android:textSize="15sp"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/flagphone"
+                                            app:layout_constraintWidth_percent="0.65"
+                                            android:fontFamily="@font/roboto"
+                                            android:textColorHint="@color/appMainColoro"
+                                            android:textColor="@color/appMainColor"
+                                            app:layout_constraintStart_toEndOf="@+id/flagcode"
                                             app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintWidth_percent="0.75" />
+                                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                                        <ImageView
-                                            android:id="@+id/flagphone"
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:id="@+id/flagcode"
                                             android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-
-                                            android:src="@drawable/sa"
-                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            android:layout_height="51dp"
+                                            android:clickable="true"
                                             app:layout_constraintStart_toStartOf="parent"
                                             app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintWidth_percent="0.15" />
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintWidth_percent="0.30">
+
+                                            <ImageView
+                                                android:id="@+id/flagphone"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:src="@drawable/sa"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent" />
+
+                                            <TextView
+                                                android:id="@+id/callCode"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:text="(+996)"
+                                                android:textColor="@color/appMainColor"
+                                                android:textSize="12sp"
+                                                android:layout_marginStart="8dp"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintStart_toEndOf="@+id/flagphone"
+                                                app:layout_constraintTop_toTopOf="parent" />
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </FrameLayout>
@@ -280,6 +231,96 @@
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/textView27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:elevation="2dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Country"
+                                android:textColor="@color/appMainColor"
+                                android:textSize="13sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <FrameLayout
+                                android:id="@+id/con"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/card_edge"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView27"
+                                app:layout_constraintWidth_percent="0.8">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/card_white">
+
+
+                                    <TextView
+                                        android:id="@+id/country"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:clickable="true"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="saudi arabia"
+                                        android:textColor="@color/appMainColoro"
+                                        android:textSize="15sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintWidth_percent="0.75" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </FrameLayout>
+
+
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/code"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:clickable="true"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/card_country"
+                                app:layout_constraintBottom_toBottomOf="@+id/con"
+                                app:layout_constraintStart_toEndOf="@+id/con"
+                                app:layout_constraintTop_toTopOf="@+id/con"
+                                app:layout_constraintWidth_percent="0.20">
+
+                                <ImageView
+                                    android:id="@+id/flag"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+
+                                    android:src="@drawable/sa"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -308,6 +349,7 @@
                                     android:textColorHint="@color/border"
                                     android:textSize="13dp"
                                     android:clickable="true"
+                                    android:drawableEnd="@drawable/ic_down"
                                     android:cursorVisible="false"
                                     android:focusable="false"
                                     android:focusableInTouchMode="false"
@@ -321,60 +363,102 @@
 
 
                     </LinearLayout>
+<androidx.cardview.widget.CardView
+    android:layout_width="265dp"
+    android:layout_height="0dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="10dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/linearLayout13"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.50">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
 
-                    <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.40" />
 
-                        android:id="@+id/map"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="300dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/linearLayout13"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent="0.40" />
+        <RelativeLayout
+            android:id="@+id/currentPosition"
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:clickable="true"
-                        app:cardCornerRadius="5dp"
-                        app:layout_constraintStart_toStartOf="@+id/map"
-                        app:layout_constraintTop_toTopOf="@+id/map">
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/search"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:background="@color/white"
-                            android:padding="5dp">
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
-                            <ImageView
-                                android:id="@+id/imageView2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ic_search"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/circle_layer"
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="20dp"
-                                android:text="search for location"
-                                android:textColor="@color/appMainColor"
-                                android:textSize="14sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/map">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/circle_layer"
+                android:clickable="false"
+                android:src="@drawable/ic_gps"
+                android:tint="@color/appMainColor" />
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="@+id/map"
+            app:layout_constraintTop_toTopOf="@+id/map">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/white"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="search for location"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <Button

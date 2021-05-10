@@ -13,66 +13,86 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.adolphinpos.adolphinpos.Adapters.RecyclerAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
+import com.adolphinpos.adolphinpos.companyProfile.CompanyDataModel
+import com.adolphinpos.adolphinpos.companyProfile.CompanyProfileDataModel
+import com.adolphinpos.adolphinpos.companyProfile.CompanyProfileDelegate
+import com.adolphinpos.adolphinpos.companyProfile.CompanyProfilePresenter
 import com.adolphinpos.adolphinpos.createPOS.PosSettingActivity
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethodsActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryActivity
+import com.adolphinpos.adolphinpos.registeration.country.CountryDelegate
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
 import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_country.*
 import kotlinx.android.synthetic.main.activity_step3.*
 import java.lang.Exception
 
-class Step3Activity : AppCompatActivity() {
-    var countryModel: CountryModel.Data? =null
-    var picturePath: Bitmap? =null
+class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDelegate {
+    var countryModel: CountryModel.Data? = null
+    var companyDataModel: CompanyProfileDataModel? = null
+    var picturePath: Bitmap? = null
+    var mPresenter: CountryPresenter? = null
+    var companyPresenter: CompanyProfilePresenter? = null
+    var countryModels: ArrayList<CountryModel.Data> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step3)
+
+        companyPresenter = CompanyProfilePresenter(this)
+        companyPresenter!!.delegate = this
+        mPresenter = CountryPresenter(this)
+        mPresenter!!.delegate = this
+
+        mPresenter!!.getCountry()
+        companyPresenter!!.getUserInfo()
         RxBus.listen(MessageEvent::class.java).subscribe {
             if (it.action == 1) {
                 countryModel = it.message as CountryModel.Data
 //                    mPresenter!!.scheduleTap(day!!.format(formatted))
-                country.text= countryModel!!.name
+                country.text = countryModel!!.name
                 SvgLoader.pluck()
-                    .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca,R.drawable.ca)
-                    .load(countryModel!!.flag, flag)
+                        .with(this as Activity?)
+                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                        .load(countryModel!!.flag, flag)
                 SvgLoader.pluck()
-                    .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca,R.drawable.ca)
-                    .load(countryModel!!.flag, flagphone)
+                        .with(this as Activity?)
+                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                        .load(countryModel!!.flag, flagphone)
 
             }
         }
         sign.setOnClickListener {
-            val i = Intent(this, PosSettingActivity::class.java)
+            val i = Intent(this, Step2Activity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
             finish()
         }
 
-        country.setOnClickListener{
+        country.setOnClickListener {
 
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
 
         }
-        flag.setOnClickListener{
+        flag.setOnClickListener {
 
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
 
         }
-        flagphone.setOnClickListener{
+        flagphone.setOnClickListener {
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
@@ -88,27 +108,26 @@ class Step3Activity : AppCompatActivity() {
             startActivity(i)
         }
 
-        initData()
+
         Picasso.get()
-            .load(R.drawable.user)
-            .error(R.drawable.user)
-            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-            .into(avatar_img)
+                .load(R.drawable.user)
+                .error(R.drawable.user)
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(avatar_img)
     }
 
     private fun initData() {
 
         Picasso.get().load(R.drawable.user).error(R.drawable.user).transform(CircleTransform()).into(userImage)
         Picasso.get().load(R.drawable.user).error(R.drawable.user).into(avatar_img)
-        userName.text= userInfo.firstName +" "+ userInfo.lastName
-        firstname.setText(userInfo.firstName)
-        lastname.setText(userInfo.lastName)
-        phoneNum.setText(userInfo.phoneNumber)
-        email.setText(userInfo.email)
-        age.setText("0")
+        userName.text = userInfo.firstName + " " + userInfo.lastName
+        firstname.setText(companyDataModel!!.name.toString())
+        lastname.setText(companyDataModel!!.taxNumber.toString())
+        phoneNum.setText(companyDataModel!!.contactPhoneNumber.toString())
+        email.setText(companyDataModel!!.contactEmail.toString())
+        age.setText(companyDataModel!!.taxRecored.toString())
 
 //        mPresenter!!.getUserInfo()
-
 
 
     }
@@ -124,17 +143,18 @@ class Step3Activity : AppCompatActivity() {
 
 
     }
+
     private fun showPictureDialog() {
 
 
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle(getString(R.string.select_action))
         val pictureDialogItems = arrayOf(
-            getString(R.string.select_action_from_gallery),
-            getString(R.string.select_action_from_camera)
+                getString(R.string.select_action_from_gallery),
+                getString(R.string.select_action_from_camera)
         )
         pictureDialog.setItems(
-            pictureDialogItems
+                pictureDialogItems
 
         )
 
@@ -157,9 +177,9 @@ class Step3Activity : AppCompatActivity() {
 
 
         if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
+                        this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
         ) {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -176,9 +196,9 @@ class Step3Activity : AppCompatActivity() {
         } else {
 
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                common.RESULT_LOAD_IMAGE_GALLERY
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    common.RESULT_LOAD_IMAGE_GALLERY
             )
             Toast.makeText(this, "Gallery permission needed", Toast.LENGTH_LONG).show()
 
@@ -192,9 +212,9 @@ class Step3Activity : AppCompatActivity() {
     private fun takePhotoFromCamera() {
 
         if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
+                        this,
+                        Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
         ) {
             // Camera permission granted
 
@@ -207,9 +227,9 @@ class Step3Activity : AppCompatActivity() {
             // Camera permission not granted
 
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA),
-                common.RESULT_LOAD_IMAGE_CAMERA
+                    this,
+                    arrayOf(Manifest.permission.CAMERA),
+                    common.RESULT_LOAD_IMAGE_CAMERA
             )
 
             Toast.makeText(this, "Camera permission needed", Toast.LENGTH_LONG).show()
@@ -222,9 +242,9 @@ class Step3Activity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -266,7 +286,7 @@ class Step3Activity : AppCompatActivity() {
 //            try {
             val selectedImage = data.data
             val filePath = arrayOf(MediaStore.Images.Media.DATA)
-            picturePath= MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+            picturePath = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
 //                val cursor: Cursor? = contentResolver.query(selectedImage!!, filePath, null, null, null)
 //                cursor!!.moveToFirst()
 //                val imagePath: String = cursor!!.getString(cursor!!.getColumnIndex(filePath[0]))
@@ -289,15 +309,15 @@ class Step3Activity : AppCompatActivity() {
 //                mPresenter!!.uploadImageTap(bitmap, userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId, PhoneNo.text.toString(), Email.text.toString(),
 //                    TaxNo.text.toString(), Taxrecord.text.toString(), BranchName.text.toString(), countryModel!!.id!!)
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("EEEEEEEEEEEEEE", e.localizedMessage)
 
             }
             Picasso.get()
-                .load(selectedImage)
-                .placeholder(R.drawable.ic_user)
-                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                .into(avatar_img)
+                    .load(selectedImage)
+                    .placeholder(R.drawable.ic_user)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                    .into(avatar_img)
 
             // avatar_img.setImageBitmap(BitmapFactory.decodeFile(picturePath))
 
@@ -328,5 +348,62 @@ class Step3Activity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun didGetCountrySuccess(response: CountryModel) {
+        Log.d("SSSSSSSSSSSSSSSS",userInfo.contryId.toString())
+        val iterator = (response.data.indices).iterator()
+
+        if (iterator.hasNext()) {
+            iterator.next()
+        }
+
+// do something with the rest of elements
+        iterator.forEach {
+
+            if (response.data[it].id.equals(userInfo.contryId)) {
+                Log.d("SSSSSSSSSSSSSSSS",response.data[it].toString())
+                country.text =response.data[it].name
+                SvgLoader.pluck()
+                        .with(this as Activity?)
+                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                        .load(response.data[it].flag, flag)
+                SvgLoader.pluck()
+                        .with(this as Activity?)
+                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                        .load(response.data[it].flag, flagphone)
+            }
+
+
+
+
+        }
+
+}
+
+
+    override fun didGetCountryFail(msg: String) {
+
+    }
+
+    override fun didGetCompanyProfileSuccess(response: CompanyProfileDataModel) {
+        try {
+            companyDataModel=response
+            Log.d("##############","response.toString()"+response.name)
+        }catch (ex:Exception){
+            Log.d("@@@@@@@@@@@@@@@@@@@@",ex.localizedMessage)
+        }
+
+
+        initData()
+
+    }
+
+    override fun didGetCompanyProfileFail(msg: String) {
+//        Log.d("##############","response.toString()"+msg)
+
+    }
+
+    override fun didEmpty() {
     }
 }

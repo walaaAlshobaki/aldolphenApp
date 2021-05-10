@@ -19,7 +19,7 @@ class UserInvitePresenter(var mContext: Context) {
 
     var delegate: UserInviteDelegate? = null
 
-    fun userInvite(email: String, name: String, phoneNumber: String, policyids: ArrayList<Int>) {
+    fun userInvite(email: String, name: String, phoneNumber: String,/*bracnhId:Int=0, */policyids: ArrayList<Int>) {
 
 
 
@@ -32,6 +32,7 @@ class UserInvitePresenter(var mContext: Context) {
         cred.put("email", email);
         cred.put("name", name);
         cred.put("phoneNumber", phoneNumber);
+//        cred.put("bracnhId", bracnhId);
         val arr = JSONArray()
         for (item in policyids) {
 

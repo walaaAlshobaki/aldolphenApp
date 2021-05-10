@@ -23,6 +23,7 @@ import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.policyManagement.AddPolicyModel
 import com.adolphinpos.adolphinpos.policyManagement.PolicyManagementActivity
+import com.adolphinpos.adolphinpos.steps.Step2Activity
 import com.squareup.picasso.Picasso
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_emp_permissions.*
@@ -90,7 +91,7 @@ class EmpPermissionsActivity : AppCompatActivity(), PoliicyDelegate , DashboardA
 
 
         sign.setOnClickListener {
-            val i = Intent(this, AuthorizedEmployeesActivity::class.java)
+            val i = Intent(this, Step2Activity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
             finish()

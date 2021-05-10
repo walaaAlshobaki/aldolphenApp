@@ -10,8 +10,9 @@
     <include
         android:id="@+id/include"
         layout="@layout/banner_slider"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        app:layout_constraintWidth_percent="0.30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +57,7 @@
             android:defaultFocusHighlightEnabled="true"
             app:placeholderTextColor="@color/border"
             android:imeOptions="actionNext"
-            app:placeholderText="Email"
+            app:placeholderText="ex. Mohamed@gmail.com"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -72,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:hint="Email"
+                android:hint="ex. Mohamed@gmail.com"
 
                 android:fontFamily="@font/roboto_bold"
                 android:textColor="@color/appMainColor" />
@@ -86,11 +87,11 @@
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="12dp"
             android:hint="Password"
             app:placeholderTextColor="@color/border"
-            app:placeholderText="Password"
+            app:placeholderText="*************"
             android:imeOptions="actionNext"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
@@ -112,25 +113,35 @@
                 android:imeOptions="actionNext"
                 android:fontFamily="@font/roboto_bold"
                 android:password="true"
+                android:hint="*************"
                 android:textColor="@color/appMainColor" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/roboto"
-            android:text="Keep me signed in"
-            android:textColor="@color/appMainColor"
-            android:textSize="14sp"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeStepGranularity="1sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
+<RadioGroup
+    android:id="@+id/test"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout">
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="Keep me signed in"
+        android:checked="true"
+        android:textColor="@color/appMainColor"
+        android:textSize="14sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
+</RadioGroup>
+
 
         <TextView
             android:id="@+id/forgetPassword"
@@ -143,22 +154,22 @@
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeStepGranularity="1sp"
-            app:layout_constraintBottom_toBottomOf="@+id/radioButton"
+            app:layout_constraintBottom_toBottomOf="@+id/test"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/radioButton" />
+            app:layout_constraintTop_toTopOf="@+id/test" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/appMainColor"
             android:layout_marginTop="10dp"
             android:minHeight="48dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioButton">
+            app:layout_constraintTop_toBottomOf="@+id/test">
 
             <Button
                 android:id="@+id/loginBtn"
@@ -167,7 +178,10 @@
                 android:background="@drawable/btn_style"
                 android:text="Sign In"
                 android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioButton"/>
         </androidx.cardview.widget.CardView>
 
         <TextView

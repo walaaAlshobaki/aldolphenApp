@@ -32,7 +32,12 @@ class PosCatagoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         setDashbordData()
         dashboardAdapter.setOnClickItemCategory(this)
         recyclerView.adapter = dashboardAdapter
+
+        close.setOnClickListener {
+            finish()
+        }
 //        recyclerView.measure(
+
 //            View.MeasureSpec.makeMeasureSpec(
 //                recyclerView.width,
 //                View.MeasureSpec.EXACTLY

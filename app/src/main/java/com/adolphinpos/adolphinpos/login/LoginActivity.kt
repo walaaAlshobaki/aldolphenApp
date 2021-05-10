@@ -9,18 +9,19 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.Gravity
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.adolphinpos.adolphinpos.Adapters.SlidingImagemain_Adapter
 import com.adolphinpos.adolphinpos.R
-import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.resetPassword.ForgetPasswordActivity
-import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.registeration.register.RegisterActivity
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,6 +31,7 @@ import kotlinx.android.synthetic.main.banner_slider.*
 class LoginActivity : AppCompatActivity(),LoginDelegate {
     var mPresenter: LoginPresenter? = null
     var i = 0
+    var wasChecked = false
     private var handler: Handler = Handler()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +55,39 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
         indicatiormain.setupWithViewPager(mPager, true);
 
         autoSlider(mPager)
+        radioButton.setOnClickListener {
+            if (radioButton.isChecked) {
+                test.clearCheck()
+                radioButton.isChecked = false
+                radioButton.isSelected=false
+                radioButton.setChecked(false);
+            } else  {
+//                test.clearCheck()
+    test.check(R.id.radioButton)
+                radioButton.isChecked = true
+                radioButton.isSelected=true
+                radioButton.setChecked(true);
+            }
+
+        }
+
+//        test.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
+//           override fun onCheckedChanged(arg0: RadioGroup?, id: Int) {
+//                val checkedRadioButton = radioButton
+//                val isChecked = checkedRadioButton.isChecked
+//                if (isChecked) {
+//                    Toast.makeText(
+//                        applicationContext,
+//                        checkedRadioButton.text, Toast.LENGTH_LONG
+//                    ).show()
+//                    checkedRadioButton.isChecked = false
+//                } else checkedRadioButton.isChecked = true
+//            }
+//        })
+
+
+
+
     }
     fun autoSlider(viewPager: ViewPager) {
         try {
@@ -85,6 +120,18 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
 
         }
     }
+    fun OnRadioButtonClick(view: View) {
+        val checked = (view as RadioButton).isChecked
+        if (checked) {
+            (view as RadioButton).isChecked = false
+
+        } else if (!checked) {
+
+            (view as RadioButton).isChecked = true
+        }
+
+        // ...
+    }
     fun initListiner() {
         registerText.setOnClickListener{
             val i = Intent(this, RegisterActivity::class.java)
@@ -106,20 +153,42 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
             if (password.text.toString().isNullOrEmpty()&&email.text.toString().isNullOrEmpty()){
                 passwordTextInputLayout.error = "the password is required"
                 userNameTextInputLayout.error = "the email is required"
-                DesignerToast.Custom(this,"the email and password is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219)
+                DesignerToast.Custom(
+                    this,
+                    "the email and password is required",
+                    Gravity.TOP or Gravity.RIGHT,
+                    Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,
+                    16,
+                    "#FFFFFF",
+                    R.drawable.ic_warninges,
+                    55,
+                    219
+                )
 //                DesignerToast.Warning(this, "the email and is required", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG)
 
             }else  if (password.text.toString().isNullOrEmpty()){
 //                DesignerToast.Warning(this, "the password is required", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG)
-                DesignerToast.Custom(this,"the password is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+                DesignerToast.Custom(
+                    this,
+                    "the password is required",
+                    Gravity.TOP or Gravity.RIGHT,
+                    Toast.LENGTH_LONG,
+                    R.drawable.warnings_background,
+                    16,
+                    "#FFFFFF",
+                    R.drawable.ic_warninges,
+                    55,
+                    219
+                );
                 passwordTextInputLayout.error = "the password is required"
                 userNameTextInputLayout.error = null
             }else if(email.text.toString().isNullOrEmpty()){
                 passwordTextInputLayout.error = null
-                DesignerToast.Custom(this,"the email is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                    R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+                DesignerToast.Custom(
+                    this, "the email is required", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                    R.drawable.warnings_background, 16, "#FFFFFF", R.drawable.ic_warninges, 55, 219
+                );
                 userNameTextInputLayout.error = "the email is required"
             }else{
                 mPresenter!!.loginTap(
@@ -132,7 +201,7 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
         }
     }
 
-    override fun didLoginSuccess( auth_token: String) {
+    override fun didLoginSuccess(auth_token: String) {
         userConfig = UserConfig(
             "token.firstName",
             "token.lastName",
@@ -143,17 +212,26 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
             auth_token
         )
         userInfo.token=auth_token
-        DesignerToast.Custom(this,"successfully login",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+        DesignerToast.Custom(
+            this, "successfully login", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+            R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219
+        )
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
 
     override fun didLoginFail(msg: String) {
-        DesignerToast.Custom(this,msg,Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
-        Log.d("ttttttttttttttttttttttt", msg)
+        if (msg=="true" || msg=="Login"){
+
+        }else{
+            DesignerToast.Custom(
+                this, msg, Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.erroe_background, 16, "#FFFFFF", R.drawable.ic_cancel1, 55, 219
+            )
+            Log.d("ttttttttttttttttttttttt", msg)
+        }
+
     }
 
 }

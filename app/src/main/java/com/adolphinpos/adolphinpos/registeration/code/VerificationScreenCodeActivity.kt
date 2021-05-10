@@ -8,6 +8,7 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
@@ -101,11 +102,7 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
         })
         loginBtn.setOnClickListener {
             mPresenter!!.getCode(code)
-            DesignerToast.Custom(this, "the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
-                    R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219)
-            val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
-            startActivity(intent)
-            finish()
+
         }
     }
 
@@ -174,6 +171,7 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
     }
 
     override fun didGetValidateCodeFail(msg: String) {
+        Log.d("EEEEEEEEEEEEEE",msg)
         if (msg=="null"){
             DesignerToast.Custom(this, "the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                     R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219)

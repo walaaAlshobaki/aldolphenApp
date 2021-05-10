@@ -13,6 +13,9 @@ interface UsersDelegate {
     fun didGetUsersFail(msg: String)
     fun didEmpty()
 
+    fun didDeleteUsersSuccess(token: UserEmployeeModel)
+    fun didGetDeleteUsersFail(msg: String)
+
 
 }
 class UsersPresenter (var mContext: Context) {
@@ -97,6 +100,91 @@ class UsersPresenter (var mContext: Context) {
                     delegate!!.didGetUsersFail(msg)
                 }
             })
+
+    }
+
+    fun getDeleteUsersTap(UId: Int) {
+        val cred = JSONObject()
+        cred.put("UId", UId);
+
+
+
+
+//        paramsDictionary["day"] = day
+//
+//
+//        if(common.selectedChild != 0){
+//
+//            paramsDictionary["childid"] = "${common.selectedChild}"
+//
+//        }
+
+        serverManager.callApi(
+                this.mContext,
+                HttpMethod.DELETE,
+                UrlAPIs.instance.deleteUsers,
+                cred,
+                object : callBackApi {
+
+
+
+
+            override fun SUCCESS(jsonObject: String) {
+
+
+                var responseJson =
+                        common.parserJson.fromJson(jsonObject.toString(), UserEmployeeModel::class.java)
+//
+//                    var email = uname
+//                    val auth_token = responseJson
+
+
+
+
+//
+//                    userConfig = UserConfig(
+//                        uname,
+//                        jsonObject,
+//
+//                        )
+//                    common.session!!.createLoginSession(userConfig)
+                delegate!!.didGetUsersSuccess(responseJson)
+
+            }
+
+            override fun ERROR(msg: String) {
+                delegate!!.didGetUsersFail(msg)
+            }
+
+            override fun FAILER(msg: String) {
+                delegate!!.didGetUsersFail(msg)
+            }
+
+            override fun JSON(jsonObject: JSONObject, api: ApiModel?) {
+
+            }
+
+
+
+
+
+            override fun EMPTY(result: Boolean) {
+                delegate!!.didGetUsersFail("Empty")
+                delegate!!.didEmpty()
+            }
+
+            override fun NO_INTERNET() {
+                delegate!!.didGetUsersFail(mContext.resources.getString(R.string.no_internet_msg))
+            }
+
+            override fun ERROR_MSG(msg: String) {
+                delegate!!.didGetUsersFail(msg)
+            }
+
+            override fun NoMore(msg: String) {
+                delegate!!.didGetUsersFail(msg)
+            }
+        })
 
     }
 }

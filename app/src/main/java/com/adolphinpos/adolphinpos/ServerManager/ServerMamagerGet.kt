@@ -192,32 +192,34 @@ class ServerMamagerGet {
 
 
                     val messae = jsonObject.getString("message")
-//                    callBack.ERROR(
-//                            messae
-//                    )
+                    callBack.ERROR(
+                            messae
+                    )
 
-                } catch (ex: Exception) {
+                }  catch (ex: Exception) {
                     try {
                         val messae = jsonObject.getString("message")
                         Log.d("message :", messae)
-//                        callBack.ERROR(
-//                                messae
-//                        )
-//                        callBack.FAILER(messae)
+                        callBack.ERROR(
+                                messae
+                        )
+                        callBack.FAILER(messae)
+
+                        Log.d("IS_LOGIN :", ex.localizedMessage)
 
 
-                    } catch (ex: Exception) {
-//                        try {
-//                            val msg = jsonObject.getBoolean("success")
-//                            callBack.SUCCESS(msg.toString())
-//                        } catch (ex: Exception) {
+                    }catch (ex: Exception) {
+                        callBack.FAILER(ex.localizedMessage)
+                    }catch (ex: Exception) {
 //                            callBack.FAILER(ex.localizedMessage)
-//                        }
-//                        callBack.FAILER(ex.localizedMessage)
                     }
 //                    callBack.FAILER(ex.localizedMessage)
 
                     Log.d("IS_LOGIN :", ex.localizedMessage)
+//                        callBack.FAILER(ex.localizedMessage)
+
+//                    callBack.FAILER(ex.localizedMessage)
+
 
                 }
             }
@@ -699,8 +701,17 @@ abstract class CallAPIOperationGet(
 
                     publishProgress(jsonData)
 
-                } else {
+                } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST) {
                     Log.w("** < api calling > ***", responseCode.toString())
+
+
+                    val jsonData = convertStreamToJson(urlConnection!!.errorStream)
+
+                    Log.w("** < api calling > ***", "${url} responseCode: " + jsonData)
+
+                    Log.d("HttpURLConnection", "Response: $jsonData")
+                    publishProgress(jsonData)
+
                 }
 
 

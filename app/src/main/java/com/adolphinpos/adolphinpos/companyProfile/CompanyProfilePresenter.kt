@@ -1,6 +1,7 @@
 package com.adolphinpos.adolphinpos.companyProfile
 
 import android.content.Context
+import android.util.Log
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.*
 import com.adolphinpos.adolphinpos.Splash.common
@@ -10,7 +11,7 @@ import org.json.JSONObject
 
 interface CompanyProfileDelegate{
 
-    fun didGetCompanyProfileSuccess(response: UserInfoModel)
+    fun didGetCompanyProfileSuccess(response: CompanyProfileDataModel)
     fun didGetCompanyProfileFail(msg:String)
     fun didEmpty()
 
@@ -22,15 +23,21 @@ class CompanyProfilePresenter  (var mContext: Context) {
     fun getUserInfo(){
         val paramsDictionary = mutableMapOf<String, Any>()
         paramsDictionary["CId"] = userInfo.companyId
+
+
         serverManagerGet.callApi(this.mContext, HttpMethod.GET, UrlAPIs.instance.CompanyInfo,paramsDictionary,object :
                 callBackApiGet {
+
             override fun SUCCESS(jsonObject: String) {
 
                 val responseDatajson = JSONObject(jsonObject.toString())
 
-                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), UserInfoModel::class.java)
+                Log.d("**********************",responseDatajson.toString())
+                val responseJson = common.parserJson.fromJson(responseDatajson.toString(), CompanyProfileDataModel::class.java)
+                Log.d("@@@@@@@@@@@@@@",responseJson.toString())
 
                 delegate!!.didGetCompanyProfileSuccess(responseJson)
+
             }
 
             override fun ERROR(msg: String) {
@@ -68,4 +75,6 @@ class CompanyProfilePresenter  (var mContext: Context) {
         })
 
     }
+
+
 }

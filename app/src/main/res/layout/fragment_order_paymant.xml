@@ -141,11 +141,9 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
-
-                                app:endIconMode="password_toggle"
+                                app:endIconDrawable="@drawable/c"
+                                app:endIconMode="password_toggle        "
                                 app:endIconTint="@color/red"
-
                                 app:hintTextColor="@color/appMainColor"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
@@ -203,7 +201,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconMode="password_toggle"
                                 app:endIconTint="@color/red"
@@ -264,7 +262,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconMode="password_toggle"
                                 app:endIconTint="@color/red"
@@ -298,7 +296,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconTint="@color/red"
 
@@ -332,7 +330,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconTint="@color/red"
 
@@ -366,7 +364,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconTint="@color/red"
 
@@ -419,7 +417,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconTint="@color/red"
 
@@ -479,7 +477,7 @@
                                 app:boxCornerRadiusBottomStart="10dp"
                                 app:boxCornerRadiusTopEnd="10dp"
                                 app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/ic_mony"
+                                app:endIconDrawable="@drawable/c"
 
                                 app:endIconMode="password_toggle"
                                 app:endIconTint="@color/red"
@@ -523,7 +521,7 @@
                 android:id="@+id/text_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="payment Methods"
@@ -539,7 +537,7 @@
                 android:id="@+id/text_home2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+
 
                 android:fontFamily="@font/roboto"
                 android:text="Order No. 234"
@@ -614,7 +612,9 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/pay"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardElevation="0dp"
                 app:layout_constraintHeight_percent="0.55"
 
                 app:layout_constraintTop_toBottomOf="@+id/text_home2">
@@ -623,8 +623,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/back"
-
-                    android:padding="20dp">
+                   >
 
                     <TextView
                         android:id="@+id/textView4"
@@ -645,7 +644,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        app:layout_constraintHeight_percent="0.3"
+                        app:layout_constraintHeight_percent="0.55"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView4"
                         app:layout_constraintWidth_percent="0.95"
@@ -670,89 +669,102 @@
                         android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        app:layout_constraintHeight_percent="0.50"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView5"
                         app:layout_constraintWidth_percent="0.95"
                         tools:listitem="@layout/payment_item_cell" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+<androidx.cardview.widget.CardView
+    android:id="@+id/linearLayout12"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/layer"
+    app:layout_constraintHeight_percent="0.35"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/pay">
+    <TableLayout
 
-            <LinearLayout
-                android:id="@+id/linearLayout12"
-                android:layout_width="match_parent"
+        android:background="@color/layer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:backgroundTint="@color/layer"
+
+       >
+        <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/layer"
+                android:fontFamily="@font/roboto"
+                android:text="Items:"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/red"
+                android:layout_marginEnd="50dp"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Tax Value:"
+                android:layout_marginEnd="50dp"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Voucher:"
+                android:layout_marginEnd="50dp"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
 
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pay">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="discounts"
+                android:layout_marginEnd="50dp"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Promotion"
+                android:layout_marginEnd="50dp"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="Wallet value"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+        </TableRow>
+    </TableLayout>
+</androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="Items:"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/red"
-                    android:layout_marginEnd="20dp"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="Tax Value:"
-                    android:layout_marginEnd="20dp"
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="Voucher:"
-                    android:layout_marginEnd="20dp"
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="discounts"
-                    android:layout_marginEnd="20dp"
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="Promotion"
-                    android:layout_marginEnd="20dp"
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="Wallet value"
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
-            </LinearLayout>
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintHeight_percent="0.15"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/layer"
-                    android:padding="10dp">
+                    android:padding="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout5"

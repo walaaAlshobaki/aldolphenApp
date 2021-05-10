@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:padding="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".userProfile.UserProfileActivity">
 
@@ -12,8 +13,8 @@
         android:id="@+id/imageView3"
         android:layout_width="61dp"
         android:layout_height="74dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="50dp"
+
+
         android:src="@drawable/logo2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +58,6 @@
         app:cardBackgroundColor="@color/white"
         android:id="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="@+id/user"
-        app:layout_constraintStart_toStartOf="@+id/user"
         app:layout_constraintTop_toBottomOf="@id/user">
 
         <LinearLayout
@@ -117,7 +117,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
+
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Personal Profile"
@@ -145,7 +145,7 @@
     android:id="@+id/imageCard"
     android:layout_width="80dp"
     android:layout_height="70dp"
-    android:layout_marginStart="70dp"
+
     android:layout_marginTop="20dp"
     android:clickable="true"
     app:cardCornerRadius="10dp"
@@ -228,7 +228,7 @@
                 android:id="@+id/firstNameTextInputLayout"
                 style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="51dp"
                 android:layout_marginTop="10dp"
                 android:focusable="true"
                 android:hint="First Name"
@@ -240,14 +240,15 @@
                 app:boxCornerRadiusTopStart="10dp"
                 app:layout_constraintStart_toStartOf="@+id/imageCard"
                 app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                app:layout_constraintWidth_percent="0.25"
-                app:placeholderText="write your first name"
+                app:layout_constraintWidth_percent="0.33"
+                app:placeholderText="write your Company Name"
                 app:placeholderTextColor="@color/border">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/appMainColor"
                     android:textColorHint="@color/border"
@@ -259,8 +260,9 @@
                 android:id="@+id/lastNameTextInputLayout"
                 style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="0dp"
+                android:layout_height="51dp"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
+
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
 
@@ -275,14 +277,16 @@
 
                 app:layout_constraintStart_toEndOf="@+id/firstNameTextInputLayout"
                 app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintWidth_percent="0.33"
                 app:placeholderText="write your last name"
                 app:placeholderTextColor="@color/border">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/appMainColor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -294,8 +298,8 @@
                 style="@style/LoginTextInputLayoutStyle"
                 android:theme="@style/LoginTextInputLayoutStyle"
                 android:layout_width="0dp"
+                android:layout_height="51dp"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:hint="Email"
@@ -310,12 +314,13 @@
 
                 app:layout_constraintStart_toEndOf="@+id/lastNameTextInputLayout"
                 app:layout_constraintTop_toBottomOf="@+id/imageCard"
-                app:layout_constraintWidth_percent="0.30">
+                app:layout_constraintWidth_percent="0.32">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/appMainColor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -324,7 +329,7 @@
                 android:layout_height="wrap_content"
                 android:text="Country"
                 android:textColor="@color/appMainColor"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="17dp"
                 android:textSize="13sp"
                 android:layout_marginStart="8dp"
                 android:elevation="2dp"
@@ -342,7 +347,7 @@
                 app:cardElevation="1dp"
                 app:layout_constraintStart_toStartOf="@+id/firstNameTextInputLayout"
                 app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
-                app:layout_constraintWidth_percent="0.25">
+                app:layout_constraintWidth_percent="0.33">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -392,7 +397,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phone No."
                 android:textColor="@color/appMainColor"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="17dp"
                 android:textSize="13sp"
                 android:layout_marginStart="20dp"
                 android:elevation="2dp"
@@ -413,7 +418,7 @@
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toEndOf="@+id/con"
                 app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-                app:layout_constraintWidth_percent="0.25">
+                app:layout_constraintWidth_percent="0.33">
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -480,7 +485,7 @@
 
                 app:layout_constraintStart_toEndOf="@+id/PhoneTextInputLayout"
                 app:layout_constraintTop_toBottomOf="@+id/EmailTextInputLayout"
-                app:layout_constraintWidth_percent="0.30">
+                app:layout_constraintWidth_percent="0.32">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/age"

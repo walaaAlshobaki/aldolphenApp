@@ -63,6 +63,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
                     .with(this as Activity?)
                     .setPlaceHolder(R.drawable.ca,R.drawable.ca)
                     .load(countryModel!!.flag, flagphone)
+                callCode.text= "(+"+countryModel!!.callingCodes+")"
 
             }
         }
@@ -95,7 +96,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
               startActivity(i)
 
         }
-        flag.setOnClickListener{
+        code.setOnClickListener{
 
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -109,7 +110,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate {
             startActivity(i)
 
         }
-        flagphone.setOnClickListener{
+        flagcode.setOnClickListener{
             val i = Intent(this, CountryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)

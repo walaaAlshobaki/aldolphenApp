@@ -24,6 +24,7 @@ class GalleryFragment : Fragment() , DashboardAdapter.OnItemselectedDelegate{
 
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         val linearVertical2 = LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false)
+
         root.recyclerViewCashDrawer!!.layoutManager = linearVertical2
         root.recyclerViewCashDrawer!!.setHasFixedSize(true)
         dashboardAdapter = DashboardAdapter(requireActivity(), cashDrawerModel,"CashDrawer")

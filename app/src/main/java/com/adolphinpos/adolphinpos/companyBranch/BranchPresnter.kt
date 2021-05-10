@@ -73,6 +73,7 @@ class BranchPresnter (var mContext: Context) {
                     val responseDatajson = JSONObject(jsonObject.toString())
 
                     val responseJson = common.parserJson.fromJson(responseDatajson.toString(), AddBranchModel::class.java)
+                    common.branchId=responseJson.data
 
                     delegate!!.didAddBranchSuccess(responseJson)
 

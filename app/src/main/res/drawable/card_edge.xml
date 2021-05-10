@@ -4,5 +4,5 @@
     <size android:width="2dp"/>
     <padding android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp"/>
     <corners android:topLeftRadius="12dp" android:bottomLeftRadius="12dp"
-        android:topRightRadius="12dp" android:bottomRightRadius="12dp"/>
+       />
 </shape>

@@ -1,9 +1,9 @@
 package com.adolphinpos.adolphinpos.productManagerHomePage
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
@@ -13,11 +13,10 @@ import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -37,62 +36,64 @@ import java.util.*
 class ProductManagerMainActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
-    val s_intentFilter : IntentFilter = IntentFilter()
+
 
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     val sdf = SimpleDateFormat("hh:mm a")
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
         setContentView(R.layout.activity_product_manager_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        s_intentFilter.addAction(Intent.ACTION_TIME_TICK)
-        s_intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED)
-        s_intentFilter.addAction(Intent.ACTION_TIME_CHANGED)
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
-//        registerReceiver(m_timeChangedReceiver, s_intentFilter);
+
 
         val navController = findNavController(R.id.nav_host_fragment)
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home,
-                R.id.nav_gallery,
-                R.id.transaction,
-                R.id.hold,
-                R.id.products,
-                R.id.Restaurant,
-                R.id.hint,
-                R.id.lock
-            ), drawer
+                setOf(
+                        R.id.nav_home,
+                        R.id.nav_gallery,
+                        R.id.transaction,
+                        R.id.hold,
+                        R.id.products,
+                        R.id.Restaurant,
+                        R.id.hint,
+                        R.id.lock
+                ), drawer
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
                 val toggle = ActionBarDrawerToggle(
-                    this,
-                    drawer,
-                    toolbar,
-                    R.string.navigation_drawer_open,
-                    R.string.navigation_drawer_close
+                        this,
+                        drawer,
+                        toolbar,
+                        R.string.navigation_drawer_open,
+                        R.string.navigation_drawer_close
                 )
-        toggle.setHomeAsUpIndicator(R.drawable.ic_logohome);
-        drawer.addDrawerListener(toggle)
-        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar()!!.setDisplayShowTitleEnabled(false)
+
+
+
+
+        navigationView.setNavigationItemSelectedListener(this)
+        toggle.syncState()
+        val headerLayout = navigationView.getHeaderView(0)
+//
+//        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar()!!.setDefaultDisplayHomeAsUpEnabled(false);
         toggle.setDrawerIndicatorEnabled(false);
         toggle.setHomeAsUpIndicator(R.drawable.ic_logohome);
-        toggle.syncState()
-        navigationView.setNavigationItemSelectedListener(this)
-        val headerLayout = navigationView.getHeaderView(0)
         toggle.toolbarNavigationClickListener = View.OnClickListener {
             val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
             if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -101,12 +102,23 @@ class ProductManagerMainActivity : AppCompatActivity(),
                 drawer.openDrawer(GravityCompat.START)
             }
         }
+        drawer .addDrawerListener(toggle)
+        toggle.syncState();
+
+//        toggle.setHomeAsUpIndicator(R.drawable.ic_logohome);
+
+        toolbar.post {
+            val d = ResourcesCompat.getDrawable(resources, R.drawable.ic_logohome, null)
+            toolbar.navigationIcon = d
+            toolbar.setContentInsetsAbsolute(0,0)
+            toolbar.setContentInsetsRelative(0,0)
+        }
         Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
 //        Picasso.get().load(R.drawable.ic_time).transform(CircleTransform()).into(timeNoImage)
         currencyNoLin.setOnClickListener {
             val intent = Intent(
-                this,
-                CurrencyActivity::class.java
+                    this,
+                    CurrencyActivity::class.java
             )
 
            startActivity(intent)

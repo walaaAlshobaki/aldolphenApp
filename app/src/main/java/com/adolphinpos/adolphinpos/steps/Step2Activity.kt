@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.MainAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addEmp.AddEmployeeActivity
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
@@ -47,6 +48,13 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
             startActivity(i)
 
         }
+        delete.setOnClickListener {
+            Log.d("**********************",common.usersDelete.toString())
+            mModelList!!.remove(common.usersDelete)
+            mAdapter!!.notifyDataSetChanged()
+//            mPresenter!!.getDeleteUsersTap(common.usersDelete)
+
+        }
         next.setOnClickListener {
             val i = Intent(this, Step3Activity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -84,6 +92,7 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
             mModelList.clear()
             mModelList.addAll(token.data)
             getListData()
+            mAdapter!!.notifyDataSetChanged()
 
 //    mAdapter!!.notifyDataSetChanged()
         }catch (ex: Exception) {
@@ -110,6 +119,14 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
         runOnUiThread {
             emptyCell()
         }
+    }
+
+    override fun didDeleteUsersSuccess(token: UserEmployeeModel) {
+
+    }
+
+    override fun didGetDeleteUsersFail(msg: String) {
+
     }
 
     override fun onSelectItemCategory(position: Int) {

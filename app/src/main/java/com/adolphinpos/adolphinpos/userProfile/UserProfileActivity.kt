@@ -28,11 +28,16 @@ import com.adolphinpos.adolphinpos.login.userInfo.UserInfoDelegate
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter
 import com.adolphinpos.adolphinpos.registeration.country.CountryActivity
+import com.adolphinpos.adolphinpos.registeration.country.CountryDelegate
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
 import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_step3.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
+import kotlinx.android.synthetic.main.activity_user_profile.age
+import kotlinx.android.synthetic.main.activity_user_profile.avatar_img
 import kotlinx.android.synthetic.main.activity_user_profile.country
 import kotlinx.android.synthetic.main.activity_user_profile.email
 import kotlinx.android.synthetic.main.activity_user_profile.firstname
@@ -41,20 +46,25 @@ import kotlinx.android.synthetic.main.activity_user_profile.flagphone
 import kotlinx.android.synthetic.main.activity_user_profile.lastname
 import kotlinx.android.synthetic.main.activity_user_profile.phoneNum
 import kotlinx.android.synthetic.main.activity_user_profile.sign
+import kotlinx.android.synthetic.main.activity_user_profile.update_layer
+import kotlinx.android.synthetic.main.activity_user_profile.upload
 import kotlinx.android.synthetic.main.activity_user_profile.userImage
 import kotlinx.android.synthetic.main.activity_user_profile.userName
 import java.lang.Exception
 
-class UserProfileActivity : AppCompatActivity() , UserInfoDelegate {
+class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDelegate {
     var mPresenter: UserInfoPresenter? = null
     var countryModel: CountryModel.Data? =null
     var picturePath: Bitmap? =null
+    var CounPresenter: CountryPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         mPresenter = UserInfoPresenter(this)
         mPresenter!!.delegate = this
-
+        CounPresenter = CountryPresenter(this)
+        CounPresenter!!.delegate = this
+        CounPresenter!!.getCountry()
         if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
         }
@@ -114,7 +124,14 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate {
 
         update_layer.setOnClickListener {
 
-            mPresenter!!.updateInfo(picturePath!!,firstname.text.toString(),lastname.text.toString(),"795152353",email.text.toString(),age.text .toString() ,countryModel!!.id)
+
+//            mPresenter!!.updateInfo(picturePath!!,
+//                    firstname.text.toString()
+//                    ,lastname.text.toString()
+//                    ,"795152353",
+//                    email.text.toString(),
+//                    age.text .toString()
+//                    ,countryModel!!.id)
         }
     }
     private fun initData() {
@@ -368,6 +385,40 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate {
     }
 
     override fun didGetUserInfoFail(msg: String) {
+
+    }
+
+    override fun didGetCountrySuccess(response: CountryModel) {
+        Log.d("SSSSSSSSSSSSSSSS",userInfo.contryId.toString())
+        val iterator = (response.data.indices).iterator()
+
+        if (iterator.hasNext()) {
+            iterator.next()
+        }
+
+// do something with the rest of elements
+        iterator.forEach {
+
+            if (response.data[it].id.equals(userInfo.contryId)) {
+                Log.d("SSSSSSSSSSSSSSSS",response.data[it].toString())
+                country.text =response.data[it].name
+                SvgLoader.pluck()
+                    .with(this as Activity?)
+                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                    .load(response.data[it].flag, flag)
+                SvgLoader.pluck()
+                    .with(this as Activity?)
+                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+                    .load(response.data[it].flag, flagphone)
+            }
+
+
+
+
+        }
+    }
+
+    override fun didGetCountryFail(msg: String) {
 
     }
 

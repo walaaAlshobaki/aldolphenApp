@@ -105,6 +105,12 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         categoryModel.add(CategoryModel(4,"cold drinks","",false))
         categoryModel.add(CategoryModel(5,"cold drinks","",false))
         categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
+        categoryModel.add(CategoryModel(6,"sandwitches","",false))
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"mainCategoryModel")
         mAdapter.notifyDataSetChanged()
         mAdapter.setOnClickItemCategory(this)
@@ -129,6 +135,14 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
 //
 //
 //
+        dashboardModel.add(data1)
+        dashboardModel.add(data2)
+        dashboardModel.add(data3)
+        dashboardModel.add(data4)
+        dashboardModel.add(data1)
+        dashboardModel.add(data2)
+        dashboardModel.add(data3)
+        dashboardModel.add(data4)
         dashboardModel.add(data1)
         dashboardModel.add(data2)
         dashboardModel.add(data3)

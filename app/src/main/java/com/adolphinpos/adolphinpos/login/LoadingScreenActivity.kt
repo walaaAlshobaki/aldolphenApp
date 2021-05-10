@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.adolphinpos.adolphinpos.CompanyServiceBranches.AvatarParser
 import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.SplashActivity
 import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
@@ -61,16 +62,17 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
       var profilePicturePathString=""
         var ageString=0
         var branchIdString=0
+        Log.d("SSSSSSSSSSSSSSSSSSScontryId",response.contryId.toString())
         try {
             if (response.profilePicturePath==null){
-                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.profilePicturePath.toString())
+                Log.d("SSSSSSSSSSSSSSSS",response.profilePicturePath.toString())
                 profilePicturePathString=""
             }else{
 
                 profilePicturePathString=response.profilePicturePath.toString()
             }
             if (response.age==null){
-                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.age.toString())
+                Log.d("SSSSSSSSSSSSSSS",response.age.toString())
                 ageString=0
             }else{
 
@@ -78,7 +80,7 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
             }
 
             if (response.branchId==null){
-                Log.d("SSSSSSSSSSSSSSSSSSSSSSSSS",response.branchId.toString())
+                Log.d("SSSSSSSSSSSSSSSSSSS",response.branchId.toString())
                 branchIdString=0
             }else{
 
@@ -93,7 +95,8 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
                 userConfig.auth_token,
                 userConfig.userid.toInt(),
                response.companyId!!.toString(),
-                    profilePicturePathString,ageString,branchIdString
+                    profilePicturePathString,ageString,branchIdString,response.contryId!!
+
 
 //
 //,response.age!!,response.branchId
@@ -103,7 +106,7 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
             Log.d("createLoginSession2",common.session!!.createLoginSession(userInfo).toString())
             userInfo= UserInfoModel()
 //        common.session!!.createLoginSession(userConfig)
-            val mainIntent = Intent(applicationContext, MainActivity::class.java)
+            val mainIntent = Intent(applicationContext, SplashActivity::class.java)
             startActivity(mainIntent)
             finish()
         }catch (e:Exception){

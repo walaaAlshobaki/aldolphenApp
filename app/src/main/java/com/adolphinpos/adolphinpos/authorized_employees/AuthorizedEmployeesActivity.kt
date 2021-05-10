@@ -117,6 +117,14 @@ try {
         }
     }
 
+    override fun didDeleteUsersSuccess(token: UserEmployeeModel) {
+
+    }
+
+    override fun didGetDeleteUsersFail(msg: String) {
+
+    }
+
     override fun onSelectItemCategory(position: Int) {
         RxBus.publish(MessageEvent(20, mModelList[position]))
         val i = Intent(this, EmpPermissionsActivity::class.java)

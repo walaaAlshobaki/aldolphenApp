@@ -33,7 +33,7 @@ class UrlAPIs {
 
     val login = "http://161.97.164.114:8080/api/User"
     val Company = "http://161.97.164.114:8080/api/Company"
-    val CompanyInfo = "http://161.97.164.114:8080/api/Company"
+    val CompanyInfo = "Company?"
     val email = "http://161.97.164.114:8080/api/User/RestPassword/Email"
     val code = "http://161.97.164.114:8080/api/User/Activation/Code"
     val newBranch = "http://161.97.164.114:8080/api/Company/Service/Branch"
@@ -56,11 +56,13 @@ class UrlAPIs {
     val addCurrency= "http://161.97.164.114:8080/api/Company/Currency"
     val addPaymentMethood = "http://161.97.164.114:8080/api/Company/PaymentMethod"
     val Users = "Company/Users?"
+    val deleteUsers = "User?"
     val Branches = "Company/Service/Branches?"
     val restPhoneNumber = "http://161.97.164.114:8080/api/User/RestPhoneNumber"
     val Currency = "Setup/Currency?"
     val PaymentMethood = "Setup/PaymentMethood?"
     val City = "Setup/Country/City?"
+    val ServiceType = "Service/Types?"
 
 }
 
@@ -876,8 +878,10 @@ abstract class UploadOperation(
 
                     publishProgress(jsonData)
 
-                } else {
+                } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
                     Log.w("** < api calling > ***", responseCode.toString())
+                }else{
+
                 }
 
 

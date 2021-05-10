@@ -1,5 +1,6 @@
 package com.adolphinpos.adolphinpos.helper
 
+import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.google.gson.Gson
 import com.manhal.lms.app.Helper.SessionManager
 
@@ -18,6 +19,7 @@ class Common {
     var isLock:Boolean=false
     var userPhone:String=""
     var userPrermtion:ArrayList<Int> = arrayListOf()
+    var usersDelete: UserEmployeeModel.Data? = null
     var userPayment:ArrayList<Int> = arrayListOf()
     var userCurrencyType:ArrayList<Int> = arrayListOf()
     var prermtion:ArrayList<Int> = arrayListOf()

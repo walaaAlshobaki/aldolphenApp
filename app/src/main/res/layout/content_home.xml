@@ -38,39 +38,22 @@
 
         </fragment>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/appMainColor"
+            android:elevation="5dp"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search Here"
             sothree:layout_constraintEnd_toEndOf="parent"
             sothree:layout_constraintStart_toStartOf="parent"
-            android:background="@color/white"
-            sothree:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_close"
-                sothree:layout_constraintEnd_toEndOf="parent"
-                sothree:layout_constraintTop_toTopOf="parent"
-                sothree:layout_constraintBottom_toBottomOf="parent"
-                sothree:tint="@color/appMainColor" />
-
-            <fragment
-                android:id="@+id/place_autocomplete"
-                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="695dp"
-                sothree:layout_constraintEnd_toStartOf="@+id/close"
-                sothree:layout_constraintStart_toStartOf="parent"
-                sothree:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            sothree:layout_constraintTop_toTopOf="parent"
+            sothree:queryHint="Search Here" />
 
 
         <RelativeLayout
-            android:id="@+id/currentPosition"
+                android:id="@+id/currentPosition"
 
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -94,11 +77,34 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/white"
+                android:background="@drawable/circle_layer"
                 android:clickable="false"
                 android:src="@drawable/ic_gps"
                 android:tint="@color/appMainColor" />
         </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_done"
+            android:layout_marginBottom="8dp"
+            android:background="#00B052"
+            android:backgroundTint="#00B052"
+            app:tint="@color/white"
+            sothree:layout_constraintBottom_toTopOf="@+id/currentPosition"
+            sothree:layout_constraintEnd_toEndOf="@+id/currentPosition" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:layout_marginBottom="8dp"
+            android:background="@color/red"
+            android:backgroundTint="@color/red"
+            app:tint="@color/white"
+            sothree:layout_constraintBottom_toTopOf="@+id/done"
+            sothree:layout_constraintEnd_toEndOf="@+id/done" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

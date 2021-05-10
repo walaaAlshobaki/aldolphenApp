@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
         dashboardAdapter = DashboardAdapter(this, dashboardModel,"DashboardViewHolder")
         mPresenter!!.getService()
         dashboardAdapter.setOnClickItemCategory(this)
-        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.profilePicturePath!!)
+        Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.contryId!!.toString())
 //        recyclerView.measure(
 //            View.MeasureSpec.makeMeasureSpec(
 //                recyclerView.width,
@@ -176,15 +176,13 @@ fun checkLocationPermission(): Boolean {
     override fun onSelectItemCategory(position: Int) {
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.token)
         Log.d("QQQQQQQQQQQQQQQQQQ", userInfo.companyId.toString())
-        if (dashboardModel[position].name=="Restaurant"){
+        Log.d("QQQQQQQQQQQQQQQQQQ", dashboardModel[position].id.toString())
+
             val i = Intent(this, PosCatagoryActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            i.putExtra("serviceTypeId",dashboardModel[position].id)
             startActivity(i)
-        }else{
-            val i = Intent(this, PosCatCompanyDataActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-        }
+
 
     }
 

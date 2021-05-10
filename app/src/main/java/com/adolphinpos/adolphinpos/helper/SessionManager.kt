@@ -47,6 +47,7 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
     var companyId = "companyId"
     var key_userid = "userId"
     var age = "age"
+    var contryId = "contryId"
     var branchId = "branchId"
     var profilePicturePath = "profilePicturePath"
     var key_IS_LOGIN = "IS_LOGIN"
@@ -74,6 +75,7 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                 branchId + " TEXT," +
                 profilePicturePath + " TEXT," +
                 age + " TEXT," +
+                contryId + " TEXT," +
                 key_IS_LOGIN + " TEXT" +
                 ")"
 
@@ -111,8 +113,9 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
             values.put(profilePicturePath, userConfig.profilePicturePath.toString())
 
         }
-                values.put(branchId, userConfig.branchId.toString())
+        values.put(branchId, userConfig.branchId.toString())
            values.put(age, userConfig.age.toString())
+           values.put(contryId, userConfig.contryId.toString())
 
         values.put(key_IS_LOGIN, "false")
 
@@ -153,20 +156,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
         } else {
             check = false
             result.didLoginFail()
-//            inetnt = Intent(context, login::class.java)
         }
         cursor.close()
         db.close()
 
-//        inetnt.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//
-//        // Add new Flag to start new Activity
-//        inetnt.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//
-//        // Staring Login Activity
-//        context!!.startActivity(inetnt)
-//        val activity = context!! as Activity
-//        activity.finish()
     }
 
     /**
@@ -193,11 +186,10 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                 key_phoneNumber + "," +
                 key_token + "," +
                 companyId + "," +
-
                 profilePicturePath + "," +
-                                branchId + "," +
+                branchId + "," +
                 age + "," +
-
+                contryId + "," +
                 key_IS_LOGIN +
 
 
@@ -249,6 +241,9 @@ public class SessionManager(context: Context) : SQLiteOpenHelper(context, Sessio
                         }
                         if (cursor != null && cursor.getString(11) != null) {
                             user.age = cursor.getInt(11)
+                        }
+                        if (cursor != null && cursor.getString(12) != null) {
+                            user.contryId = cursor.getInt(12)
                         }
 
 
