@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
         app:cardBackgroundColor="@color/white"
         app:layout_constraintWidth_percent="0.10"
         app:layout_constraintHeight_percent="0.10"
@@ -42,7 +43,7 @@
                 android:layout_height="15dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_left_arrow"
-                android:tint="@color/appMainColor" />
+                app:tint="@color/appMainColor" />
 
             <TextView
                 android:id="@+id/signUp"
@@ -138,6 +139,7 @@
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
+
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:placeholderTextColor="@color/border"
@@ -160,194 +162,300 @@
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:elevation="2dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:elevation="12dp"
+            android:padding="5dp"
             android:fontFamily="@font/roboto_bold"
             android:text="Country"
+            android:background="@drawable/gradinat_background"
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout" />
 
 
-<FrameLayout
+<com.google.android.material.card.MaterialCardView
     android:id="@+id/con"
     android:layout_width="0dp"
     android:layout_height="51dp"
     android:layout_marginTop="32dp"
-
+    app:strokeWidth="2dp"
+    app:strokeColor="@color/border"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    android:background="@drawable/card_full_white"
     app:layout_constraintStart_toStartOf="parent"
 
-    app:layout_constraintWidth_percent="0.35"
+    app:layout_constraintWidth_percent="0.45"
     app:layout_constraintTop_toBottomOf="@+id/firstNameTextInputLayout"
 
-    android:background="@drawable/card_edge">
+   >
     <androidx.constraintlayout.widget.ConstraintLayout
+
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/card_white">
+        android:layout_height="51dp"
+        android:background="@drawable/card_full_white"
+        android:padding="5dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+        app:layout_constraintStart_toEndOf="@+id/code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.45">
 
 
+        <com.rilixtech.widget.countrycodepicker.CountryCodePicker
 
+            android:id="@+id/countryCodePicker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-        <TextView
-            android:id="@+id/country"
-            android:clickable="true"
-            android:text="saudi arabia"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="15sp"
-            app:layout_constraintWidth_percent="0.75"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/appMainColoro"
+            app:ccp_arrowSize="0sp"
+            android:gravity="center_vertical"
+            app:ccp_backgroundColor="@color/white"
+            app:ccp_textColor="@color/appMainColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:ccp_hidePhoneCode="true"
+            app:ccp_showFullName="true"
+            app:ccp_hideNameCode="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-
-
-
-
-
-
+            app:layout_constraintWidth_percent="0.45" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</com.google.android.material.card.MaterialCardView>
 
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/code"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            android:clickable="true"
-            android:background="@drawable/card_country"
-            app:layout_constraintBottom_toBottomOf="@+id/con"
-            app:layout_constraintStart_toEndOf="@+id/con"
-            app:layout_constraintTop_toTopOf="@+id/con"
-            app:layout_constraintWidth_percent="0.10">
-
-            <ImageView
-                android:id="@+id/flag"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-
-                android:src="@drawable/sa"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
+            android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone No."
-            android:textColor="@color/appMainColor"
-            android:layout_marginTop="16dp"
-            android:textSize="13sp"
-            android:layout_marginStart="50dp"
-            android:elevation="2dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
             android:fontFamily="@font/roboto_bold"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-            app:layout_constraintStart_toEndOf="@+id/code"/>
-
-
-
-
-        <androidx.cardview.widget.CardView
+            android:text="Phone Number"
+            android:padding="5dp"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toStartOf="@+id/PhoneTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout" />
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/PhoneTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="51dp"
             android:layout_marginTop="32dp"
-            app:cardElevation="1dp"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/code"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/border"
+            app:cardElevation="0dp"
+           app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            android:background="@drawable/card_full_white"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
-            app:layout_constraintWidth_percent="0.45">
-            <FrameLayout
+            app:layout_constraintStart_toEndOf="@+id/con"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.45"
+          >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_edge">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                android:background="@drawable/card_full_white"
+                android:padding="5dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+
+                app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+                app:layout_constraintStart_toEndOf="@+id/code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.45">
+
+                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+
+                    android:id="@+id/countryCodePicker2"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:background="@drawable/card_white">
+                    app:ccp_textSize="14sp"
+                    app:ccp_arrowSize="15sp"
+                    app:ccp_hideNameCode="true"
+                    android:gravity="center_vertical"
+                    app:ccp_backgroundColor="@color/white"
+                    app:ccp_textColor="@color/appMainColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.45" />
+
+                <EditText
+                    android:id="@+id/phoneNum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="16sp"
+                    android:hint="phone number"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/appMainColor"
+                    android:inputType="number"
+                    android:textColorHint="@color/border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/countryCodePicker2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:placeholderText="write your phone number"
+                    app:placeholderTextColor="@color/border" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+<!--        <com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout-->
+<!--            style="@style/LoginTextInputLayoutStyle"-->
+<!--            android:theme="@style/LoginTextInputLayoutStyle"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="51dp"-->
+<!--            android:hint="phone number"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:id="@+id/PhoneTextInputLayout"-->
+<!--            app:boxCornerRadiusBottomEnd="10dp"-->
+<!--            app:boxCornerRadiusBottomStart="10dp"-->
+<!--            app:boxCornerRadiusTopEnd="10dp"-->
+<!--            app:boxCornerRadiusTopStart="10dp"-->
+<!--            android:textColorHint="@color/appMainColor"-->
+<!--            app:hintTextColor="@color/appMainColor"-->
+<!--            app:placeholderTextColor="@color/border"-->
+<!--            app:placeholderText="write your last name"-->
+<!--            app:layout_constraintWidth_percent="0.45"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/code"-->
+<!--            app:phonemoji_flagFor="@id/PhoneTextInputLayout2"-->
+<!--            >-->
+
+<!--            <com.tfcporciuncula.phonemoji.PhonemojiTextInputEditText-->
+<!--                android:id="@+id/PhoneTextInputLayout2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:textColor="@color/appMainColor"-->
+<!--                android:textColorHint="@color/appMainColor"-->
+<!--                />-->
+
+<!--        </com.tfcporciuncula.phonemoji.PhonemojiTextInputLayout>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Phone No."-->
+<!--            android:textColor="@color/appMainColor"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:textSize="13sp"-->
+<!--            android:layout_marginStart="50dp"-->
+<!--            android:elevation="2dp"-->
+<!--            android:fontFamily="@font/roboto_bold"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/code"/>-->
 
 
 
 
-                    <EditText
-                        android:id="@+id/phoneNum"
-                        android:clickable="true"
-                        android:hint="Write your phone No."
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:textSize="15sp"
-                        android:phoneNumber="true"
-                        android:background="@android:color/transparent"
-                        app:layout_constraintWidth_percent="0.55"
-                        android:fontFamily="@font/roboto"
-                        android:textColorHint="@color/appMainColoro"
-                        android:textColor="@color/appMainColor"
-                        app:layout_constraintStart_toEndOf="@+id/flagcode"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/flagcode"
-                        android:layout_width="0dp"
-                        android:layout_height="51dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintWidth_percent="0.30">
-
-                        <ImageView
-                            android:id="@+id/flagphone"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/sa"
-                            app:layout_constraintBottom_toBottomOf="parent"
-
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/callCode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_bold"
-                            android:text="(+996)"
-                            android:textColor="@color/appMainColor"
-                            android:textSize="12sp"
-                            android:layout_marginStart="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/flagphone"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/PhoneTextInputLayout"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="51dp"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            app:cardElevation="1dp"-->
+<!--            app:cardCornerRadius="12dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/code"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"-->
+<!--            app:layout_constraintWidth_percent="0.45">-->
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/card_edge">-->
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:background="@drawable/card_white">-->
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </FrameLayout>
 
 
-        </androidx.cardview.widget.CardView>
-        <TextView
-            android:id="@+id/phoneError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/red"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/PhoneTextInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/phoneNum"-->
+<!--                        android:clickable="true"-->
+<!--                        android:hint="Write your phone No."-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:phoneNumber="true"-->
+<!--                        android:background="@android:color/transparent"-->
+<!--                        app:layout_constraintWidth_percent="0.55"-->
+<!--                        android:fontFamily="@font/roboto"-->
+<!--                        android:textColorHint="@color/appMainColoro"-->
+<!--                        android:textColor="@color/appMainColor"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/flagcode"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/flagcode"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="51dp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintWidth_percent="0.30">-->
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/flagphone"-->
+<!--                            android:layout_width="25dp"-->
+<!--                            android:layout_height="25dp"-->
+<!--                            android:src="@drawable/sa"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/callCode"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/roboto_bold"-->
+<!--                            android:text="(+996)"-->
+<!--                            android:textColor="@color/appMainColor"-->
+<!--                            android:textSize="12sp"-->
+<!--                            android:layout_marginStart="8dp"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintStart_toEndOf="@+id/flagphone"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            </FrameLayout>-->
+
+
+<!--        </androidx.cardview.widget.CardView>-->
+<!--        <TextView-->
+<!--            android:id="@+id/phoneError"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="25dp"-->
+<!--            android:fontFamily="@font/roboto"-->
+<!--            android:textColor="@color/red"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/PhoneTextInputLayout"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout" />-->
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -369,7 +477,7 @@
             app:endIconTint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/code"
+            app:layout_constraintTop_toBottomOf="@+id/con"
             app:layout_constraintWidth_percent="0.45">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -412,7 +520,7 @@
             android:textColorHint="@color/appMainColor"
             app:hintTextColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/code"
+            app:layout_constraintStart_toEndOf="@+id/con"
             app:layout_constraintTop_toBottomOf="@+id/PhoneTextInputLayout"
             app:layout_constraintWidth_percent="0.45">
 

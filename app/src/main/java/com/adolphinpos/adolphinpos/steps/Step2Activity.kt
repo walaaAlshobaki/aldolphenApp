@@ -1,5 +1,6 @@
 package com.adolphinpos.adolphinpos.steps
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,11 +16,14 @@ import com.adolphinpos.adolphinpos.authorized_employees.UsersDelegate
 import com.adolphinpos.adolphinpos.authorized_employees.UsersPresenter
 import com.adolphinpos.adolphinpos.createPOS.PosSettingActivity
 import com.adolphinpos.adolphinpos.employee_permissions.EmpPermissionsActivity
+import com.adolphinpos.adolphinpos.helper.Alert
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.squareup.picasso.Picasso
+import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_step2.*
+import kotlinx.android.synthetic.main.alert.view.*
 
 class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemselectedDelegate{
     var mPresenter: UsersPresenter? = null
@@ -49,9 +53,31 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
 
         }
         delete.setOnClickListener {
-            Log.d("**********************",common.usersDelete.toString())
-            mModelList!!.remove(common.usersDelete)
-            mAdapter!!.notifyDataSetChanged()
+
+            Alerter.create(this, R.layout.alert)
+                .setDuration(1000000)
+
+                .setBackgroundColorRes(R.color.appColor)
+                .also { alerter ->
+
+                    val container = alerter.getLayoutContainer()!!.rootView
+                    container.tvCustomLayout.text = resources.getString(R.string.deletemsg)
+
+                    container.ok.setOnClickListener {
+                        Alert.Instance.showMessage(this as Activity,R.string.delete,true)
+                        Alerter.hide()
+                        Log.d("**********************",common.usersDelete.toString())
+                        mModelList!!.remove(common.usersDelete)
+                        mAdapter!!.notifyDataSetChanged()
+                    }
+
+                    container.no.setOnClickListener {
+                        Alerter.hide()
+
+                    }
+                }
+                .show()
+
 //            mPresenter!!.getDeleteUsersTap(common.usersDelete)
 
         }

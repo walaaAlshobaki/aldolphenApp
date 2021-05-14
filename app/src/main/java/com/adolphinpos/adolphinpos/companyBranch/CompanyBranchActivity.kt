@@ -30,7 +30,9 @@ import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.plan.PlanActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryActivity
+import com.adolphinpos.adolphinpos.registeration.country.CountryDelegate
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
 import com.adolphinpos.adolphinpos.steps.Step2Activity
 import com.ahmadrosid.svgloader.SvgLoader
 import com.google.android.gms.location.*
@@ -39,17 +41,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.rilixtech.widget.countrycodepicker.CountryCodePicker
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_company_branch.*
-import kotlinx.android.synthetic.main.activity_company_branch.callCode
-import kotlinx.android.synthetic.main.activity_company_branch.code
-import kotlinx.android.synthetic.main.activity_company_branch.country
+import kotlinx.android.synthetic.main.activity_company_branch.countryCodePicker
+import kotlinx.android.synthetic.main.activity_company_branch.countryCodePicker2
 import kotlinx.android.synthetic.main.activity_company_branch.currentPosition
-import kotlinx.android.synthetic.main.activity_company_branch.flag
-import kotlinx.android.synthetic.main.activity_company_branch.flagcode
-import kotlinx.android.synthetic.main.activity_company_branch.flagphone
-import kotlinx.android.synthetic.main.activity_company_branch.loginBtn
-import kotlinx.android.synthetic.main.activity_company_branch.phoneNum
+
 
 
 import java.io.IOException
@@ -57,7 +55,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDelegate,BranchDelegate {
+class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDelegate,BranchDelegate,
+    CountryDelegate {
     private var mLocationRequest: LocationRequest? = null
     private val UPDATE_INTERVAL = (600000).toLong()  /* 10 secs */
     private val FASTEST_INTERVAL: Long = 600000 /* 2 sec */
@@ -70,6 +69,8 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
     var cityPresenter: CityPresenter? = null
     var BranchPresnter: BranchPresnter? = null
     var countryModel: CountryModel.Data? =null
+    var mCountryPresenter: CountryPresenter? = null
+    var phoneCode=""
     var latLng: LatLng? =null
     private lateinit var mGoogleMap: GoogleMap
     val MY_PERMISSIONS_REQUEST_LOCATION = 99
@@ -83,26 +84,57 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
         cityPresenter!!.delegate = this
        BranchPresnter = BranchPresnter(this)
        BranchPresnter!!.delegate = this
+        mCountryPresenter = CountryPresenter(this)
+        mCountryPresenter!!.delegate = this
+        mCountryPresenter!!.getCountry()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission()
         }
+
+        phoneCode=countryCodePicker.selectedCountryCode
+        countryCodePicker.setOnCountryChangeListener(CountryCodePicker.OnCountryChangeListener { selectedCountry ->
+            Log.d(
+
+                "Updated", selectedCountry.name + "CODE" + selectedCountry.phoneCode,
+
+                )
+            phoneCode = selectedCountry.phoneCode
+            countryCodePicker2.setCountryForNameCode(selectedCountry.phoneCode)
+            mCountryPresenter!!.getCountry()
+        })
+        countryCodePicker2.setOnCountryChangeListener(CountryCodePicker.OnCountryChangeListener { selectedCountry ->
+            Log.d(
+
+                "Updated", selectedCountry.name + "CODE" + selectedCountry.phoneCode,
+
+                )
+            phoneCode = selectedCountry.phoneCode
+            countryCodePicker.setCountryForNameCode(selectedCountry.phoneCode)
+            mCountryPresenter!!.getCountry()
+        })
+
+        Log.d(
+
+            "Updated" ,countryCodePicker.selectedCountryName+"CODE  "+countryCodePicker.selectedCountryCode,
+
+            )
 
         RxBus.listen(MessageEvent::class.java).subscribe {
             if (it.action == 1) {
                 countryModel = it.message as CountryModel.Data
 //                    mPresenter!!.scheduleTap(day!!.format(formatted))
-                country.text= countryModel!!.name
-                SvgLoader.pluck()
-                    .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
-                    .load(countryModel!!.flag, flag)
-                SvgLoader.pluck()
-                    .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
-                    .load(countryModel!!.flag, flagphone)
-                callCode.text= "(+"+countryModel!!.callingCodes+")"
-
-                cityPresenter!!.getCity(countryModel!!.id)
+//                country.text= countryModel!!.name
+//                SvgLoader.pluck()
+//                    .with(this as Activity?)
+//                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+//                    .load(countryModel!!.flag, flag)
+//                SvgLoader.pluck()
+//                    .with(this as Activity?)
+//                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+//                    .load(countryModel!!.flag, flagphone)
+//                callCode.text= "(+"+countryModel!!.callingCodes+")"
+//
+//                cityPresenter!!.getCity(countryModel!!.id)
 
 
             }else if (it.action== 100){
@@ -155,30 +187,30 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
 
         }
 
-        country.setOnClickListener{
-
-            val i = Intent(this, CountryActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-
-        }
-        code.setOnClickListener{
-
-            val i = Intent(this, CountryActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-
-        }
-        flagcode.setOnClickListener{
-            val i = Intent(this, CountryActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-        }
+//        country.setOnClickListener{
+//
+//            val i = Intent(this, CountryActivity::class.java)
+//            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(i)
+//
+//        }
+//        code.setOnClickListener{
+//
+//            val i = Intent(this, CountryActivity::class.java)
+//            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(i)
+//
+//        }
+//        flagcode.setOnClickListener{
+//            val i = Intent(this, CountryActivity::class.java)
+//            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(i)
+//        }
 
         loginBtn.setOnClickListener {
 
 
-            if (BranchName.text.isNullOrEmpty()||country.text.isNullOrEmpty()||phoneNum.text.isNullOrEmpty()|| Branches.text.isNullOrEmpty()){
+            if (BranchName.text.isNullOrEmpty()||phoneNum.text.isNullOrEmpty()|| Branches.text.isNullOrEmpty()){
                 DesignerToast.Custom(this,"All filed is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                     R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
             }else{
@@ -572,6 +604,33 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
     }
 
     override fun didGetCityFail(msg: String) {
+
+    }
+
+    override fun didGetCountrySuccess(response: CountryModel) {
+        Log.d("SSSSSSSSSSSSSSSS",userInfo.contryId.toString())
+        val iterator = (response.data.indices).iterator()
+
+        if (iterator.hasNext()) {
+            iterator.next()
+        }
+
+// do something with the rest of elements
+        iterator.forEach {
+
+            if (response.data[it].callingCodes == phoneCode) {
+                countryModel=response.data[it]
+                Log.d("SSSSSSSSSSSSSSSS",response.data[it].toString())
+                cityPresenter!!.getCity(response.data[it].id)
+            }
+
+
+
+
+        }
+    }
+
+    override fun didGetCountryFail(msg: String) {
 
     }
 

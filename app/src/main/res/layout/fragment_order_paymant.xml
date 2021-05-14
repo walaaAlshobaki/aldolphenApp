@@ -612,7 +612,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/pay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="5dp"
                 app:cardElevation="0dp"
                 app:layout_constraintHeight_percent="0.55"
@@ -628,7 +628,7 @@
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_bold"
                         android:text="Pay with"
                         android:textColor="@color/red"
@@ -682,7 +682,7 @@
     android:layout_height="0dp"
     app:cardCornerRadius="10dp"
     app:cardBackgroundColor="@color/layer"
-    app:layout_constraintHeight_percent="0.35"
+    app:layout_constraintHeight_percent="0.10"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/pay">
@@ -737,7 +737,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
                 android:text="Promotion"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="45dp"
                 android:textColor="@color/red"
                 android:textSize="14sp" />
             <TextView
@@ -764,7 +764,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/layer"
-                    android:padding="20dp">
+                    android:padding="10dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout5"

@@ -36,8 +36,8 @@ class UserOptionsActivity : AppCompatActivity()  , DashboardAdapter.OnItemselect
 
     fun setDashbordData() {
 
-        val data1 = HomeModel("Profile",2, R.drawable.pos,"Profile")
-        val data2 = HomeModel("Logout",0, R.drawable.setting,"Logout")
+        val data1 = HomeModel("Profile",2, R.drawable.ic_profile,"Profile")
+        val data2 = HomeModel("Logout",0, R.drawable.ic_logoutn,"Logout")
 //        val data3 = HomeModel(" ")
 //
 //

@@ -119,28 +119,26 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-<RadioGroup
-    android:id="@+id/test"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout">
-    <RadioButton
+
+    <CheckBox
         android:id="@+id/radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto"
         android:text="Keep me signed in"
-        android:checked="true"
+        style="@android:style/Widget.CompoundButton.RadioButton"
+
         android:textColor="@color/appMainColor"
         android:textSize="14sp"
+
+
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeStepGranularity="1sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextInputLayout" />
-</RadioGroup>
+
 
 
         <TextView
@@ -154,9 +152,9 @@
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="12sp"
             app:autoSizeStepGranularity="1sp"
-            app:layout_constraintBottom_toBottomOf="@+id/test"
+            app:layout_constraintBottom_toBottomOf="@+id/radioButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/test" />
+            app:layout_constraintTop_toTopOf="@+id/radioButton" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/login"
@@ -169,7 +167,7 @@
             app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/test">
+            app:layout_constraintTop_toBottomOf="@+id/radioButton">
 
             <Button
                 android:id="@+id/loginBtn"

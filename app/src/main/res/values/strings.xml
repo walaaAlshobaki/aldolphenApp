@@ -11,6 +11,8 @@
     <string name="no">no</string>
     <string name="logoutmsg">Are you sure you want to sign out?</string>
     <string name="logout">Sign Out</string>
+    <string name="deletemsg">Are you sure you want to delete this user?</string>
+    <string name="delete">Delete</string>
     <string name="title_activity_product_manager_main">ProductManagerMainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

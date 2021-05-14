@@ -98,19 +98,21 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/firstNameTextInputLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="50dp"
+                                android:layout_height="51dp"
                                 android:textAlignment="viewStart"
                                 android:focusable="true"
+                                android:background="@drawable/gradinat_background"
                                 android:theme="@style/LoginTextInputLayoutStyle"
-                                app:placeholderTextColor="@color/appMainColor"
+
                                 app:placeholderText="write your Branch Name"
+                                app:placeholderTextColor="@color/border"
                                 android:textColorHint="@color/appMainColor"
                                 app:hintTextColor="@color/appMainColor"
                                 android:hint="Branch Name"
 
                                 android:fontFamily="@font/roboto_bold"
                              >
-                                <com.google.android.material.textfield.TextInputEditText
+                                <EditText
                                     android:id="@+id/BranchName"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -128,196 +130,163 @@
                         </LinearLayout>
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_marginTop="10dp"
-                            >
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:elevation="2dp"
-
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="Phone No."
-                                android:textColor="@color/appMainColor"
-                                android:textSize="13sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/PhoneTextInputLayout"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="15dp"
-                                app:cardCornerRadius="12dp"
-                                app:cardElevation="1dp"
-                                app:layout_constraintWidth_percent="0.95"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@drawable/card_full">
-
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-
-                                        android:background="@drawable/card_full_white">
-
-
-
-
-                                        <EditText
-                                            android:id="@+id/phoneNum"
-                                            android:clickable="true"
-                                            android:hint="Write your phone No."
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="8dp"
-                                            android:textSize="15sp"
-                                            android:phoneNumber="true"
-                                            android:background="@android:color/transparent"
-                                            app:layout_constraintWidth_percent="0.65"
-                                            android:fontFamily="@font/roboto"
-                                            android:textColorHint="@color/appMainColoro"
-                                            android:textColor="@color/appMainColor"
-                                            app:layout_constraintStart_toEndOf="@+id/flagcode"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintBottom_toBottomOf="parent"/>
-
-                                        <androidx.constraintlayout.widget.ConstraintLayout
-                                            android:id="@+id/flagcode"
-                                            android:layout_width="0dp"
-                                            android:layout_height="51dp"
-                                            android:clickable="true"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintWidth_percent="0.30">
-
-                                            <ImageView
-                                                android:id="@+id/flagphone"
-                                                android:layout_width="30dp"
-                                                android:layout_height="30dp"
-                                                android:src="@drawable/sa"
-                                                app:layout_constraintBottom_toBottomOf="parent"
-
-                                                app:layout_constraintStart_toStartOf="parent"
-                                                app:layout_constraintTop_toTopOf="parent" />
-
-                                            <TextView
-                                                android:id="@+id/callCode"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:fontFamily="@font/roboto_bold"
-                                                android:text="(+996)"
-                                                android:textColor="@color/appMainColor"
-                                                android:textSize="12sp"
-                                                android:layout_marginStart="8dp"
-                                                app:layout_constraintBottom_toBottomOf="parent"
-                                                app:layout_constraintStart_toEndOf="@+id/flagphone"
-                                                app:layout_constraintTop_toTopOf="parent" />
-                                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
-                                </FrameLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_marginTop="10dp">
-
+                            android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/textView27"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:elevation="2dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="18dp"
+                                android:elevation="12dp"
+                                android:padding="5dp"
                                 android:fontFamily="@font/roboto_bold"
-                                android:text="Country"
+                                android:text="Phone Number"
+                                android:background="@drawable/gradinat_background"
                                 android:textColor="@color/appMainColor"
                                 android:textSize="13sp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <FrameLayout
-                                android:id="@+id/con"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/phoneCard"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
-                                android:background="@drawable/card_edge"
+                                app:cardCornerRadius="10dp"
+                                app:layout_constraintWidth_percent="0.95"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/textView27"
-                                app:layout_constraintWidth_percent="0.8">
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:strokeWidth="2dp"
+                                app:strokeColor="@color/border"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/white"
 
+                                >
                                 <androidx.constraintlayout.widget.ConstraintLayout
+
+
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@drawable/card_white">
+                                    android:layout_height="41dp"
+                                    android:background="@drawable/card_with_border"
+                                    android:padding="5dp"
+                                    app:boxCornerRadiusBottomEnd="10dp"
+                                    app:boxCornerRadiusBottomStart="10dp"
+                                    app:boxCornerRadiusTopEnd="10dp"
+                                    app:boxCornerRadiusTopStart="10dp"
 
+                                    app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+                                    app:layout_constraintStart_toEndOf="@+id/code"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintWidth_percent="0.45">
 
-                                    <TextView
-                                        android:id="@+id/country"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="10dp"
-                                        android:clickable="true"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="saudi arabia"
-                                        android:textColor="@color/appMainColoro"
-                                        android:textSize="15sp"
+                                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+
+                                        android:id="@+id/countryCodePicker2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        app:ccp_textSize="14sp"
+                                        app:ccp_arrowSize="15sp"
+                                        app:ccp_hideNameCode="true"
+                                        android:gravity="center_vertical"
+                                        app:ccp_backgroundColor="@color/white"
+                                        app:ccp_textColor="@color/appMainColor"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:layout_constraintWidth_percent="0.75" />
+                                        app:layout_constraintWidth_percent="0.45" />
 
-
+                                    <EditText
+                                        android:id="@+id/phoneNum"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:fontFamily="@font/roboto_bold"
+                                        android:textSize="16sp"
+                                        android:hint="phone number"
+                                        android:background="@android:color/transparent"
+                                        android:textColor="@color/appMainColor"
+                                        android:inputType="number"
+                                        android:textColorHint="@color/border"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/countryCodePicker2"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:placeholderText="write your phone number"
+                                        app:placeholderTextColor="@color/border" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
-                            </FrameLayout>
-
-
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/code"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:clickable="true"
-                                android:layout_marginTop="15dp"
-                                android:background="@drawable/card_country"
-                                app:layout_constraintBottom_toBottomOf="@+id/con"
-                                app:layout_constraintStart_toEndOf="@+id/con"
-                                app:layout_constraintTop_toTopOf="@+id/con"
-                                app:layout_constraintWidth_percent="0.20">
-
-                                <ImageView
-                                    android:id="@+id/flag"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-
-                                    android:src="@drawable/sa"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
+                            </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:elevation="12dp"
+        android:padding="5dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Country"
+        android:background="@drawable/gradinat_background"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/border"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/white"
+
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:background="@drawable/card_with_border"
+            android:padding="5dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+
+            app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
+            app:layout_constraintStart_toEndOf="@+id/code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.45">
+
+
+            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+
+                android:id="@+id/countryCodePicker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                app:ccp_arrowSize="0sp"
+                android:gravity="center_vertical"
+                app:ccp_backgroundColor="@color/white"
+                app:ccp_textColor="@color/appMainColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:ccp_hidePhoneCode="true"
+                app:ccp_showFullName="true"
+                app:ccp_hideNameCode="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 
 

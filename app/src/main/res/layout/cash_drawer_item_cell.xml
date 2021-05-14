@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
     app:cardCornerRadius="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="cash in $39.13"
                 android:textSize="16sp"
+                android:layout_marginStart="30dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/appMainColor"
                 app:layout_constraintTop_toTopOf="parent"

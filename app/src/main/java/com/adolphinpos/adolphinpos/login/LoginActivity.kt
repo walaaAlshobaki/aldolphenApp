@@ -10,8 +10,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +26,7 @@ import com.adolphinpos.adolphinpos.registeration.register.RegisterActivity
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.banner_slider.*
+import kotlinx.android.synthetic.main.payment_item_cell.view.*
 
 
 class LoginActivity : AppCompatActivity(),LoginDelegate {
@@ -55,40 +56,55 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
         indicatiormain.setupWithViewPager(mPager, true);
 
         autoSlider(mPager)
-        radioButton.setOnClickListener {
-            if (radioButton.isChecked) {
-                test.clearCheck()
-                radioButton.isChecked = false
-                radioButton.isSelected=false
-                radioButton.setChecked(false);
-            } else  {
+//        radioButton.isSelected=true
+//        radioButton.setOnClickListener {
+//            if (radioButton.isChecked) {
 //                test.clearCheck()
-    test.check(R.id.radioButton)
-                radioButton.isChecked = true
-                radioButton.isSelected=true
-                radioButton.setChecked(true);
-            }
-
-        }
-
-//        test.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-//           override fun onCheckedChanged(arg0: RadioGroup?, id: Int) {
-//                val checkedRadioButton = radioButton
-//                val isChecked = checkedRadioButton.isChecked
-//                if (isChecked) {
-//                    Toast.makeText(
-//                        applicationContext,
-//                        checkedRadioButton.text, Toast.LENGTH_LONG
-//                    ).show()
-//                    checkedRadioButton.isChecked = false
-//                } else checkedRadioButton.isChecked = true
+//                radioButton.isChecked = false
+////                radioButton.isSelected=false
+////                radioButton.isEnabled=false
+////                radioButton.isActivated=false
+//
+//                radioButton.setChecked(false);
+//            } else  {
+////                test.clearCheck()
+//    test.check(R.id.radioButton)
+//                radioButton.isChecked = true
+////                radioButton.isSelected=true
+////                radioButton.isEnabled=true
+////                radioButton.isActivated=true
+//                radioButton.setChecked(true);
 //            }
-//        })
+//
+//        }
+
 
 
 
 
     }
+//     fun  onRadioButtonClicked(view: View) {
+//        // Is the view now checked?
+//        var checked:Boolean = ( view as RadioButton).isChecked();
+//         Log.d("########################", checked.toString())
+//        // Check which RadioButton was clicked
+//        when(view.getId()) {
+//            R.id.radioButton ->
+//                if (checked) {
+//                    test.clearCheck()
+//                    // Do your coding
+//                    radioButton.isChecked = false
+//                } else {
+//                    test.clearCheck()
+//                    radioButton.isChecked = true
+//                }
+//            // Do your coding
+//
+//
+//            // Perform your logic
+//        }
+//    }
+
     fun autoSlider(viewPager: ViewPager) {
         try {
 

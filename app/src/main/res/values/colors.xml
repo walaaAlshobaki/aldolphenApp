@@ -21,6 +21,7 @@
     <color name="gradientStart">#060811</color>
     <color name="gradientStart2">#E2060811</color>
     <color name="gradientEnd">#20285400</color>
+    <color name="gradientEnd3">#0FFFFFFF</color>
     <color name="gradientEnd2">#9F285400</color>
     <color name="editTextBorderColor">#E6E9E9</color>
     <color name="searchColor">#5D5D5D</color>
