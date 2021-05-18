@@ -433,7 +433,7 @@ class DashboardAdapter(
                 data!![position] is IconModel -> {
                     val itemCat = data[position] as IconModel
                     if (itemCat.id==-2){
-                        image.setImageResource(R.drawable.ic_add)
+                        image.setImageResource(R.drawable.ic_addpro)
                     }else{
                         image.setImageResource(R.drawable.ic_sandweshes)
 
@@ -800,8 +800,8 @@ class DashboardAdapter(
 
                     }else{
 
-                        container.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+                        container.setBackgroundColor(context.resources.getColor(R.color.red))
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.red))
                         image.setColorFilter(context.resources.getColor(R.color.white))
 
                         myTextView.setTextColor(context.resources.getColor(R.color.white))
@@ -936,8 +936,13 @@ class DashboardAdapter(
         RecyclerView.ViewHolder(itemView) {
 
         var myTextView: TextView= itemView.findViewById(R.id.productsName)
+        var txt: TextView= itemView.findViewById(R.id.txt)
         var image: ImageView= itemView.findViewById(R.id.image)
+        var imageAdd: ImageView= itemView.findViewById(R.id.imageAdd)
+        var image_gradient: ImageView= itemView.findViewById(R.id.image_gradient)
         var container: ConstraintLayout= itemView.findViewById(R.id.container)
+        var pro: ConstraintLayout= itemView.findViewById(R.id.pro)
+        var add: ConstraintLayout= itemView.findViewById(R.id.add)
         var delete_layer: CardView= itemView.findViewById(R.id.delete_layer)
         var update_layer: CardView= itemView.findViewById(R.id.update_layer)
 
@@ -948,41 +953,23 @@ class DashboardAdapter(
                 data!![position] is ProductModel -> {
                     val itemCat = data[position] as ProductModel
                     if (itemCat.id==-2){
-                        image.setImageResource(R.drawable.ic_add)
+                        imageAdd.setImageResource(R.drawable.ic_addpro)
+                        txt.text=itemCat.productName
+                        add.visibility=View.VISIBLE
+                        pro.visibility=View.GONE
                     }else{
                         image.setImageResource(R.drawable.test)
-
+                        add.visibility=View.GONE
+                        pro.visibility=View.VISIBLE
+                        myTextView.text=itemCat.productName
 //                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
                     }
-                    myTextView.text=itemCat.productName
-                    if(!itemCat.isSelected){
-                        container.setBackgroundColor(context.resources.getColor(R.color.border))
-                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
-                        image.setColorFilter(context.resources.getColor(R.color.red))
-                        myTextView.setTextColor(context.resources.getColor(R.color.red))
-
-
-                    }else{
-
-                        container.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-                        image.setColorFilter(context.resources.getColor(R.color.white))
-
-                        myTextView.setTextColor(context.resources.getColor(R.color.white))
-
+                    add.setOnClickListener {
+                        onClick!!.onSelectItemProduct(position,"")
                     }
 
 
-//                    myTextView.setOnClickListener {
-//                        onClick!!.onSelectItemCategory(position)
-////                        val intent = Intent(
-////                            context,
-////                            ShowImages::class.java
-////                        )
-////                        intent.putExtra("image", image)
-////                        context.startActivity(intent)
-//                    }
                 }
 
 

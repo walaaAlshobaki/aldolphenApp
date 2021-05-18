@@ -14,17 +14,18 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_category)
-        categoryModel.add(IconModel(-2,"",true))
+
         categoryModel.add(IconModel(1,"",false))
         categoryModel.add(IconModel(2,"",false))
         categoryModel.add(IconModel(3,"",false))
         categoryModel.add(IconModel(4,"",false))
         categoryModel.add(IconModel(5,"",false))
         categoryModel.add(IconModel(6,"",false))
+        categoryModel.add(IconModel(-2,"",true))
         mAdapter = DashboardAdapter(this, categoryModel,"AddCategoryActivity")
         mAdapter.notifyDataSetChanged()
 
-        mAdapter!!.setOnClickItemCategory(this)
+        mAdapter.setOnClickItemCategory(this)
         val linearVertical = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         recyclerViewIcon!!.layoutManager = linearVertical
         recyclerViewIcon.setHasFixedSize(true)

@@ -25,7 +25,7 @@
             android:title="HOLDED ORDERS " />
 
         <item
-            android:id="@+id/products"
+            android:id="@+id/ProductFragment"
             android:icon="@drawable/ic_home5"
             android:title="products Man. " />
 

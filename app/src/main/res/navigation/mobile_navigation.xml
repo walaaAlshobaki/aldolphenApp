@@ -24,11 +24,26 @@
     </activity>
 
     <fragment
+        android:id="@+id/AddProductItemFragment"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.AddProductItemFragment"
+        android:label="AddProductItemFragment"
+        tools:layout="@layout/fragment_add_product_item" />
+
+
+    <fragment
         android:id="@+id/nav_gallery"
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
-
+    <fragment
+        android:id="@+id/ProductFragment"
+        android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.ProductFragment"
+        android:label="ProductFragment"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/addProductItemFragment"
+            app:destination="@id/AddProductItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/transaction"
         android:name="com.adolphinpos.adolphinpos.productManagerHomePage.ui.slideshow.SlideshowFragment"

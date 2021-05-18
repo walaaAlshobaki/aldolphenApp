@@ -37,7 +37,7 @@
 
 
     <tab
-        id="@+id/products"
+        id="@+id/ProductFragment"
         icon="@drawable/ic_home5"
         inActiveColor="@color/white"
         activeColor="@color/red"

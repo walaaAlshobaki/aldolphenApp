@@ -28,6 +28,7 @@
     <color name="backbtn">#A5A5A5</color>
     <color name="cat">#DFDFDF</color>
     <color name="card">#A9000000</color>
+    <color name="green">#41B761</color>
     <color name="card2">#0FFFFFFF</color>
 
 </resources>

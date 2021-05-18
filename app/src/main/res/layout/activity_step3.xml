@@ -173,7 +173,8 @@
                             android:background="@drawable/circle_layer"
                             android:scaleType="fitXY"
                             android:src="@drawable/user"
-                            app:layout_constraintDimensionRatio="H,1:1" />
+                            app:layout_constraintDimensionRatio="H,1:1"
+                            app:layout_constraintEnd_toEndOf="parent" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

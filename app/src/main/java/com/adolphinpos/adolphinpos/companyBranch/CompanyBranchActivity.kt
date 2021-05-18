@@ -99,7 +99,7 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
 
                 )
             phoneCode = selectedCountry.phoneCode
-            countryCodePicker2.setCountryForNameCode(selectedCountry.phoneCode)
+//            countryCodePicker2.setCountryForNameCode(selectedCountry.)
             mCountryPresenter!!.getCountry()
         })
         countryCodePicker2.setOnCountryChangeListener(CountryCodePicker.OnCountryChangeListener { selectedCountry ->
@@ -109,7 +109,8 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
 
                 )
             phoneCode = selectedCountry.phoneCode
-            countryCodePicker.setCountryForNameCode(selectedCountry.phoneCode)
+
+//            countryCodePicker.setCountryForNameCode(selectedCountry.phoneCode)
             mCountryPresenter!!.getCountry()
         })
 

@@ -67,7 +67,7 @@ class ProductManagerMainActivity : AppCompatActivity(),
                         R.id.nav_gallery,
                         R.id.transaction,
                         R.id.hold,
-                        R.id.products,
+                        R.id.ProductFragment,
                         R.id.Restaurant,
                         R.id.hint,
                         R.id.lock
@@ -148,7 +148,8 @@ class ProductManagerMainActivity : AppCompatActivity(),
             else if(tabId == R.id.hold){
                  findNavController(R.id.nav_host_fragment).navigate(R.id.hold)
 
-            }else if(tabId == R.id.products){
+            }else if(tabId == R.id.ProductFragment){
+                findNavController(R.id.nav_host_fragment).navigate(R.id.ProductFragment)
 
             }else if(tabId == R.id.Restaurant){
            findNavController(R.id.nav_host_fragment).navigate(R.id.Restaurant)
@@ -180,7 +181,8 @@ class ProductManagerMainActivity : AppCompatActivity(),
             findNavController(R.id.nav_host_fragment).navigate(R.id.transaction)
         } else if (id == R.id.hold) {
             findNavController(R.id.nav_host_fragment).navigate(R.id.hold)
-        }else if (id == R.id.products) {
+        }else if (id == R.id.ProductFragment) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.ProductFragment)
 //            val contactIntent = Intent(applicationContext, ContactUsActivity::class.java)
 //            startActivity(contactIntent)
         }else if (id == R.id.Restaurant) {
