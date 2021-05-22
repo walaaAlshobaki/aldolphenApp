@@ -167,13 +167,14 @@
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
+                app:strokeColor="@color/border"
+
+                app:strokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 app:layout_constraintWidth_percent="0.90"
-                app:strokeColor="@color/border"
-
-                app:strokeWidth="2dp">
+             >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
 

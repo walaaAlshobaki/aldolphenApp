@@ -4,8 +4,10 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -30,6 +32,8 @@ import com.adolphinpos.adolphinpos.userProfile.UserProfileActivity
 import com.squareup.picasso.Picasso
 import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.user
+import kotlinx.android.synthetic.main.activity_main.userImage
 import kotlinx.android.synthetic.main.alert.view.*
 
 class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelegate,ServicesDelegate{
@@ -41,8 +45,28 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
         userName.text= userInfo.firstName +" "+ userInfo.lastName
+        if (userInfo.profilePicturePath==""){
+            Log.d("profilePicturePath", userInfo.profilePicturePath.toString())
+            Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
+        }else{
+
+
+            val cleanImage: String =
+                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
+                            "data:image/jpeg;base64,",
+                            ""
+                    )
+
+            val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
+//        .into(avatar_img)
+
+            common.loadBitmapByPicasso(this, decodedByte, userImage)
+
+        }
         mPresenter = ServicesPresenter(this)
         mPresenter!!.delegate = this
 

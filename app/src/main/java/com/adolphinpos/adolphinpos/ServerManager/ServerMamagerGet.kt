@@ -215,8 +215,8 @@ class ServerMamagerGet {
                     }
 //                    callBack.FAILER(ex.localizedMessage)
 
-                    Log.d("IS_LOGIN :", ex.localizedMessage)
-//                        callBack.FAILER(ex.localizedMessage)
+//                    Log.d("IS_LOGIN :", ex.localizedMessage)
+                        callBack.FAILER(ex.localizedMessage)
 
 //                    callBack.FAILER(ex.localizedMessage)
 

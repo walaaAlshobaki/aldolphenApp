@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="10dp"
+    tools:context=".productManagerHomePage.ui.productPage.EditProduct.info.ProductInfoFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/uploadImageCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:clipChildren="true"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/uploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/layer"
+            android:clickable="true"
+            android:padding="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+
+            <ImageView
+                android:id="@+id/upload"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:src="@drawable/upload"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:lines="2"
+        android:maxLines="2"
+        android:minLines="1"
+        android:text="please select an image"
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        app:autoSizeMaxTextSize="15sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintBottom_toBottomOf="@+id/uploadImageCard"
+        app:layout_constraintStart_toEndOf="@+id/uploadImageCard" />
+
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/gradinat_background"
+        android:elevation="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="5dp"
+        android:text="Product Number"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageCard" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/border"
+
+        app:strokeWidth="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageCard"
+        app:layout_constraintWidth_percent="0.45"
+
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="@drawable/card_with_border_main2"
+            >
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12sp"
+                android:background="@android:color/transparent"
+                android:hint="#12345"
+                android:padding="5dp"
+                android:textColorHint="@color/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/gradinat_background"
+        android:elevation="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="5dp"
+        android:text="Product Name"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/con2"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageCard" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con2"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/con"
+        app:layout_constraintTop_toBottomOf="@+id/uploadImageCard"
+        app:layout_constraintWidth_percent="0.45"
+
+
+        app:strokeColor="@color/border"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="@drawable/card_with_border_main2">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12sp"
+                android:background="@android:color/transparent"
+                android:hint="Product Name"
+                android:padding="5dp"
+                android:textColorHint="@color/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/gradinat_background"
+        android:elevation="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="5dp"
+        android:text="Category"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/con3"
+        app:layout_constraintTop_toBottomOf="@+id/con" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con3"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/border"
+
+        app:strokeWidth="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/con"
+        app:layout_constraintWidth_percent="0.45"
+
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="@drawable/card_with_border_main2"
+            >
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12sp"
+                android:background="@android:color/transparent"
+                android:hint="food"
+                android:padding="5dp"
+                android:drawableEnd="@drawable/ic_down"
+                android:textColorHint="@color/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/gradinat_background"
+        android:elevation="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="5dp"
+        android:text="Price"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/con4"
+        app:layout_constraintTop_toBottomOf="@+id/con2" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con4"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/con3"
+        app:layout_constraintTop_toBottomOf="@+id/con2"
+        app:layout_constraintWidth_percent="0.45"
+
+
+        app:strokeColor="@color/border"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="@drawable/card_with_border_main2">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12sp"
+                android:background="@android:color/transparent"
+                android:hint="5002"
+                android:padding="5dp"
+                android:textColorHint="@color/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/gradinat_background"
+        android:elevation="12dp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="5dp"
+        android:text="Product Description"
+        android:textColor="@color/appMainColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/con5"
+        app:layout_constraintTop_toBottomOf="@+id/con3" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/con5"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="@+id/con3"
+        app:layout_constraintTop_toBottomOf="@+id/con3"
+        app:layout_constraintWidth_percent="0.95"
+        app:strokeColor="@color/border"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/card_with_border_main2">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12sp"
+                android:background="@android:color/transparent"
+                android:hint="This Product Contains Multiple Products And Provide You More Features"
+                android:padding="8dp"
+                android:gravity="top"
+                android:textColorHint="@color/border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="confirm"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_style"
+        app:layout_constraintEnd_toEndOf="@+id/con5"
+        app:layout_constraintStart_toStartOf="@+id/con5"
+        app:layout_constraintTop_toBottomOf="@+id/con5"
+        app:layout_constraintWidth_percent="0.95" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

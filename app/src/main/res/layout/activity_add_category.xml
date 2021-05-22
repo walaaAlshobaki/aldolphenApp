@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+
     tools:context=".addCategory.AddCategoryActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="100dp"
+        android:background="#68070000"
         android:layout_gravity="center"
         android:gravity="center">
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -27,7 +31,7 @@
             app:layout_constraintWidth_percent="0.70">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center"
@@ -124,7 +128,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/card_full_white"
+        android:background="@drawable/card_with_border_main2"
 
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +137,7 @@
         app:layout_constraintWidth_percent="0.45">
 
         <EditText
+            android:id="@+id/catName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -166,9 +171,10 @@
                     />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewIcon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+
                     tools:listitem="@layout/icon_cell_item"
                  />
 

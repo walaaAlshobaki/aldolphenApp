@@ -2,8 +2,10 @@ package com.adolphinpos.adolphinpos.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +17,13 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyModel
 import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeModel
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.common
-import com.adolphinpos.adolphinpos.addCategory.IconModel
 import com.adolphinpos.adolphinpos.addEmp.PoliicyModel
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
+
 import com.adolphinpos.adolphinpos.employee_permissions.PoliicyPermissionModel
 import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.home.ServiceTypeModel
@@ -34,8 +35,9 @@ import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.MainHa
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.TableModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.CashDrawerModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.productManagmentModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.CategoryModelNew
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import java.util.*
 
 
@@ -430,12 +432,25 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is IconModel -> {
-                    val itemCat = data[position] as IconModel
+                data!![position] is CategoryModelNew.Data -> {
+                    val itemCat = data[position] as CategoryModelNew.Data
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_addpro)
                     }else{
-                        image.setImageResource(R.drawable.ic_sandweshes)
+                        val cleanImage: String =
+                                itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
+                                        "data:image/jpeg;base64,",
+                                        ""
+                                )
+
+                        val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
+//        .into(avatar_img)
+
+
+                        image. setImageBitmap(decodedByte)
 
 //                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
@@ -459,7 +474,7 @@ class DashboardAdapter(
                     }
 
 
-                    image.setOnClickListener {
+                    container.setOnClickListener {
                         onClick!!.onSelectItemCategory(position)
 //                        val intent = Intent(
 //                            context,
@@ -718,9 +733,12 @@ class DashboardAdapter(
         RecyclerView.ViewHolder(itemView) {
 
 
-        var tableName: TextView= itemView.findViewById(R.id.tableName)
+        var tableId: TextView= itemView.findViewById(R.id.tableId)
         var table: ImageView= itemView.findViewById(R.id.table)
-//        var container: ConstraintLayout= itemView.findViewById(R.id.container)
+        var imageAdd: ImageView= itemView.findViewById(R.id.imageAdd)
+
+        var tablecon: ConstraintLayout= itemView.findViewById(R.id.tablecon)
+        var add: ConstraintLayout= itemView.findViewById(R.id.add)
 
         @SuppressLint("SetTextI18n")
         @RequiresApi(Build.VERSION_CODES.M)
@@ -728,14 +746,42 @@ class DashboardAdapter(
             when {
                 data!![position] is TableModel.Data -> {
                     val itemCat = data[position] as TableModel.Data
+
+                    if (itemCat.id==-2){
+                        add.visibility=View.VISIBLE
+                        tablecon.visibility=View.GONE
+                        imageAdd.setImageResource(R.drawable.ic_addpro)
+                    }else{
+                        tablecon.visibility=View.VISIBLE
+                        add.visibility=View.GONE
+                    }
                     if (itemCat.status==1){
                         table.setImageResource(R.drawable.ic_free)
-                    }else{
+                    }else if (itemCat.status==2){
+                        table.setImageResource(R.drawable.ic_reserved)
+
+                    }
+                    else if (itemCat.status==3){
                         table.setImageResource(R.drawable.ic_checkedin)
 
                     }
-                    tableName.text=itemCat.id.toString()
+                    else if (itemCat.status==4){
+                        table.setImageResource(R.drawable.ic_ordered)
 
+                    }
+                    else if (itemCat.status==5){
+                        table.setImageResource(R.drawable.ic_blocked)
+
+                    }else if (itemCat.status==6){
+                        table.setImageResource(R.drawable.ic_delivered)
+
+                    }
+                    tableId.text=itemCat.id.toString()
+
+
+                    add.setOnClickListener {
+                        onClick!!.onSelectItemProduct(position,"table")
+                    }
                 }
 
             }
@@ -857,7 +903,12 @@ class DashboardAdapter(
 
 
                     myTextView.setOnClickListener {
-                        onClick!!.onSelectItemCategory(position)
+                        if(itemCat.id==-2){
+                            onClick!!.onSelectItemProduct(position,"add")
+                        }else{
+                            onClick!!.onSelectItemCategory(position)
+                        }
+
 //                        val intent = Intent(
 //                            context,
 //                            ShowImages::class.java
@@ -967,6 +1018,11 @@ class DashboardAdapter(
                     }
                     add.setOnClickListener {
                         onClick!!.onSelectItemProduct(position,"")
+                    }
+
+                    update_layer.setOnClickListener {
+
+                        onClick!!.onSelectItemProduct(position,"edit")
                     }
 
 

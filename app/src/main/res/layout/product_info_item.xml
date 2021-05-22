@@ -15,7 +15,7 @@
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.30">
+        app:layout_constraintWidth_percent="0.35">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/uploadImageCard"
@@ -85,7 +85,7 @@
             android:outlineSpotShadowColor="@color/green"
             android:text="Availability"
             android:theme="@style/SCBSwitch"
-            app:layout_constraintStart_toEndOf="@+id/textView30"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/uploadImageCard"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 

@@ -2,8 +2,10 @@ package com.adolphinpos.adolphinpos.steps
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.adolphinpos.adolphinpos.Adapters.MainAdapter
@@ -22,7 +24,11 @@ import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
 import com.squareup.picasso.Picasso
 import com.tapadoo.alerter.Alerter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_step2.*
+import kotlinx.android.synthetic.main.activity_step2.recyclerView
+import kotlinx.android.synthetic.main.activity_step2.userImage
+import kotlinx.android.synthetic.main.activity_step2.userName
 import kotlinx.android.synthetic.main.alert.view.*
 
 class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemselectedDelegate{
@@ -32,11 +38,30 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step2)
-        Picasso.get().load(R.drawable.user).transform(
-            CircleTransform()
-        ).into(userImage)
+        if (userInfo.profilePicturePath==""){
+            Log.d("profilePicturePath", userInfo.profilePicturePath.toString())
+            Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
+        }else{
+
+
+            val cleanImage: String =
+                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
+                            "data:image/jpeg;base64,",
+                            ""
+                    )
+
+            val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
+//        .into(avatar_img)
+
+            common.loadBitmapByPicasso(this, decodedByte, userImage)
+
+        }
         userName.text= userInfo.firstName +" "+ userInfo.lastName
         mPresenter = UsersPresenter(this)
+
         mPresenter!!.delegate = this
         mPresenter!!.getUsersTap(userInfo.companyId.toString())
         val llm = GridLayoutManager(this, 2)

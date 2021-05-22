@@ -11,7 +11,7 @@ class UserInfoModel {
     var userId: Int = 0
     var companyId: String = "none"
 
-    var profilePicturePath:String? = "https://img.favpng.com/25/13/19/samsung-galaxy-a8-a8-user-login-telephone-avatar-png-favpng-dqKEPfX7hPbc6SMVUCteANKwj.jpg"
+    var profilePicturePath:String? = ""
     var permissionsActions: ArrayList<Int> = arrayListOf(1)
     var age: Int? =0
     var branchId: Int? =0

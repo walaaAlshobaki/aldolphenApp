@@ -23,7 +23,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdolphinPOSApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".productManagerHomePage.ui.productPage.MainNewItemActivity"
+        <activity android:name=".pupaupActivity.PopUpActivity"
+            android:theme="@style/MyTransparent"/>
+        <activity
+            android:name=".productManagerHomePage.ui.productPage.EditProduct.EditProductActivity"
+            android:theme="@style/MyTransparent" />
+        <activity
+            android:name=".productManagerHomePage.ui.productPage.ProductNewItemActivity"
+            android:theme="@style/MyTransparent" />
+        <activity
+            android:name=".productManagerHomePage.ui.productPage.MainNewItemActivity"
             android:theme="@style/MyTransparent" />
         <activity
             android:name=".productManagerHomePage.ui.productPage.ProductNameActivity"
@@ -33,8 +42,7 @@
         <activity android:name=".steps.Step2Activity" />
         <activity
             android:name=".companyBranch.CompanyBranchActivity"
-            android:theme="@style/Theme.D1NoTitleDim4"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:theme="@style/MyTransparent"/>
         <activity
             android:name=".paymentMethods.PaymentMethodsActivity"
             android:theme="@style/Theme.D1NoTitleDim4"
@@ -73,11 +81,7 @@
             android:logo="@drawable/ic_logohome"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AdolphinPOSApp.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".registeration.code.EditNumberActivity"
@@ -85,8 +89,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".addCategory.AddCategoryActivity"
-            android:theme="@style/Theme.D1NoTitleDim4"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:theme="@style/MyTransparent" />
         <activity android:name=".productManagement.ProductManagementActivity" />
         <activity
             android:name=".policyManagement.PolicyManagementActivity"
@@ -163,7 +166,14 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Splash.SplashActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".home.MainActivity"
             android:screenOrientation="landscape" />

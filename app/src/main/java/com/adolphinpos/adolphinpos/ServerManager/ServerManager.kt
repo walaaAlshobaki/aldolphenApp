@@ -1,5 +1,6 @@
 package com.adolphinpos.adolphinpos.ServerManager
 
+import android.R.attr.bitmap
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -14,7 +15,6 @@ import androidx.annotation.RequiresApi
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.Splash.userConfig
 import com.adolphinpos.adolphinpos.Splash.userInfo
-import com.auth0.jwt.JWT
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.*
@@ -34,6 +34,8 @@ class UrlAPIs {
     val login = "http://161.97.164.114:8080/api/User"
     val Company = "http://161.97.164.114:8080/api/Company"
     val CompanyInfo = "Company?"
+    val Category = "Product/Category?"
+
     val email = "http://161.97.164.114:8080/api/User/RestPassword/Email"
     val code = "http://161.97.164.114:8080/api/User/Activation/Code"
     val newBranch = "http://161.97.164.114:8080/api/Company/Service/Branch"
@@ -51,12 +53,16 @@ class UrlAPIs {
     val Validate = "User/Activation/Validate?"
     val emailValidate = "http://161.97.164.114:8080/api/User/RestPassword/Validate"
     val reset = "http://161.97.164.114:8080/api/User/RestPassword"
+    val addHalls = "http://161.97.164.114:8080/api/Company/Hall"
+    val addTable = "http://161.97.164.114:8080/api/Company/Tables"
+
     val Invite = "http://161.97.164.114:8080/api/User/Invite"
     val addPolice = "http://161.97.164.114:8080/api/User/Poliicy"
     val addCurrency= "http://161.97.164.114:8080/api/Company/Currency"
     val addPaymentMethood = "http://161.97.164.114:8080/api/Company/PaymentMethod"
     val Users = "Company/Users?"
     val deleteUsers = "User?"
+    val deletePoliicy = "User/Poliicy?"
     val Branches = "Company/Service/Branches?"
     val restPhoneNumber = "http://161.97.164.114:8080/api/User/RestPhoneNumber"
     val Currency = "Setup/Currency?"
@@ -204,7 +210,7 @@ class ServerManager {
 //                            Log.d("jsonObject", "responseCode ajax: " + claim!!.asString())
 
 
-                            callBack.SUCCESS( dataPayload)
+                            callBack.SUCCESS(dataPayload)
 
 
                         } catch (e: JSONException) {
@@ -323,7 +329,7 @@ class ServerManager {
 
 
         val call = @SuppressLint("StaticFieldLeak")
-        object : UploadOperation(context, requestMethod, fileData,postData, url) {
+        object : UploadOperation(context, requestMethod, fileData, postData, url) {
 
 
             override fun onProgressUpdate(vararg values: String?) {
@@ -817,6 +823,17 @@ abstract class UploadOperation(
             )
 
 
+            val pixels = ByteArray(fileData.getWidth() * fileData.getHeight())
+            for (i in 0 until fileData.getWidth()) {
+                for (j in 0 until fileData.getHeight()) {
+                    //we're interested only in the MSB of the first byte,
+                    //since the other 3 bytes are identical for B&W images
+                    pixels[i + j] = ((fileData.getPixel(i, j) and 0x80 shr 7).toByte())
+                }
+            }
+
+//            request.write(pixels)
+
             val request = DataOutputStream(
                 urlConnection.outputStream
             )
@@ -831,8 +848,8 @@ abstract class UploadOperation(
             request.writeBytes(crlf)
 
 
-            request.write(convertToByte(fileData))
-
+//            request.write(convertToByte(fileData))
+            request.write(pixels)
 
             request.writeBytes(crlf)
             request.writeBytes(
@@ -860,6 +877,9 @@ abstract class UploadOperation(
             request.close()
 
 
+
+
+
             urlConnection.requestMethod = "PUT"
 
 
@@ -880,6 +900,13 @@ abstract class UploadOperation(
 
                 } else if (responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
                     Log.w("** < api calling > ***", responseCode.toString())
+
+                    val jsonData = convertStreamToJson(urlConnection!!.errorStream)
+
+                    Log.w("** < api calling > ***", "${url} responseCode: " + jsonData)
+
+                    Log.d("HttpURLConnection", "Response: $jsonData")
+                    publishProgress(jsonData)
                 }else{
 
                 }

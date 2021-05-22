@@ -95,6 +95,7 @@
                     android:layout_height="50dp"
                     app:layout_constraintWidth_percent="0.50"
                     android:layout_marginStart="2dp"
+                    android:clickable="true"
                     app:layout_constraintStart_toEndOf="@+id/delete_layer"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

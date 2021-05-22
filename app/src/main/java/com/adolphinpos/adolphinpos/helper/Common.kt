@@ -1,8 +1,17 @@
 package com.adolphinpos.adolphinpos.helper
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
+import android.util.Log
+import android.widget.ImageView
+import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
 import com.google.gson.Gson
 import com.manhal.lms.app.Helper.SessionManager
+import com.squareup.picasso.Picasso
+import java.io.File
+import java.io.OutputStream
 
 class Common {
 
@@ -37,6 +46,23 @@ class Common {
     var DISPLACMENT = 10
     var PLAY_SERVICSE_RES_RQUEST: Int = 7001
     var MY_PERMISSSION_RQUEST_CODE: Int = 7000
+
+
+    fun loadBitmapByPicasso(pContext: Context, pBitmap: Bitmap, pImageView: ImageView) {
+        try {
+            val uri: Uri =
+                Uri.fromFile(File.createTempFile("temp_file_name", ".jpg", pContext.getCacheDir()))
+            val outputStream: OutputStream? = pContext.getContentResolver().openOutputStream(uri)
+            pBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream!!.close()
+
+            Picasso.get().load(uri).error(R.drawable.user).placeholder(R.drawable.user).transform(
+                CircleTransform()
+            ).into(pImageView)
+        } catch (e: java.lang.Exception) {
+            Log.e("LoadBitmapByPicasso", e.message!!)
+        }
+    }
 
 
 }

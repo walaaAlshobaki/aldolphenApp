@@ -29,7 +29,13 @@ import com.adolphinpos.adolphinpos.registeration.country.CountryPresenter
 import com.ahmadrosid.svgloader.SvgLoader
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker.OnCountryChangeListener
 import com.vdx.designertoast.DesignerToast
+import kotlinx.android.synthetic.main.activity_company_branch.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_register.contryNum
+import kotlinx.android.synthetic.main.activity_register.countryCodePicker
+import kotlinx.android.synthetic.main.activity_register.countryCodePicker2
+import kotlinx.android.synthetic.main.activity_register.loginBtn
+import kotlinx.android.synthetic.main.activity_register.phoneNum
 
 import kotlinx.android.synthetic.main.banner_slider.*
 
@@ -87,6 +93,8 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate, CountryDeleg
         }
         autoSlider(mPager)
         phoneCode=countryCodePicker.selectedCountryCode
+
+        contryNum.hint=countryCodePicker.selectedCountryName
         countryCodePicker.setOnCountryChangeListener(OnCountryChangeListener { selectedCountry ->
             Log.d(
 
@@ -94,6 +102,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate, CountryDeleg
 
             )
             phoneCode=selectedCountry.phoneCode
+            contryNum.hint=selectedCountry.name
             countryCodePicker2.setCountryForNameCode(selectedCountry.phoneCode)
             mCountryPresenter!!.getCountry()
         })

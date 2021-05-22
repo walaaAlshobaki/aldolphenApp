@@ -1,5 +1,8 @@
 package com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage
 
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +22,8 @@ class MainNewItemActivity : AppCompatActivity() , DashboardAdapter.OnItemselecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_new_item)
+        val window = this.window
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         close.setOnClickListener {
             finish()
         }
@@ -76,6 +81,12 @@ class MainNewItemActivity : AppCompatActivity() , DashboardAdapter.OnItemselecte
     }
 
     override fun onSelectItemProduct(position: Int, action: String) {
+        val intent = Intent(
+            this,
+            ProductNewItemActivity::class.java
+        )
 
+       startActivity(intent)
+        finish()
     }
 }

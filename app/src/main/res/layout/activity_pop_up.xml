@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#68070000"
+
+    tools:context=".pupaupActivity.PopUpActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addHalls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:visibility="gone"
+            app:layout_constraintWidth_percent="0.65"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:padding="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Add new Hall"
+                    android:textColor="@color/red"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/appMainColoro" />
+
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/layer"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+
+
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Hall Name"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/con"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+                        <EditText
+                            android:id="@+id/hallsName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12sp"
+                            android:background="@android:color/transparent"
+                            android:hint="Hall Name"
+                            android:padding="5dp"
+                            android:textColorHint="@color/border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/confirmHall"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="confirm"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_style"
+                    app:layout_constraintEnd_toEndOf="@+id/con"
+                    app:layout_constraintStart_toStartOf="@+id/con"
+                    app:layout_constraintTop_toBottomOf="@+id/con"
+                    app:layout_constraintWidth_percent="0.95" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addTable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:visibility="gone"
+            app:layout_constraintWidth_percent="0.65"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:padding="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Add New Table"
+                    android:textColor="@color/red"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/closetable"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/appMainColoro" />
+
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/layer"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+
+
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Table Name"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/conTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+                        <EditText
+                            android:id="@+id/TableName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12sp"
+                            android:background="@android:color/transparent"
+                            android:hint="Table Name"
+                            android:padding="5dp"
+                            android:textColorHint="@color/border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Table Number"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conTable" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/numTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conTable"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+                        <EditText
+                            android:id="@+id/TableNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12sp"
+                            android:background="@android:color/transparent"
+                            android:hint="Table Number"
+                            android:padding="5dp"
+                            android:textColorHint="@color/border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Number Of Chairs"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/statusTable" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/charTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/statusTable"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+                        <EditText
+                            android:id="@+id/TableChairs"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12sp"
+                            android:background="@android:color/transparent"
+                            android:hint="Number Of Chairs"
+                            android:padding="5dp"
+                            android:textColorHint="@color/border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Table status"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/numTable" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/statusTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/numTable"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+
+                        <Spinner
+                            android:id="@+id/Tablestatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="8dp"
+                            android:autofillHints="Drinks Category"
+
+                            android:popupBackground="#cccccc"
+                            android:contentDescription="@string/app_name"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:dropDownSelector="@color/appMainColor"
+                            android:spinnerMode="dropdown"
+                            android:theme="@style/SpinnerThemeLight" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/confirmTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/btn_style"
+                    android:text="confirm"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/conTable"
+                    app:layout_constraintStart_toStartOf="@+id/conTable"
+                    app:layout_constraintTop_toBottomOf="@+id/charTable"
+                    app:layout_constraintWidth_percent="0.95" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

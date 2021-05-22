@@ -4,10 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -34,13 +37,17 @@ import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_step3.*
+import kotlinx.android.synthetic.main.activity_step3.userImage
+import kotlinx.android.synthetic.main.activity_step3.userName
 import java.lang.Exception
 
 class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDelegate {
     var countryModel: CountryModel.Data? = null
     var companyDataModel: CompanyProfileDataModel? = null
-    var picturePath: Bitmap? = null
+    var picturePath: String =""
+    var picturePath1: Bitmap? =null
     var mPresenter: CountryPresenter? = null
     var companyPresenter: CompanyProfilePresenter? = null
     var countryModels: ArrayList<CountryModel.Data> = ArrayList()
@@ -52,9 +59,31 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
         companyPresenter!!.delegate = this
         mPresenter = CountryPresenter(this)
         mPresenter!!.delegate = this
+        if (userInfo.profilePicturePath==""){
+            Log.d("profilePicturePath", userInfo.profilePicturePath.toString())
+            Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
+        }else{
 
+
+            val cleanImage: String =
+                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
+                            "data:image/jpeg;base64,",
+                            ""
+                    )
+
+            val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
+//        .into(avatar_img)
+
+            common.loadBitmapByPicasso(this, decodedByte, userImage)
+
+        }
         mPresenter!!.getCountry()
         companyPresenter!!.getUserInfo()
+
+
         RxBus.listen(MessageEvent::class.java).subscribe {
             if (it.action == 1) {
                 countryModel = it.message as CountryModel.Data
@@ -109,11 +138,7 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
         }
 
 
-        Picasso.get()
-                .load(R.drawable.user)
-                .error(R.drawable.user)
-                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                .into(avatar_img)
+
     }
 
     private fun initData() {
@@ -286,7 +311,25 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
 //            try {
             val selectedImage = data.data
             val filePath = arrayOf(MediaStore.Images.Media.DATA)
-            picturePath = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+            picturePath1= MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+
+//            val byteArrayOutputStream = ByteArrayOutputStream()
+//            picturePath1!!.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+//            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+//            picturePath = Base64.encodeToString(byteArray, Base64.DEFAULT)
+
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+
+            val cursor: Cursor? = contentResolver.query(
+                    selectedImage!!,
+                    filePathColumn, null, null, null
+            )
+            cursor!!.moveToFirst()
+
+            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
+            picturePath = cursor.getString(columnIndex)
+
+            cursor.close()
 //                val cursor: Cursor? = contentResolver.query(selectedImage!!, filePath, null, null, null)
 //                cursor!!.moveToFirst()
 //                val imagePath: String = cursor!!.getString(cursor!!.getColumnIndex(filePath[0]))

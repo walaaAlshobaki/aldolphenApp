@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="10dp"
+    tools:context=".productManagerHomePage.ui.productPage.EditProduct.qrCode.ProductQrCodeFragment">
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto"
+        android:text="Please scan product barcode so as to store it."
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        app:layout_constraintWidth_percent="0.75"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto"
+        android:text="Keep your device closer so as to pick up your product"
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView39"
+        app:layout_constraintWidth_percent="0.65" />
+
+
+    <ImageView
+        android:id="@+id/con5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_qrcode"
+        app:layout_constraintHeight_percent="0.30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        app:layout_constraintWidth_percent="0.65"
+        app:strokeColor="@color/border"
+     >
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Product Barcode Detected"
+        android:textColor="@color/appMainColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/con5"
+        app:layout_constraintStart_toStartOf="@+id/con5"
+        app:layout_constraintTop_toBottomOf="@+id/con5" />
+
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="A1231241341"
+        android:textColor="@color/appMainColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/con5"
+        app:layout_constraintStart_toStartOf="@+id/con5"
+        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/btn_style"
+        android:text="confirm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView42"
+        app:layout_constraintWidth_percent="0.95" />
+</androidx.constraintlayout.widget.ConstraintLayout>

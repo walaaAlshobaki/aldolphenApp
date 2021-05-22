@@ -1,4 +1,4 @@
-package com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage
+    package com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +15,7 @@ import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.addCategory.AddCategoryActivity
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import com.adolphinpos.adolphinpos.product.ProductModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.EditProduct.EditProductActivity
 import kotlinx.android.synthetic.main.fragment_product.view.*
 
 
@@ -124,6 +125,15 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
     override fun onSelectItemProduct(position: Int, action: String) {
         if (productModel[position].id==-2){
             findNavController().navigate(R.id.AddProductItemFragment)
+
+        }
+        if (action.equals("edit")){
+            val intent = Intent(
+                activity,
+                EditProductActivity::class.java
+            )
+
+            startActivity(intent)
 
         }
 

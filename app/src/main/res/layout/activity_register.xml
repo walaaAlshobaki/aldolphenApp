@@ -210,10 +210,27 @@
         app:layout_constraintWidth_percent="0.45">
 
 
+        <EditText
+            android:id="@+id/contryNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/roboto_bold"
+            android:hint="Country  "
+            android:inputType="number"
+            android:textColor="@color/appMainColor"
+            android:textColorHint="@color/border"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/countryCodePicker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placeholderText="write your phone number"
+            app:placeholderTextColor="@color/border" />
         <com.rilixtech.widget.countrycodepicker.CountryCodePicker
 
             android:id="@+id/countryCodePicker"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
 
             app:ccp_arrowSize="0sp"
@@ -222,10 +239,10 @@
             app:ccp_textColor="@color/appMainColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:ccp_hidePhoneCode="true"
-            app:ccp_showFullName="true"
+            app:ccp_showFullName="false"
+
             app:ccp_hideNameCode="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.45" />
     </androidx.constraintlayout.widget.ConstraintLayout>

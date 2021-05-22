@@ -124,10 +124,5 @@ class LoadingScreenActivity : AppCompatActivity() , UserInfoDelegate {
 
     }
 
-    override fun didAddSuccess(response: AvatarParser) {
 
-    }
-
-    override fun didAddFail(msg: String) {
-    }
 }

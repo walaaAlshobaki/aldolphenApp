@@ -359,12 +359,12 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_edge">
+                        android:background="@drawable/card_with_border_main2">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/white"
+                            android:background="@drawable/card_with_border_main2"
                             android:padding="5dp">
 
 
@@ -432,12 +432,12 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/card_edge">
+                        android:background="@drawable/card_with_border_main2">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/white"
+                            android:background="@drawable/card_with_border_main2"
                             android:padding="5dp">
 
 
