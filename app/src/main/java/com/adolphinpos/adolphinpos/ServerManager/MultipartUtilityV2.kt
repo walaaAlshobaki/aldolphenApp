@@ -139,9 +139,13 @@ class MultipartUtilityV2 {
         } else {
 
 
-            throw IOException("Server returned non-OK status: $status")
-
-//            delegate!!.didAddFail("Server returned non-OK status: $status")
+//
+//            throw IOException("Server returned non-OK status: $status")
+            response = status.toString()
+//            DesignerToast.Custom(context,"Server returned non-OK status: $status", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+//                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+            Log.d("OOOOOOOOOOO","Server returned non-OK status: $status")
+//           delegate!!.didAddFail("Server returned non-OK status: $status")
         }
         return response
     }

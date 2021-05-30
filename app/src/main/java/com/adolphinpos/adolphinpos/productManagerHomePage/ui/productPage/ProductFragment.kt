@@ -2,6 +2,7 @@
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +14,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.addCategory.AddCategoryActivity
+import com.adolphinpos.adolphinpos.addCategory.CategoryDelegate
+import com.adolphinpos.adolphinpos.addCategory.CategoryPresenter
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import com.adolphinpos.adolphinpos.product.ProductModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.EditProduct.EditProductActivity
 import kotlinx.android.synthetic.main.fragment_product.view.*
 
 
-class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
-    var categoryModel: ArrayList<CategoryModel> = ArrayList()
+class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , CategoryDelegate {
+//    var categoryModel: ArrayList<CategoryModel> = ArrayList()
+    var categoryModel: ArrayList<CategoryModelNew.Data> = ArrayList()
     private lateinit var mAdapter: DashboardAdapter
+    var mPresenter: CategoryPresenter? = null
     var productModel: ArrayList<ProductModel> = ArrayList()
     lateinit var category:RecyclerView
     lateinit var ProductsRec:RecyclerView
@@ -30,17 +35,7 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         super.onViewCreated(view, savedInstanceState)
         category=view.category
         ProductsRec=view.ProductsRec
-        categoryModel.add(CategoryModel(-2,"ADD CATEGORY","",true))
-        categoryModel.add(CategoryModel(1,"sandwitches","",false))
-        categoryModel.add(CategoryModel(2,"Dishes","",false))
-        categoryModel.add(CategoryModel(3,"hot drinks","",false))
-        categoryModel.add(CategoryModel(4,"cold drinks","",false))
-        categoryModel.add(CategoryModel(5,"cold drinks","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
-        mAdapter.notifyDataSetChanged()
 
         mAdapter!!.setOnClickItemCategory(this)
         val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
@@ -84,15 +79,15 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         val view=inflater.inflate(R.layout.fragment_product, container, false)
         category=view.category
         ProductsRec=view.ProductsRec
+        mPresenter = CategoryPresenter(requireActivity())
+        mPresenter!!.delegate = this
+        mPresenter!!.getCategories()
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
-        mAdapter.notifyDataSetChanged()
-
         mAdapter!!.setOnClickItemCategory(this)
         val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
         category!!.layoutManager = linearVertical
-       category.setHasFixedSize(true)
+        category.setHasFixedSize(true)
         category.setAdapter(mAdapter)
-
 
         mAdapterProductModel = DashboardAdapter(requireActivity(), productModel,"productModel")
         mAdapterProductModel.notifyDataSetChanged()
@@ -136,6 +131,32 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
             startActivity(intent)
 
         }
+
+    }
+    override fun didGetCategorySuccess(response: CategoryModelNew) {
+
+        Log.d("$$$$$$$$$$$$$",response.toString())
+
+        categoryModel.clear()
+        categoryModel.add(CategoryModelNew.Data(-2,"","ADD CATEGORY",true))
+
+        categoryModel.addAll(response.data)
+        mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
+
+        mAdapter!!.setOnClickItemCategory(this)
+        val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
+        category!!.layoutManager = linearVertical
+        category.setHasFixedSize(true)
+        category.setAdapter(mAdapter)
+
+        mAdapter!!.notifyDataSetChanged()
+    }
+
+    override fun didGetCategoryFail(msg: String) {
+
+    }
+
+    override fun didEmpty() {
 
     }
 

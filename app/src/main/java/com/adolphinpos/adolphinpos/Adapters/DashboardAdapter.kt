@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -475,6 +476,7 @@ class DashboardAdapter(
 
 
                     container.setOnClickListener {
+                        Log.d("EEEEEEEEEEEEEEEEEEEEE",position.toString())
                         onClick!!.onSelectItemCategory(position)
 //                        val intent = Intent(
 //                            context,
@@ -826,17 +828,33 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is CategoryModel -> {
-                    val itemCat = data[position] as CategoryModel
+                data!![position] is CategoryModelNew.Data -> {
+                    val itemCat = data[position] as CategoryModelNew.Data
+
+                    Log.d("EEEEEEEEEEEEEEEEEEEEE",itemCat.name.toString())
+
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_add)
                     }else{
-                        image.setImageResource(R.drawable.ic_sandweshes)
+                        val cleanImage: String =
+                            itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
+                                "data:image/jpeg;base64,",
+                                ""
+                            )
+
+                        val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
+//        .into(avatar_img)
+
+
+                        image. setImageBitmap(decodedByte)
 
 //                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
                     }
-                    myTextView.text=itemCat.categoryName
+                    myTextView.text=itemCat.name
                     if(!itemCat.isSelected){
                         container.setBackgroundColor(context.resources.getColor(R.color.border))
                         myTextView.setBackgroundColor(context.resources.getColor(R.color.border))

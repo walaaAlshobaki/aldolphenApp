@@ -537,9 +537,11 @@
                 app:boxCornerRadiusTopStart="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/barcodeBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/appMainColor"
+                    android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -552,6 +554,7 @@
                         android:gravity="center"
                         android:src="@drawable/ic_barcode"
                         android:textSize="28sp"
+                        android:clickable="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -560,13 +563,15 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
+                <TextView
+                    android:id="@+id/barcode"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12sp"
                     android:background="@android:color/transparent"
                     android:hint="736952496799"
-                    android:padding="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/appMainColor"
                     android:textColorHint="@color/border"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1002,7 +1007,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/cardView13"
-
                     app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView36"

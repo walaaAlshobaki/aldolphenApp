@@ -118,16 +118,15 @@
                         app:strokeWidth="2dp">
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="51dp"
     android:layout_marginTop="22dp"
     app:contentPadding="1dp"
-    app:cardCornerRadius="12dp"
-    app:cardBackgroundColor="@color/border">
+    app:cardCornerRadius="12dp">
     <androidx.constraintlayout.widget.ConstraintLayout
 
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/card_with_border_main2"
 
 
@@ -139,7 +138,7 @@
         <EditText
             android:id="@+id/catName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:hint="#12345"
             android:padding="10dp"
@@ -172,7 +171,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewIcon"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginTop="20dp"
 
                     tools:listitem="@layout/icon_cell_item"

@@ -11,8 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.helper.MessageEvent
+import com.adolphinpos.adolphinpos.helper.RxBus
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.MainHallsModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.scanActivity.ScanActivity
+import com.adolphinpos.adolphinpos.registeration.country.CountryModel
+import kotlinx.android.synthetic.main.product_info_item.*
 import kotlinx.android.synthetic.main.product_info_item.view.*
+
 
 class AddProductItemFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
     private lateinit var productNames: RecyclerView
@@ -73,7 +79,7 @@ class AddProductItemFragment : Fragment(), DashboardAdapter.OnItemselectedDelega
     ): View? {
         // Inflate the layout for this fragment
 
-        var view=inflater.inflate(R.layout.fragment_add_product_item, container, false)
+        val view=inflater.inflate(R.layout.fragment_add_product_item, container, false)
         productNames=view.productNames
         mAdapter =DashboardAdapter(requireActivity(), mModelList, "HallsViewHolder")
         mAdapter.setOnClickItemCategory(this)
@@ -83,8 +89,27 @@ class AddProductItemFragment : Fragment(), DashboardAdapter.OnItemselectedDelega
         productNames.setHasFixedSize(true)
         productNames.adapter = mAdapter
 
+        RxBus.listen(MessageEvent::class.java).subscribe {
+            if (it.action == 50) {
+                barcode.text = it.message.toString()
+            }
+        }
 
+       view.barcodeBtn.setOnClickListener {
+           val intent = Intent(activity, ScanActivity::class.java)
+           startActivity(intent)
+       }
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        RxBus.listen(MessageEvent::class.java).subscribe {
+            if (it.action == 50) {
+                barcode.text = it.message.toString()
+            }
+        }
+
     }
 
     override fun onSelectItemCategory(position: Int) {

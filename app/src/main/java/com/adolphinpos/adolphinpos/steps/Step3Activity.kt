@@ -77,7 +77,7 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
 //        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
 //        .into(avatar_img)
 
-            common.loadBitmapByPicasso(this, decodedByte, userImage)
+//            common.loadBitmapByPicasso(this, decodedByte, userImage)
 
         }
         mPresenter!!.getCountry()

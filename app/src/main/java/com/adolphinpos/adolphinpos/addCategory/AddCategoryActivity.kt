@@ -32,8 +32,10 @@ import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.Categor
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_add_category.*
 import org.json.JSONObject
+import org.json.JSONTokener
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 
 class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate,CategoryDelegate {
     var categoryModel: ArrayList<CategoryModelNew.Data> = ArrayList()
@@ -85,8 +87,12 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
             }else{
 
 
-
-                    val decodedString: ByteArray = Base64.decode(categoryModel[selectedPosition].imagePath, Base64.DEFAULT)
+                val cleanImage: String =
+                    categoryModel[selectedPosition].imagePath!!.replace("data:image/png;base64,", "").replace(
+                        "data:image/jpeg;base64,",
+                        ""
+                    )
+                    val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
                     // Bitmap Image
                     // Bitmap Image
                     val bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
@@ -105,14 +111,29 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
                     } catch (e: java.lang.Exception) {
                         e.printStackTrace()
                     }
+                val response = multipart.finish() // response from server.
+                var json = JSONTokener(response).nextValue()
+                when (json) {
+                    is JSONObject -> { //it is a JsonObject
 
-                    val response = multipart.finish() // response from server.
-                    val jsonObject = JSONObject(response!!)
-                    val dataPayload = jsonObject.getString("message")
-                    Log.d("WWWWWWWWWWWWW",dataPayload)
-                    DesignerToast.Custom(this,dataPayload,
+                        val jsonObject = JSONObject(response!!)
+                        val dataPayload = jsonObject.getString("message")
+                        Log.d("WWWWWWWWWWWWW",response!!)
+                        DesignerToast.Custom(this,dataPayload,
                             Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+                    }
+
+                    else -> { //handle the odd scenario
+
+
+
+            DesignerToast.Custom(this,"Server returned non-OK status: $response", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
+                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+                    }
+                }
+
+
                 }
 
 
@@ -121,9 +142,10 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     }
 
     override fun onSelectItemCategory(position: Int) {
-        if(position==-2){
+        Log.d("EEEEEEEEEEEEEEEEEEEEE",categoryModel[position].toString())
+
+        if(categoryModel[position].id==-2){
             showPictureDialog()
-            Log.d("EEEEEEEEEEEEEEEEEEEEE","$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
         }
         selectedPosition=position
         for (n in categoryModel.indices){

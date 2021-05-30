@@ -33,9 +33,8 @@ class CategoryPresenter  (var mContext: Context) {
 
                 val responseDatajson = JSONObject(jsonObject.toString())
 
-                Log.d("**********************",responseDatajson.toString())
                 val responseJson = common.parserJson.fromJson(responseDatajson.toString(), CategoryModelNew::class.java)
-                Log.d("@@@@@@@@@@@@@@",responseJson.toString())
+
 
                 delegate!!.didGetCategorySuccess(responseJson)
 

@@ -395,10 +395,6 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
             val filePath = arrayOf(MediaStore.Images.Media.DATA)
             picturePath1= MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
 
-//            val byteArrayOutputStream = ByteArrayOutputStream()
-//            picturePath1!!.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-//            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-//            picturePath = Base64.encodeToString(byteArray, Base64.DEFAULT)
 
             val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
 
@@ -414,48 +410,6 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
             cursor.close()
 
 
-
-
-//                val cursor: Cursor? = contentResolver.query(selectedImage!!, filePath, null, null, null)
-//                cursor!!.moveToFirst()
-//                val imagePath: String = cursor!!.getString(cursor!!.getColumnIndex(filePath[0]))
-//
-//                val options = BitmapFactory.Options()
-//                options.inPreferredConfig = Bitmap.Config.ARGB_8888
-//                val bitmap = BitmapFactory.decodeFile(imagePath, options)
-
-            // Do something with the bitmap
-
-
-            // At the end remember to close the cursor or you will end with the RuntimeException!
-
-            // Do something with the bitmap
-
-
-            // At the end remember to close the cursor or you will end with the RuntimeException!
-//                cursor.close()
-            try {
-//                mPresenter!!.uploadImageTap(bitmap, userInfo.userId, common.selectedServiceId, common.selectedServiceTypeId, PhoneNo.text.toString(), Email.text.toString(),
-//                    TaxNo.text.toString(), Taxrecord.text.toString(), BranchName.text.toString(), countryModel!!.id!!)
-
-            }catch (e: Exception){
-                Log.d("EEEEEEEEEEEEEE", e.localizedMessage)
-
-            }
-
-
-            // avatar_img.setImageBitmap(BitmapFactory.decodeFile(picturePath))
-
-//                mPresenter!!.uploadImageTap(BitmapFactory.decodeFile(picturePath))
-
-//            } catch (ex: Exception) {
-//                Log.d("Exception", ex.localizedMessage)
-//
-//
-//            }
-
-
-//            Alert.Instance.showMessage(this, R.string.upload, true)
 
 
         }
