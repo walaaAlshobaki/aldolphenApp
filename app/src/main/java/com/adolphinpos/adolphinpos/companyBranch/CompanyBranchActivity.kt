@@ -214,110 +214,110 @@ class CompanyBranchActivity : AppCompatActivity() , OnMapReadyCallback,CityDeleg
 //            startActivity(i)
 //        }
 
-        loginBtn.setOnClickListener {
-            val i = Intent(this, Step2Activity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-        }
-//            loginBtn.setOnClickListener {
+//        loginBtn.setOnClickListener {
+//            val i = Intent(this, Step2Activity::class.java)
+//            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(i)
+//        }
+            loginBtn.setOnClickListener {
+
+
+                if (BranchName.text.isNullOrEmpty()||phoneNum.text.isNullOrEmpty()|| Branches.text.isNullOrEmpty()){
+                    DesignerToast.Custom(this,"All filed is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                            R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+                }else{
+                    for (i in cityModel.indices) {
+                        if (Branches.text.toString()==cityModel[i].name){
+                            Log.d("Branches",cityModel[i].id.toString())
+                            cityId=cityModel[i].id!!
+                        }
+
+                    }
+                    var address = ""
+                    var city = ""
+                    var adminArea = ""
+                    var zip = 0
+                    var country = ""
+                    var url = "https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}"
+                    val geocoder = Geocoder(this, Locale.ENGLISH)
+                    try {
+
+
+                        val addresses = geocoder.getFromLocation(latitude, longitude, 5)
+
+                        if (addresses.size > 0) {
+
+                            var strAddress = StringBuilder()
+
+
+
+                            for (i in 0..addresses.size) {
+
+                                val fetchedAddress = addresses.get(i)
+
+
+                                address = addresses[i].getAddressLine(0)
+                                city = addresses[i].locality
+                                adminArea = addresses[i].adminArea
+                                if (addresses[i].postalCode==null){
+                                    zip=0
+                                }else{
+                                    zip = 0
+
+                                }
+                                if (addresses[i].countryName==null){
+                                    country = countryModel!!.name
+                                }else{
+                                    country = addresses[i].countryName
+                                }
+
+
+
+
+                                strAddress = StringBuilder()
+
+                                for (r in 0..fetchedAddress.getMaxAddressLineIndex()) {
+
+
+                                    strAddress.append(fetchedAddress.getAddressLine(i)).append("\n")
+
+
+                                    Log.d("getAddressFromLocation", "IDLE ${addresses[i]}")
+                                }
+
+//
+//                    if (strAddress.toString().contains("Unnamed Road,", ignoreCase = true) || strAddress.toString().contains("Unnamed Road،,", ignoreCase = true)) {
 //
 //
-//                if (BranchName.text.isNullOrEmpty()||phoneNum.text.isNullOrEmpty()|| Branches.text.isNullOrEmpty()){
-//                    DesignerToast.Custom(this,"All filed is required",Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-//                            R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
-//                }else{
-//                    for (i in cityModel.indices) {
-//                        if (Branches.text.toString()==cityModel[i].name){
-//                            Log.d("Branches",cityModel[i].id.toString())
-//                            cityId=cityModel[i].id!!
-//                        }
-//
+//                    }else{
+
+
+                                break
+
 //                    }
-//                    var address = ""
-//                    var city = ""
-//                    var adminArea = ""
-//                    var zip = 0
-//                    var country = ""
-//                    var url = "https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}"
-//                    val geocoder = Geocoder(this, Locale.ENGLISH)
-//                    try {
-//
-//
-//                        val addresses = geocoder.getFromLocation(latitude, longitude, 5)
-//
-//                        if (addresses.size > 0) {
-//
-//                            var strAddress = StringBuilder()
-//
-//
-//
-//                            for (i in 0..addresses.size) {
-//
-//                                val fetchedAddress = addresses.get(i)
-//
-//
-//                                address = addresses[i].getAddressLine(0)
-//                                city = addresses[i].locality
-//                                adminArea = addresses[i].adminArea
-//                                if (addresses[i].postalCode==null){
-//                                    zip=0
-//                                }else{
-//                                    zip = 0
-//
-//                                }
-//                                if (addresses[i].countryName==null){
-//                                    country = countryModel!!.name
-//                                }else{
-//                                    country = addresses[i].countryName
-//                                }
-//
-//
-//
-//
-//                                strAddress = StringBuilder()
-//
-//                                for (r in 0..fetchedAddress.getMaxAddressLineIndex()) {
-//
-//
-//                                    strAddress.append(fetchedAddress.getAddressLine(i)).append("\n")
-//
-//
-//                                    Log.d("getAddressFromLocation", "IDLE ${addresses[i]}")
-//                                }
-//
-////
-////                    if (strAddress.toString().contains("Unnamed Road,", ignoreCase = true) || strAddress.toString().contains("Unnamed Road،,", ignoreCase = true)) {
-////
-////
-////                    }else{
-//
-//
-//                                break
-//
-////                    }
-//
-//
-//                            }
-//
-//
-//                        } else {
-//
-//
-//
-//                        }
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//
-//                        Log.d("didGetGeocoderSearching", "Could not get address..!")
-//                    }
-//
-//                    BranchPresnter!!.addPaymentMethood(BranchName.text.toString()
-//                            ,zip,"","",longitude.toString(),latitude.toString()
-//                            ,url,"",country,"","",
-//                            address,address,cityId,countryModel!!.id,"00"+countryModel!!.callingCodes+phoneNum.text.toString())
-//
-//                }
-//            }
+
+
+                            }
+
+
+                        } else {
+
+
+
+                        }
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+
+                        Log.d("didGetGeocoderSearching", "Could not get address..!")
+                    }
+
+                    BranchPresnter!!.addPaymentMethood(BranchName.text.toString()
+                            ,zip,"","",longitude.toString(),latitude.toString()
+                            ,url,"",country,"","",
+                            address,address,cityId,countryModel!!.id,"00"+countryModel!!.callingCodes+phoneNum.text.toString())
+
+                }
+            }
 
 
     }

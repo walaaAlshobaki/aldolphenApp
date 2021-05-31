@@ -835,6 +835,11 @@ class DashboardAdapter(
 
                     if (itemCat.id==-2){
                         image.setImageResource(R.drawable.ic_add)
+                        if(!itemCat.isSelected) {
+                            image.setColorFilter(context.resources.getColor(R.color.red))
+                        }else{
+                            image.setColorFilter(context.resources.getColor(R.color.white))
+                        }
                     }else{
                         val cleanImage: String =
                             itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
@@ -858,7 +863,7 @@ class DashboardAdapter(
                     if(!itemCat.isSelected){
                         container.setBackgroundColor(context.resources.getColor(R.color.border))
                         myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
-                        image.setColorFilter(context.resources.getColor(R.color.red))
+//                        image.setColorFilter(context.resources.getColor(R.color.red))
                         myTextView.setTextColor(context.resources.getColor(R.color.red))
 
 
@@ -866,7 +871,7 @@ class DashboardAdapter(
 
                         container.setBackgroundColor(context.resources.getColor(R.color.red))
                         myTextView.setBackgroundColor(context.resources.getColor(R.color.red))
-                        image.setColorFilter(context.resources.getColor(R.color.white))
+//                        image.setColorFilter(context.resources.getColor(R.color.white))
 
                         myTextView.setTextColor(context.resources.getColor(R.color.white))
 
