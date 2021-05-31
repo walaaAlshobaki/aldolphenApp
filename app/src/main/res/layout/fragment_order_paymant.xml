@@ -127,38 +127,98 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/CashAmountInputLayout"
-                                style="@style/LoginTextInputLayoutStyle"
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:hint="Cash Amount"
+                                android:layout_height="wrap_content">
 
-                                android:textColorHint="@color/appMainColor"
-                                android:theme="@style/LoginTextInputLayoutStyle"
-                                app:boxCornerRadiusBottomEnd="10dp"
-                                app:boxCornerRadiusBottomStart="10dp"
-                                app:boxCornerRadiusTopEnd="10dp"
-                                app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/c"
-                                app:endIconMode="password_toggle        "
-                                app:endIconTint="@color/red"
-                                app:hintTextColor="@color/appMainColor"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
-                                app:layout_constraintWidth_percent="0.45"
-                                app:placeholderTextColor="@color/border">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/CashAmount"
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/textView26"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/gradinat_background"
+                                    android:elevation="12dp"
                                     android:fontFamily="@font/roboto_bold"
+                                    android:padding="5dp"
+                                    android:text="Cash Amount"
+                                    android:textColor="@color/appMainColor"
+                                    android:textSize="13sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                                    android:textColor="@color/appMainColor" />
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                                <androidx.cardview.widget.CardView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="18dp"
+                                    app:cardBackgroundColor="@color/white"
+                                    app:cardCornerRadius="15dp"
+                                    app:cardElevation="0dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:placeholderTextColor="@color/border"
+
+
+                                    app:strokeColor="@color/border"
+                                    app:strokeWidth="2dp">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="51dp"
+                                        android:background="@drawable/card_with_border_main2">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.15">
+
+                                            <ImageView
+                                                android:id="@+id/lang"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:clickable="true"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:gravity="center"
+                                                android:src="@drawable/ic_mony"
+                                                android:textSize="25sp"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:tint="@color/red" />
+
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                        <EditText
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="12sp"
+                                            android:background="@android:color/transparent"
+                                            android:hint="200"
+                                            android:padding="5dp"
+                                            android:textColorHint="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.80" />
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -186,41 +246,97 @@
                                     app:layout_constraintTop_toTopOf="parent" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/MaddaAmountInputLayout"
-                                style="@style/LoginTextInputLayoutStyle"
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:hint="Madda Amount"
+                                android:layout_height="wrap_content">
 
-                                android:textColorHint="@color/appMainColor"
-                                android:theme="@style/LoginTextInputLayoutStyle"
-                                app:boxCornerRadiusBottomEnd="10dp"
-                                app:boxCornerRadiusBottomStart="10dp"
-                                app:boxCornerRadiusTopEnd="10dp"
-                                app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/c"
-
-                                app:endIconMode="password_toggle"
-                                app:endIconTint="@color/red"
-
-                                app:hintTextColor="@color/appMainColor"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
-                                app:layout_constraintWidth_percent="0.45"
-                                app:placeholderTextColor="@color/border">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/MaddaAmount"
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/textViewMadda"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/gradinat_background"
+                                    android:elevation="12dp"
                                     android:fontFamily="@font/roboto_bold"
+                                    android:padding="5dp"
+                                    android:text="Madda Amount"
+                                    android:textColor="@color/appMainColor"
+                                    android:textSize="13sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                                    android:textColor="@color/appMainColor" />
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                                <androidx.cardview.widget.CardView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="18dp"
+                                    app:cardBackgroundColor="@color/white"
+                                    app:cardCornerRadius="15dp"
+                                    app:cardElevation="0dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:placeholderTextColor="@color/border"
+
+
+                                    app:strokeColor="@color/border"
+                                    app:strokeWidth="2dp">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="51dp"
+                                        android:background="@drawable/card_with_border_main2">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.15">
+
+                                            <ImageView
+                                                android:id="@+id/lang"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:clickable="true"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:gravity="center"
+                                                android:src="@drawable/ic_mony"
+                                                android:textSize="25sp"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:tint="@color/red" />
+
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                        <EditText
+                                            android:id="@+id/MaddaAmount"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="12sp"
+                                            android:background="@android:color/transparent"
+                                            android:hint="200"
+                                            android:padding="5dp"
+                                            android:textColorHint="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.80" />
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -249,39 +365,97 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/PaidAmountInputLayout"
-                                style="@style/LoginTextInputLayoutStyle"
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:hint="Paid Amount"
-                                android:textColorHint="@color/appMainColor"
-                                android:theme="@style/LoginTextInputLayoutStyle"
-                                app:boxCornerRadiusBottomEnd="10dp"
-                                app:boxCornerRadiusBottomStart="10dp"
-                                app:boxCornerRadiusTopEnd="10dp"
-                                app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/c"
+                                android:layout_height="wrap_content">
 
-                                app:endIconMode="password_toggle"
-                                app:endIconTint="@color/red"
-
-                                app:hintTextColor="@color/appMainColor"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
-                                app:layout_constraintWidth_percent="0.45"
-                                app:placeholderTextColor="@color/border">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/PaidAmount"
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/textViewPaid"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/gradinat_background"
+                                    android:elevation="12dp"
                                     android:fontFamily="@font/roboto_bold"
+                                    android:padding="5dp"
+                                    android:text="Paid Amount"
+                                    android:textColor="@color/appMainColor"
+                                    android:textSize="13sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                                    android:textColor="@color/appMainColor" />
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                                <androidx.cardview.widget.CardView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="18dp"
+                                    app:cardBackgroundColor="@color/white"
+                                    app:cardCornerRadius="15dp"
+                                    app:cardElevation="0dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:placeholderTextColor="@color/border"
+
+
+                                    app:strokeColor="@color/border"
+                                    app:strokeWidth="2dp">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="51dp"
+                                        android:background="@drawable/card_with_border_main2">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.15">
+
+                                            <ImageView
+                                                android:id="@+id/lang"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:clickable="true"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:gravity="center"
+                                                android:src="@drawable/ic_mony"
+                                                android:textSize="25sp"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:tint="@color/red" />
+
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                        <EditText
+                                            android:id="@+id/PaidAmount"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="12sp"
+                                            android:background="@android:color/transparent"
+                                            android:hint="200"
+                                            android:padding="5dp"
+                                            android:textColorHint="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.80" />
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/CardholderInputLayout"
@@ -464,39 +638,98 @@
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/WalletAmountInputLayout"
-                                style="@style/LoginTextInputLayoutStyle"
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:hint="Wallet Amount"
-                                android:textColorHint="@color/appMainColor"
-                                android:theme="@style/LoginTextInputLayoutStyle"
-                                app:boxCornerRadiusBottomEnd="10dp"
-                                app:boxCornerRadiusBottomStart="10dp"
-                                app:boxCornerRadiusTopEnd="10dp"
-                                app:boxCornerRadiusTopStart="10dp"
-                                app:endIconDrawable="@drawable/c"
+                                android:layout_height="wrap_content">
 
-                                app:endIconMode="password_toggle"
-                                app:endIconTint="@color/red"
-
-                                app:hintTextColor="@color/appMainColor"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/CompanyTextInputLayout"
-                                app:layout_constraintWidth_percent="0.45"
-                                app:placeholderTextColor="@color/border">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/WalletAmount"
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/textViewWallet"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/gradinat_background"
+                                    android:elevation="12dp"
                                     android:fontFamily="@font/roboto_bold"
+                                    android:padding="5dp"
+                                    android:text="Wallet Amount"
+                                    android:textColor="@color/appMainColor"
+                                    android:textSize="13sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                                    android:textColor="@color/appMainColor" />
 
-                            </com.google.android.material.textfield.TextInputLayout>
+                                <androidx.cardview.widget.CardView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="18dp"
+                                    app:cardBackgroundColor="@color/white"
+                                    app:cardCornerRadius="15dp"
+                                    app:cardElevation="0dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:placeholderTextColor="@color/border"
+
+
+                                    app:strokeColor="@color/border"
+                                    app:strokeWidth="2dp">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="51dp"
+                                        android:background="@drawable/card_with_border_main2">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.15">
+
+                                            <ImageView
+                                                android:id="@+id/lang"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:clickable="true"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:gravity="center"
+                                                android:src="@drawable/ic_mony"
+                                                android:textSize="25sp"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:tint="@color/red" />
+
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                        <EditText
+                                            android:id="@+id/Wallet"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="12sp"
+                                            android:background="@android:color/transparent"
+                                            android:hint="200"
+                                            android:padding="5dp"
+                                            android:textColorHint="@color/border"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent"
+                                            app:layout_constraintWidth_percent="0.80" />
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
                         </LinearLayout>
                     </ScrollView>
 
