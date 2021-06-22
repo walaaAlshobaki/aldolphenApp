@@ -21,7 +21,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.adolphinpos.adolphinpos.CompanyServiceBranches.AvatarParser
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.MultipartUtilityV2
 import com.adolphinpos.adolphinpos.ServerManager.UserInfoUpdateDelegate
@@ -31,10 +30,10 @@ import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.helper.CircleTransform
 import com.adolphinpos.adolphinpos.helper.MessageEvent
 import com.adolphinpos.adolphinpos.helper.RxBus
-import com.adolphinpos.adolphinpos.home.MainActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoDelegate
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoPresenter
+import com.adolphinpos.adolphinpos.productManagerHomePage.ProductManagerMainActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryActivity
 import com.adolphinpos.adolphinpos.registeration.country.CountryDelegate
 import com.adolphinpos.adolphinpos.registeration.country.CountryModel
@@ -43,8 +42,6 @@ import com.ahmadrosid.svgloader.SvgLoader
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import com.vdx.designertoast.DesignerToast
-import kotlinx.android.synthetic.main.activity_step3.*
-import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.activity_user_profile.age
 import kotlinx.android.synthetic.main.activity_user_profile.avatar_img
 import kotlinx.android.synthetic.main.activity_user_profile.country
@@ -62,7 +59,6 @@ import kotlinx.android.synthetic.main.activity_user_profile.userName
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
-import java.util.*
 
 
 class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDelegate , UserInfoUpdateDelegate {
@@ -84,8 +80,9 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
         if (android.os.Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
         }
+        Log.d("WWWWWWWWWWWWW", userInfo.token)
         sign.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, ProductManagerMainActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(i)
             finish()
@@ -97,11 +94,11 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
                 country.text= countryModel!!.name
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(countryModel!!.flag, flag)
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(countryModel!!.flag, flagphone)
 
             }
@@ -145,26 +142,33 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
             multipart.addFormField("FirstName", firstname.text.toString())
             multipart.addFormField("LastName", lastname.text.toString())
             multipart.addFormField("Email", email.text.toString())
-            multipart.addFormField("PhoneNumber", "798457414")
+            multipart.addFormField("PhoneNumber", phoneNum.text.toString())
             multipart.addFormField("Age", age.text.toString())
-            multipart.addFormField("CountryId", "117")
+            multipart.addFormField("CountryId", userInfo.contryId.toString())
             if (picturePath!=""){
 
                 multipart.addFilePart("Image", File(picturePath))
                 val response = multipart.finish() // response from server.
-                val jsonObject = JSONObject(response!!)
-                val dataPayload = jsonObject.getString("message")
-                Log.d("WWWWWWWWWWWWW",dataPayload)
-                DesignerToast.Custom(this,dataPayload,
+                try {
+                    val jsonObject = JSONObject(response!!)
+                    val dataPayload = jsonObject.getString("message")
+                    Log.d("WWWWWWWWWWWWW",dataPayload)
+                    DesignerToast.Custom(this,dataPayload,
                         Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                         R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
 
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                    DesignerToast.Custom(this,response, Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                        R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+                }
+
             }else{
 
-                if(userInfo.profilePicturePath==""){
-                    DesignerToast.Custom(this,"update your photo", Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                            R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
-                }else{
+//                if(userInfo.profilePicturePath==""){
+//                    DesignerToast.Custom(this,"update your photo", Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+//                            R.drawable.warnings_background,16,"#FFFFFF",R.drawable.ic_warninges, 55, 219);
+//                }else{
 
                     val decodedString: ByteArray = Base64.decode(userInfo.profilePicturePath, Base64.DEFAULT)
                     // Bitmap Image
@@ -180,19 +184,29 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, out)
                         out.flush()
                         out.close()
-                        multipart.addFilePart("Image", dest)
+                        multipart.addFilePart("Image", null)
 
                     } catch (e: java.lang.Exception) {
                         e.printStackTrace()
-                    }
-
+//                    }
                     val response = multipart.finish() // response from server.
-                    val jsonObject = JSONObject(response!!)
-                    val dataPayload = jsonObject.getString("message")
-                    Log.d("WWWWWWWWWWWWW",dataPayload)
-                    DesignerToast.Custom(this,dataPayload,
+
+
+                    try {
+                        val jsonObject = JSONObject(response!!)
+                        val dataPayload = jsonObject.getString("message")
+                        Log.d("WWWWWWWWWWWWW",dataPayload)
+                        DesignerToast.Custom(this,dataPayload,
                             Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                             R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
+
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                        DesignerToast.Custom(this,response, Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
+                            R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
+                    }
+         // response from server.
+
                 }
 
 
@@ -212,21 +226,11 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
                 )
 
             }else{
-                val cleanImage: String =
-                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
-                            "data:image/jpeg;base64,",
-                            ""
-                    )
-                val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
-                val decodedByte = BitmapFactory.decodeByteArray(
-                        decodedString,
-                        0,
-                        decodedString.size
-                )
-                common.loadBitmapByPicasso(this, decodedByte, userImage)
-//                common.loadBitmapByPicasso(this, decodedByte, avatar_img)
-                avatar_img. setImageBitmap(decodedByte)
+
+                Picasso.get().load( userInfo.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user).transform(CircleTransform()).into(userImage)
+                Picasso.get().load( userInfo.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user).into(avatar_img)
 //                avatar_img. setImageBitmap(decodedByte)
+////                avatar_img. setImageBitmap(decodedByte)
             }
         userName.text= userInfo.firstName +" "+ userInfo.lastName
         firstname.setText(userInfo.firstName)
@@ -256,8 +260,7 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
         val pictureDialog = AlertDialog.Builder(this)
         pictureDialog.setTitle(getString(R.string.select_action))
         val pictureDialogItems = arrayOf(
-                getString(R.string.select_action_from_gallery),
-                getString(R.string.select_action_from_camera)
+                getString(R.string.select_action_from_gallery)
         )
         pictureDialog.setItems(
                 pictureDialogItems
@@ -267,7 +270,7 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
         { dialog, which ->
             when (which) {
                 0 -> choosePhotoFromGallary()
-                1 -> takePhotoFromCamera()
+
             }
 
 
@@ -411,6 +414,15 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
 
 
 
+            Picasso.get()
+                .load(selectedImage)
+                .placeholder(R.drawable.ic_user)
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .into(avatar_img)
+
+            Picasso.get().load(selectedImage).error(R.drawable.user).placeholder(R.drawable.user).transform(CircleTransform()).into(userImage)
+
+
 
         }
 
@@ -440,21 +452,11 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
             profilePicturePathString=""
         }else{
 
-            profilePicturePathString=response.profilePicturePath.toString()
-            val cleanImage: String =
-                    response.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
-                            "data:image/jpeg;base64,",
-                            ""
-                    )
+        Picasso.get().load(response.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user)
+        .into(avatar_img)
+            Picasso.get().load(response.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user)
+        .into(userImage)
 
-            val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
-            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-
-//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
-//        .into(avatar_img)
-
-            common.loadBitmapByPicasso(this, decodedByte, userImage)
-            avatar_img. setImageBitmap(decodedByte)
         }
         if (response.age==null){
             Log.d("ageString", response.age.toString())
@@ -524,11 +526,11 @@ class UserProfileActivity : AppCompatActivity() , UserInfoDelegate, CountryDeleg
                 country.text =response.data[it].name
                 SvgLoader.pluck()
                     .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                     .load(response.data[it].flag, flag)
                 SvgLoader.pluck()
                     .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                     .load(response.data[it].flag, flagphone)
             }
 

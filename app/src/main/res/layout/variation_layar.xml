@@ -3,66 +3,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp">
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        android:background="@color/layer">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/info"
+
+        android:background="@color/white">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/IngredientsInfoCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/layer"
-            android:padding="5dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/moreInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Variation"
-                android:textColor="@color/appMainColor"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_more"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/moreInfo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/appMainColor" />
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_addv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.20"
-            app:layout_constraintTop_toBottomOf="@+id/info"
-           >
-            <androidx.recyclerview.widget.RecyclerView
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/IngredientsInfo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/variation_option_item_cell"/>
+                android:layout_height="wrap_content"
+                android:background="@color/layer"
+                android:padding="10dp"
+         >
+
+                <TextView
+                    android:id="@+id/moreInfo1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Ingredients"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/infoIngredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/moreInfo1"
+                    app:layout_constraintStart_toEndOf="@+id/AddIngredients"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/appMainColor" />
+
+
+                <ImageView
+
+                    android:id="@+id/AddIngredients"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/appMainColor"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/moreInfo1"
+                    app:layout_constraintStart_toEndOf="@+id/moreInfo1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+                <Button
+                    android:id="@+id/showIngredientsPossibilities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_style"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:text="Generate Ingredients Possibilities"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/IngredientsRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/showIngredientsPossibilities"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/variation_option_item_cell"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/IngredientsPossibilitiesRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/IngredientsRecycler"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/possibilities_item_cell" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/infoCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/IngredientsInfoCard"
+            app:layout_constraintStart_toStartOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/layer"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/moreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Variation"
+                    android:gravity="center"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/showVariation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@+id/moreInfo"
+                    app:layout_constraintStart_toEndOf="@+id/addVariation"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/appMainColor" />
+
+
+                <ImageView
+                    android:id="@+id/addVariation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/appMainColor"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@+id/moreInfo"
+                    app:layout_constraintStart_toEndOf="@+id/moreInfo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+                <Button
+                    android:id="@+id/showVariationPossibilities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_style"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:text="Generate Variation Possibilities"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/VariationRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/showVariationPossibilities"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/variation_option_item_cell" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/VariationPossibilitiesRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/VariationRecycler"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/possibilities_item_cell" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

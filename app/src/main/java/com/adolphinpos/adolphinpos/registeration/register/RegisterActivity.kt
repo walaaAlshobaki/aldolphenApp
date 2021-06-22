@@ -103,7 +103,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate, CountryDeleg
             )
             phoneCode=selectedCountry.phoneCode
             contryNum.hint=selectedCountry.name
-            countryCodePicker2.setCountryForNameCode(selectedCountry.phoneCode)
+//            countryCodePicker2.setCountryForNameCode(selectedCountry.phoneCode)
             mCountryPresenter!!.getCountry()
         })
         countryCodePicker2.setOnCountryChangeListener(OnCountryChangeListener { selectedCountry ->
@@ -113,7 +113,7 @@ class RegisterActivity : AppCompatActivity(),RegisterationDelegate, CountryDeleg
 
             )
             phoneCode=selectedCountry.phoneCode
-            countryCodePicker.setCountryForNameCode(selectedCountry.phoneCode)
+//            countryCodePicker.setCountryForNameCode(selectedCountry.phoneCode)
             mCountryPresenter!!.getCountry()
         })
 

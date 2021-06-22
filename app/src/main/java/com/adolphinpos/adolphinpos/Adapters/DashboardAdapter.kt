@@ -5,18 +5,17 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
+import android.text.Editable
 import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.CurrencyTypeActivity.CurrencyTypeModel
 import com.adolphinpos.adolphinpos.R
@@ -30,15 +29,17 @@ import com.adolphinpos.adolphinpos.home.HomeModel
 import com.adolphinpos.adolphinpos.home.ServiceTypeModel
 import com.adolphinpos.adolphinpos.home.ServiesModel
 import com.adolphinpos.adolphinpos.paymentMethods.PaymentMethoodModel
-import com.adolphinpos.adolphinpos.product.ProductModel
+
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.HallsInfoModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.MainHallsModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.ResturantMan.TableModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.gallery.CashDrawerModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.productManagmentModel
-import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.CategoryModelNew
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_profile.*
+import kotlinx.android.synthetic.main.product_info_item.*
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -65,6 +66,11 @@ class DashboardAdapter(
     val VIEW_TYPE_16 = 16
     val VIEW_TYPE_17 = 17
     val VIEW_TYPE_18 = 18
+    val VIEW_TYPE_19 = 19
+    val VIEW_TYPE_20 = 20
+    val VIEW_TYPE_21 = 21
+    val VIEW_TYPE_22 = 22
+    val VIEW_TYPE_23 = 23
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val vv: View?
@@ -205,6 +211,46 @@ class DashboardAdapter(
                     false
                 )
             )
+        }else if (viewType == VIEW_TYPE_19) {
+            IngredientsViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.variation_option_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_21) {
+            VariationViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.variation_option_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_20) {
+            OptionDataViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.option_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_22) {
+            ProductSpecificationsViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.possibilities_item_cell,
+                    parent,
+                    false
+                )
+            )
+        }else if (viewType == VIEW_TYPE_23) {
+            ProductSpecificationsIngredientsViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.possibilities_item_cell,
+                    parent,
+                    false
+                )
+            )
         }else{
             PoliicyPermissionViewHolder(
                 LayoutInflater.from(parent.context).inflate(
@@ -261,6 +307,16 @@ class DashboardAdapter(
             (holder as PaymantViewModel).bind(position)
         }else if (action== "HallsViewHolder"){
             (holder as HallsViewHolder).bind(position)
+        }else if (action== "IngredientsViewHolder"){
+            (holder as IngredientsViewHolder).bind(position)
+        }else if (action== "VariationViewHolder"){
+            (holder as VariationViewHolder).bind(position)
+        }else if (action== "optionDataViewHolder"){
+            (holder as OptionDataViewHolder).bind(position)
+        }else if (action== "ProductSpecificationsViewHolder"){
+            (holder as ProductSpecificationsViewHolder).bind(position)
+        }else if (action== "ProductSpecificationsIngredientsViewHolder"){
+            (holder as ProductSpecificationsIngredientsViewHolder).bind(position)
         }
 
 
@@ -301,6 +357,16 @@ class DashboardAdapter(
             VIEW_TYPE_17
         } else if (action == "HallsViewHolder") {
             VIEW_TYPE_18
+        } else if (action == "IngredientsViewHolder" ) {
+            VIEW_TYPE_19
+        } else if (action == "optionDataViewHolder") {
+            VIEW_TYPE_20
+        } else if (action == "VariationViewHolder") {
+            VIEW_TYPE_21
+        }  else if (action == "ProductSpecificationsViewHolder") {
+            VIEW_TYPE_22
+        } else if (action == "ProductSpecificationsIngredientsViewHolder") {
+            VIEW_TYPE_23
         } else {
             VIEW_TYPE_TWO
         }
@@ -447,13 +513,14 @@ class DashboardAdapter(
                         val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
                         val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 
-//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
-//        .into(avatar_img)
 
 
-                        image. setImageBitmap(decodedByte)
 
-//                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+//                        image. setImageBitmap(decodedByte)
+
+
+
+                        Picasso.get().load(itemCat.imagePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
                     }
 //                    myTextView.text=itemCat.categoryName
@@ -841,22 +908,22 @@ class DashboardAdapter(
                             image.setColorFilter(context.resources.getColor(R.color.white))
                         }
                     }else{
-                        val cleanImage: String =
-                            itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
-                                "data:image/jpeg;base64,",
-                                ""
-                            )
-
-                        val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
-                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                        val cleanImage: String =
+//                            itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
+//                                "data:image/jpeg;base64,",
+//                                ""
+//                            )
+//
+//                        val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+//                        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 
 //        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
 //        .into(avatar_img)
 
 
-                        image. setImageBitmap(decodedByte)
+//                        image. setImageBitmap(decodedByte)
 
-//                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+                        Picasso.get().load(itemCat.imagePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
                     }
                     myTextView.text=itemCat.name
@@ -941,6 +1008,30 @@ class DashboardAdapter(
                     }
                 }
 
+                data!![position] is ProductModel.Data.Data -> {
+                      val itemCat = data[position] as ProductModel.Data.Data
+
+                    myTextView.text=itemCat.name
+                    if(!itemCat.isSelected){
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
+                        myTextView.setTextColor(context.resources.getColor(R.color.appMainColor))
+
+                    }else{
+                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
+                        myTextView.setTextColor(context.resources.getColor(R.color.white))
+                    }
+
+
+
+
+
+
+                    myTextView.setOnClickListener {
+
+                            onClick!!.onSelectItemCategory(position)
+                        }
+                }
+
 
 
             }
@@ -959,33 +1050,25 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is CategoryModel -> {
-                    val itemCat = data[position] as CategoryModel
-//                    if (itemCat.id==-2){
-//                        image.setImageResource(R.drawable.ic_add)
-//                    }else{
-                        image.setImageResource(R.drawable.ic_sandweshes)
+                data!![position] is CategoryModelNew.Data -> {
+                    val itemCat = data[position] as CategoryModelNew.Data
 
-//                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
-//                    }
-                    myTextView.text=itemCat.categoryName
-//                    if(!itemCat.isSelected){
-//                        container.setBackgroundColor(context.resources.getColor(R.color.border))
-//                        myTextView.setBackgroundColor(context.resources.getColor(R.color.border))
-//                        image.setColorFilter(context.resources.getColor(R.color.red))
-//                        myTextView.setTextColor(context.resources.getColor(R.color.red))
+//                    val cleanImage: String =
+//                            itemCat.imagePath!!.replace("data:image/png;base64,", "").replace(
+//                                    "data:image/jpeg;base64,",
+//                                    ""
+//                            )
 //
-//
-//                    }else{
-//
-//                        container.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-//                        myTextView.setBackgroundColor(context.resources.getColor(R.color.appMainColor))
-//                        image.setColorFilter(context.resources.getColor(R.color.white))
-//
-//                        myTextView.setTextColor(context.resources.getColor(R.color.white))
-//
-//                    }
+//                    val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
+//                    val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+
+
+//                    image. setImageBitmap(decodedByte)
+
+                    Picasso.get().load(itemCat.imagePath).placeholder(R.drawable.ic_sandweshes).into(image)
+                    myTextView.text=itemCat.name
+
 
 
                     myTextView.setOnClickListener {
@@ -1024,19 +1107,19 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is ProductModel -> {
-                    val itemCat = data[position] as ProductModel
+                data!![position] is ProductModel.Data.Data -> {
+                    val itemCat = data[position] as ProductModel.Data.Data
                     if (itemCat.id==-2){
                         imageAdd.setImageResource(R.drawable.ic_addpro)
-                        txt.text=itemCat.productName
+                        txt.text=itemCat.name
                         add.visibility=View.VISIBLE
                         pro.visibility=View.GONE
                     }else{
                         image.setImageResource(R.drawable.test)
                         add.visibility=View.GONE
                         pro.visibility=View.VISIBLE
-                        myTextView.text=itemCat.productName
-//                        Picasso.get().load(itemCat.profilePicturePath).placeholder(R.drawable.ic_sandweshes).into(image)
+                        myTextView.text=itemCat.name
+                        Picasso.get().load(itemCat.imagePath).placeholder(R.drawable.ic_sandweshes).into(image)
 
                     }
                     add.setOnClickListener {
@@ -1063,7 +1146,7 @@ class DashboardAdapter(
     private inner class ProductManagmentModelViewHolder   constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-//        var productsName: TextView= itemView.findViewById(R.id.productsName)
+        var productsName: TextView= itemView.findViewById(R.id.productsName)
         var priceText: TextView= itemView.findViewById(R.id.priceText)
         var discountText: TextView= itemView.findViewById(R.id.discountText)
 //        var stock: TextView= itemView.findViewById(R.id.stock)
@@ -1075,19 +1158,19 @@ class DashboardAdapter(
         @RequiresApi(Build.VERSION_CODES.M)
         fun bind(position: Int) {
             when {
-                data!![position] is productManagmentModel -> {
-                    val itemCat = data[position] as productManagmentModel
+                data!![position] is ProductModel.Data.Data -> {
+                    val itemCat = data[position] as ProductModel.Data.Data
 //                    if (itemCat.id==-2){
 //                        image.setImageResource(R.drawable.ic_add)
 //                    }else{
 //                        image.setImageResource(R.drawable.test)
 
-                        Picasso.get().load(itemCat.image).placeholder(R.drawable.test).into(image)
+                        Picasso.get().load(itemCat.imagePath).placeholder(R.drawable.test).into(image)
                     priceText.text=itemCat.price.toString()+" sar"
-                    discountText.text=itemCat.discount.toString()+"%"
+                    discountText.text="10%"
 
 //                    }
-//                    productsName.text=itemCat.name
+                    productsName.text=itemCat.name
 
 
 
@@ -1364,6 +1447,272 @@ class DashboardAdapter(
 ////                        intent.putExtra("image", image)
 ////                        context.startActivity(intent)
 //                    }
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    private inner class ProductSpecificationsViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+        var possible: TextView= itemView.findViewById(R.id.possible)
+        var priceAdjustment: EditText= itemView.findViewById(R.id.priceAdjustment)
+        var preSelcted: CheckBox= itemView.findViewById(R.id.preSelcted)
+        var trackable: CheckBox= itemView.findViewById(R.id.trackable)
+        var delete: ImageView= itemView.findViewById(R.id.delete)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is ProductSpecificationsModel -> {
+                    val itemCat = data[position] as ProductSpecificationsModel
+Log.d("WWWWWWWWWWWWWWW",itemCat.itemIds.toString())
+                    possible.text=itemCat.itemIds!![0] +"/" +itemCat.itemIds!![1]
+                    priceAdjustment.text=Editable.Factory.getInstance().newEditable(itemCat.priceAdjustment.toString())
+                    preSelcted.isChecked=false
+                    trackable.isChecked=false
+                }
+
+
+
+            }
+
+        }
+
+    }
+
+    private inner class ProductSpecificationsIngredientsViewHolder   constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+        var possible: TextView= itemView.findViewById(R.id.possible)
+        var priceAdjustment: EditText= itemView.findViewById(R.id.priceAdjustment)
+        var preSelcted: CheckBox= itemView.findViewById(R.id.preSelcted)
+        var trackable: CheckBox= itemView.findViewById(R.id.trackable)
+        var delete: ImageView= itemView.findViewById(R.id.delete)
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is ProductSpecificationsModel -> {
+                    val itemCat = data[position] as ProductSpecificationsModel
+                    Log.d("WWWWWWWWWWWWWWW",itemCat.itemIds.toString())
+                    possible.text=itemCat.itemIds!![0]
+                    priceAdjustment.text=Editable.Factory.getInstance().newEditable(itemCat.priceAdjustment.toString())
+                    preSelcted.isChecked=false
+                    trackable.isChecked=false
+                }
+
+
+
+            }
+
+        }
+
+    }
+    private inner class VariationViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var NumberOfChoice: TextView= itemView.findViewById(R.id.NumberOfChoice)
+        var AttributeName: TextView= itemView.findViewById(R.id.AttributeName)
+
+        var controlType: Spinner= itemView.findViewById(R.id.controlType)
+        var required: CheckBox= itemView.findViewById(R.id.required)
+        var attribute: CheckBox= itemView.findViewById(R.id.attribute)
+        var OptionsData: RecyclerView= itemView.findViewById(R.id.OptionsData)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is VariationModel -> {
+                    val itemCat = data[position] as VariationModel
+
+                    NumberOfChoice.text=itemCat.NumberOfChoice
+                    AttributeName.text= itemCat.AttributeName
+
+
+                    required.setChecked(itemCat.required)
+                    attribute.setChecked(itemCat.ShowAttribute)
+
+
+                    val mAdapter = DashboardAdapter(context, itemCat.Options,"optionDataViewHolder")
+
+                    val linearVertical = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                    OptionsData!!.layoutManager = linearVertical
+                    OptionsData.setHasFixedSize(true)
+                    OptionsData.setAdapter(mAdapter)
+
+
+
+
+
+
+                    val dataCreateByStrings = Array<String>(itemCat.ControlType!!.size) { "" }
+                    for (i in itemCat.ControlType!!.indices) {
+                        dataCreateByStrings[i]=itemCat.ControlType!![i].name.toString()
+                    }
+                    val aa =
+                        ArrayAdapter<Any>(context, android.R.layout.simple_spinner_dropdown_item, dataCreateByStrings)
+
+                    aa.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    controlType.adapter = aa
+
+                    controlType.setSelection(itemCat.selectedControlTypePosition, true)
+                    val v: View = controlType.selectedView
+                    (v as TextView).setTextColor(context.resources.getColor(R.color.appMainColor))
+
+                    controlType.onItemSelectedListener = object :
+                        AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>?,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
+
+                            itemCat.selectedControlType = itemCat.ControlType!![position].id!!
+
+                            (parent!!.getChildAt(0) as TextView).setTextColor(context.resources.getColor(R.color.appMainColor))
+
+                            Log.d("DDDDDDDDDDDDDDDD", itemCat.ControlType!![position].name!!)
+                            controlType.setSelection(position)
+
+
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>?) {}
+                    }
+
+
+//                    common.variationDataModel.add(VariationModel( AttributeName.text.toString(),NumberOfChoice.text.toString(),null,,required.isChecked(),attribute.isChecked(),itemCat.selectedControlType))
+
+
+                }
+
+
+
+
+
+            }
+
+        }
+
+    }
+
+
+    private inner class IngredientsViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var NumberOfChoice: TextView = itemView.findViewById(R.id.NumberOfChoice)
+        var AttributeName: TextView = itemView.findViewById(R.id.AttributeName)
+        var controlType: Spinner = itemView.findViewById(R.id.controlType)
+        var required: CheckBox = itemView.findViewById(R.id.required)
+        var attribute: CheckBox = itemView.findViewById(R.id.attribute)
+        var OptionsData: RecyclerView = itemView.findViewById(R.id.OptionsData)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is VariationModel -> {
+                    val itemCat = data[position] as VariationModel
+
+                    NumberOfChoice.text = itemCat.NumberOfChoice
+                    AttributeName.text = itemCat.AttributeName
+
+
+                    required.setChecked(itemCat.required)
+                    attribute.setChecked(itemCat.ShowAttribute)
+
+
+                    val mAdapter =
+                        DashboardAdapter(context, itemCat.Options, "optionDataViewHolder")
+
+                    val linearVertical =
+                        LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                    OptionsData!!.layoutManager = linearVertical
+                    OptionsData.setHasFixedSize(true)
+                    OptionsData.setAdapter(mAdapter)
+
+
+                    val dataCreateByStrings = Array<String>(itemCat.ControlType!!.size) { "" }
+                    for (i in itemCat.ControlType!!.indices) {
+                        dataCreateByStrings[i] = itemCat.ControlType!![i].name.toString()
+                    }
+                    val aa =
+                        ArrayAdapter<Any>(
+                            context,
+                            android.R.layout.simple_spinner_dropdown_item,
+                            dataCreateByStrings
+                        )
+
+                    aa.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    controlType.adapter = aa
+
+                    controlType.setSelection(itemCat.selectedControlTypePosition, true)
+                    val v: View = controlType.selectedView
+                    (v as TextView).setTextColor(context.resources.getColor(R.color.appMainColor))
+
+                    controlType.onItemSelectedListener = object :
+                        AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>?,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
+
+                            itemCat.selectedControlType = itemCat.ControlType!![position].id!!
+
+                            (parent!!.getChildAt(0) as TextView).setTextColor(
+                                context.resources.getColor(
+                                    R.color.appMainColor
+                                )
+                            )
+
+                            Log.d("DDDDDDDDDDDDDDDD", itemCat.ControlType!![position].name!!)
+                            controlType.setSelection(position)
+
+
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+
+//                    common.variationDataModel.add(VariationModel( AttributeName.text.toString(),NumberOfChoice.text.toString(),null,,required.isChecked(),attribute.isChecked(),itemCat.selectedControlType))
+
+
+                    }
+                }
+            }
+        }
+    }
+
+    private inner class OptionDataViewHolder   constructor(itemView: View) :
+            RecyclerView.ViewHolder(itemView) {
+
+        var OptionName: TextView= itemView.findViewById(R.id.OptionName)
+
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun bind(position: Int) {
+            when {
+                data!![position] is OptionDataModel -> {
+                    val itemCat = data[position] as OptionDataModel
+
+                    OptionName.text=itemCat.name
+
+
                 }
 
 

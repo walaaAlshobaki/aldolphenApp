@@ -5,39 +5,36 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.util.Base64
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.ServerManager.MultipartUtilityV2
 import com.adolphinpos.adolphinpos.Splash.common
-import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.CategoryModelNew
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 import com.vdx.designertoast.DesignerToast
 import kotlinx.android.synthetic.main.activity_add_category.*
+import kotlinx.android.synthetic.main.activity_add_category.uploadImage
+
 import org.json.JSONObject
 import java.io.File
-import java.io.FileOutputStream
 
 class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselectedDelegate,CategoryDelegate {
-    var categoryModel: ArrayList<CategoryModelNew.Data> = ArrayList()
-    private lateinit var mAdapter: DashboardAdapter
+
     var picturePath: String =""
     var picturePath1: Bitmap? =null
     var selectedPosition: Int =0
@@ -52,14 +49,19 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
         mPresenter!!.delegate = this
         mPresenter!!.getCategories()
 //        categoryModel.add(CategoryModelNew.Data(-2,"","ADD CATEGORY",true))
-        mAdapter = DashboardAdapter(this, categoryModel,"AddCategoryActivity")
-        mAdapter.notifyDataSetChanged()
 
-        mAdapter.setOnClickItemCategory(this)
-        val linearVertical = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        recyclerViewIcon!!.layoutManager = linearVertical
-        recyclerViewIcon.setHasFixedSize(true)
-        recyclerViewIcon.setAdapter(mAdapter)
+
+
+        uploadImage.setOnClickListener {
+
+            showPictureDialog()
+            upload2.visibility=View.VISIBLE
+        }
+
+        upload2.setOnClickListener {
+
+            showPictureDialog()
+        }
 
         loginBtn.setOnClickListener {
 
@@ -82,42 +84,7 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
                         Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
                         R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
 
-            }else{
-
-
-                val cleanImage: String =
-                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
-                        "data:image/jpeg;base64,",
-                        ""
-                    )
-                    val decodedString: ByteArray = Base64.decode(categoryModel[selectedPosition].imagePath, Base64.DEFAULT)
-                    // Bitmap Image
-                    // Bitmap Image
-                    val bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-
-                    val filename = "MyImage.png"
-                    val file = Environment.getExternalStorageDirectory()
-                    val dest = File(file, filename)
-
-                    try {
-                        val out = FileOutputStream(dest)
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, out)
-                        out.flush()
-                        out.close()
-                        multipart.addFilePart("Image", dest)
-
-                    } catch (e: java.lang.Exception) {
-                        e.printStackTrace()
-                    }
-
-                    val response = multipart.finish() // response from server.
-                    val jsonObject = JSONObject(response!!)
-                    val dataPayload = jsonObject.getString("message")
-                    Log.d("WWWWWWWWWWWWW",dataPayload)
-                    DesignerToast.Custom(this,dataPayload,
-                            Gravity.TOP or Gravity.RIGHT,Toast.LENGTH_LONG,
-                            R.drawable.sacssful_background,16,"#FFFFFF",R.drawable.ic_checked, 55, 219)
-                }
+            }
 
 
             }
@@ -125,19 +92,9 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
     }
 
     override fun onSelectItemCategory(position: Int) {
-        Log.d("EEEEEEEEEEEEEEEEEEEEE",categoryModel[position].toString())
 
-        if(categoryModel[position].id==-2){
-            showPictureDialog()
-        }
-        selectedPosition=position
-        for (n in categoryModel.indices){
-            categoryModel[n].isSelected = n==position
-        }
-        mAdapter = DashboardAdapter(this, categoryModel,"AddCategoryActivity")
-        mAdapter!!.setOnClickItemCategory(this)
-        recyclerViewIcon.adapter = mAdapter
-        mAdapter!!.notifyDataSetChanged()
+
+
 
     }
 
@@ -147,11 +104,6 @@ class AddCategoryActivity : AppCompatActivity(), DashboardAdapter.OnItemselected
 
     override fun didGetCategorySuccess(response: CategoryModelNew) {
 
-        categoryModel.clear()
-        categoryModel.addAll(response.data)
-        categoryModel.add(CategoryModelNew.Data(-2,"","ADD CATEGORY",true))
-        mAdapter = DashboardAdapter(this, categoryModel,"AddCategoryActivity")
-        mAdapter!!.notifyDataSetChanged()
     }
 
     override fun didGetCategoryFail(msg: String) {
@@ -169,7 +121,7 @@ Log.d("EEEEEEEEEEEEEEEEEEEEE","$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
         pictureDialog.setTitle(getString(R.string.select_action))
         val pictureDialogItems = arrayOf(
                 getString(R.string.select_action_from_gallery),
-                getString(R.string.select_action_from_camera)
+
         )
         pictureDialog.setItems(
                 pictureDialogItems
@@ -319,7 +271,11 @@ Log.d("EEEEEEEEEEEEEEEEEEEEE","$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
             cursor.close()
 
-
+            Picasso.get()
+                    .load(selectedImage)
+                    .placeholder(R.drawable.ic_user)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                    .into(upload)
 
 
         }

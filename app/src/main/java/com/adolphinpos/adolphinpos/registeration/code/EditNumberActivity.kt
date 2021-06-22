@@ -26,7 +26,7 @@ class EditNumberActivity : AppCompatActivity() {
                 countryModel = it.message as CountryModel.Data
                 SvgLoader.pluck()
                     .with(this as Activity?)
-                    .setPlaceHolder(R.drawable.ca,R.drawable.ca)
+
                     .load(countryModel!!.flag, flagphone)
 
             }
@@ -40,7 +40,7 @@ class EditNumberActivity : AppCompatActivity() {
         }
         close.setOnClickListener{
 
-           finish()
+           onBackPressed()
 
         }
 

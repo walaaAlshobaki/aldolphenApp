@@ -166,6 +166,7 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
         DesignerToast.Custom(this, "the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                 R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219)
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+        intent.putExtra("action","resgister")
         startActivity(intent)
         finish()
     }
@@ -176,6 +177,7 @@ class VerificationScreenCodeActivity : AppCompatActivity() ,ValidateCodeDelegate
             DesignerToast.Custom(this, "the code Validate successfully ", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
                     R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219)
             val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+            intent.putExtra("action","resgister")
             startActivity(intent)
             finish()
         }else{

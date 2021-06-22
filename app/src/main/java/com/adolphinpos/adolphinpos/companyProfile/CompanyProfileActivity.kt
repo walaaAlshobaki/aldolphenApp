@@ -44,11 +44,11 @@ class CompanyProfileActivity : AppCompatActivity() {
                 country.text= countryModel!!.name
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca,R.drawable.ca)
+
                         .load(countryModel!!.flag, flag)
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca,R.drawable.ca)
+
                         .load(countryModel!!.flag, flagphone)
 
             }

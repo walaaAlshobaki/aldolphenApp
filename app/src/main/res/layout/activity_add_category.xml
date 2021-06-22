@@ -76,6 +76,66 @@
                     android:background="@color/border"/>
 
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/uploadImageCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:clipChildren="true"
+        app:cardCornerRadius="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/uploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/layer"
+            android:clickable="true"
+            android:padding="30dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+
+            <ImageView
+                android:id="@+id/upload"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+
+                android:src="@drawable/upload"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/upload2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:translationX="-20dp"
+        android:elevation="10dp"
+        android:src="@drawable/upload"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toEndOf="@+id/uploadImageCard" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -120,6 +180,7 @@
     android:layout_width="match_parent"
     android:layout_height="51dp"
     android:layout_marginTop="22dp"
+    app:cardElevation="0dp"
     app:contentPadding="1dp"
     app:cardCornerRadius="12dp">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -128,8 +189,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/card_with_border_main2"
-
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/code"
         app:layout_constraintTop_toBottomOf="@+id/lastNameTextInputLayout"
@@ -153,29 +212,6 @@
                     </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-
-                    android:text="Category Icon"
-
-                    android:textColor="@color/appMainColor"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/roboto_bold"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeMinTextSize="16sp"
-                    app:autoSizeStepGranularity="1sp"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-
-                    tools:listitem="@layout/icon_cell_item"
-                 />
 
 
 

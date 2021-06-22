@@ -55,7 +55,9 @@
         <item name="android:textColorTertiary">@color/black</item>
         <item name="android:textColorPrimaryDisableOnly">@color/black</item>
     </style>
-
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/shape_drop_down_normal</item>
+    </style>
     <style name="Theme.AdolphinPOSApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

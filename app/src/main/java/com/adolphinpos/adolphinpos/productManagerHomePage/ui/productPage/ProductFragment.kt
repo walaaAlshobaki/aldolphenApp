@@ -13,21 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.userInfo
 import com.adolphinpos.adolphinpos.addCategory.AddCategoryActivity
 import com.adolphinpos.adolphinpos.addCategory.CategoryDelegate
 import com.adolphinpos.adolphinpos.addCategory.CategoryPresenter
-import com.adolphinpos.adolphinpos.categoryes.CategoryModel
-import com.adolphinpos.adolphinpos.product.ProductModel
+
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.EditProduct.EditProductActivity
 import kotlinx.android.synthetic.main.fragment_product.view.*
 
 
-class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , CategoryDelegate {
-//    var categoryModel: ArrayList<CategoryModel> = ArrayList()
+    class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , CategoryDelegate,ProductDelegate {
+
     var categoryModel: ArrayList<CategoryModelNew.Data> = ArrayList()
     private lateinit var mAdapter: DashboardAdapter
     var mPresenter: CategoryPresenter? = null
-    var productModel: ArrayList<ProductModel> = ArrayList()
+    var mProductPresenter: ProductPresnter? = null
+    var productModel: ArrayList<ProductModel.Data.Data> = ArrayList()
     lateinit var category:RecyclerView
     lateinit var ProductsRec:RecyclerView
     private lateinit var mAdapterProductModel: DashboardAdapter
@@ -35,6 +36,7 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         super.onViewCreated(view, savedInstanceState)
         category=view.category
         ProductsRec=view.ProductsRec
+        categoryModel.add(CategoryModelNew.Data(-2,"","ADD CATEGORY",true))
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
 
         mAdapter!!.setOnClickItemCategory(this)
@@ -43,25 +45,10 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         category.setHasFixedSize(true)
         category.setAdapter(mAdapter)
 
-        productModel.add(ProductModel(-2,"ADD PRODUCT","",true))
-        productModel.add(ProductModel(1,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(2,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(3,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(4,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(5,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        productModel.add(ProductModel(6,"Chicken Barbeque with molten cheese","",false))
-        mAdapterProductModel = DashboardAdapter(requireActivity(), productModel,"productModel")
+        productModel.add(ProductModel.Data.Data("",0,"",0.0,"","",-2,"",false,false,"","",0.0,0.0,"",""
+        ,"",0,""))
+
+        mAdapterProductModel = DashboardAdapter(requireActivity(), productModel,"3")
         mAdapterProductModel.notifyDataSetChanged()
 
         mAdapterProductModel.setOnClickItemCategory(this)
@@ -70,6 +57,8 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         ProductsRec!!.layoutManager = llm
         ProductsRec.setHasFixedSize(true)
         ProductsRec.adapter = mAdapterProductModel
+
+
     }
 
     override fun onCreateView(
@@ -82,6 +71,10 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         mPresenter = CategoryPresenter(requireActivity())
         mPresenter!!.delegate = this
         mPresenter!!.getCategories()
+
+        mProductPresenter = ProductPresnter(requireActivity())
+        mProductPresenter!!.delegate = this
+        mProductPresenter!!.getProduct(userInfo.companyId.toInt(),1,10)
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
         mAdapter!!.setOnClickItemCategory(this)
         val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
@@ -98,6 +91,7 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
        ProductsRec!!.layoutManager = llm
         ProductsRec.setHasFixedSize(true)
         ProductsRec.adapter = mAdapterProductModel
+
         return view
     }
 
@@ -115,6 +109,15 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         mAdapter.setOnClickItemCategory(this)
         category.adapter = mAdapter
         mAdapter.notifyDataSetChanged()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        mPresenter!!.getCategories()
+
+        mProductPresenter!!.getProduct(userInfo.companyId.toInt(),1,10)
     }
 
     override fun onSelectItemProduct(position: Int, action: String) {
@@ -144,15 +147,44 @@ class ProductFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , Ca
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"categoryModel")
 
         mAdapter!!.setOnClickItemCategory(this)
+
+        mAdapter!!.notifyDataSetChanged()
         val linearVertical = LinearLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false)
         category!!.layoutManager = linearVertical
         category.setHasFixedSize(true)
         category.setAdapter(mAdapter)
 
-        mAdapter!!.notifyDataSetChanged()
     }
 
     override fun didGetCategoryFail(msg: String) {
+
+    }
+
+    override fun didGetProductSuccess(response: ProductModel.Data) {
+
+
+        productModel.clear()
+        productModel.add(ProductModel.Data.Data("",0,"",0.0,"","",-2,"",false,false,"","",0.0,0.0,"",""
+                ,"",0,""))
+
+        productModel.addAll(response.data)
+        mAdapterProductModel = DashboardAdapter(requireActivity(), productModel,"productModel")
+
+        mAdapterProductModel!!.setOnClickItemCategory(this)
+
+        mAdapterProductModel!!.notifyDataSetChanged()
+        val llm = GridLayoutManager(requireActivity(), 5)
+
+        ProductsRec!!.layoutManager = llm
+        ProductsRec.setHasFixedSize(true)
+        ProductsRec.adapter = mAdapterProductModel
+    }
+
+    override fun didGetProductFail(msg: String) {
+
+    }
+
+    override fun didProductEmpty() {
 
     }
 

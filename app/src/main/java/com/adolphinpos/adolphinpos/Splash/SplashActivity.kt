@@ -12,6 +12,8 @@ import com.adolphinpos.adolphinpos.helper.Common
 import com.adolphinpos.adolphinpos.helper.UserConfig
 import com.adolphinpos.adolphinpos.login.LoginActivity
 import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
+import com.adolphinpos.adolphinpos.steps.Step3Activity
+import com.adolphinpos.adolphinpos.userProfile.UserProfileActivity
 import com.manhal.lms.app.Helper.SessionLoginCallBack
 import com.manhal.lms.app.Helper.SessionManager
 import com.squareup.picasso.Picasso
@@ -28,9 +30,25 @@ class SplashActivity : AppCompatActivity() {
 
             if (isLogin) {
 
-                val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
-                this@SplashActivity.startActivity(mainIntent)
-                this@SplashActivity.finish()
+                val bundle = intent.extras
+                if (bundle!=null){
+                    if (!bundle.getString("action").isNullOrEmpty() && bundle.getString("action")=="login"){
+                        val mainIntent = Intent(applicationContext, UserProfileActivity::class.java)
+                        intent.putExtra("action","login")
+                        this@SplashActivity.startActivity(mainIntent)
+                        this@SplashActivity.finish()
+                        finish()
+                    }else if(!bundle.getString("action").isNullOrEmpty() && bundle.getString("action")=="resgister"){
+                        val mainIntent = Intent(applicationContext, Step3Activity::class.java)
+                        intent.putExtra("action","resgister")
+                        this@SplashActivity.startActivity(mainIntent)
+                        this@SplashActivity.finish()
+                        finish()
+                    }
+                }
+//                val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
+//                this@SplashActivity.startActivity(mainIntent)
+//                this@SplashActivity.finish()
 
             }else{
 
@@ -51,7 +69,42 @@ class SplashActivity : AppCompatActivity() {
         mDelayHandler = Handler()
         common.session = SessionManager(this)
         //Navigate with delay
-        mDelayHandler!!.postDelayed(mRunnable, 2000)
+        mDelayHandler!!.postDelayed(Runnable {
+            if (!isFinishing) {
+
+                if (isLogin) {
+
+                    val bundle = intent.extras
+                    if (bundle!=null){
+                        if (!bundle.getString("action").isNullOrEmpty() && bundle.getString("action")=="login"){
+                            val mainIntent = Intent(applicationContext, UserProfileActivity::class.java)
+                            intent.putExtra("action","login")
+                            this@SplashActivity.startActivity(mainIntent)
+                            this@SplashActivity.finish()
+                            finish()
+                        }else if(!bundle.getString("action").isNullOrEmpty() && bundle.getString("action")=="resgister"){
+                            val mainIntent = Intent(applicationContext, Step3Activity::class.java)
+                            intent.putExtra("action","resgister")
+                            this@SplashActivity.startActivity(mainIntent)
+                            this@SplashActivity.finish()
+                            finish()
+                        }
+                    }else{
+                        val mainIntent = Intent(this@SplashActivity, UserProfileActivity::class.java)
+                        this@SplashActivity.startActivity(mainIntent)
+                        this@SplashActivity.finish()
+                    }
+//
+
+                }else{
+
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
+                }
+            }
+        }, 2000)
 
         common.session!!.checkLogin(object : SessionLoginCallBack {
             @SuppressLint("LogNotTimber")

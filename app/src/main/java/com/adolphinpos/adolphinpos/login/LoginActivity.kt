@@ -233,6 +233,7 @@ class LoginActivity : AppCompatActivity(),LoginDelegate {
             R.drawable.sacssful_background, 16, "#FFFFFF", R.drawable.ic_checked, 55, 219
         )
         val intent = Intent(applicationContext, LoadingScreenActivity::class.java)
+        intent.putExtra("action","login")
         startActivity(intent)
         finish()
     }

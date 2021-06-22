@@ -15,79 +15,68 @@
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.35">
+        app:layout_constraintWidth_percent="0.33">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/uploadImageCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:clipChildren="true"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/uploadImageConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/uploadImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/layer"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/uploadImageCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:clickable="true"
-                android:padding="30dp"
-                android:paddingTop="40dp"
-                android:paddingBottom="40dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+                android:clipChildren="true"
+                app:cardCornerRadius="10dp"
 
-                <ImageView
-                    android:id="@+id/upload"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/uploadImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
-                    android:src="@drawable/upload"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/layer"
+                    android:clickable="true"
+                    android:padding="30dp"
+                    android:paddingTop="40dp"
+                    android:paddingBottom="40dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/titleDividerNoCustom">
+
+                    <ImageView
+                        android:id="@+id/upload"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+
+                        android:src="@drawable/upload"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="H,1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:lines="2"
-            android:maxLines="2"
-            android:minLines="1"
-            android:text="please select an image"
-            android:textColor="@color/red"
-            android:textSize="15sp"
-            app:autoSizeMaxTextSize="15sp"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeStepGranularity="1sp"
-            app:layout_constraintBottom_toBottomOf="@+id/uploadImageCard"
-            app:layout_constraintStart_toEndOf="@+id/uploadImageCard" />
+            <ImageView
+                android:id="@+id/upload2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:translationX="-20dp"
+                android:elevation="10dp"
+                android:src="@drawable/upload"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toEndOf="@+id/uploadImageCard" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:checked="false"
-            android:outlineAmbientShadowColor="@color/green"
-            android:outlineSpotShadowColor="@color/green"
-            android:text="Availability"
-            android:theme="@style/SCBSwitch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/uploadImageCard"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <TextView
             android:id="@+id/textView26"
@@ -103,7 +92,7 @@
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uploadImageCard" />
+            app:layout_constraintTop_toBottomOf="@+id/uploadImageConstraintLayout" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -116,7 +105,7 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uploadImageCard"
+            app:layout_constraintTop_toBottomOf="@+id/uploadImageConstraintLayout"
             app:layout_constraintWidth_percent="0.45"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp"
@@ -159,11 +148,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
+                    android:id="@+id/productName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:hint="Cheese Burger"
-                    android:padding="5dp"
+                    android:textColor="@color/appMainColor"
+                    android:padding="7dp"
                     android:layout_marginStart="12sp"
                     android:textColorHint="@color/border"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -217,25 +208,23 @@
 >
 
 
-                <EditText
+                <Spinner
+                    android:id="@+id/categorySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/back"
-                    android:clickable="true"
-                    android:cursorVisible="false"
-                    android:paddingStart="22dp"
-                    android:drawableEnd="@drawable/ic_down"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/roboto_bold"
-                    android:hint="Food Category"
-                    android:importantForAutofill="no"
-                    android:padding="10dp"
-                    android:textColor="@color/appMainColor"
-                    android:textColorHint="@color/border"
-                    android:textSize="13sp"
+                    android:autofillHints="Drinks Category"
+                    android:contentDescription="@string/app_name"
+                    android:dropDownSelector="@color/appMainColor"
+                    android:overlapAnchor="false"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dropdown"
+                    android:visibility="visible"
+                    style="@style/SpinnerTheme"
+                    app:layout_constraintWidth_percent="0.85"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    app:layout_constraintWidth_percent="0.75" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -287,6 +276,7 @@
 
 
                 <EditText
+                    android:id="@+id/Description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -297,11 +287,12 @@
                     android:focusableInTouchMode="false"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="top"
+                    android:textColor="@color/appMainColor"
+                    android:padding="10dp"
                     android:hint="This Product Contains Multiple Products And Provide You More Features
 "
                     android:importantForAutofill="no"
-                    android:padding="10dp"
-                    android:textColor="@color/appMainColor"
+
                     android:textColorHint="@color/border"
                     android:textSize="13sp"
 
@@ -318,9 +309,10 @@
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
         android:padding="10dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.30">
+        app:layout_constraintWidth_percent="0.32">
 
         <TextView
             android:id="@+id/textView29"
@@ -390,6 +382,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
+                    android:id="@+id/price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12sp"
@@ -474,6 +467,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
+                    android:id="@+id/cost"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12sp"
@@ -485,6 +479,403 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.65" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:text="Tax Category"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/con4"/>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/concat"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/con4"
+            app:layout_constraintWidth_percent="0.45"
+
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:background="@drawable/card_full_white"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.20">
+
+                    <ImageView
+                        android:id="@+id/category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:src="@drawable/ic_add"
+                        android:padding="12dp"
+                        android:background="@color/red"
+                        android:textSize="25sp"
+                        app:tint="@color/white" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Spinner
+                    android:id="@+id/categoryTaxSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:autofillHints="Drinks Category"
+                    android:contentDescription="@string/app_name"
+                    android:dropDownSelector="@color/appMainColor"
+                    android:overlapAnchor="false"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dropdown"
+                    android:visibility="visible"
+                    style="@style/SpinnerTheme"
+                    app:layout_constraintWidth_percent="0.80"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:text="Note"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/concat" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/con10"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/concat"
+            app:layout_constraintWidth_percent="0.45"
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+
+                >
+
+
+                <EditText
+                    android:id="@+id/Note"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/back"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/roboto_bold"
+                    android:hint="30 Min"
+                    android:importantForAutofill="no"
+                    android:padding="10dp"
+                    android:paddingStart="22dp"
+
+                    android:textColor="@color/appMainColor"
+                    android:textColorHint="@color/border"
+                    android:textSize="13sp"
+
+                    app:layout_constraintWidth_percent="0.75" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/con20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintHeight_percent="0.20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/con10">
+
+            <CheckBox
+                android:id="@+id/checkBox13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Is Trackable"
+                android:textColor="@color/appMainColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/seekBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:text="Spicy Levels"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/con20" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/conSpicy"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/con20"
+            app:layout_constraintWidth_percent="0.45"
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+
+                >
+
+
+                <SeekBar
+                    android:id="@+id/Spicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="15dp"
+                    android:minWidth="15dp"
+                    android:maxHeight="15dp"
+                    android:maxWidth="15dp"
+                    android:max="10"
+                    android:splitTrack="false"
+                    android:progressDrawable="@drawable/seekbar_style"
+                    android:thumb="@drawable/custom_thumb"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.75" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/seekBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:text="Meat Levels"
+            android:visibility="gone"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/conSpicy" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/conMeat"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/conSpicy"
+            app:layout_constraintWidth_percent="0.45"
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+
+                >
+
+
+                <SeekBar
+                    android:id="@+id/Meat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="15dp"
+                    android:minWidth="15dp"
+                    android:maxHeight="15dp"
+                    android:maxWidth="15dp"
+                    android:max="10"
+
+                    android:progressDrawable="@drawable/seekbar_style"
+                    android:thumb="@drawable/custom_thumb"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.75" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.32">
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:text="Product Type"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/con11"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.45"
+            app:strokeColor="@color/border"
+            app:strokeWidth="2dp"
+
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                >
+
+
+                <Spinner
+                    android:id="@+id/spinnerType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints="Drinks Category"
+                    android:contentDescription="@string/app_name"
+                    android:dropDownSelector="@color/appMainColor"
+                    android:overlapAnchor="false"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dropdown"
+
+                    style="@style/SpinnerTheme"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.85" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -504,7 +895,7 @@
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con4" />
+            app:layout_constraintTop_toBottomOf="@+id/con11" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -517,7 +908,7 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con4"
+            app:layout_constraintTop_toBottomOf="@+id/con11"
             app:layout_constraintWidth_percent="0.45"
             app:strokeColor="@color/border"
             app:strokeWidth="2dp"
@@ -563,13 +954,14 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
+                <EditText
                     android:id="@+id/barcode"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12sp"
                     android:background="@android:color/transparent"
                     android:hint="736952496799"
+                    android:editable="true"
                     android:gravity="center_vertical"
                     android:textColor="@color/appMainColor"
                     android:textColorHint="@color/border"
@@ -581,18 +973,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-
         <TextView
-            android:id="@+id/textView33"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/gradinat_background"
             android:elevation="12dp"
             android:fontFamily="@font/roboto_bold"
             android:padding="5dp"
-            android:text="Weight"
+            android:text="Quantity"
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -600,8 +991,9 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/con7"
-            android:layout_width="0dp"
+
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/card_full_white"
@@ -610,94 +1002,9 @@
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/con6"
-            app:layout_constraintWidth_percent="0.48"
+            app:layout_constraintWidth_percent="0.45"
             app:strokeColor="@color/border"
-            app:strokeWidth="2dp"
 
-            >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:background="@drawable/card_full_white"
-
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.30">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/roboto_bold"
-                        android:gravity="center"
-                        android:text="GM"
-                        android:textColor="@color/red"
-                        android:textSize="15sp" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12sp"
-                    android:background="@android:color/transparent"
-                    android:hint="50"
-                    android:padding="5dp"
-                    android:textColorHint="@color/border"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.65" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <TextView
-            android:id="@+id/textView34"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/gradinat_background"
-            android:elevation="12dp"
-            android:fontFamily="@font/roboto_bold"
-            android:padding="5dp"
-            android:text="Calories"
-            android:textColor="@color/appMainColor"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/con8"
-            app:layout_constraintTop_toBottomOf="@+id/con6" />
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/con8"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/card_full_white"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/con7"
-            app:layout_constraintTop_toBottomOf="@+id/con6"
-            app:layout_constraintWidth_percent="0.48"
-
-            app:strokeColor="@color/border"
             app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -705,69 +1012,54 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
-                android:background="@drawable/card_full_white"
 
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp">
+                >
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.30">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/roboto_bold"
-                        android:gravity="center"
-                        android:text="CAL"
-                        android:textColor="@color/red"
-                        android:textSize="15sp" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <EditText
-                    android:layout_width="0dp"
+                    android:id="@+id/Quantity"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="12sp"
-                    android:background="@android:color/transparent"
-                    android:hint="50"
-                    android:padding="5dp"
+                    android:background="@drawable/back"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/roboto_bold"
+                    android:hint="Quantity"
+                    android:importantForAutofill="no"
+                    android:padding="10dp"
+                    android:paddingStart="22dp"
+                    android:textColor="@color/appMainColor"
                     android:textColorHint="@color/border"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.65" />
+                    android:textSize="13sp"
+
+                    app:layout_constraintWidth_percent="0.75" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
+
         <TextView
-            android:id="@+id/textView35"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/gradinat_background"
             android:elevation="12dp"
             android:fontFamily="@font/roboto_bold"
             android:padding="5dp"
-            android:text="Cooking Aproximate"
+            android:text="Expiry Date"
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con7" />
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/con10"
+
+            android:id="@+id/dateCardView"
             android:layout_width="match_parent"
             android:layout_height="51dp"
             android:layout_marginTop="32dp"
@@ -776,12 +1068,11 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con7"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:layout_constraintWidth_percent="0.45"
             app:strokeColor="@color/border"
-            app:strokeWidth="2dp"
 
-            >
+            app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -792,16 +1083,17 @@
                 >
 
 
-                <EditText
+                <TextView
+                    android:id="@+id/expireDate"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/back"
+                    android:layout_height="wrap_content"
+
                     android:clickable="true"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:fontFamily="@font/roboto_bold"
-                    android:hint="30 Min"
+
                     android:importantForAutofill="no"
                     android:padding="10dp"
                     android:paddingStart="22dp"
@@ -809,120 +1101,10 @@
                     android:textColorHint="@color/border"
                     android:textSize="13sp"
 
-                    app:layout_constraintWidth_percent="0.75" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintHeight_percent="0.20"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con10">
-
-            <CheckBox
-                android:id="@+id/checkBox13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Spicy"
-                android:textColor="@color/appMainColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:padding="5dp"
-                android:text="Meat Levels"
-                android:textColor="@color/appMainColor"
-                app:layout_constraintStart_toEndOf="@+id/checkBox13"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Does The Product Have Variables?"
-                android:textColor="@color/appMainColor"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:layout_marginStart="15dp"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.30">
-        <TextView
-            android:id="@+id/textView37"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-
-            android:background="@drawable/gradinat_background"
-            android:elevation="12dp"
-            android:fontFamily="@font/roboto_bold"
-            android:padding="5dp"
-            android:text="Option 1"
-            android:textColor="@color/appMainColor"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/con11"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/card_full_white"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.45"
-            app:strokeColor="@color/border"
-            app:strokeWidth="2dp"
-
-            >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                >
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/back"
-                    android:clickable="true"
-                    android:cursorVisible="false"
-                    android:paddingStart="22dp"
-                    android:drawableEnd="@drawable/ic_down"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/roboto_bold"
-                    android:hint="Composite product"
-                    android:importantForAutofill="no"
-                    android:padding="10dp"
-                    android:textColor="@color/appMainColor"
-                    android:textColorHint="@color/border"
-                    android:textSize="13sp"
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.75" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -930,19 +1112,22 @@
 
 
         <androidx.cardview.widget.CardView
+
+            android:id="@+id/items"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="10dp"
-
-            app:layout_constraintHeight_percent="0.82"
+            android:visibility="gone"
+            app:layout_constraintHeight_percent="0.62"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/con11">
+            app:layout_constraintTop_toBottomOf="@+id/dateCardView">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp"
-                android:background="@color/layer">
+                android:background="@color/layer"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textView36"
@@ -954,59 +1139,14 @@
                     android:textSize="21sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.10"
-                    app:layout_constraintWidth_percent="0.10">
-
-                    <LinearLayout
-                        android:id="@+id/sign"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:clickable="true"
-                        android:background="@color/appMainColor"
-                        android:padding="12dp">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_addpro"
-                            app:tint="@color/white" />
-
-                        <TextView
-                            android:id="@+id/signUp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/roboto_bold"
-                            android:gravity="center"
-                            android:text="Add Item"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:autoSizeMaxTextSize="30sp"
-                            app:autoSizeMinTextSize="20sp"
-                            app:autoSizeStepGranularity="1sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/productNames"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toTopOf="@+id/cardView13"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxHeight="100dp"
                     app:layout_constraintHeight_percent="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView36"

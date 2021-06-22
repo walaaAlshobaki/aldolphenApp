@@ -10,23 +10,137 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="20dp"
         android:background="@color/white">
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:text="Attribute Name"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.45" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/con3"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintWidth_percent="0.18"
+            app:strokeColor="@color/border"
+
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp">
+
+                <TextView
+                    android:id="@+id/AttributeName"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/appMainColor"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:background="@drawable/gradinat_background"
             android:elevation="12dp"
             android:fontFamily="@font/roboto_bold"
             android:padding="5dp"
-            android:text="Option 1"
+            android:layout_marginStart="8dp"
+            android:text="Number of choice"
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
-            app:layout_constraintWidth_percent="0.45"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/con4"
+
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.45" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/con4"
+            android:layout_width="0dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/card_full_white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/con3"
+
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintWidth_percent="0.18"
+            app:strokeColor="@color/border"
+
+            app:strokeWidth="2dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="51dp">
+
+                <TextView
+                    android:editable="true"
+                    android:id="@+id/NumberOfChoice"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/appMainColor"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradinat_background"
+            android:elevation="12dp"
+            android:fontFamily="@font/roboto_bold"
+            android:padding="5dp"
+            android:layout_marginStart="8dp"
+            android:text="Control Type"
+            android:textColor="@color/appMainColor"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/con2"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -34,122 +148,301 @@
             android:id="@+id/con2"
             android:layout_width="0dp"
             android:layout_height="51dp"
-            android:layout_marginTop="18dp"
             android:background="@drawable/card_full_white"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintWidth_percent="0.35"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/con4"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="18dp"
 
+            app:layout_constraintWidth_percent="0.18"
             app:strokeColor="@color/border"
-            app:strokeWidth="2dp"
 
-            >
+            app:strokeWidth="2dp"
+            tools:layout_editor_absoluteX="20dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
 
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
-                >
+                android:layout_height="51dp">
 
 
                 <Spinner
+                    android:id="@+id/controlType"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/back"
                     android:autofillHints="Color"
-                    android:backgroundTint="@color/red"
-                    android:contentDescription="@string/app_name"
 
-                    android:dropDownSelector="@color/red"
-                    android:spinnerMode="dropdown"
-                    android:theme="@style/SpinnerThemeLight"
-                    android:clickable="true"
+                    android:clickable="false"
+                    style="@style/SpinnerTheme"
+                    android:contentDescription="@string/app_name"
                     android:cursorVisible="false"
-                    android:paddingStart="22dp"
                     android:drawableEnd="@drawable/ic_down"
+                    android:dropDownSelector="@color/red"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:fontFamily="@font/roboto_bold"
                     android:padding="10dp"
+                    android:paddingStart="22dp"
+                    android:spinnerMode="dropdown"
                     android:textColor="@color/appMainColor"
                     android:textColorHint="@color/border"
                     android:textSize="13sp"
+                    android:theme="@style/SpinnerThemeLight"
 
                     app:layout_constraintWidth_percent="0.75" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-             <TextView
-            android:id="@+id/textView2"
+
+        <CheckBox
+            android:id="@+id/required"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:focusable="false"
+            android:clickable="false"
+            android:text="Is required"
+            android:textColor="@color/appMainColor"
+            app:layout_constraintBottom_toBottomOf="@+id/con2"
+            app:layout_constraintStart_toEndOf="@+id/con2"
+            app:layout_constraintTop_toTopOf="@+id/con2" />
+
+        <CheckBox
+            android:id="@+id/attribute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Show this attribute"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/appMainColor"
+            app:layout_constraintTop_toTopOf="@+id/con2"
+            app:layout_constraintBottom_toBottomOf="@+id/con2"
+            app:layout_constraintStart_toEndOf="@+id/required"
+          />
+
+        <TextView
+            android:id="@+id/Options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/gradinat_background"
             android:elevation="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
             android:padding="5dp"
-            android:text="Type"
+            android:text="Options"
             android:textColor="@color/appMainColor"
             android:textSize="13sp"
-            app:layout_constraintWidth_percent="0.45"
-                 app:layout_constraintStart_toStartOf="@+id/con3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/con4"
+            app:layout_constraintWidth_percent="0.45" />
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/con3"
+            android:id="@+id/OptionsCon"
             android:layout_width="0dp"
             android:layout_height="51dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/card_full_white"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintWidth_percent="0.55"
-            app:layout_constraintStart_toEndOf="@+id/con2"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
+            app:layout_constraintTop_toBottomOf="@+id/con4"
+
+            app:layout_constraintWidth_percent="0.70"
             app:strokeColor="@color/border"
-            app:strokeWidth="2dp"
 
-            >
+            app:strokeWidth="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
 
 
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
-                >
+                android:padding="5dp"
+                android:layout_height="51dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/OptionsData"
+                    android:layout_width="match_parent"
+                    tools:listitem="@layout/option_item_cell"
+                    android:layout_height="match_parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <ImageView
+            android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_remove"
-            app:layout_constraintBottom_toBottomOf="@+id/con3"
-            app:layout_constraintEnd_toStartOf="@+id/imageView10"
-            app:layout_constraintStart_toEndOf="@+id/con3"
-            app:layout_constraintTop_toTopOf="@+id/con3"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/appMainColor" />
 
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_addv"
 
-            app:layout_constraintBottom_toBottomOf="@+id/con3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/con3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addOptionDialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#68070000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addNewOption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:visibility="visible"
+            app:layout_constraintWidth_percent="0.65"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:padding="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Add new Option"
+                    android:textColor="@color/red"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/appMainColoro" />
+
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/layer"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+
+
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradinat_background"
+                    android:elevation="12dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="5dp"
+                    android:text="Option Name"
+                    android:textColor="@color/appMainColor"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/con"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="32dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/border"
+
+                    app:strokeWidth="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                    app:layout_constraintWidth_percent="0.45"
+
+
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:background="@drawable/card_with_border_main2"
+                        >
+
+
+                        <EditText
+                            android:id="@+id/optionName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="12sp"
+                            android:background="@android:color/transparent"
+                            android:hint="Option Name"
+                            android:padding="5dp"
+                            android:textColor="@color/appMainColor"
+                            android:textColorHint="@color/border"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="confirm"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_style"
+                    app:layout_constraintEnd_toEndOf="@+id/con"
+                    app:layout_constraintStart_toStartOf="@+id/con"
+                    app:layout_constraintTop_toBottomOf="@+id/con"
+                    app:layout_constraintWidth_percent="0.95" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.cardview.widget.CardView>

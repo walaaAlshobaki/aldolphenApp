@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ImageView
 import com.adolphinpos.adolphinpos.R
 import com.adolphinpos.adolphinpos.authorized_employees.UserEmployeeModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.VariationModel
 import com.google.gson.Gson
 import com.manhal.lms.app.Helper.SessionManager
 import com.squareup.picasso.Picasso
@@ -24,7 +25,7 @@ class Common {
     var apiDomainRoot:String=""
     var userToken:String=""
     var codeTimer:Int=0
-    var branchId:Int=27
+    var branchId:Int=0
     var isLock:Boolean=false
     var userPhone:String=""
     var userPrermtion:ArrayList<Int> = arrayListOf()
@@ -32,6 +33,8 @@ class Common {
     var userPayment:ArrayList<Int> = arrayListOf()
     var userCurrencyType:ArrayList<Int> = arrayListOf()
     var prermtion:ArrayList<Int> = arrayListOf()
+    var ingredientsDataModel: ArrayList<VariationModel> = ArrayList()
+    var variationDataModel: ArrayList<VariationModel> = ArrayList()
     val mutableList = userPrermtion.toMutableList()
     var selectedServiceId:Int=0
     var selectedServiceTypeId:Int=0
@@ -40,6 +43,11 @@ class Common {
     var session: SessionManager?=null
     val RESULT_LOAD_IMAGE_GALLERY=121
     val RESULT_LOAD_IMAGE_CAMERA=122
+    var selectedCategory=122
+    var selectedCategoryTax=122
+    var selectedCity=0
+    var selectedCountry=0
+
 
     var UPDATE_INTERVAL = 5000
     var FATEST_INTERVAL = 3000

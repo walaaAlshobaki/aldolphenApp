@@ -16,20 +16,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adolphinpos.adolphinpos.Adapters.DashboardAdapter
 import com.adolphinpos.adolphinpos.R
+import com.adolphinpos.adolphinpos.Splash.userInfo
+import com.adolphinpos.adolphinpos.addCategory.CategoryDelegate
+import com.adolphinpos.adolphinpos.addCategory.CategoryPresenter
 import com.adolphinpos.adolphinpos.categoryes.CategoryModel
 import com.adolphinpos.adolphinpos.productManagerHomePage.ui.home.ViewPruduct.ViewProductActivity
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.CategoryModelNew
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.ProductDelegate
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.ProductModel
+import com.adolphinpos.adolphinpos.productManagerHomePage.ui.productPage.ProductPresnter
 
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
-class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
+class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate , CategoryDelegate, ProductDelegate {
     private lateinit var dashboardAdapter: DashboardAdapter
     private lateinit var orderDashboardAdapter: DashboardAdapter
     //   var dashboardModel: ArrayList<HomeModel> = ArrayList()
-    var categoryModel: ArrayList<CategoryModel> = ArrayList()
+    var categoryModel: ArrayList<CategoryModelNew.Data> = ArrayList()
+    var mProductPresenter: ProductPresnter? = null
     private lateinit var mAdapter: DashboardAdapter
-    var dashboardModel: ArrayList<productManagmentModel> = ArrayList()
+    var dashboardModel: ArrayList<ProductModel.Data.Data> = ArrayList()
     private lateinit var homeViewModel: HomeViewModel
+    var mPresenter: CategoryPresenter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +48,13 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+
+        mPresenter = CategoryPresenter(requireActivity())
+        mPresenter!!.delegate = this
+        mPresenter!!.getCategories()
+        mProductPresenter = ProductPresnter(requireActivity())
+        mProductPresenter!!.delegate = this
+
         val llm = GridLayoutManager(activity, 4)
         llm.orientation = LinearLayoutManager.VERTICAL
        root.recyclerViewProduct.layoutManager = llm
@@ -99,18 +113,6 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
         }
 
 
-        categoryModel.add(CategoryModel(1,"sandwitches","",false))
-        categoryModel.add(CategoryModel(2,"Dishes","",false))
-        categoryModel.add(CategoryModel(3,"hot drinks","",false))
-        categoryModel.add(CategoryModel(4,"cold drinks","",false))
-        categoryModel.add(CategoryModel(5,"cold drinks","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
-        categoryModel.add(CategoryModel(6,"sandwitches","",false))
         mAdapter = DashboardAdapter(requireActivity(), categoryModel,"mainCategoryModel")
         mAdapter.notifyDataSetChanged()
         mAdapter.setOnClickItemCategory(this)
@@ -126,40 +128,8 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
     }
     fun setDashbordData() {
 
-        val data1 = productManagmentModel(1,"test1",3.5,10,"Thu Nov 28 2019","20","300 GM","https://i.pinimg.com/564x/c2/01/a3/c201a3fe06377dd8421a128ddd58f693.jpg","drinks")
-        val data2 = productManagmentModel(2,"test2",3.5,10,"Thu Nov 28 2019","20","300 GM","https://i.pinimg.com/564x/c2/01/a3/c201a3fe06377dd8421a128ddd58f693.jpg","sandwitches")
-        val data3 = productManagmentModel(3,"test3",3.5,10,"Thu Nov 28 2019","20","300 GM","https://i.pinimg.com/564x/c2/01/a3/c201a3fe06377dd8421a128ddd58f693.jpg","Meals")
-        val data4 = productManagmentModel(4,"test4",3.5,10,"Thu Nov 28 2019","20","300 GM","https://i.pinimg.com/564x/c2/01/a3/c201a3fe06377dd8421a128ddd58f693.jpg","Meals")
 
-//        val data3 = HomeModel(" ")
-//
-//
-//
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-        dashboardModel.add(data1)
-        dashboardModel.add(data2)
-        dashboardModel.add(data3)
-        dashboardModel.add(data4)
-
+        mProductPresenter!!.getProduct(userInfo.companyId.toInt(),1,10)
 //
 //
 //
@@ -176,7 +146,9 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
 
     }
     override fun onSelectItemCategory(position: Int) {
-        TODO("Not yet implemented")
+        dashboardModel.clear()
+        mAdapter!!.notifyDataSetChanged()
+        mProductPresenter!!.getProduct(userInfo.companyId.toInt(),1,10,categoryModel[position].id!!)
     }
 
     override fun onSelectItemProduct(position: Int, action: String) {
@@ -188,5 +160,56 @@ class HomeFragment : Fragment(), DashboardAdapter.OnItemselectedDelegate {
 
                         requireActivity().startActivity(intent)
         }
+    }
+
+    override fun didGetCategorySuccess(response: CategoryModelNew) {
+        Log.d("$$$$$$$$$$$$$",response.toString())
+
+        categoryModel.clear()
+        mAdapter!!.notifyDataSetChanged()
+
+        categoryModel.addAll(response.data)
+        mAdapter = DashboardAdapter(requireActivity(), categoryModel,"mainCategoryModel")
+
+        mAdapter!!.setOnClickItemCategory(this)
+
+        mAdapter!!.notifyDataSetChanged()
+
+    }
+
+    override fun didGetCategoryFail(msg: String) {
+
+    }
+
+    override fun didEmpty() {
+
+    }
+
+    override fun didGetProductSuccess(response: ProductModel.Data) {
+
+
+        if (response.data.isEmpty()){
+            Log.d("GGGGGGGGGGGGGGGGGGGGGGG",response.data.toString())
+            dashboardModel.clear()
+            dashboardAdapter.notifyDataSetChanged()
+
+        }else{
+            dashboardModel.clear()
+            Log.d("GGGGGGGGGGGGGGGGGGGGGGG",response.data.toString())
+
+            dashboardModel.addAll(response.data)
+            dashboardAdapter.notifyDataSetChanged()
+        }
+
+
+
+    }
+
+    override fun didGetProductFail(msg: String) {
+
+    }
+
+    override fun didProductEmpty() {
+
     }
 }

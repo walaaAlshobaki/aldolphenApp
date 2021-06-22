@@ -34,6 +34,8 @@ import com.tapadoo.alerter.Alerter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.user
 import kotlinx.android.synthetic.main.activity_main.userImage
+import kotlinx.android.synthetic.main.activity_main.userName
+import kotlinx.android.synthetic.main.activity_user_profile.*
 import kotlinx.android.synthetic.main.alert.view.*
 
 class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelegate,ServicesDelegate{
@@ -50,21 +52,9 @@ class MainActivity : AppCompatActivity() , DashboardAdapter.OnItemselectedDelega
             Log.d("profilePicturePath", userInfo.profilePicturePath.toString())
             Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
         }else{
+            Picasso.get().load(userInfo.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user).transform(CircleTransform()).into(userImage)
 
-
-            val cleanImage: String =
-                    userInfo.profilePicturePath!!.replace("data:image/png;base64,", "").replace(
-                            "data:image/jpeg;base64,",
-                            ""
-                    )
-
-            val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
-            val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-
-//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
-//        .into(avatar_img)
-
-            common.loadBitmapByPicasso(this, decodedByte, userImage)
+//            common.loadBitmapByPicasso(this, decodedByte, userImage)
 
         }
         mPresenter = ServicesPresenter(this)

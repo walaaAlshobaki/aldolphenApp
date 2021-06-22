@@ -48,6 +48,7 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
     var companyDataModel: CompanyProfileDataModel? = null
     var picturePath: String =""
     var picturePath1: Bitmap? =null
+    val MY_PERMISSIONS_REQUEST_LOCATION = 99
     var mPresenter: CountryPresenter? = null
     var companyPresenter: CompanyProfilePresenter? = null
     var countryModels: ArrayList<CountryModel.Data> = ArrayList()
@@ -59,6 +60,7 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
         companyPresenter!!.delegate = this
         mPresenter = CountryPresenter(this)
         mPresenter!!.delegate = this
+        checkLocationPermission()
         if (userInfo.profilePicturePath==""){
             Log.d("profilePicturePath", userInfo.profilePicturePath.toString())
             Picasso.get().load(R.drawable.user).transform(CircleTransform()).into(userImage)
@@ -74,8 +76,8 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
             val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 
-//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
-//        .into(avatar_img)
+        Picasso.get().load(userInfo.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user)
+        .into(userImage)
 
 //            common.loadBitmapByPicasso(this, decodedByte, userImage)
 
@@ -91,20 +93,17 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
                 country.text = countryModel!!.name
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(countryModel!!.flag, flag)
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(countryModel!!.flag, flagphone)
 
             }
         }
         sign.setOnClickListener {
-            val i = Intent(this, Step2Activity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(i)
-            finish()
+            onBackPressed()
         }
 
         country.setOnClickListener {
@@ -266,41 +265,6 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
 
     }
 
-    override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<out String>,
-            grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == common.RESULT_LOAD_IMAGE_CAMERA) {
-
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                takePhotoFromCamera()
-
-                //Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-
-
-        if (requestCode == common.RESULT_LOAD_IMAGE_GALLERY) {
-
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                choosePhotoFromGallary()
-
-                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "gallery permission denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -409,11 +373,11 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
                 country.text =response.data[it].name
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(response.data[it].flag, flag)
                 SvgLoader.pluck()
                         .with(this as Activity?)
-                        .setPlaceHolder(R.drawable.ca, R.drawable.ca)
+
                         .load(response.data[it].flag, flagphone)
             }
 
@@ -449,4 +413,93 @@ class Step3Activity : AppCompatActivity(), CountryDelegate , CompanyProfileDeleg
 
     override fun didEmpty() {
     }
+
+
+    fun checkLocationPermission(): Boolean {
+        return if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSIONS_REQUEST_LOCATION
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    MY_PERMISSIONS_REQUEST_LOCATION
+                )
+            }
+            false
+        } else {
+            true
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            common.RESULT_LOAD_IMAGE_CAMERA -> {
+
+
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    takePhotoFromCamera()
+
+                    //Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
+                }
+            }
+
+
+
+            common.RESULT_LOAD_IMAGE_GALLERY -> {
+
+
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    choosePhotoFromGallary()
+
+                    Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "gallery permission denied", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            MY_PERMISSIONS_REQUEST_LOCATION -> {
+                if (grantResults.size > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                    }
+                } else {
+                    Toast.makeText(
+                        this, "permission denied",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                return
+            }
+        }
+
+    }
+
+
 }

@@ -2,17 +2,9 @@ package com.adolphinpos.adolphinpos.ServerManager
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import android.view.Gravity
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.adolphinpos.adolphinpos.CompanyServiceBranches.AvatarParser
-import com.adolphinpos.adolphinpos.R
-import com.adolphinpos.adolphinpos.Splash.common
 import com.adolphinpos.adolphinpos.Splash.userInfo
-import com.adolphinpos.adolphinpos.login.userInfo.UserInfoDelegate
-import com.adolphinpos.adolphinpos.login.userInfo.UserInfoModel
 import com.adolphinpos.adolphinpos.userProfile.UpdateDataModel
-import com.vdx.designertoast.DesignerToast
 import org.json.JSONObject
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -86,17 +78,31 @@ class MultipartUtilityV2 {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     @Throws(IOException::class)
-    fun addFilePart(fieldName: String, uploadFile: File) {
-        val fileName: String = uploadFile.getName()
-        request!!.writeBytes(twoHyphens + boundary + crlf)
-        request!!.writeBytes(
-            "Content-Disposition: form-data; name=\"" +
-                    fieldName + "\";filename=\"" +
-                    fileName + "\"" + crlf
-        )
-        request!!.writeBytes(crlf)
-        val bytes: ByteArray = Files.readAllBytes(uploadFile.toPath())
-        request!!.write(bytes)
+    fun addFilePart(fieldName: String, uploadFile: File?) {
+        if(uploadFile==null){
+
+            request!!.writeBytes(twoHyphens + boundary + crlf)
+            request!!.writeBytes(
+                "Content-Disposition: form-data; name=\"" +
+                        fieldName + "\";filename=\"" +
+                        null + "\"" + crlf
+            )
+            request!!.writeBytes(crlf)
+//            val bytes: ByteArray = Files.readAllBytes(uploadFile.toPath())
+            request!!.write(null)
+        }else{
+            val fileName: String = uploadFile.getName()
+            request!!.writeBytes(twoHyphens + boundary + crlf)
+            request!!.writeBytes(
+                "Content-Disposition: form-data; name=\"" +
+                        fieldName + "\";filename=\"" +
+                        fileName + "\"" + crlf
+            )
+            request!!.writeBytes(crlf)
+            val bytes: ByteArray = Files.readAllBytes(uploadFile.toPath())
+            request!!.write(bytes)
+        }
+
     }
 
     /**
@@ -119,6 +125,7 @@ class MultipartUtilityV2 {
 
         // checks server's status code first
         val status: Int = httpConn!!.getResponseCode()
+        val responseMessage: String = httpConn!!.responseMessage
         if (status == HttpURLConnection.HTTP_OK) {
             val responseStream: InputStream = BufferedInputStream(httpConn!!.getInputStream())
             val responseStreamReader = BufferedReader(InputStreamReader(responseStream))
@@ -141,10 +148,10 @@ class MultipartUtilityV2 {
 
 //
 //            throw IOException("Server returned non-OK status: $status")
-            response = status.toString()
+            response = responseMessage.toString()
 //            DesignerToast.Custom(context,"Server returned non-OK status: $status", Gravity.TOP or Gravity.RIGHT, Toast.LENGTH_LONG,
 //                R.drawable.erroe_background,16,"#FFFFFF",R.drawable.ic_cancel1, 55, 219)
-            Log.d("OOOOOOOOOOO","Server returned non-OK status: $status")
+            Log.d("OOOOOOOOOOO","Server returned non-OK status: $status"+httpConn!!.responseMessage)
 //           delegate!!.didAddFail("Server returned non-OK status: $status")
         }
         return response

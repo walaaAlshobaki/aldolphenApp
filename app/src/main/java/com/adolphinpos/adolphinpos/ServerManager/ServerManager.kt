@@ -65,10 +65,15 @@ class UrlAPIs {
     val deletePoliicy = "User/Poliicy?"
     val Branches = "Company/Service/Branches?"
     val restPhoneNumber = "http://161.97.164.114:8080/api/User/RestPhoneNumber"
+    val companyTaxCategory = "http://161.97.164.114:8080/api/Company/Tax/Category"
+    val companyTaxCategoryRate = "http://161.97.164.114:8080/api/Company/Tax/Category/Rate"
+    val companyTax = "Company/Tax/Category?"
     val Currency = "Setup/Currency?"
     val PaymentMethood = "Setup/PaymentMethood?"
     val City = "Setup/Country/City?"
     val ServiceType = "Service/Types?"
+    val searchProduct = "Product/Search?"
+    val Lookup = "Setup/Lookup?"
 
 }
 

@@ -62,9 +62,7 @@ class VerificationScreenActivity : AppCompatActivity(),SendVerificationCodeDeleg
         textTitle2.text="will send you a code to "+ common.userPhone
         whatsapptextTitle2.text="will send you a code to "+ common.userPhone
         back.setOnClickListener {
-            val intent = Intent(applicationContext, PlanActivity::class.java)
-            startActivity(intent)
-            finish()
+         onBackPressed()
         }
 
 

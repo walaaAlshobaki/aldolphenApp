@@ -1,40 +1,1097 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".productManagerHomePage.ui.productPage.AddProductItemFragment">
 
-    <LinearLayout
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginStart="60dp"
+          android:padding="20dp"
+          android:orientation="vertical"
+          android:background="@color/white">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Product Info"
+              android:textColor="@color/appMainColor"
+              android:textSize="21sp"
+              android:fontFamily="@font/roboto_medium"
+              app:autoSizeMaxTextSize="21sp"
+              app:autoSizeMinTextSize="18sp"
+              app:autoSizeStepGranularity="1sp"/>
+          <include
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              layout="@layout/product_info_item"
+              />
+
+          <include
+              android:id="@+id/variation_layar"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:visibility="gone"
+              layout="@layout/variation_layar"
+              />
+
+
+
+          <Button
+              android:id="@+id/createProduct"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="CREATE"
+              android:padding="5dp"
+              android:textSize="15sp"
+              android:fontFamily="@font/roboto_bold"
+              android:textColor="@color/white"
+              android:background="@drawable/btn_style"/>
+      </LinearLayout>
+  </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addAttributeDialog"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="60dp"
-        android:padding="20dp"
-        android:orientation="vertical"
-        android:background="@color/white">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Product Info"
-            android:textColor="@color/appMainColor"
-            android:textSize="21sp"
-            android:fontFamily="@font/roboto_medium"
-            app:autoSizeMaxTextSize="21sp"
-            app:autoSizeMinTextSize="18sp"
-            app:autoSizeStepGranularity="1sp"/>
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/product_info_item"
-            />
+        android:layout_height="match_parent"
+        android:background="#68070000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <include
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addNewAttribute"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            layout="@layout/variation_layar"
-            />
-    </LinearLayout>
+            app:cardCornerRadius="10dp"
+            android:visibility="visible"
+            app:layout_constraintWidth_percent="0.90"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-</ScrollView>
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout9"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Add new Attribute"
+                        android:textColor="@color/red"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/close"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_close"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/appMainColoro" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/layer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:padding="20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        tools:layout_editor_absoluteX="20dp">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Attribute Name"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con3"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+                                <EditText
+                                    android:id="@+id/AttributeName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:padding="10dp"
+                                    android:textColor="@color/appMainColor" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Number of choice"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="@+id/con4"
+
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con4"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toEndOf="@+id/con3"
+
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+                                <EditText
+                                    android:id="@+id/NumberOfChoice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:editable="true"
+                                    android:padding="10dp"
+                                    android:textColor="@color/appMainColor" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textView27"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Control Type"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="@+id/con2"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con2"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toEndOf="@+id/con4"
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp"
+                            tools:layout_editor_absoluteX="20dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+
+                                <Spinner
+                                    android:id="@+id/controlType"
+                                    style="@style/SpinnerTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:autofillHints="Color"
+                                    android:clickable="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:cursorVisible="false"
+                                    android:drawableEnd="@drawable/ic_down"
+                                    android:dropDownSelector="@color/red"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:padding="10dp"
+                                    android:paddingStart="22dp"
+                                    android:spinnerMode="dropdown"
+                                    android:textColor="@color/appMainColor"
+                                    android:textColorHint="@color/border"
+                                    android:textSize="13sp"
+                                    android:theme="@style/SpinnerThemeLight"
+
+                                    app:layout_constraintWidth_percent="0.75" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <CheckBox
+                            android:id="@+id/required"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:padding="5dp"
+                            android:text="Is required"
+                            android:textColor="@color/appMainColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/con2"
+                            app:layout_constraintStart_toEndOf="@+id/con2"
+                            app:layout_constraintTop_toTopOf="@+id/con2" />
+
+                        <CheckBox
+                            android:id="@+id/attribute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:padding="5dp"
+                            android:text="Show this attribute"
+                            android:textColor="@color/appMainColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/con2"
+                            app:layout_constraintStart_toEndOf="@+id/required"
+                            app:layout_constraintTop_toTopOf="@+id/con2" />
+
+                        <TextView
+                            android:id="@+id/Options"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Options"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toBottomOf="@+id/con4"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/OptionsCon"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginTop="28dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toBottomOf="@+id/con4"
+
+                            app:layout_constraintWidth_percent="0.70"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp"
+                                android:padding="5dp">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/OptionsData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:listitem="@layout/option_item_cell" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <ImageView
+                            android:id="@+id/addOption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_addv"
+
+                            app:layout_constraintBottom_toBottomOf="@+id/OptionsCon"
+                            app:layout_constraintStart_toEndOf="@+id/OptionsCon"
+                            app:layout_constraintTop_toTopOf="@+id/OptionsCon" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <Button
+                        android:id="@+id/confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="@drawable/btn_style"
+                        android:text="confirm"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                        app:layout_constraintWidth_percent="0.95" />
+                    <!--                                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+                    <!--                        </androidx.cardview.widget.CardView>-->
+
+                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addOptionDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#68070000"
+                    android:visibility="gone"
+                    android:padding="35dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/addNewOption"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:layout_constraintWidth_percent="0.65">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:id="@+id/textView38"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Add new Option"
+                                android:textColor="@color/red"
+                                android:textSize="30sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/closeOption"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ic_close"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@color/appMainColoro" />
+
+
+                            <RelativeLayout
+                                android:id="@+id/relativeLayout2"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@color/layer"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+
+                            <TextView
+                                android:id="@+id/textView26"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="16dp"
+                                android:background="@drawable/gradinat_background"
+                                android:elevation="12dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:padding="5dp"
+                                android:text="Option Name"
+                                android:textColor="@color/appMainColor"
+                                android:textSize="13sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/con"
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp"
+                                android:layout_marginTop="32dp"
+
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+
+                                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+                                app:layout_constraintWidth_percent="0.45"
+                                app:strokeColor="@color/border"
+                                app:strokeWidth="2dp"
+
+
+                                >
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="51dp"
+                                    android:background="@drawable/card_with_border_main2">
+
+
+                                    <EditText
+                                        android:id="@+id/optionName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginStart="12sp"
+                                        android:background="@android:color/transparent"
+                                        android:hint="Option Name"
+                                        android:padding="10dp"
+                                        android:textColor="@color/appMainColor"
+                                        android:textColorHint="@color/border"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintWidth_percent="0.75" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+
+                            <Button
+                                android:id="@+id/confirmOption"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/btn_style"
+                                android:text="confirm"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="@+id/con"
+                                app:layout_constraintStart_toStartOf="@+id/con"
+                                app:layout_constraintTop_toBottomOf="@+id/con"
+                                app:layout_constraintWidth_percent="0.95" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addIngredientsAttributeDialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#68070000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addIngredientsNewAttribute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:visibility="visible"
+            app:layout_constraintWidth_percent="0.90"
+            app:layout_constraintHeight_percent="0.70"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayoutIngredients"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/textViewIngredients"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Add new Attribute"
+                        android:textColor="@color/red"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/closeIngredients"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_close"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/appMainColoro" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayoutIngredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/layer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewIngredients" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout6Ingredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:padding="20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewIngredients"
+                        tools:layout_editor_absoluteX="20dp">
+
+                        <TextView
+                            android:id="@+id/textView2Ingredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Attribute Name"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con3Ingredients"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+                                <EditText
+                                    android:id="@+id/AttributeNameIngredients"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:padding="10dp"
+                                    android:textColor="@color/appMainColor" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textView4Ingredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Number of choice"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="@+id/con4Ingredients"
+
+
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con4Ingredients"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toEndOf="@+id/con3Ingredients"
+
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+                                <EditText
+                                    android:id="@+id/NumberOfChoiceIngredients"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:editable="true"
+                                    android:padding="10dp"
+                                    android:textColor="@color/appMainColor" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textView27Ingredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Control Type"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="@+id/con2Ingredients"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/con2Ingredients"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="18dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toEndOf="@+id/con4Ingredients"
+                            app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintWidth_percent="0.18"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp"
+                            tools:layout_editor_absoluteX="20dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp">
+
+
+                                <Spinner
+                                    android:id="@+id/controlTypeIngredients"
+                                    style="@style/SpinnerTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:autofillHints="Color"
+                                    android:clickable="true"
+                                    android:contentDescription="@string/app_name"
+                                    android:cursorVisible="false"
+                                    android:drawableEnd="@drawable/ic_down"
+                                    android:dropDownSelector="@color/red"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:padding="10dp"
+                                    android:paddingStart="22dp"
+                                    android:spinnerMode="dropdown"
+                                    android:textColor="@color/appMainColor"
+                                    android:textColorHint="@color/border"
+                                    android:textSize="13sp"
+                                    android:theme="@style/SpinnerThemeLight"
+
+                                    app:layout_constraintWidth_percent="0.75" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <CheckBox
+                            android:id="@+id/requiredIngredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:padding="5dp"
+                            android:text="Is required"
+                            android:textColor="@color/appMainColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/con2Ingredients"
+                            app:layout_constraintStart_toEndOf="@+id/con2Ingredients"
+                            app:layout_constraintTop_toTopOf="@+id/con2Ingredients" />
+
+                        <CheckBox
+                            android:id="@+id/attributeIngredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:padding="5dp"
+                            android:text="Show this attribute"
+                            android:textColor="@color/appMainColor"
+                            app:layout_constraintBottom_toBottomOf="@+id/con2Ingredients"
+                            app:layout_constraintStart_toEndOf="@+id/requiredIngredients"
+                            app:layout_constraintTop_toTopOf="@+id/con2Ingredients" />
+
+                        <TextView
+                            android:id="@+id/OptionsIngredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/gradinat_background"
+                            android:elevation="12dp"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="5dp"
+                            android:text="Options"
+                            android:textColor="@color/appMainColor"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toBottomOf="@+id/con4Ingredients"
+                            app:layout_constraintWidth_percent="0.45" />
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/OptionsConIngredients"
+                            android:layout_width="0dp"
+                            android:layout_height="51dp"
+                            android:layout_marginTop="28dp"
+                            android:background="@drawable/card_full_white"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+
+                            app:layout_constraintTop_toBottomOf="@+id/con4Ingredients"
+
+                            app:layout_constraintWidth_percent="0.70"
+                            app:strokeColor="@color/border"
+
+                            app:strokeWidth="2dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp"
+                                android:padding="5dp">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/OptionsDataIngredients"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    tools:listitem="@layout/option_item_cell" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+
+                        <ImageView
+                            android:id="@+id/addOptionIngredients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_addv"
+
+                            app:layout_constraintBottom_toBottomOf="@+id/OptionsConIngredients"
+                            app:layout_constraintStart_toEndOf="@+id/OptionsConIngredients"
+                            app:layout_constraintTop_toTopOf="@+id/OptionsConIngredients" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <Button
+                        android:id="@+id/confirmIngredients"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="@drawable/btn_style"
+                        android:text="confirm"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6Ingredients"
+                        app:layout_constraintWidth_percent="0.95" />
+                    <!--                                            </androidx.constraintlayout.widget.ConstraintLayout>-->
+                    <!--                        </androidx.cardview.widget.CardView>-->
+
+                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addOptionDialogIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#68070000"
+                    android:padding="35dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/addNewOptionIngredients"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        app:layout_constraintWidth_percent="0.65">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:id="@+id/textView38Ingredients"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="Add new Option"
+                                android:textColor="@color/red"
+                                android:textSize="30sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/closeOptionIngredients"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/ic_close"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@color/appMainColoro" />
+
+
+                            <RelativeLayout
+                                android:id="@+id/relativeLayout2Ingredients"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@color/layer"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView38Ingredients" />
+
+
+                            <TextView
+                                android:id="@+id/textView26Ingredients"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="16dp"
+                                android:background="@drawable/gradinat_background"
+                                android:elevation="12dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:padding="5dp"
+                                android:text="Option Name"
+                                android:textColor="@color/appMainColor"
+                                android:textSize="13sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2Ingredients" />
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/conIngredients"
+                                android:layout_width="match_parent"
+                                android:layout_height="51dp"
+                                android:layout_marginTop="32dp"
+
+                                app:cardBackgroundColor="@color/white"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+
+                                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2Ingredients"
+                                app:layout_constraintWidth_percent="0.45"
+                                app:strokeColor="@color/border"
+                                app:strokeWidth="2dp"
+
+
+                                >
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="51dp"
+                                    android:background="@drawable/card_with_border_main2">
+
+
+                                    <EditText
+                                        android:id="@+id/optionNameIngredients"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginStart="12sp"
+                                        android:background="@android:color/transparent"
+                                        android:hint="Option Name"
+                                        android:padding="10dp"
+                                        android:textColor="@color/appMainColor"
+                                        android:textColorHint="@color/border"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintWidth_percent="0.75" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+
+                            <Button
+                                android:id="@+id/confirmOptionIngredients"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/btn_style"
+                                android:text="confirm"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="@+id/conIngredients"
+                                app:layout_constraintStart_toStartOf="@+id/conIngredients"
+                                app:layout_constraintTop_toBottomOf="@+id/conIngredients"
+                                app:layout_constraintWidth_percent="0.95" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

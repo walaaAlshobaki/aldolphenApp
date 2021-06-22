@@ -53,10 +53,10 @@ class Step2Activity :  AppCompatActivity() , UsersDelegate,MainAdapter.OnItemsel
             val decodedString: ByteArray = Base64.decode(cleanImage, Base64.DEFAULT)
             val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 
-//        Picasso.get().load(decodedByte).error(R.drawable.user).placeholder(R.drawable.user)
-//        .into(avatar_img)
+        Picasso.get().load( userInfo.profilePicturePath).error(R.drawable.user).placeholder(R.drawable.user)
+        .into(userImage)
 
-            common.loadBitmapByPicasso(this, decodedByte, userImage)
+//            common.loadBitmapByPicasso(this, decodedByte, userImage)
 
         }
         userName.text= userInfo.firstName +" "+ userInfo.lastName
